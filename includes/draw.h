@@ -1,36 +1,31 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   define.h                                           :+:      :+:    :+:   */
+/*   draw.h                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: jdelpuec <jdelpuec@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/04/02 11:29:30 by ebonafi           #+#    #+#             */
-/*   Updated: 2020/01/08 14:48:53 by jdelpuec         ###   ########.fr       */
+/*   Created: 2020/01/07 13:14:58 by jdelpuec          #+#    #+#             */
+/*   Updated: 2020/01/07 15:01:02 by jdelpuec         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef DEFINE_H
-# define DEFINE_H
+#ifndef DRAW_H
+# define DRAW_H
 
-/*
-** WINDOW
-*/
+typedef struct		s_line
+{
+    int     x;
+    int     y;
+    int     i;
+    int     x_delta;
+    int     y_delta;
+    int     end_val;
+    int     incr;
 
-# define WIN_W 800
-# define WIN_H 600
-# define FPS 60.0
+    double  decr;
+    double  j;
+}                   t_line;
 
-/*
-** RAYCASTING
-*/
-
-# define SECTOR_ITER_MAX 32
-
-
-# define PLAYER_X 3.5
-# define PLAYER_Y 8.5
-# define PLAYER_H 32.0
-# define FOV 60
 
 #endif

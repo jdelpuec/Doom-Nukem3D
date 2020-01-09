@@ -6,7 +6,7 @@
 /*   By: jdelpuec <jdelpuec@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/04/06 14:02:38 by ebonafi           #+#    #+#             */
-/*   Updated: 2020/01/06 16:35:50 by jdelpuec         ###   ########.fr       */
+/*   Updated: 2020/01/07 13:34:07 by jdelpuec         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,7 @@ typedef struct		s_ray
 {
 	int			x;
 	int			y;
+	int			sector_count;
 	int			cur_sector;
 	float		dist_pp;
 	float		ray_angle;
@@ -44,6 +45,11 @@ typedef struct		s_ray
 	float		y_min;
 	float		y_max;
 	float		line_h;
+
+	int		x_1;
+	int		y_1;
+	int		x_2;
+	int		y_2;
 
 	int				map_x;
 	int				map_y;

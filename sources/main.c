@@ -6,11 +6,12 @@
 /*   By: jdelpuec <jdelpuec@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/04/01 11:49:14 by ebonafi           #+#    #+#             */
-/*   Updated: 2020/01/06 18:08:26 by jdelpuec         ###   ########.fr       */
+/*   Updated: 2020/01/09 16:57:35 by jdelpuec         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "doom.h"
+#include "draw.h"
 #include "define.h"
 #include "raycasting.h"
 #include "event.h"
@@ -42,6 +43,61 @@ void	init_t_ray(t_ray *r)
 	r->dist_pp = WIN_W / tanf(deg_to_rad(30.0));
 }
 
+void	draw_point(t_win *w, int x, int y, int c)
+{
+    if(x >= 0 && x < WIN_W && y >= 0 && y < WIN_H)
+		*((int *)w->surface->pixels + (x * WIN_H + y)) = c;
+}
+
+void	draw_line(t_win *w, t_ray *r)
+{
+	t_line	l;
+	int		tmp;
+	int		y_longer;
+
+	y_longer = 0;
+	l.x_delta = r->x_2 - r->x_1;
+	l.y_delta = r->y_2 - r->y_1;
+	// printf("%d ; %d\n", l.x_delta, l.y_delta);
+	if (abs(l.y_delta) > abs(l.x_delta))
+	{
+		tmp = l.x_delta;
+		l.x_delta = l.y_delta;
+		l.y_delta = tmp;
+		y_longer = 1;
+	}
+	l.end_val = l.x_delta;
+	if (l.x_delta < 0)
+	{
+		l.incr = -1;
+		l.x_delta = -l.x_delta;
+	}
+	else
+		l.incr = 1;
+
+	if (l.x_delta == 0)
+		l.decr = (double)l.y_delta;
+	else
+		l.decr = (double)l.x_delta / (double)l.y_delta;
+
+	l.j = 0.0;
+	l.i = 0;
+	if (y_longer == 1)
+		while (l.i != l.end_val)
+		{
+			draw_point(w, (r->x_1 + (int)l.j), (r->y_1 + l.i), 0xff0000);
+			l.j += l.decr;
+			l.i += l.incr;
+		}
+	else
+		while (l.i != l.end_val)
+		{
+			draw_point(w, (r->x_1 + l.i), (r->y_1 + (int)l.j), 0xff0000);
+			l.j += l.decr;
+			l.i += l.incr;
+		}
+}
+
 int		check_seg_intersection(t_ray *r, t_wall wall, float *h_x, float *h_y)
 {
 	int	denom_is_pos;
@@ -52,6 +108,7 @@ int		check_seg_intersection(t_ray *r, t_wall wall, float *h_x, float *h_y)
 	r->s32_y = r->ray_end.y - r->player.position.y;
 	r->denom = r->s10_x * r->s32_y - r->s32_x * r->s10_y;
 
+	printf("%f ; %f ; %f; %f\n", r->s10_x, r->s10_y, r->s32_x, r->s32_y);
 	if (r->denom == 0.0)
 		return (0);
 
@@ -87,6 +144,7 @@ int		draw_wall(t_win *w, t_ray *r, t_sector sector, t_wall wall)
 
 	if (check_seg_intersection(r, wall, &hit_x, &hit_y) == 1)
 	{
+		printf("oui\n");
 		if (wall.portal_sector >= 0)
 		{
 			portal_sec = r->sectors[wall.portal_sector];
@@ -149,7 +207,6 @@ int		draw_wall(t_win *w, t_ray *r, t_sector sector, t_wall wall)
 			i = (int)r->offset_start;
 			while(i != (int)r->offset_end)
 			{
-				ft_putendl("ok");
 				if (i >= 0 && i < WIN_H)
 					if (i> r->y_min && i < r->y_max)
 						*((int *)w->surface->pixels + (r->x * WIN_H + i)) = 0xffffff;
@@ -170,11 +227,12 @@ int		draw_sector(t_win *w, t_ray *r)
 
 	sector = r->sectors[r->cur_sector];
 	i = 0;
-	while (i != sector.wall_count)
+	while (i < sector.wall_count)
 	{
 		wall = sector.walls[i];
-		if (r->old_wall.p1.x == wall.p1.x && r->old_wall.p1.y == wall.p1.y 
+		if ((r->old_wall.p1.x == wall.p1.x && r->old_wall.p1.y == wall.p1.y 
 			&& r->old_wall.p2.x == wall.p2.x && r->old_wall.p2.y == wall.p2.y)
+			|| (r->old_wall.p1.x == wall.p2.x && r->old_wall.p1.y == wall.p2.y))
 			continue;
 		ret = draw_wall(w, r, sector, wall);
 		if (ret == 1)
@@ -195,15 +253,16 @@ void	draw_player_view(t_win *w, t_ray *r)
 	int			iter;
 	int			running;
 
-	iter	= 0;
-	running	= 0;
+	r->x = 0;
 	r->ray_angle = (deg_to_rad(-30.0) + r->player.angle);
 	while (r->x < WIN_W)
 	{
 		r->ray_end.x = r->player.position.x + cosf(r->ray_angle) * 200.0;
 		r->ray_end.y = r->player.position.y + sinf(r->ray_angle) * 200.0;
 		r->cur_sector = r->player.sector;
-		if (running == 0)
+		iter	= 0;
+		running	= 0;
+		while (running == 0)
 		{
 			iter++;
 			if (iter >= SECTOR_ITER_MAX)
@@ -211,12 +270,50 @@ void	draw_player_view(t_win *w, t_ray *r)
 				ft_putendl("Sector_iter_max reached");
 				break ;
 			}
-			else
-				running = draw_sector(w, r);
+			running = draw_sector(w, r);
 		}
 		r->ray_angle += deg_to_rad(60.0) / WIN_W;
 		r->x++;
 	}
+}
+
+void	draw_minimap(t_win *w, t_ray *r)
+{
+	int i;
+	int j;
+
+	i = 0;
+	j = 0;
+	draw_point(w, (10 + r->player.position.x * 4), (10 + r->player.position.y * 4), 0x00ff00);
+	while (i < r->sector_count)
+	{
+		while (j < r->sectors[i].wall_count)
+		{
+			r->x_1 = 10 + r->sectors[i].walls[j].p1.x * 4;
+			r->y_1 = 10 + r->sectors[i].walls[j].p1.y * 4;
+			r->x_2 = 10 + r->sectors[i].walls[j].p2.x * 4;
+			r->y_2 = 10 + r->sectors[i].walls[j].p2.y * 4;
+			draw_line(w, r);
+			j++;
+		}
+		i++;
+	}
+	j = 0;
+	while (j < r->sectors[r->player.sector].wall_count)
+	{
+		r->x_1 = 10 + r->sectors[r->player.sector].walls[j].p1.x * 4;
+		r->y_1 = 10 + r->sectors[r->player.sector].walls[j].p1.y * 4;
+		r->x_2 = 10 + r->sectors[r->player.sector].walls[j].p2.x * 4;
+		r->y_2 = 10 + r->sectors[r->player.sector].walls[j].p2.y * 4;
+		draw_line(w, r);
+		j++;
+	}
+}
+
+void	drawing(t_win *w, t_ray *r)
+{
+	draw_player_view(w, r);
+	// draw_minimap(w, r);
 }
 
 void	sdl_loop(t_win *w, t_ray *r)
@@ -238,9 +335,9 @@ void	sdl_loop(t_win *w, t_ray *r)
 		{
 			handle_keyboard_mvt(w, r, &k);
 		}
-		draw_player_view(w, r);
-		SDL_UpdateWindowSurface(w->win);
 		ft_bzero(w->surface->pixels, WIN_W*WIN_H*4);
+		drawing(w, r);
+		SDL_UpdateWindowSurface(w->win);
 	}
 }
 
@@ -252,6 +349,8 @@ int		main(void)
 	init_t_ray(&r);
 	init_sdl(&w);
 	r.sectors = map();
+	r.sector_count = 14;
+	r.player.sector = 2;
 	sdl_loop(&w, &r);
 	return (0);
 }
