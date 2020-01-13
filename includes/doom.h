@@ -6,7 +6,7 @@
 /*   By: jdelpuec <jdelpuec@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/04/01 11:50:31 by ebonafi           #+#    #+#             */
-/*   Updated: 2020/01/06 16:53:26 by jdelpuec         ###   ########.fr       */
+/*   Updated: 2020/01/13 12:15:30 by jdelpuec         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,6 +25,10 @@ typedef struct		s_win
 	SDL_Event		e;
 	SDL_Surface		*surface;
 	int				nb_thread;
+
+	int				fps;
+	float			old_time;
+	float			time;
 }					t_win;
 
 typedef struct		s_texture

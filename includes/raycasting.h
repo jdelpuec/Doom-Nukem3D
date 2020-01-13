@@ -6,7 +6,7 @@
 /*   By: jdelpuec <jdelpuec@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/04/06 14:02:38 by ebonafi           #+#    #+#             */
-/*   Updated: 2020/01/07 13:34:07 by jdelpuec         ###   ########.fr       */
+/*   Updated: 2020/01/13 12:43:04 by jdelpuec         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,9 +42,9 @@ typedef struct		s_ray
 	float		dist_wall;
 	float		offset_start;
 	float		offset_end;
-	float		y_min;
-	float		y_max;
 	float		line_h;
+	int			y_min;
+	int			y_max;
 
 	int		x_1;
 	int		y_1;

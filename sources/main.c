@@ -6,7 +6,7 @@
 /*   By: jdelpuec <jdelpuec@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/04/01 11:49:14 by ebonafi           #+#    #+#             */
-/*   Updated: 2020/01/09 16:57:35 by jdelpuec         ###   ########.fr       */
+/*   Updated: 2020/01/13 14:06:27 by jdelpuec         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,7 +40,7 @@ void	init_sdl(t_win *w)
 
 void	init_t_ray(t_ray *r)
 {
-	r->dist_pp = WIN_W / tanf(deg_to_rad(30.0));
+	r->dist_pp	= WIN_W / tanf(deg_to_rad(30.0));
 }
 
 void	draw_point(t_win *w, int x, int y, int c)
@@ -108,7 +108,6 @@ int		check_seg_intersection(t_ray *r, t_wall wall, float *h_x, float *h_y)
 	r->s32_y = r->ray_end.y - r->player.position.y;
 	r->denom = r->s10_x * r->s32_y - r->s32_x * r->s10_y;
 
-	printf("%f ; %f ; %f; %f\n", r->s10_x, r->s10_y, r->s32_x, r->s32_y);
 	if (r->denom == 0.0)
 		return (0);
 
@@ -144,7 +143,6 @@ int		draw_wall(t_win *w, t_ray *r, t_sector sector, t_wall wall)
 
 	if (check_seg_intersection(r, wall, &hit_x, &hit_y) == 1)
 	{
-		printf("oui\n");
 		if (wall.portal_sector >= 0)
 		{
 			portal_sec = r->sectors[wall.portal_sector];
@@ -158,11 +156,9 @@ int		draw_wall(t_win *w, t_ray *r, t_sector sector, t_wall wall)
 				r->offset_start = (WIN_H / 2) + ((r->player.position.z - portal_sec.floor_height) / r->dist_wall) * r->dist_pp;
 				r->offset_end = (WIN_H / 2) + ((r->player.position.z - sector.floor_height) / r->dist_wall) * r->dist_pp;
 
-				printf("%f / %f \n", r->offset_start, r->offset_end);
-				
 				r->y_max = r->offset_start;
 				i = (int)r->offset_start;
-				while (i != (int)r->offset_end)
+				while (i < (int)r->offset_end)
 				{
 					if (i >= 0 && i < WIN_H)
 						*((int *)w->surface->pixels + (r->x * WIN_H + i)) = 0xffffff;
@@ -179,16 +175,15 @@ int		draw_wall(t_win *w, t_ray *r, t_sector sector, t_wall wall)
 				r->offset_start = (WIN_H / 2) + ((r->player.position.z - sector.ceil_height) / r->dist_wall) * r->dist_pp;
 				r->offset_end = (WIN_H / 2) + ((r->player.position.z - portal_sec.ceil_height) / r->dist_wall) * r->dist_pp;
 				
-				printf("%f / %f \n", r->offset_start, r->offset_end);
-				
 				r->y_min = r->offset_end;
 				i = (int)r->offset_start;
-				while(i != (int)r->offset_end)
+				while(i < (int)r->offset_end)
 				{
 					if (i >= 0 && i < WIN_H)
 						*((int *)w->surface->pixels + (r->x * WIN_H + i)) = 0xffffff;
 					i++;
 				}
+				printf("%d ; %f\n",i, r->offset_end);
 			}
 			return (2);
 		}
@@ -202,10 +197,8 @@ int		draw_wall(t_win *w, t_ray *r, t_sector sector, t_wall wall)
 			r->offset_start = (WIN_H / 2) + ((r->player.position.z - sector.ceil_height) / r->dist_wall) * r->dist_pp;
 			r->offset_end = (WIN_H / 2) + ((r->player.position.z - sector.floor_height) / r->dist_wall) * r->dist_pp;
 
-			printf("%f / %f \n", r->offset_start, r->offset_end);
-
 			i = (int)r->offset_start;
-			while(i != (int)r->offset_end)
+			while(i < (int)r->offset_end)
 			{
 				if (i >= 0 && i < WIN_H)
 					if (i> r->y_min && i < r->y_max)
@@ -233,7 +226,10 @@ int		draw_sector(t_win *w, t_ray *r)
 		if ((r->old_wall.p1.x == wall.p1.x && r->old_wall.p1.y == wall.p1.y 
 			&& r->old_wall.p2.x == wall.p2.x && r->old_wall.p2.y == wall.p2.y)
 			|| (r->old_wall.p1.x == wall.p2.x && r->old_wall.p1.y == wall.p2.y))
-			continue;
+			{
+				i++;
+				continue;
+			}
 		ret = draw_wall(w, r, sector, wall);
 		if (ret == 1)
 			return (1);
@@ -255,6 +251,8 @@ void	draw_player_view(t_win *w, t_ray *r)
 
 	r->x = 0;
 	r->ray_angle = (deg_to_rad(-30.0) + r->player.angle);
+	r->y_min	= 0;
+	r->y_max	= WIN_H - 1;
 	while (r->x < WIN_W)
 	{
 		r->ray_end.x = r->player.position.x + cosf(r->ray_angle) * 200.0;
@@ -267,7 +265,7 @@ void	draw_player_view(t_win *w, t_ray *r)
 			iter++;
 			if (iter >= SECTOR_ITER_MAX)
 			{
-				ft_putendl("Sector_iter_max reached");
+				// ft_putendl("Sector_iter_max reached");
 				break ;
 			}
 			running = draw_sector(w, r);
@@ -312,8 +310,20 @@ void	draw_minimap(t_win *w, t_ray *r)
 
 void	drawing(t_win *w, t_ray *r)
 {
+	ft_bzero(w->surface->pixels, WIN_W*WIN_H*4);
 	draw_player_view(w, r);
 	// draw_minimap(w, r);
+	SDL_UpdateWindowSurface(w->win);
+}
+
+void	fps_count(t_win *w)
+{
+	float	delta;
+
+	w->old_time	= w->time;
+	w->time		= SDL_GetTicks();
+	delta		= (w->time - w->old_time) / 1000.0;
+	w->fps		= (int)(1.0 / delta);
 }
 
 void	sdl_loop(t_win *w, t_ray *r)
@@ -335,9 +345,8 @@ void	sdl_loop(t_win *w, t_ray *r)
 		{
 			handle_keyboard_mvt(w, r, &k);
 		}
-		ft_bzero(w->surface->pixels, WIN_W*WIN_H*4);
 		drawing(w, r);
-		SDL_UpdateWindowSurface(w->win);
+		fps_count(w);
 	}
 }
 
@@ -347,10 +356,11 @@ int		main(void)
 	t_win	w;
 
 	init_t_ray(&r);
-	init_sdl(&w);
 	r.sectors = map();
 	r.sector_count = 14;
-	r.player.sector = 2;
+	init_sdl(&w);
+	w.old_time	= 0.0;
+	w.time		= 0.0;
 	sdl_loop(&w, &r);
 	return (0);
 }
