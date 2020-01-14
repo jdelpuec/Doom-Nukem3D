@@ -6,7 +6,7 @@
 /*   By: jdelpuec <jdelpuec@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/04/01 11:49:14 by ebonafi           #+#    #+#             */
-/*   Updated: 2020/01/13 14:06:27 by jdelpuec         ###   ########.fr       */
+/*   Updated: 2020/01/14 17:51:47 by jdelpuec         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -161,7 +161,7 @@ int		draw_wall(t_win *w, t_ray *r, t_sector sector, t_wall wall)
 				while (i < (int)r->offset_end)
 				{
 					if (i >= 0 && i < WIN_H)
-						*((int *)w->surface->pixels + (r->x * WIN_H + i)) = 0xffffff;
+						*((int *)w->surface->pixels + (i * WIN_W + r->x)) = 0xffffff;
 					i++;
 				}
 			}
@@ -180,10 +180,9 @@ int		draw_wall(t_win *w, t_ray *r, t_sector sector, t_wall wall)
 				while(i < (int)r->offset_end)
 				{
 					if (i >= 0 && i < WIN_H)
-						*((int *)w->surface->pixels + (r->x * WIN_H + i)) = 0xffffff;
+						*((int *)w->surface->pixels + (i * WIN_W + r->x)) = 0xffffff;
 					i++;
 				}
-				printf("%d ; %f\n",i, r->offset_end);
 			}
 			return (2);
 		}
@@ -202,12 +201,13 @@ int		draw_wall(t_win *w, t_ray *r, t_sector sector, t_wall wall)
 			{
 				if (i >= 0 && i < WIN_H)
 					if (i> r->y_min && i < r->y_max)
-						*((int *)w->surface->pixels + (r->x * WIN_H + i)) = 0xffffff;
+						*((int *)w->surface->pixels + (i * WIN_W + r->x)) = 0xffffff;
 				i++;
 			}
 			return (1);
 		}
 	}
+	// printf("%f ; %f ; %d \n", r->offset_start, r->offset_end, r->player.sector);
 	return (0);
 }
 
@@ -358,6 +358,8 @@ int		main(void)
 	init_t_ray(&r);
 	r.sectors = map();
 	r.sector_count = 14;
+	r.player.sector = 0;
+	r.player.position.z = 0;
 	init_sdl(&w);
 	w.old_time	= 0.0;
 	w.time		= 0.0;
