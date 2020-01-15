@@ -6,7 +6,7 @@
 /*   By: jdelpuec <jdelpuec@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/04/01 11:49:14 by ebonafi           #+#    #+#             */
-/*   Updated: 2020/01/14 17:51:47 by jdelpuec         ###   ########.fr       */
+/*   Updated: 2020/01/15 17:49:11 by jdelpuec         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,7 +46,7 @@ void	init_t_ray(t_ray *r)
 void	draw_point(t_win *w, int x, int y, int c)
 {
     if(x >= 0 && x < WIN_W && y >= 0 && y < WIN_H)
-		*((int *)w->surface->pixels + (x * WIN_H + y)) = c;
+		*((int *)w->surface->pixels + (y * WIN_W + x)) = c;
 }
 
 void	draw_line(t_win *w, t_ray *r)
@@ -58,7 +58,6 @@ void	draw_line(t_win *w, t_ray *r)
 	y_longer = 0;
 	l.x_delta = r->x_2 - r->x_1;
 	l.y_delta = r->y_2 - r->y_1;
-	// printf("%d ; %d\n", l.x_delta, l.y_delta);
 	if (abs(l.y_delta) > abs(l.x_delta))
 	{
 		tmp = l.x_delta;
@@ -153,8 +152,8 @@ int		draw_wall(t_win *w, t_ray *r, t_sector sector, t_wall wall)
 				r->dist *= cos(r->ray_angle - r->player.angle);
 				r->dist_wall = r->dist * 32.0;
 
-				r->offset_start = (WIN_H / 2) + ((r->player.position.z - portal_sec.floor_height) / r->dist_wall) * r->dist_pp;
-				r->offset_end = (WIN_H / 2) + ((r->player.position.z - sector.floor_height) / r->dist_wall) * r->dist_pp;
+				r->offset_start = (WIN_H >> 1) + ((r->player.position.z - portal_sec.floor_height) / r->dist_wall) * r->dist_pp;
+				r->offset_end = (WIN_H >> 1) + ((r->player.position.z - sector.floor_height) / r->dist_wall) * r->dist_pp;
 
 				r->y_max = r->offset_start;
 				i = (int)r->offset_start;
@@ -172,8 +171,8 @@ int		draw_wall(t_win *w, t_ray *r, t_sector sector, t_wall wall)
 				r->dist *= cos(r->ray_angle - r->player.angle);
 				r->dist_wall = r->dist * 32.0;
 
-				r->offset_start = (WIN_H / 2) + ((r->player.position.z - sector.ceil_height) / r->dist_wall) * r->dist_pp;
-				r->offset_end = (WIN_H / 2) + ((r->player.position.z - portal_sec.ceil_height) / r->dist_wall) * r->dist_pp;
+				r->offset_start = (WIN_H >> 1) + ((r->player.position.z - sector.ceil_height) / r->dist_wall) * r->dist_pp;
+				r->offset_end = (WIN_H >> 1) + ((r->player.position.z - portal_sec.ceil_height) / r->dist_wall) * r->dist_pp;
 				
 				r->y_min = r->offset_end;
 				i = (int)r->offset_start;
@@ -193,8 +192,8 @@ int		draw_wall(t_win *w, t_ray *r, t_sector sector, t_wall wall)
 			r->dist_wall = r->dist * 32.0;
 
 			r->line_h = ((sector.ceil_height - sector.floor_height) / r->dist_wall) * r->dist_pp;
-			r->offset_start = (WIN_H / 2) + ((r->player.position.z - sector.ceil_height) / r->dist_wall) * r->dist_pp;
-			r->offset_end = (WIN_H / 2) + ((r->player.position.z - sector.floor_height) / r->dist_wall) * r->dist_pp;
+			r->offset_start = (WIN_H >> 1) + ((r->player.position.z - sector.ceil_height) / r->dist_wall) * r->dist_pp;
+			r->offset_end = (WIN_H >> 1) + ((r->player.position.z - sector.floor_height) / r->dist_wall) * r->dist_pp;
 
 			i = (int)r->offset_start;
 			while(i < (int)r->offset_end)
@@ -280,17 +279,17 @@ void	draw_minimap(t_win *w, t_ray *r)
 	int i;
 	int j;
 
+	draw_point(w, (10 + ((int)r->player.position.x << 2)), (10 + ((int)r->player.position.y << 2)), 0x00ff00);
 	i = 0;
-	j = 0;
-	draw_point(w, (10 + r->player.position.x * 4), (10 + r->player.position.y * 4), 0x00ff00);
 	while (i < r->sector_count)
 	{
+		j = 0;
 		while (j < r->sectors[i].wall_count)
 		{
-			r->x_1 = 10 + r->sectors[i].walls[j].p1.x * 4;
-			r->y_1 = 10 + r->sectors[i].walls[j].p1.y * 4;
-			r->x_2 = 10 + r->sectors[i].walls[j].p2.x * 4;
-			r->y_2 = 10 + r->sectors[i].walls[j].p2.y * 4;
+			r->x_1 = 10 + ((int)r->sectors[i].walls[j].p1.x << 2);
+			r->y_1 = 10 + ((int)r->sectors[i].walls[j].p1.y << 2);
+			r->x_2 = 10 + ((int)r->sectors[i].walls[j].p2.x << 2);
+			r->y_2 = 10 + ((int)r->sectors[i].walls[j].p2.y << 2);
 			draw_line(w, r);
 			j++;
 		}
@@ -299,10 +298,10 @@ void	draw_minimap(t_win *w, t_ray *r)
 	j = 0;
 	while (j < r->sectors[r->player.sector].wall_count)
 	{
-		r->x_1 = 10 + r->sectors[r->player.sector].walls[j].p1.x * 4;
-		r->y_1 = 10 + r->sectors[r->player.sector].walls[j].p1.y * 4;
-		r->x_2 = 10 + r->sectors[r->player.sector].walls[j].p2.x * 4;
-		r->y_2 = 10 + r->sectors[r->player.sector].walls[j].p2.y * 4;
+		r->x_1 = 10 + ((int)r->sectors[r->player.sector].walls[j].p1.x << 2);
+		r->y_1 = 10 + ((int)r->sectors[r->player.sector].walls[j].p1.y << 2);
+		r->x_2 = 10 + ((int)r->sectors[r->player.sector].walls[j].p2.x << 2);
+		r->y_2 = 10 + ((int)r->sectors[r->player.sector].walls[j].p2.y << 2);
 		draw_line(w, r);
 		j++;
 	}
@@ -310,10 +309,11 @@ void	draw_minimap(t_win *w, t_ray *r)
 
 void	drawing(t_win *w, t_ray *r)
 {
-	ft_bzero(w->surface->pixels, WIN_W*WIN_H*4);
+	ft_bzero(w->surface->pixels, ((WIN_W * WIN_H) << 2));
 	draw_player_view(w, r);
 	// draw_minimap(w, r);
 	SDL_UpdateWindowSurface(w->win);
+	printf("%f ; %d\n", (float)(1.0 / w->fps), w->fps);
 }
 
 void	fps_count(t_win *w)
@@ -359,7 +359,7 @@ int		main(void)
 	r.sectors = map();
 	r.sector_count = 14;
 	r.player.sector = 0;
-	r.player.position.z = 0;
+	r.player.position.z = 32;
 	init_sdl(&w);
 	w.old_time	= 0.0;
 	w.time		= 0.0;

@@ -6,7 +6,7 @@
 /*   By: jdelpuec <jdelpuec@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/28 16:54:21 by lubernar          #+#    #+#             */
-/*   Updated: 2020/01/14 18:00:51 by jdelpuec         ###   ########.fr       */
+/*   Updated: 2020/01/15 15:45:57 by jdelpuec         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -363,29 +363,29 @@ t_sector*	map()
 	t[12].walls[6].p2.y = 20;
 	t[12].walls[6].portal_sector = -1;
 
-	t[12].walls = malloc(sizeof(t_wall) * 3);
-	t[12].wall_count = 3;
-	t[12].floor_height = 0;
-	t[12].ceil_height = 25;
-	t[12].brightness = 0.4;
+	t[13].walls = malloc(sizeof(t_wall) * 3);
+	t[13].wall_count = 3;
+	t[13].floor_height = 0;
+	t[13].ceil_height = 25;
+	t[13].brightness = 0.4;
 
-	t[12].walls[0].p1.x = 0;
-	t[12].walls[0].p1.y = 30;
-	t[12].walls[0].p2.x = 2.5;
-	t[12].walls[0].p2.y = 35;
-	t[12].walls[0].portal_sector = -1;
+	t[13].walls[0].p1.x = 0;
+	t[13].walls[0].p1.y = 30;
+	t[13].walls[0].p2.x = 2.5;
+	t[13].walls[0].p2.y = 35;
+	t[13].walls[0].portal_sector = -1;
 
-	t[12].walls[1].p1.x = 2.5;
-	t[12].walls[1].p1.y = 35;
-	t[12].walls[1].p2.x = -2.5;
-	t[12].walls[1].p2.y = 35;
-	t[12].walls[1].portal_sector = -1;
+	t[13].walls[1].p1.x = 2.5;
+	t[13].walls[1].p1.y = 35;
+	t[13].walls[1].p2.x = -2.5;
+	t[13].walls[1].p2.y = 35;
+	t[13].walls[1].portal_sector = -1;
 
-	t[12].walls[2].p1.x = -2.5;
-	t[12].walls[2].p1.y = 35;
-	t[12].walls[2].p2.x = 0;
-	t[12].walls[2].p2.y = 30;
-	t[12].walls[2].portal_sector = -1;
+	t[13].walls[2].p1.x = -2.5;
+	t[13].walls[2].p1.y = 35;
+	t[13].walls[2].p2.x = 0;
+	t[13].walls[2].p2.y = 30;
+	t[13].walls[2].portal_sector = -1;
 
 	return (t);
 }

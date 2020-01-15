@@ -6,7 +6,7 @@
 /*   By: jdelpuec <jdelpuec@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/04/02 11:15:57 by ebonafi           #+#    #+#             */
-/*   Updated: 2020/01/14 17:54:08 by jdelpuec         ###   ########.fr       */
+/*   Updated: 2020/01/15 17:34:15 by jdelpuec         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -94,7 +94,7 @@ void	handle_keyboard_mvt(t_win *w, t_ray *r, t_keyboard *k)
 	t_vector_2d	new_pos;
 	t_wall		wall;
 
-	ms	= (float)(1.0 / w->fps); // temp value
+	ms	= (1.0 / w->fps); // temp value
 	i	= 0;
 
 	if (k->state[SDL_SCANCODE_W] == 1)
@@ -111,6 +111,11 @@ void	handle_keyboard_mvt(t_win *w, t_ray *r, t_keyboard *k)
 		r->player.angle -= 1.6f * ms;
 	if (k->state[SDL_SCANCODE_D] == 1)
 		r->player.angle += 1.6f * ms;
+	
+	if (k->state[SDL_SCANCODE_Q] == 1)
+		r->player.velocity.z = 80.0;
+	else if (k->state[SDL_SCANCODE_E] == 1)
+		r->player.velocity.z = -40.0;
 
 	r->player.velocity.x -= r->player.velocity.x * 6.0f * ms;
     r->player.velocity.y -= r->player.velocity.y * 6.0f * ms;
@@ -139,7 +144,7 @@ void	handle_keyboard_mvt(t_win *w, t_ray *r, t_keyboard *k)
 						(r->player.velocity.x * ms * new_pos.x + 
 						r->player.velocity.y * ms * new_pos.y) / 
 						(new_pos.x * new_pos.x + new_pos.y + new_pos.y);
-						r->player.velocity.x = new_pos.y *
+						r->player.velocity.y = new_pos.y *
 						(r->player.velocity.x * ms * new_pos.x + 
 						r->player.velocity.y * ms * new_pos.y) / 
 						(new_pos.x * new_pos.x + new_pos.y + new_pos.y);
@@ -156,6 +161,14 @@ void	handle_keyboard_mvt(t_win *w, t_ray *r, t_keyboard *k)
 		r->player.velocity.x = 0.0;
 		r->player.velocity.y = 0.0;
 	}
+	// if (r->player.position.z < r->sectors[r->player.sector].floor_height)
+	// {
+	// 	r->player.position.z = r->sectors[r->player.sector].floor_height + PLAYER_H;
+	// 	r->player.velocity.z = 0.0;
+	// }
+	// else
+	// 	r->player.velocity.z -= 300.0 * ms;
+	// r->player.position.z += r->player.velocity.z * ms;
 }
 
 int	handle_keyboard_event(t_win *w, t_keyboard *k)
