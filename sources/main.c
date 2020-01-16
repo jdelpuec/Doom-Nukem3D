@@ -6,7 +6,7 @@
 /*   By: jdelpuec <jdelpuec@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/04/01 11:49:14 by ebonafi           #+#    #+#             */
-/*   Updated: 2020/01/15 17:49:11 by jdelpuec         ###   ########.fr       */
+/*   Updated: 2020/01/16 18:28:56 by jdelpuec         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -144,6 +144,7 @@ int		draw_wall(t_win *w, t_ray *r, t_sector sector, t_wall wall)
 	{
 		if (wall.portal_sector >= 0)
 		{
+			printf("%d \n", wall.portal_sector);
 			portal_sec = r->sectors[wall.portal_sector];
 
 			if (portal_sec.floor_height > sector.floor_height)
@@ -160,7 +161,7 @@ int		draw_wall(t_win *w, t_ray *r, t_sector sector, t_wall wall)
 				while (i < (int)r->offset_end)
 				{
 					if (i >= 0 && i < WIN_H)
-						*((int *)w->surface->pixels + (i * WIN_W + r->x)) = 0xffffff;
+						*((int *)w->surface->pixels + (i * WIN_W + r->x)) = 0x0000ff;
 					i++;
 				}
 			}
@@ -179,7 +180,7 @@ int		draw_wall(t_win *w, t_ray *r, t_sector sector, t_wall wall)
 				while(i < (int)r->offset_end)
 				{
 					if (i >= 0 && i < WIN_H)
-						*((int *)w->surface->pixels + (i * WIN_W + r->x)) = 0xffffff;
+						*((int *)w->surface->pixels + (i * WIN_W + r->x)) = 0xff0000;
 					i++;
 				}
 			}
@@ -200,7 +201,7 @@ int		draw_wall(t_win *w, t_ray *r, t_sector sector, t_wall wall)
 			{
 				if (i >= 0 && i < WIN_H)
 					if (i> r->y_min && i < r->y_max)
-						*((int *)w->surface->pixels + (i * WIN_W + r->x)) = 0xffffff;
+						*((int *)w->surface->pixels + (i * WIN_W + r->x)) = 0x00ffff;
 				i++;
 			}
 			return (1);
@@ -250,13 +251,13 @@ void	draw_player_view(t_win *w, t_ray *r)
 
 	r->x = 0;
 	r->ray_angle = (deg_to_rad(-30.0) + r->player.angle);
-	r->y_min	= 0;
-	r->y_max	= WIN_H - 1;
 	while (r->x < WIN_W)
 	{
 		r->ray_end.x = r->player.position.x + cosf(r->ray_angle) * 200.0;
 		r->ray_end.y = r->player.position.y + sinf(r->ray_angle) * 200.0;
 		r->cur_sector = r->player.sector;
+		r->y_min	= 0;
+		r->y_max	= WIN_H - 1;
 		iter	= 0;
 		running	= 0;
 		while (running == 0)

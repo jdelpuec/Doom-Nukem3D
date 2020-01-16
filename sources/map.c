@@ -6,7 +6,7 @@
 /*   By: jdelpuec <jdelpuec@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/28 16:54:21 by lubernar          #+#    #+#             */
-/*   Updated: 2020/01/15 15:45:57 by jdelpuec         ###   ########.fr       */
+/*   Updated: 2020/01/16 17:54:14 by jdelpuec         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,8 +16,8 @@ t_sector*	map()
 {
 	t_sector *t;
 	t = malloc(sizeof(t_sector) * 14);
-	t[0].walls = malloc(sizeof(t_wall) * 6);
-	t[0].wall_count = 6;
+	t[0].walls = malloc(sizeof(t_wall) * 8);
+	t[0].wall_count = 8;
 	t[0].floor_height = 0;
 	t[0].ceil_height = 58;
 	t[0].brightness = 1.0;
@@ -56,6 +56,18 @@ t_sector*	map()
 	t[0].walls[5].p2.x = -10;
 	t[0].walls[5].p2.y = 10;
 	t[0].walls[5].portal_sector = -1;
+
+	t[0].walls[6].p1.x = -2.5;
+	t[0].walls[6].p1.y = 10;
+	t[0].walls[6].p2.x = 2.5;
+	t[0].walls[6].p2.y = 10;
+	t[0].walls[6].portal_sector = -1;
+
+	t[0].walls[7].p1.x = -2.5;
+	t[0].walls[7].p1.y = -9;
+	t[0].walls[7].p2.x = 2.5;
+	t[0].walls[7].p2.y = -10;
+	t[0].walls[7].portal_sector = 1;
 
 	t[1].walls = malloc(sizeof(t_wall) * 2);
 	t[1].wall_count = 2;

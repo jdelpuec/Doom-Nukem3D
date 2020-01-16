@@ -6,7 +6,7 @@
 /*   By: jdelpuec <jdelpuec@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/04/02 11:15:57 by ebonafi           #+#    #+#             */
-/*   Updated: 2020/01/15 17:34:15 by jdelpuec         ###   ########.fr       */
+/*   Updated: 2020/01/16 17:58:47 by jdelpuec         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,6 +31,8 @@ int	is_key_pressed(t_keyboard *k)
 	if (k->state[SDL_SCANCODE_A] == 1)
 		pressed++;
 	if (k->state[SDL_SCANCODE_D] == 1)
+		pressed++;
+	if (k->state[SDL_SCANCODE_ESCAPE] == 1)
 		pressed++;
 	if (k->state[SDL_SCANCODE_LCTRL] == 1)
 		pressed++;
@@ -111,17 +113,13 @@ void	handle_keyboard_mvt(t_win *w, t_ray *r, t_keyboard *k)
 		r->player.angle -= 1.6f * ms;
 	if (k->state[SDL_SCANCODE_D] == 1)
 		r->player.angle += 1.6f * ms;
-	
-	if (k->state[SDL_SCANCODE_Q] == 1)
-		r->player.velocity.z = 80.0;
-	else if (k->state[SDL_SCANCODE_E] == 1)
-		r->player.velocity.z = -40.0;
-
-	r->player.velocity.x -= r->player.velocity.x * 6.0f * ms;
-    r->player.velocity.y -= r->player.velocity.y * 6.0f * ms;
+	if (k->state[SDL_SCANCODE_SPACE] == 1)
+		r->player.velocity.z = 60.0;
 
 	if (r->player.velocity.x > 1.0 || r->player.velocity.x < 1.0 || r->player.velocity.y > 1.0 || r->player.velocity.y < 1.0)
 	{
+    	r->player.velocity.y -= r->player.velocity.y * 6.0f * ms;
+		r->player.velocity.x -= r->player.velocity.x * 6.0f * ms;
 		while (i < r->sectors[r->player.sector].wall_count)
 		{
 			new_pos = (t_vector_2d) {r->player.position.x + r->player.velocity.x * ms,
@@ -144,7 +142,7 @@ void	handle_keyboard_mvt(t_win *w, t_ray *r, t_keyboard *k)
 						(r->player.velocity.x * ms * new_pos.x + 
 						r->player.velocity.y * ms * new_pos.y) / 
 						(new_pos.x * new_pos.x + new_pos.y + new_pos.y);
-						r->player.velocity.y = new_pos.y *
+						r->player.velocity.x = new_pos.y *
 						(r->player.velocity.x * ms * new_pos.x + 
 						r->player.velocity.y * ms * new_pos.y) / 
 						(new_pos.x * new_pos.x + new_pos.y + new_pos.y);
@@ -156,19 +154,16 @@ void	handle_keyboard_mvt(t_win *w, t_ray *r, t_keyboard *k)
 		r->player.position.x += r->player.velocity.x * ms;
 		r->player.position.y += r->player.velocity.y * ms;
 	}
-	else
+	r->player.velocity.x = 0.0;
+	r->player.velocity.y = 0.0;
+	r->player.position.z += r->player.velocity.z * ms;
+	if (r->player.position.z < r->sectors[r->player.sector].floor_height + PLAYER_H)
 	{
-		r->player.velocity.x = 0.0;
-		r->player.velocity.y = 0.0;
+		r->player.position.z = r->sectors[r->player.sector].floor_height + PLAYER_H;
+		r->player.velocity.z = 0.0;
 	}
-	// if (r->player.position.z < r->sectors[r->player.sector].floor_height)
-	// {
-	// 	r->player.position.z = r->sectors[r->player.sector].floor_height + PLAYER_H;
-	// 	r->player.velocity.z = 0.0;
-	// }
-	// else
-	// 	r->player.velocity.z -= 300.0 * ms;
-	// r->player.position.z += r->player.velocity.z * ms;
+	else
+		r->player.velocity.z -= 300.0 * ms;
 }
 
 int	handle_keyboard_event(t_win *w, t_keyboard *k)
