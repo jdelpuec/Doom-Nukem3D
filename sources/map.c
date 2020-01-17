@@ -6,7 +6,7 @@
 /*   By: jdelpuec <jdelpuec@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/28 16:54:21 by lubernar          #+#    #+#             */
-/*   Updated: 2020/01/16 17:54:14 by jdelpuec         ###   ########.fr       */
+/*   Updated: 2020/01/17 18:38:22 by jdelpuec         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,16 +61,16 @@ t_sector*	map()
 	t[0].walls[6].p1.y = 10;
 	t[0].walls[6].p2.x = 2.5;
 	t[0].walls[6].p2.y = 10;
-	t[0].walls[6].portal_sector = -1;
+	t[0].walls[6].portal_sector = 11;
 
 	t[0].walls[7].p1.x = -2.5;
-	t[0].walls[7].p1.y = -9;
+	t[0].walls[7].p1.y = -10;
 	t[0].walls[7].p2.x = 2.5;
 	t[0].walls[7].p2.y = -10;
 	t[0].walls[7].portal_sector = 1;
 
-	t[1].walls = malloc(sizeof(t_wall) * 2);
-	t[1].wall_count = 2;
+	t[1].walls = malloc(sizeof(t_wall) * 4);
+	t[1].wall_count = 4;
 	t[1].floor_height = 0;
 	t[1].ceil_height = 58;
 	t[1].brightness = 1.0;
@@ -87,8 +87,21 @@ t_sector*	map()
 	t[1].walls[1].p2.y = -11;
 	t[1].walls[1].portal_sector = -1;
 
-	t[2].walls = malloc(sizeof(t_wall) * 2);
-	t[2].wall_count = 2;
+	t[1].walls[2].p1.x = -2.5;
+	t[1].walls[2].p1.y = -10;
+	t[1].walls[2].p2.x = 2.5;
+	t[1].walls[2].p2.y = -10;
+	t[1].walls[2].portal_sector = 0;
+
+	t[1].walls[3].p1.x = -2.5;
+	t[1].walls[3].p1.y = -11;
+	t[1].walls[3].p2.x = 2.5;
+	t[1].walls[3].p2.y = -11;
+	t[1].walls[3].portal_sector = 2;
+
+
+	t[2].walls = malloc(sizeof(t_wall) * 4);
+	t[2].wall_count = 4;
 	t[2].floor_height = 5;
 	t[2].ceil_height = 63;
 	t[2].brightness = 1.0;
@@ -105,8 +118,20 @@ t_sector*	map()
 	t[2].walls[1].p2.y = -12;
 	t[2].walls[1].portal_sector = -1;
 
-	t[3].walls = malloc(sizeof(t_wall) * 2);
-	t[3].wall_count = 2;
+	t[2].walls[2].p1.x = -2.5;
+	t[2].walls[2].p1.y = -11;
+	t[2].walls[2].p2.x = 2.5;
+	t[2].walls[2].p2.y = -11;
+	t[2].walls[2].portal_sector = 1;
+
+	t[2].walls[3].p1.x = -2.5;
+	t[2].walls[3].p1.y = -12;
+	t[2].walls[3].p2.x = 2.5;
+	t[2].walls[3].p2.y = -12;
+	t[2].walls[3].portal_sector = 3;
+
+	t[3].walls = malloc(sizeof(t_wall) * 4);
+	t[3].wall_count = 4;
 	t[3].floor_height = 10;
 	t[3].ceil_height = 68;
 	t[3].brightness = 1.0;
@@ -123,23 +148,47 @@ t_sector*	map()
 	t[3].walls[1].p2.y = -13;
 	t[3].walls[1].portal_sector = -1;
 
-	t[4].walls = malloc(sizeof(t_wall) * 2);
-	t[4].wall_count = 2;
+	t[3].walls[2].p1.x = -2.5;
+	t[3].walls[2].p1.y = -12;
+	t[3].walls[2].p2.x = 2.5;
+	t[3].walls[2].p2.y = -12;
+	t[3].walls[2].portal_sector = 2;
+
+	t[3].walls[3].p1.x = -2.5;
+	t[3].walls[3].p1.y = -13;
+	t[3].walls[3].p2.x = 2.5;
+	t[3].walls[3].p2.y = -13;
+	t[3].walls[3].portal_sector = 4;
+
+	t[4].walls = malloc(sizeof(t_wall) * 4);
+	t[4].wall_count = 4;
 	t[4].floor_height = 10;
 	t[4].ceil_height = 68;
 	t[4].brightness = 1.0;
 
 	t[4].walls[0].p1.x = -2.5;
-	t[4].walls[0].p1.y = -12;
+	t[4].walls[0].p1.y = -13;
 	t[4].walls[0].p2.x = -2.5;
-	t[4].walls[0].p2.y = -13;
+	t[4].walls[0].p2.y = -14;
 	t[4].walls[0].portal_sector = -1;
 
 	t[4].walls[1].p1.x = 2.5;
-	t[4].walls[1].p1.y = -12;
+	t[4].walls[1].p1.y = -13;
 	t[4].walls[1].p2.x = 2.5;
-	t[4].walls[1].p2.y = -13;
+	t[4].walls[1].p2.y = -14;
 	t[4].walls[1].portal_sector = -1;
+
+	t[4].walls[2].p1.x = 2.5;
+	t[4].walls[2].p1.y = -13;
+	t[4].walls[2].p2.x = 2.5;
+	t[4].walls[2].p2.y = -13;
+	t[4].walls[2].portal_sector = 3;
+
+	t[4].walls[3].p1.x = 2.5;
+	t[4].walls[3].p1.y = -14;
+	t[4].walls[3].p2.x = 2.5;
+	t[4].walls[3].p2.y = -14;
+	t[4].walls[3].portal_sector = 5;
 
 	t[5].walls = malloc(sizeof(t_wall) * 2);
 	t[5].wall_count = 2;
@@ -309,8 +358,8 @@ t_sector*	map()
 	t[11].walls[3].p2.y = -25;
 	t[11].walls[3].portal_sector = -1;
 
-	t[11].walls = malloc(sizeof(t_wall) * 2);
-	t[11].wall_count = 2;
+	t[11].walls = malloc(sizeof(t_wall) * 4);
+	t[11].wall_count = 4;
 	t[11].floor_height = 0;
 	t[11].ceil_height = 64;
 	t[11].brightness = 1.0;
@@ -326,6 +375,18 @@ t_sector*	map()
 	t[11].walls[1].p2.x = -2.5;
 	t[11].walls[1].p2.y = 20;
 	t[11].walls[1].portal_sector = -1;
+
+	t[11].walls[2].p1.x = -2.5;
+	t[11].walls[2].p1.y = 10;
+	t[11].walls[2].p2.x = 2.5;
+	t[11].walls[2].p2.y = 10;
+	t[11].walls[2].portal_sector = 0;
+
+	t[11].walls[3].p1.x = -2.5;
+	t[11].walls[3].p1.y = 20;
+	t[11].walls[3].p2.x = 2.5;
+	t[11].walls[3].p2.y = 20;
+	t[11].walls[3].portal_sector = 12;
 
 	t[12].walls = malloc(sizeof(t_wall) * 7);
 	t[12].wall_count = 7;

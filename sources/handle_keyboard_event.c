@@ -6,7 +6,7 @@
 /*   By: jdelpuec <jdelpuec@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/04/02 11:15:57 by ebonafi           #+#    #+#             */
-/*   Updated: 2020/01/16 17:58:47 by jdelpuec         ###   ########.fr       */
+/*   Updated: 2020/01/17 18:35:10 by jdelpuec         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,8 +33,6 @@ int	is_key_pressed(t_keyboard *k)
 	if (k->state[SDL_SCANCODE_D] == 1)
 		pressed++;
 	if (k->state[SDL_SCANCODE_ESCAPE] == 1)
-		pressed++;
-	if (k->state[SDL_SCANCODE_LCTRL] == 1)
 		pressed++;
 	if (k->state[SDL_SCANCODE_LGUI] == 1)
 		pressed++;
@@ -132,7 +130,7 @@ void	handle_keyboard_mvt(t_win *w, t_ray *r, t_keyboard *k)
 					if (wall.portal_sector >= 0)
 					{
 						r->player.sector		= wall.portal_sector;
-						r->player.position.z	= r->sectors[wall.portal_sector].floor_height;
+						r->player.position.z	= r->sectors[wall.portal_sector].floor_height + PLAYER_H;
 						break;
 					}
 					else
@@ -156,14 +154,17 @@ void	handle_keyboard_mvt(t_win *w, t_ray *r, t_keyboard *k)
 	}
 	r->player.velocity.x = 0.0;
 	r->player.velocity.y = 0.0;
-	r->player.position.z += r->player.velocity.z * ms;
-	if (r->player.position.z < r->sectors[r->player.sector].floor_height + PLAYER_H)
+	if (k->state[SDL_SCANCODE_LCTRL] != 1)
 	{
-		r->player.position.z = r->sectors[r->player.sector].floor_height + PLAYER_H;
-		r->player.velocity.z = 0.0;
+		r->player.position.z += r->player.velocity.z * ms;
+		if (r->player.position.z < r->sectors[r->player.sector].floor_height + PLAYER_H)
+		{
+			r->player.position.z = r->sectors[r->player.sector].floor_height + PLAYER_H;
+			r->player.velocity.z = 0.0;
+		}
+		else
+			r->player.velocity.z -= 300.0 * ms;
 	}
-	else
-		r->player.velocity.z -= 300.0 * ms;
 }
 
 int	handle_keyboard_event(t_win *w, t_keyboard *k)

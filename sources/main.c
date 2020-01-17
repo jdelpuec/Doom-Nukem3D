@@ -6,7 +6,7 @@
 /*   By: jdelpuec <jdelpuec@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/04/01 11:49:14 by ebonafi           #+#    #+#             */
-/*   Updated: 2020/01/16 18:28:56 by jdelpuec         ###   ########.fr       */
+/*   Updated: 2020/01/17 18:49:01 by jdelpuec         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -144,9 +144,7 @@ int		draw_wall(t_win *w, t_ray *r, t_sector sector, t_wall wall)
 	{
 		if (wall.portal_sector >= 0)
 		{
-			printf("%d \n", wall.portal_sector);
 			portal_sec = r->sectors[wall.portal_sector];
-
 			if (portal_sec.floor_height > sector.floor_height)
 			{
 				r->dist = sqrtf(((hit_x - r->player.position.x) * (hit_x - r->player.position.x)) + ((hit_y - r->player.position.y) * (hit_y - r->player.position.y)));
@@ -201,7 +199,7 @@ int		draw_wall(t_win *w, t_ray *r, t_sector sector, t_wall wall)
 			{
 				if (i >= 0 && i < WIN_H)
 					if (i> r->y_min && i < r->y_max)
-						*((int *)w->surface->pixels + (i * WIN_W + r->x)) = 0x00ffff;
+						*((int *)w->surface->pixels + (i * WIN_W + r->x)) = 0x00ff00;
 				i++;
 			}
 			return (1);
@@ -223,19 +221,30 @@ int		draw_sector(t_win *w, t_ray *r)
 	while (i < sector.wall_count)
 	{
 		wall = sector.walls[i];
-		if ((r->old_wall.p1.x == wall.p1.x && r->old_wall.p1.y == wall.p1.y 
-			&& r->old_wall.p2.x == wall.p2.x && r->old_wall.p2.y == wall.p2.y)
-			|| (r->old_wall.p1.x == wall.p2.x && r->old_wall.p1.y == wall.p2.y))
-			{
-				i++;
-				continue;
-			}
+		// if ((r->old_wall.p1.x == wall.p1.x && r->old_wall.p1.y == wall.p1.y 
+		// 	&& r->old_wall.p2.x == wall.p2.x && r->old_wall.p2.y == wall.p2.y)
+		// 	|| (r->old_wall.p1.x == wall.p2.x && r->old_wall.p1.y == wall.p2.y))
+		// 	{
+		// 		i++;
+		// 		continue;
+		// 	}
+		if (wall.portal_sector == r->player.sector || wall.portal_sector == r->last_sec)
+		{
+			i++;
+			continue;
+		}
 		ret = draw_wall(w, r, sector, wall);
 		if (ret == 1)
+		{
+			r->last_sec = -2;
 			return (1);
+		}
 		else if (ret == 2)
 		{
+			// printf("curr : %d \n", wall.portal_sector);
+			// printf("old : %d \n", r->old_wall.portal_sector);
 			r->cur_sector = wall.portal_sector;
+			r->last_sec = r->old_wall.portal_sector;
 			r->old_wall = wall;
 			return (0);
 		}
@@ -253,6 +262,7 @@ void	draw_player_view(t_win *w, t_ray *r)
 	r->ray_angle = (deg_to_rad(-30.0) + r->player.angle);
 	while (r->x < WIN_W)
 	{
+		r->last_sec = -2;
 		r->ray_end.x = r->player.position.x + cosf(r->ray_angle) * 200.0;
 		r->ray_end.y = r->player.position.y + sinf(r->ray_angle) * 200.0;
 		r->cur_sector = r->player.sector;
@@ -314,7 +324,7 @@ void	drawing(t_win *w, t_ray *r)
 	draw_player_view(w, r);
 	// draw_minimap(w, r);
 	SDL_UpdateWindowSurface(w->win);
-	printf("%f ; %d\n", (float)(1.0 / w->fps), w->fps);
+	// printf("%f ; %d\n", (float)(1.0 / w->fps), w->fps);
 }
 
 void	fps_count(t_win *w)
