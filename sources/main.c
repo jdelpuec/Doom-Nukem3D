@@ -6,7 +6,7 @@
 /*   By: jdelpuec <jdelpuec@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/04/01 11:49:14 by ebonafi           #+#    #+#             */
-/*   Updated: 2020/01/17 18:49:01 by jdelpuec         ###   ########.fr       */
+/*   Updated: 2020/01/20 17:24:43 by jdelpuec         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -221,30 +221,21 @@ int		draw_sector(t_win *w, t_ray *r)
 	while (i < sector.wall_count)
 	{
 		wall = sector.walls[i];
-		// if ((r->old_wall.p1.x == wall.p1.x && r->old_wall.p1.y == wall.p1.y 
-		// 	&& r->old_wall.p2.x == wall.p2.x && r->old_wall.p2.y == wall.p2.y)
-		// 	|| (r->old_wall.p1.x == wall.p2.x && r->old_wall.p1.y == wall.p2.y))
-		// 	{
-		// 		i++;
-		// 		continue;
-		// 	}
-		if (wall.portal_sector == r->player.sector || wall.portal_sector == r->last_sec)
-		{
-			i++;
-			continue;
-		}
+		if (wall.portal_sector != -1)
+			if (wall.portal_sector == r->player.sector || wall.portal_sector == r->last_sec)
+			{
+				i++;
+				continue;
+			}
 		ret = draw_wall(w, r, sector, wall);
 		if (ret == 1)
-		{
-			r->last_sec = -2;
 			return (1);
-		}
 		else if (ret == 2)
 		{
 			// printf("curr : %d \n", wall.portal_sector);
 			// printf("old : %d \n", r->old_wall.portal_sector);
-			r->cur_sector = wall.portal_sector;
 			r->last_sec = r->old_wall.portal_sector;
+			r->cur_sector = wall.portal_sector;
 			r->old_wall = wall;
 			return (0);
 		}
