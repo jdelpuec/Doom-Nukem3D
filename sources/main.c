@@ -6,7 +6,7 @@
 /*   By: jdelpuec <jdelpuec@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/04/01 11:49:14 by ebonafi           #+#    #+#             */
-/*   Updated: 2020/01/20 17:24:43 by jdelpuec         ###   ########.fr       */
+/*   Updated: 2020/01/21 19:29:27 by jdelpuec         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,6 +41,7 @@ void	init_sdl(t_win *w)
 void	init_t_ray(t_ray *r)
 {
 	r->dist_pp	= WIN_W / tanf(deg_to_rad(30.0));
+	r->last_sec = -2;
 }
 
 void	draw_point(t_win *w, int x, int y, int c)
@@ -159,7 +160,7 @@ int		draw_wall(t_win *w, t_ray *r, t_sector sector, t_wall wall)
 				while (i < (int)r->offset_end)
 				{
 					if (i >= 0 && i < WIN_H)
-						*((int *)w->surface->pixels + (i * WIN_W + r->x)) = 0x0000ff;
+						*((int *)w->surface->pixels + (i * WIN_W + r->x)) = 0x0000ff * r->light;
 					i++;
 				}
 			}
@@ -178,7 +179,7 @@ int		draw_wall(t_win *w, t_ray *r, t_sector sector, t_wall wall)
 				while(i < (int)r->offset_end)
 				{
 					if (i >= 0 && i < WIN_H)
-						*((int *)w->surface->pixels + (i * WIN_W + r->x)) = 0xff0000;
+						*((int *)w->surface->pixels + (i * WIN_W + r->x)) = 0xff0000 * r->light;
 					i++;
 				}
 			}
@@ -199,13 +200,12 @@ int		draw_wall(t_win *w, t_ray *r, t_sector sector, t_wall wall)
 			{
 				if (i >= 0 && i < WIN_H)
 					if (i> r->y_min && i < r->y_max)
-						*((int *)w->surface->pixels + (i * WIN_W + r->x)) = 0x00ff00;
+						*((int *)w->surface->pixels + (i * WIN_W + r->x)) = 0x00ff00 * r->light;
 				i++;
 			}
 			return (1);
 		}
 	}
-	// printf("%f ; %f ; %d \n", r->offset_start, r->offset_end, r->player.sector);
 	return (0);
 }
 
@@ -216,7 +216,8 @@ int		draw_sector(t_win *w, t_ray *r)
 	int			i;
 	int			ret;
 
-	sector = r->sectors[r->cur_sector];
+	sector		= r->sectors[r->cur_sector];
+	r->light	= sector.brightness;
 	i = 0;
 	while (i < sector.wall_count)
 	{
@@ -224,6 +225,8 @@ int		draw_sector(t_win *w, t_ray *r)
 		if (wall.portal_sector != -1)
 			if (wall.portal_sector == r->player.sector || wall.portal_sector == r->last_sec)
 			{
+				if (wall.portal_sector == r->player.sector)
+					r->last_sec = -2;
 				i++;
 				continue;
 			}
@@ -232,8 +235,6 @@ int		draw_sector(t_win *w, t_ray *r)
 			return (1);
 		else if (ret == 2)
 		{
-			// printf("curr : %d \n", wall.portal_sector);
-			// printf("old : %d \n", r->old_wall.portal_sector);
 			r->last_sec = r->old_wall.portal_sector;
 			r->cur_sector = wall.portal_sector;
 			r->old_wall = wall;
@@ -359,7 +360,7 @@ int		main(void)
 
 	init_t_ray(&r);
 	r.sectors = map();
-	r.sector_count = 14;
+	r.sector_count = 13;
 	r.player.sector = 0;
 	r.player.position.z = 32;
 	init_sdl(&w);

@@ -6,7 +6,7 @@
 /*   By: jdelpuec <jdelpuec@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/04/06 14:02:38 by ebonafi           #+#    #+#             */
-/*   Updated: 2020/01/17 18:25:25 by jdelpuec         ###   ########.fr       */
+/*   Updated: 2020/01/21 15:36:38 by jdelpuec         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,6 +39,7 @@ typedef struct		s_ray
 	float		denom;
 	float		t;
 
+	float		light;
 	float		dist;
 	float		dist_wall;
 	float		offset_start;
