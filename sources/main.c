@@ -6,7 +6,7 @@
 /*   By: jdelpuec <jdelpuec@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/04/01 11:49:14 by ebonafi           #+#    #+#             */
-/*   Updated: 2020/01/21 19:29:27 by jdelpuec         ###   ########.fr       */
+/*   Updated: 2020/01/22 12:33:03 by jdelpuec         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -360,7 +360,7 @@ int		main(void)
 
 	init_t_ray(&r);
 	r.sectors = map();
-	r.sector_count = 13;
+	r.sector_count = 12;
 	r.player.sector = 0;
 	r.player.position.z = 32;
 	init_sdl(&w);

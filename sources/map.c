@@ -6,7 +6,7 @@
 /*   By: jdelpuec <jdelpuec@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/28 16:54:21 by lubernar          #+#    #+#             */
-/*   Updated: 2020/01/21 19:52:22 by jdelpuec         ###   ########.fr       */
+/*   Updated: 2020/01/22 12:32:48 by jdelpuec         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,18 +15,13 @@
 t_sector*	map()
 {
 	t_sector *t;
-	t = malloc(sizeof(t_sector) * 13);
+	t = malloc(sizeof(t_sector) * 12);
 	t[0].walls = malloc(sizeof(t_wall) * 8);
 	t[0].wall_count = 8;
 	t[0].floor_height = 0;
 	t[0].ceil_height = 58;
 	t[0].brightness = 1.0;
-	
-	// t[0].walls[0].p1.x = -10;
-	// t[0].walls[0].p1.y = -10;
-	// t[0].walls[0].p2.x = -10;
-	// t[0].walls[0].p2.y = 10;
-	// t[0].walls[0].portal_sector = -1;
+
 
 	t[0].walls[0].p1.x = -2.5;
 	t[0].walls[0].p1.y = -10;
@@ -83,11 +78,11 @@ t_sector*	map()
 	t[1].ceil_height = 58;
 	t[1].brightness = 1.0;
 
-	t[1].walls[0].p1.x = 2.5;
+	t[1].walls[0].p1.x = -2.5;
 	t[1].walls[0].p1.y = -10;
 	t[1].walls[0].p2.x = 2.5;
-	t[1].walls[0].p2.y = -11;
-	t[1].walls[0].portal_sector = -1;
+	t[1].walls[0].p2.y = -10;
+	t[1].walls[0].portal_sector = 0;
 
 	t[1].walls[1].p1.x = 2.5;
 	t[1].walls[1].p1.y = -10;
@@ -95,17 +90,17 @@ t_sector*	map()
 	t[1].walls[1].p2.y = -11;
 	t[1].walls[1].portal_sector = -1;
 
-	t[1].walls[2].p1.x = -2.5;
-	t[1].walls[2].p1.y = -10;
-	t[1].walls[2].p2.x = 2.5;
-	t[1].walls[2].p2.y = -10;
-	t[1].walls[2].portal_sector = 0;
+	t[1].walls[2].p1.x = 2.5;
+	t[1].walls[2].p1.y = -11;
+	t[1].walls[2].p2.x = -2.5;
+	t[1].walls[2].p2.y = -11;
+	t[1].walls[2].portal_sector = 2;
 
 	t[1].walls[3].p1.x = -2.5;
-	t[1].walls[3].p1.y = -11;
-	t[1].walls[3].p2.x = 2.5;
+	t[1].walls[3].p1.y = -10;
+	t[1].walls[3].p2.x = -2.5;
 	t[1].walls[3].p2.y = -11;
-	t[1].walls[3].portal_sector = 2;
+	t[1].walls[3].portal_sector = -1;
 
 
 	t[2].walls = malloc(sizeof(t_wall) * 4);
@@ -116,9 +111,9 @@ t_sector*	map()
 
 	t[2].walls[0].p1.x = -2.5;
 	t[2].walls[0].p1.y = -11;
-	t[2].walls[0].p2.x = -2.5;
-	t[2].walls[0].p2.y = -12;
-	t[2].walls[0].portal_sector = -1;
+	t[2].walls[0].p2.x = 2.5;
+	t[2].walls[0].p2.y = -11;
+	t[2].walls[0].portal_sector = 1;
 
 	t[2].walls[1].p1.x = 2.5;
 	t[2].walls[1].p1.y = -11;
@@ -126,17 +121,17 @@ t_sector*	map()
 	t[2].walls[1].p2.y = -12;
 	t[2].walls[1].portal_sector = -1;
 
-	t[2].walls[2].p1.x = -2.5;
-	t[2].walls[2].p1.y = -11;
-	t[2].walls[2].p2.x = 2.5;
-	t[2].walls[2].p2.y = -11;
-	t[2].walls[2].portal_sector = 1;
+	t[2].walls[2].p1.x = 2.5;
+	t[2].walls[2].p1.y = -12;
+	t[2].walls[2].p2.x = -2.5;
+	t[2].walls[2].p2.y = -12;
+	t[2].walls[2].portal_sector = 3;
 
 	t[2].walls[3].p1.x = -2.5;
-	t[2].walls[3].p1.y = -12;
-	t[2].walls[3].p2.x = 2.5;
+	t[2].walls[3].p1.y = -11;
+	t[2].walls[3].p2.x = -2.5;
 	t[2].walls[3].p2.y = -12;
-	t[2].walls[3].portal_sector = 3;
+	t[2].walls[3].portal_sector = -1;
 
 	t[3].walls = malloc(sizeof(t_wall) * 4);
 	t[3].wall_count = 4;
@@ -146,9 +141,9 @@ t_sector*	map()
 
 	t[3].walls[0].p1.x = -2.5;
 	t[3].walls[0].p1.y = -12;
-	t[3].walls[0].p2.x = -2.5;
-	t[3].walls[0].p2.y = -13;
-	t[3].walls[0].portal_sector = -1;
+	t[3].walls[0].p2.x = 2.5;
+	t[3].walls[0].p2.y = -12;
+	t[3].walls[0].portal_sector = 2;
 
 	t[3].walls[1].p1.x = 2.5;
 	t[3].walls[1].p1.y = -12;
@@ -156,17 +151,17 @@ t_sector*	map()
 	t[3].walls[1].p2.y = -13;
 	t[3].walls[1].portal_sector = -1;
 
-	t[3].walls[2].p1.x = -2.5;
-	t[3].walls[2].p1.y = -12;
-	t[3].walls[2].p2.x = 2.5;
-	t[3].walls[2].p2.y = -12;
-	t[3].walls[2].portal_sector = 2;
+	t[3].walls[2].p1.x = 2.5;
+	t[3].walls[2].p1.y = -13;
+	t[3].walls[2].p2.x = -2.5;
+	t[3].walls[2].p2.y = -13;
+	t[3].walls[2].portal_sector = 4;
 
 	t[3].walls[3].p1.x = -2.5;
-	t[3].walls[3].p1.y = -13;
-	t[3].walls[3].p2.x = 2.5;
+	t[3].walls[3].p1.y = -12;
+	t[3].walls[3].p2.x = -2.5;
 	t[3].walls[3].p2.y = -13;
-	t[3].walls[3].portal_sector = 4;
+	t[3].walls[3].portal_sector = -1;
 
 	t[4].walls = malloc(sizeof(t_wall) * 4);
 	t[4].wall_count = 4;
@@ -176,9 +171,9 @@ t_sector*	map()
 
 	t[4].walls[0].p1.x = -2.5;
 	t[4].walls[0].p1.y = -13;
-	t[4].walls[0].p2.x = -2.5;
-	t[4].walls[0].p2.y = -14;
-	t[4].walls[0].portal_sector = -1;
+	t[4].walls[0].p2.x = 2.5;
+	t[4].walls[0].p2.y = -13;
+	t[4].walls[0].portal_sector = 3;
 
 	t[4].walls[1].p1.x = 2.5;
 	t[4].walls[1].p1.y = -13;
@@ -186,17 +181,17 @@ t_sector*	map()
 	t[4].walls[1].p2.y = -14;
 	t[4].walls[1].portal_sector = -1;
 
-	t[4].walls[2].p1.x = -2.5;
-	t[4].walls[2].p1.y = -13;
-	t[4].walls[2].p2.x = 2.5;
-	t[4].walls[2].p2.y = -13;
-	t[4].walls[2].portal_sector = 3;
+	t[4].walls[2].p1.x = 2.5;
+	t[4].walls[2].p1.y = -14;
+	t[4].walls[2].p2.x = -2.5;
+	t[4].walls[2].p2.y = -14;
+	t[4].walls[2].portal_sector = 5;
 
 	t[4].walls[3].p1.x = -2.5;
-	t[4].walls[3].p1.y = -14;
-	t[4].walls[3].p2.x = 2.5;
+	t[4].walls[3].p1.y = -13;
+	t[4].walls[3].p2.x = -2.5;
 	t[4].walls[3].p2.y = -14;
-	t[4].walls[3].portal_sector = 5;
+	t[4].walls[3].portal_sector = -1;
 
 	t[5].walls = malloc(sizeof(t_wall) * 4);
 	t[5].wall_count = 4;
@@ -206,9 +201,9 @@ t_sector*	map()
 
 	t[5].walls[0].p1.x = -2.5;
 	t[5].walls[0].p1.y = -14;
-	t[5].walls[0].p2.x = -2.5;
-	t[5].walls[0].p2.y = -15;
-	t[5].walls[0].portal_sector = -1;
+	t[5].walls[0].p2.x = 2.5;
+	t[5].walls[0].p2.y = -14;
+	t[5].walls[0].portal_sector = 4;
 
 	t[5].walls[1].p1.x = 2.5;
 	t[5].walls[1].p1.y = -14;
@@ -216,17 +211,17 @@ t_sector*	map()
 	t[5].walls[1].p2.y = -15;
 	t[5].walls[1].portal_sector = -1;
 
-	t[5].walls[2].p1.x = -2.5;
-	t[5].walls[2].p1.y = -14;
-	t[5].walls[2].p2.x = 2.5;
-	t[5].walls[2].p2.y = -14;
-	t[5].walls[2].portal_sector = 4;
+	t[5].walls[2].p1.x = 2.5;
+	t[5].walls[2].p1.y = -15;
+	t[5].walls[2].p2.x = -2.5;
+	t[5].walls[2].p2.y = -15;
+	t[5].walls[2].portal_sector = 6;
 
 	t[5].walls[3].p1.x = -2.5;
-	t[5].walls[3].p1.y = -15;
-	t[5].walls[3].p2.x = 2.5;
+	t[5].walls[3].p1.y = -14;
+	t[5].walls[3].p2.x = -2.5;
 	t[5].walls[3].p2.y = -15;
-	t[5].walls[3].portal_sector = 6;
+	t[5].walls[3].portal_sector = -1;
 
 	t[6].walls = malloc(sizeof(t_wall) * 4);
 	t[6].wall_count = 4;
@@ -236,9 +231,9 @@ t_sector*	map()
 
 	t[6].walls[0].p1.x = -2.5;
 	t[6].walls[0].p1.y = -15;
-	t[6].walls[0].p2.x = -2.5;
-	t[6].walls[0].p2.y = -16;
-	t[6].walls[0].portal_sector = -1;
+	t[6].walls[0].p2.x = 2.5;
+	t[6].walls[0].p2.y = -15;
+	t[6].walls[0].portal_sector = 5;
 
 	t[6].walls[1].p1.x = 2.5;
 	t[6].walls[1].p1.y = -15;
@@ -246,17 +241,17 @@ t_sector*	map()
 	t[6].walls[1].p2.y = -16;
 	t[6].walls[1].portal_sector = -1;
 
-	t[6].walls[2].p1.x = -2.5;
-	t[6].walls[2].p1.y = -15;
-	t[6].walls[2].p2.x = 2.5;
-	t[6].walls[2].p2.y = -15;
-	t[6].walls[2].portal_sector = 5;
+	t[6].walls[2].p1.x = 2.5;
+	t[6].walls[2].p1.y = -16;
+	t[6].walls[2].p2.x = -2.5;
+	t[6].walls[2].p2.y = -16;
+	t[6].walls[2].portal_sector = 7;
 
 	t[6].walls[3].p1.x = -2.5;
-	t[6].walls[3].p1.y = -16;
-	t[6].walls[3].p2.x = 2.5;
+	t[6].walls[3].p1.y = -15;
+	t[6].walls[3].p2.x = -2.5;
 	t[6].walls[3].p2.y = -16;
-	t[6].walls[3].portal_sector = 7;
+	t[6].walls[3].portal_sector = -1;
 
 	t[7].walls = malloc(sizeof(t_wall) * 4);
 	t[7].wall_count = 4;
@@ -266,9 +261,9 @@ t_sector*	map()
 
 	t[7].walls[0].p1.x = -2.5;
 	t[7].walls[0].p1.y = -16;
-	t[7].walls[0].p2.x = -2.5;
-	t[7].walls[0].p2.y = -17;
-	t[7].walls[0].portal_sector = -1;
+	t[7].walls[0].p2.x = 2.5;
+	t[7].walls[0].p2.y = -16;
+	t[7].walls[0].portal_sector = 6;
 
 	t[7].walls[1].p1.x = 2.5;
 	t[7].walls[1].p1.y = -16;
@@ -276,17 +271,17 @@ t_sector*	map()
 	t[7].walls[1].p2.y = -17;
 	t[7].walls[1].portal_sector = -1;
 
-	t[7].walls[2].p1.x = -2.5;
-	t[7].walls[2].p1.y = -16;
-	t[7].walls[2].p2.x = 2.5;
-	t[7].walls[2].p2.y = -16;
-	t[7].walls[2].portal_sector = 6;
+	t[7].walls[2].p1.x = 2.5;
+	t[7].walls[2].p1.y = -17;
+	t[7].walls[2].p2.x = -2.5;
+	t[7].walls[2].p2.y = -17;
+	t[7].walls[2].portal_sector = 8;
 
 	t[7].walls[3].p1.x = -2.5;
-	t[7].walls[3].p1.y = -17;
-	t[7].walls[3].p2.x = 2.5;
+	t[7].walls[3].p1.y = -16;
+	t[7].walls[3].p2.x = -2.5;
 	t[7].walls[3].p2.y = -17;
-	t[7].walls[3].portal_sector = 8;
+	t[7].walls[3].portal_sector = -1;
 
 	t[8].walls = malloc(sizeof(t_wall) * 4);
 	t[8].wall_count = 4;
@@ -296,9 +291,9 @@ t_sector*	map()
 
 	t[8].walls[0].p1.x = -2.5;
 	t[8].walls[0].p1.y = -17;
-	t[8].walls[0].p2.x = -2.5;
-	t[8].walls[0].p2.y = -18;
-	t[8].walls[0].portal_sector = -1;
+	t[8].walls[0].p2.x = 2.5;
+	t[8].walls[0].p2.y = -17;
+	t[8].walls[0].portal_sector = 7;
 
 	t[8].walls[1].p1.x = 2.5;
 	t[8].walls[1].p1.y = -17;
@@ -306,83 +301,59 @@ t_sector*	map()
 	t[8].walls[1].p2.y = -18;
 	t[8].walls[1].portal_sector = -1;
 
-	t[8].walls[2].p1.x = -2.5;
-	t[8].walls[2].p1.y = -17;
-	t[8].walls[2].p2.x = 2.5;
-	t[8].walls[2].p2.y = -17;
-	t[8].walls[2].portal_sector = 7;
+	t[8].walls[2].p1.x = 2.5;
+	t[8].walls[2].p1.y = -18;
+	t[8].walls[2].p2.x = -2.5;
+	t[8].walls[2].p2.y = -18;
+	t[8].walls[2].portal_sector = 9;
 
 	t[8].walls[3].p1.x = -2.5;
-	t[8].walls[3].p1.y = -18;
-	t[8].walls[3].p2.x = 2.5;
+	t[8].walls[3].p1.y = -17;
+	t[8].walls[3].p2.x = -2.5;
 	t[8].walls[3].p2.y = -18;
-	t[8].walls[3].portal_sector = 9;
+	t[8].walls[3].portal_sector = -1;
 
-	t[9].walls = malloc(sizeof(t_wall) * 10);
-	t[9].wall_count = 10;
+	t[9].walls = malloc(sizeof(t_wall) * 6);
+	t[9].wall_count = 6;
 	t[9].floor_height = 35;
 	t[9].ceil_height = 113;
 	t[9].brightness = 1.0;
 
-	t[9].walls[0].p1.x = -2.5;
+	t[9].walls[0].p1.x = 2.5;
 	t[9].walls[0].p1.y = -18;
-	t[9].walls[0].p2.x = -20;
+	t[9].walls[0].p2.x = 20;
 	t[9].walls[0].p2.y = -18;
 	t[9].walls[0].portal_sector = -1;
 
-	t[9].walls[1].p1.x = -20;
+	t[9].walls[1].p1.x = 20;
 	t[9].walls[1].p1.y = -18;
-	t[9].walls[1].p2.x = -20;
+	t[9].walls[1].p2.x = 20;
 	t[9].walls[1].p2.y = -37;
 	t[9].walls[1].portal_sector = -1;
 
-	t[9].walls[2].p1.x = -20;
+	t[9].walls[2].p1.x = 20;
 	t[9].walls[2].p1.y = -37;
-	t[9].walls[2].p2.x = 20;
+	t[9].walls[2].p2.x = -20;
 	t[9].walls[2].p2.y = -37;
 	t[9].walls[2].portal_sector = -1;
 
-	t[9].walls[3].p1.x = 20;
+	t[9].walls[3].p1.x = -20;
 	t[9].walls[3].p1.y = -37;
-	t[9].walls[3].p2.x = 20;
+	t[9].walls[3].p2.x = -20;
 	t[9].walls[3].p2.y = -18;
 	t[9].walls[3].portal_sector = -1;
 
-	t[9].walls[4].p1.x = 20;
+	t[9].walls[4].p1.x = -20;
 	t[9].walls[4].p1.y = -18;
-	t[9].walls[4].p2.x = 2.5;
+	t[9].walls[4].p2.x = -2.5;
 	t[9].walls[4].p2.y = -18;
 	t[9].walls[4].portal_sector = -1;
 
-	t[9].walls[5].p1.x = -16;
-	t[9].walls[5].p1.y = -25;
-	t[9].walls[5].p2.x = -12;
-	t[9].walls[5].p2.y = -25;
-	t[9].walls[5].portal_sector = 12;
-
-	t[9].walls[6].p1.x = -12;
-	t[9].walls[6].p1.y = -25;
-	t[9].walls[6].p2.x = -12;
-	t[9].walls[6].p2.y = -27;
-	t[9].walls[6].portal_sector = 12;
-
-	t[9].walls[7].p1.x = -12;
-	t[9].walls[7].p1.y = -27;
-	t[9].walls[7].p2.x = -16;
-	t[9].walls[7].p2.y = -27;
-	t[9].walls[7].portal_sector = 12;
-
-	t[9].walls[8].p1.x = -16;
-	t[9].walls[8].p1.y = -27;
-	t[9].walls[8].p2.x = -16;
-	t[9].walls[8].p2.y = -25;
-	t[9].walls[8].portal_sector = 12;
-
-	t[9].walls[9].p1.x = -2.5;
-	t[9].walls[9].p1.y = -18;
-	t[9].walls[9].p2.x = 2.5;
-	t[9].walls[9].p2.y = -18;
-	t[9].walls[9].portal_sector = 8;
+	t[9].walls[5].p1.x = -2.5;
+	t[9].walls[5].p1.y = -18;
+	t[9].walls[5].p2.x = 2.5;
+	t[9].walls[5].p2.y = -18;
+	t[9].walls[5].portal_sector = 8;
 
 
 	t[10].walls = malloc(sizeof(t_wall) * 4);
@@ -421,82 +392,53 @@ t_sector*	map()
 	t[11].ceil_height = 128;
 	t[11].brightness = 0.4;
 
-	t[11].walls[0].p1.x = 2.5;
+	t[11].walls[0].p1.x = -2.5;
 	t[11].walls[0].p1.y = 20;
-	t[11].walls[0].p2.x = 15;
+	t[11].walls[0].p2.x = -15;
 	t[11].walls[0].p2.y = 35;
 	t[11].walls[0].portal_sector = -1;
 
-	t[11].walls[1].p1.x = 15;
+	t[11].walls[1].p1.x = -15;
 	t[11].walls[1].p1.y = 35;
-	t[11].walls[1].p2.x = 15;
+	t[11].walls[1].p2.x = -15;
 	t[11].walls[1].p2.y = 40;
 	t[11].walls[1].portal_sector = -1;
 
-	t[11].walls[2].p1.x = 15;
+	t[11].walls[2].p1.x = -15;
 	t[11].walls[2].p1.y = 40;
-	t[11].walls[2].p2.x = 2.5;
+	t[11].walls[2].p2.x = -2.5;
 	t[11].walls[2].p2.y = 50;
 	t[11].walls[2].portal_sector = -1;
 
-	t[11].walls[3].p1.x = 2.5;
+	t[11].walls[3].p1.x = -2.5;
 	t[11].walls[3].p1.y = 50;
-	t[11].walls[3].p2.x = -2.5;
+	t[11].walls[3].p2.x = 2.5;
 	t[11].walls[3].p2.y = 50;
 	t[11].walls[3].portal_sector = -1;
 
-	t[11].walls[4].p1.x = -2.5;
+	t[11].walls[4].p1.x = 2.5;
 	t[11].walls[4].p1.y = 50;
-	t[11].walls[4].p2.x = -15;
-	t[11].walls[4].p2.y = 45;
+	t[11].walls[4].p2.x = 15;
+	t[11].walls[4].p2.y = 40;
 	t[11].walls[4].portal_sector = -1;
 
-	t[11].walls[5].p1.x = -15;
-	t[11].walls[5].p1.y = 45;
-	t[11].walls[5].p2.x = -15;
-	t[11].walls[5].p2.y = 40;
+	t[11].walls[5].p1.x = 15;
+	t[11].walls[5].p1.y = 40;
+	t[11].walls[5].p2.x = 15;
+	t[11].walls[5].p2.y = 35;
 	t[11].walls[5].portal_sector = -1;
 
-	t[11].walls[6].p1.x = -15;
-	t[11].walls[6].p1.y = 40;
-	t[11].walls[6].p2.x = -2.5;
+	t[11].walls[6].p1.x = 15;
+	t[11].walls[6].p1.y = 35;
+	t[11].walls[6].p2.x = 2.5;
 	t[11].walls[6].p2.y = 20;
 	t[11].walls[6].portal_sector = -1;
 
-	t[11].walls[7].p1.x = -2.5;
+	t[11].walls[7].p1.x = 2.5;
 	t[11].walls[7].p1.y = 20;
-	t[11].walls[7].p2.x = 2.5;
+	t[11].walls[7].p2.x = -2.5;
 	t[11].walls[7].p2.y = 20;
 	t[11].walls[7].portal_sector = 10;
 
-	t[12].walls = malloc(sizeof(t_wall) * 4);
-	t[12].wall_count = 4;
-	t[12].floor_height = 35;
-	t[12].ceil_height = 113;
-	t[12].brightness = 0.4;
-
-	t[12].walls[0].p1.x = -16;
-	t[12].walls[0].p1.y = -25;
-	t[12].walls[0].p2.x = -12;
-	t[12].walls[0].p2.y = -25;
-	t[12].walls[0].portal_sector = -1;
-
-	t[12].walls[1].p1.x = -12;
-	t[12].walls[1].p1.y = -25;
-	t[12].walls[1].p2.x = -12;
-	t[12].walls[1].p2.y = -27;
-	t[12].walls[1].portal_sector = -1;
-
-	t[12].walls[2].p1.x = -12;
-	t[12].walls[2].p1.y = -27;
-	t[12].walls[2].p2.x = -16;
-	t[12].walls[2].p2.y = -27;
-	t[12].walls[2].portal_sector = -1;
-
-	t[12].walls[3].p1.x = -16;
-	t[12].walls[3].p1.y = -27;
-	t[12].walls[3].p2.x = -16;
-	t[12].walls[3].p2.y = -25;
-	t[12].walls[3].portal_sector = -1;
 	return (t);
 }
