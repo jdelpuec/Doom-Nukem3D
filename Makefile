@@ -6,13 +6,14 @@
 #    By: jdelpuec <jdelpuec@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2019/11/19 15:16:10 by jdelpuec          #+#    #+#              #
-#    Updated: 2020/01/06 16:47:54 by jdelpuec         ###   ########.fr        #
+#    Updated: 2020/01/28 17:20:50 by jdelpuec         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 NAME =	DOOM-NUKEM
 
-SRC	=	main.c handle_keyboard_event.c handle_mouse_event.c	map.c deg_to_rad.c\
+SRC	=	main.c handle_keyboard_event.c handle_mouse_event.c	map.c deg_to_rad.c \
+		collision.c \
 
 OBJ =	$(SRC:.c=.o)
 

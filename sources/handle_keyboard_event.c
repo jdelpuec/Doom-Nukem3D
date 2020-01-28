@@ -6,7 +6,7 @@
 /*   By: jdelpuec <jdelpuec@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/04/02 11:15:57 by ebonafi           #+#    #+#             */
-/*   Updated: 2020/01/24 16:34:57 by jdelpuec         ###   ########.fr       */
+/*   Updated: 2020/01/28 17:21:22 by jdelpuec         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -87,11 +87,6 @@ int		inter_box(t_ray *r, t_wall wall, float x1, float y1)
 	return (1);
 }
 
-// int		inter_box2(t_ray *r, t_wall wall)
-// {
-	
-// }
-
 void	handle_keyboard_mvt(t_win *w, t_ray *r, t_keyboard *k)
 {
 	int			i;
@@ -153,10 +148,17 @@ void	handle_keyboard_mvt(t_win *w, t_ray *r, t_keyboard *k)
 				else
 				{
 					new_pos = (t_vector_2d) {wall.p2.x - wall.p1.x, wall.p2.y - wall.p1.y};
-					r->player.velocity.x = new_pos.x * (r->player.velocity.x * ms * new_pos.x + r->player.velocity.y * ms * new_pos.y) / (new_pos.x * new_pos.x + new_pos.y + new_pos.y);
-					r->player.velocity.x = new_pos.y * (r->player.velocity.x * ms * new_pos.x + r->player.velocity.y * ms * new_pos.y) / (new_pos.x * new_pos.x + new_pos.y + new_pos.y);
-					// r->player.velocity.y = new_pos.x * (r->player.velocity.x * ms * new_pos.x + r->player.velocity.y * ms * new_pos.y) / (new_pos.x * new_pos.x + new_pos.y + new_pos.y);
-					// r->player.velocity.y = new_pos.y * (r->player.velocity.x * ms * new_pos.x + r->player.velocity.y * ms * new_pos.y) / (new_pos.x * new_pos.x + new_pos.y + new_pos.y);
+					wall_direction(r, wall.p1, wall.p2, ms);
+					// if (wall_direction(wall.p1, wall.p2, ms) == 0)
+					// {
+						// r->player.velocity.y = new_pos.x * (r->player.velocity.x * ms * new_pos.x + r->player.velocity.y * ms * new_pos.y) / (new_pos.x * new_pos.x + new_pos.y + new_pos.y);
+						// r->player.velocity.y = new_pos.y * (r->player.velocity.x * ms * new_pos.x + r->player.velocity.y * ms * new_pos.y) / (new_pos.x * new_pos.x + new_pos.y + new_pos.y);
+					// }
+					// else
+					// {
+					// 	r->player.velocity.y = new_pos.x * (r->player.velocity.x * ms * new_pos.x + r->player.velocity.y * ms * new_pos.y) / (new_pos.x * new_pos.x + new_pos.y + new_pos.y);
+					// 	r->player.velocity.y = new_pos.y * (r->player.velocity.x * ms * new_pos.x + r->player.velocity.y * ms * new_pos.y) / (new_pos.x * new_pos.x + new_pos.y + new_pos.y);
+					// }
 				}
 			}
 			i++;
