@@ -6,7 +6,7 @@
 /*   By: jdelpuec <jdelpuec@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/04/01 11:49:14 by ebonafi           #+#    #+#             */
-/*   Updated: 2020/01/22 12:33:03 by jdelpuec         ###   ########.fr       */
+/*   Updated: 2020/01/28 18:32:44 by jdelpuec         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -312,7 +312,8 @@ void	draw_minimap(t_win *w, t_ray *r)
 
 void	drawing(t_win *w, t_ray *r)
 {
-	ft_bzero(w->surface->pixels, ((WIN_W * WIN_H) << 2));
+	// ft_bzero(w->surface->pixels, ((WIN_W * WIN_H) << 2));
+	ft_memset(w->surface->pixels, 0xffffffff, ((WIN_W * WIN_H) << 2)); //TO BE FINISHED, CHECK COLOR STOCKAGE ARGB8888;
 	draw_player_view(w, r);
 	// draw_minimap(w, r);
 	SDL_UpdateWindowSurface(w->win);
@@ -366,6 +367,7 @@ int		main(void)
 	init_sdl(&w);
 	w.old_time	= 0.0;
 	w.time		= 0.0;
+	printf("%s \n", SDL_GetPixelFormatName(w.surface->format->format));
 	sdl_loop(&w, &r);
 	return (0);
 }

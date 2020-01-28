@@ -6,7 +6,7 @@
 /*   By: jdelpuec <jdelpuec@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/04/02 11:15:57 by ebonafi           #+#    #+#             */
-/*   Updated: 2020/01/28 17:21:22 by jdelpuec         ###   ########.fr       */
+/*   Updated: 2020/01/28 18:10:34 by jdelpuec         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -97,7 +97,7 @@ void	handle_keyboard_mvt(t_win *w, t_ray *r, t_keyboard *k)
 	ms	= (1.0 / w->fps); // temp value to be limited
 	i	= 0;
 
-	printf("%f \n", r->player.angle);
+	// printf("%f \n", r->player.angle);
 	if (k->state[SDL_SCANCODE_R] == 1)
 	{
 		r->player.position.x		= 0.0;

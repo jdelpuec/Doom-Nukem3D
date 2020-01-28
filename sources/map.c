@@ -6,7 +6,7 @@
 /*   By: jdelpuec <jdelpuec@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/28 16:54:21 by lubernar          #+#    #+#             */
-/*   Updated: 2020/01/28 17:36:13 by jdelpuec         ###   ########.fr       */
+/*   Updated: 2020/01/28 17:48:00 by jdelpuec         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -316,7 +316,7 @@ t_sector*	map()
 	t[9].walls = malloc(sizeof(t_wall) * 6);
 	t[9].wall_count = 6;
 	t[9].floor_height = 35;
-	t[9].ceil_height = 60;
+	t[9].ceil_height = 75;
 	t[9].brightness = 1.0;
 
 	t[9].walls[0].p1.x = 2.5;
