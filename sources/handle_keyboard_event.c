@@ -6,7 +6,7 @@
 /*   By: jdelpuec <jdelpuec@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/04/02 11:15:57 by ebonafi           #+#    #+#             */
-/*   Updated: 2020/01/28 18:10:34 by jdelpuec         ###   ########.fr       */
+/*   Updated: 2020/01/29 17:11:08 by jdelpuec         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,7 +54,6 @@ int	handle_keyboard_misc(t_win *w, t_keyboard *k)
 
 float		check_line_point(t_vector_2d l1, t_vector_2d l2, t_vector_2d p)
 {
-	// printf("dist_wall = %f \n", (l2.x - l1.x) * (p.y - l1.y) - (l2.y - l1.y) * (p.x - l1.x));
 	return ((l2.x - l1.x) * (p.y - l1.y) - (l2.y - l1.y) * (p.x - l1.x));
 }
 
@@ -97,14 +96,14 @@ void	handle_keyboard_mvt(t_win *w, t_ray *r, t_keyboard *k)
 	ms	= (1.0 / w->fps); // temp value to be limited
 	i	= 0;
 
-	// printf("%f \n", r->player.angle);
+	// printf("%f ; %f \n", r->player.position.x, r->player.position.y);
 	if (k->state[SDL_SCANCODE_R] == 1)
 	{
 		r->player.position.x		= 0.0;
 		r->player.position.y		= 0.0;
 		r->player.position.z		= 0.0;
 		r->player.angle				= 0.0;
-		r->player.sector			= 0.0;
+		r->player.sector			= 0;
 	}
 
 	if (k->state[SDL_SCANCODE_W] == 1)
@@ -118,9 +117,11 @@ void	handle_keyboard_mvt(t_win *w, t_ray *r, t_keyboard *k)
 		r->player.velocity.y = -sin(r->player.angle) * 10.0;
 	}
 	if (k->state[SDL_SCANCODE_A] == 1)
-		r->player.angle -= 0.015;
+		r->player.angle -= 2.5 * ms;
+		// r->player.angle -= 0.01;		
 	if (k->state[SDL_SCANCODE_D] == 1)
-		r->player.angle += 0.015;
+		r->player.angle += 2.5 * ms;
+		// r->player.angle += 0.01;		
 	if (k->state[SDL_SCANCODE_SPACE] == 1)
 		r->player.velocity.z = 60.0;
 
@@ -149,16 +150,6 @@ void	handle_keyboard_mvt(t_win *w, t_ray *r, t_keyboard *k)
 				{
 					new_pos = (t_vector_2d) {wall.p2.x - wall.p1.x, wall.p2.y - wall.p1.y};
 					wall_direction(r, wall.p1, wall.p2, ms);
-					// if (wall_direction(wall.p1, wall.p2, ms) == 0)
-					// {
-						// r->player.velocity.y = new_pos.x * (r->player.velocity.x * ms * new_pos.x + r->player.velocity.y * ms * new_pos.y) / (new_pos.x * new_pos.x + new_pos.y + new_pos.y);
-						// r->player.velocity.y = new_pos.y * (r->player.velocity.x * ms * new_pos.x + r->player.velocity.y * ms * new_pos.y) / (new_pos.x * new_pos.x + new_pos.y + new_pos.y);
-					// }
-					// else
-					// {
-					// 	r->player.velocity.y = new_pos.x * (r->player.velocity.x * ms * new_pos.x + r->player.velocity.y * ms * new_pos.y) / (new_pos.x * new_pos.x + new_pos.y + new_pos.y);
-					// 	r->player.velocity.y = new_pos.y * (r->player.velocity.x * ms * new_pos.x + r->player.velocity.y * ms * new_pos.y) / (new_pos.x * new_pos.x + new_pos.y + new_pos.y);
-					// }
 				}
 			}
 			i++;

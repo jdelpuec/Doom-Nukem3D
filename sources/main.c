@@ -6,7 +6,7 @@
 /*   By: jdelpuec <jdelpuec@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/04/01 11:49:14 by ebonafi           #+#    #+#             */
-/*   Updated: 2020/01/28 18:32:44 by jdelpuec         ###   ########.fr       */
+/*   Updated: 2020/01/29 17:04:13 by jdelpuec         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -160,7 +160,7 @@ int		draw_wall(t_win *w, t_ray *r, t_sector sector, t_wall wall)
 				while (i < (int)r->offset_end)
 				{
 					if (i >= 0 && i < WIN_H)
-						*((int *)w->surface->pixels + (i * WIN_W + r->x)) = 0x0000ff * r->light;
+						*((Uint32 *)w->surface->pixels + (i * WIN_W + r->x)) = 0x0000ff * r->light;
 					i++;
 				}
 			}
@@ -178,8 +178,8 @@ int		draw_wall(t_win *w, t_ray *r, t_sector sector, t_wall wall)
 				i = (int)r->offset_start;
 				while(i < (int)r->offset_end)
 				{
-					if (i >= 0 && i < WIN_H)
-						*((int *)w->surface->pixels + (i * WIN_W + r->x)) = 0xff0000 * r->light;
+					if (i >= 0 && i < WIN_H - 1)
+						*((Uint32 *)w->surface->pixels + (i * WIN_W + r->x)) = 0xff0000 * r->light;
 					i++;
 				}
 			}
@@ -200,7 +200,7 @@ int		draw_wall(t_win *w, t_ray *r, t_sector sector, t_wall wall)
 			{
 				if (i >= 0 && i < WIN_H)
 					if (i> r->y_min && i < r->y_max)
-						*((int *)w->surface->pixels + (i * WIN_W + r->x)) = 0x00ff00 * r->light;
+						*((Uint32 *)w->surface->pixels + (i * WIN_W + r->x)) = 0x00ff00 * r->light;
 				i++;
 			}
 			return (1);
@@ -312,12 +312,11 @@ void	draw_minimap(t_win *w, t_ray *r)
 
 void	drawing(t_win *w, t_ray *r)
 {
-	// ft_bzero(w->surface->pixels, ((WIN_W * WIN_H) << 2));
-	ft_memset(w->surface->pixels, 0xffffffff, ((WIN_W * WIN_H) << 2)); //TO BE FINISHED, CHECK COLOR STOCKAGE ARGB8888;
+	SDL_memset(w->surface->pixels, 0, ((WIN_W * WIN_H) << 2));
 	draw_player_view(w, r);
 	// draw_minimap(w, r);
 	SDL_UpdateWindowSurface(w->win);
-	// printf("%f ; %d\n", (float)(1.0 / w->fps), w->fps);
+	// printf(" %d\n", w->fps);
 }
 
 void	fps_count(t_win *w)
@@ -367,7 +366,6 @@ int		main(void)
 	init_sdl(&w);
 	w.old_time	= 0.0;
 	w.time		= 0.0;
-	printf("%s \n", SDL_GetPixelFormatName(w.surface->format->format));
 	sdl_loop(&w, &r);
 	return (0);
 }
