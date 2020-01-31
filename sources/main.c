@@ -6,7 +6,7 @@
 /*   By: jdelpuec <jdelpuec@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/04/01 11:49:14 by ebonafi           #+#    #+#             */
-/*   Updated: 2020/01/29 17:04:13 by jdelpuec         ###   ########.fr       */
+/*   Updated: 2020/01/31 19:00:57 by jdelpuec         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -159,8 +159,8 @@ int		draw_wall(t_win *w, t_ray *r, t_sector sector, t_wall wall)
 				i = (int)r->offset_start;
 				while (i < (int)r->offset_end)
 				{
-					if (i >= 0 && i < WIN_H)
-						*((Uint32 *)w->surface->pixels + (i * WIN_W + r->x)) = 0x0000ff * r->light;
+					if (i >= 0 && i < WIN_H && (*((int *)w->surface->pixels + (i * WIN_W + r->x)) == 0))
+						*((int *)w->surface->pixels + (i * WIN_W + r->x)) = 0x0000ff * r->light;
 					i++;
 				}
 			}
@@ -178,8 +178,8 @@ int		draw_wall(t_win *w, t_ray *r, t_sector sector, t_wall wall)
 				i = (int)r->offset_start;
 				while(i < (int)r->offset_end)
 				{
-					if (i >= 0 && i < WIN_H - 1)
-						*((Uint32 *)w->surface->pixels + (i * WIN_W + r->x)) = 0xff0000 * r->light;
+					if (i >= 0 && i < WIN_H - 1 && (*((int *)w->surface->pixels + (i * WIN_W + r->x)) == 0))
+						*((int *)w->surface->pixels + (i * WIN_W + r->x)) = 0xff0000 * r->light;
 					i++;
 				}
 			}
@@ -199,8 +199,8 @@ int		draw_wall(t_win *w, t_ray *r, t_sector sector, t_wall wall)
 			while(i < (int)r->offset_end)
 			{
 				if (i >= 0 && i < WIN_H)
-					if (i> r->y_min && i < r->y_max)
-						*((Uint32 *)w->surface->pixels + (i * WIN_W + r->x)) = 0x00ff00 * r->light;
+					if (i> r->y_min && i < r->y_max && (*((int *)w->surface->pixels + (i * WIN_W + r->x)) == 0))
+						*((int *)w->surface->pixels + (i * WIN_W + r->x)) = 0x00ff00 * r->light;
 				i++;
 			}
 			return (1);
@@ -362,7 +362,7 @@ int		main(void)
 	r.sectors = map();
 	r.sector_count = 12;
 	r.player.sector = 0;
-	r.player.position.z = 32;
+	r.player.position.z = 0 + PLAYER_H;
 	init_sdl(&w);
 	w.old_time	= 0.0;
 	w.time		= 0.0;
