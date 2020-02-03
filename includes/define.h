@@ -6,7 +6,7 @@
 /*   By: jdelpuec <jdelpuec@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/04/02 11:29:30 by ebonafi           #+#    #+#             */
-/*   Updated: 2020/01/31 17:21:10 by jdelpuec         ###   ########.fr       */
+/*   Updated: 2020/02/03 13:14:51 by jdelpuec         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,7 @@
 ** RAYCASTING
 */
 
-# define SECTOR_ITER_MAX 12
+# define SECTOR_ITER_MAX 16
 
 
 # define PLAYER_X 3.5

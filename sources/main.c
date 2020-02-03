@@ -6,7 +6,7 @@
 /*   By: jdelpuec <jdelpuec@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/04/01 11:49:14 by ebonafi           #+#    #+#             */
-/*   Updated: 2020/01/31 19:00:57 by jdelpuec         ###   ########.fr       */
+/*   Updated: 2020/02/03 10:34:25 by jdelpuec         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -200,7 +200,7 @@ int		draw_wall(t_win *w, t_ray *r, t_sector sector, t_wall wall)
 			{
 				if (i >= 0 && i < WIN_H)
 					if (i> r->y_min && i < r->y_max && (*((int *)w->surface->pixels + (i * WIN_W + r->x)) == 0))
-						*((int *)w->surface->pixels + (i * WIN_W + r->x)) = 0x00ff00 * r->light;
+						*((int *)w->surface->pixels + (i * WIN_W + r->x)) = (r->cur_sector + 1) * 25000 * r->light;
 				i++;
 			}
 			return (1);

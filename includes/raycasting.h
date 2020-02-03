@@ -6,7 +6,7 @@
 /*   By: jdelpuec <jdelpuec@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/04/06 14:02:38 by ebonafi           #+#    #+#             */
-/*   Updated: 2020/01/28 15:31:15 by jdelpuec         ###   ########.fr       */
+/*   Updated: 2020/02/03 11:15:36 by jdelpuec         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,6 +20,7 @@ typedef struct		s_ray
 	int			sector_count;
 	int			cur_sector;
 	int			last_sec;
+	int			direction;
 	float		dist_pp;
 	float		ray_angle;
 
