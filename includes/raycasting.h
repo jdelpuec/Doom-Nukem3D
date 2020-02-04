@@ -6,7 +6,7 @@
 /*   By: jdelpuec <jdelpuec@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/04/06 14:02:38 by ebonafi           #+#    #+#             */
-/*   Updated: 2020/02/03 11:15:36 by jdelpuec         ###   ########.fr       */
+/*   Updated: 2020/02/04 17:22:08 by jdelpuec         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,6 @@ typedef struct		s_ray
 	int			sector_count;
 	int			cur_sector;
 	int			last_sec;
-	int			direction;
 	float		dist_pp;
 	float		ray_angle;
 
@@ -40,6 +39,7 @@ typedef struct		s_ray
 	float		denom;
 	float		t;
 
+
 	float		light;
 	float		dist;
 	float		dist_wall;
@@ -48,6 +48,11 @@ typedef struct		s_ray
 	float		line_h;
 	int			y_min;
 	int			y_max;
+
+	float		tmp;
+	float		dir_angle;
+	int			direction;
+
 
 	int		x_1;
 	int		y_1;
@@ -80,5 +85,5 @@ typedef struct		s_ray
 }					t_ray;
 
 void	init_raycasting(t_ray *r);
-void	wall_direction(t_ray *r, t_vector_2d p1, t_vector_2d p2, float ms);
+void	wall_collision(t_ray *r, t_vector_2d p1, t_vector_2d p2, float ms);
 #endif

@@ -6,14 +6,14 @@
 /*   By: jdelpuec <jdelpuec@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/28 15:29:08 by jdelpuec          #+#    #+#             */
-/*   Updated: 2020/02/03 12:55:37 by jdelpuec         ###   ########.fr       */
+/*   Updated: 2020/02/04 14:10:51 by jdelpuec         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "doom.h"
 #include "raycasting.h"
 
-// void    wall_direction_2(t_ray *r, t_vector_2d p1, t_vector_2d p2, float ms)
+// void    wall_collision_2(t_ray *r, t_vector_2d p1, t_vector_2d p2, float ms)
 // {
 // 	float	del_x;
 // 	float	del_y;
@@ -26,7 +26,7 @@
 //     }
 // }
 
-void    wall_direction(t_ray *r, t_vector_2d p1, t_vector_2d p2, float ms)
+void    wall_collision(t_ray *r, t_vector_2d p1, t_vector_2d p2, float ms)
 {
 	float	del_x;
 	float	del_y;
@@ -50,7 +50,6 @@ void    wall_direction(t_ray *r, t_vector_2d p1, t_vector_2d p2, float ms)
 		r->player.velocity.y  * del_y) / (del_x * del_x + del_y + del_y);
         return ;
 	}
-	
     // wall_direction_2(r, p1, p2, ms);
     return ;
 }

@@ -6,12 +6,12 @@
 /*   By: jdelpuec <jdelpuec@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/04/01 11:49:14 by ebonafi           #+#    #+#             */
-/*   Updated: 2020/02/03 10:34:25 by jdelpuec         ###   ########.fr       */
+/*   Updated: 2020/02/04 17:16:02 by jdelpuec         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "doom.h"
-#include "draw.h"
+#include "mini_map.h"
 #include "define.h"
 #include "raycasting.h"
 #include "event.h"
@@ -35,67 +35,13 @@ void	init_sdl(t_win *w)
 		ft_putstr(SDL_GetError());
 		ft_putstr("Surface error.\n");
 	}
-	// SDL_ShowCursor(0);
+	SDL_ShowCursor(0);
 }
 
 void	init_t_ray(t_ray *r)
 {
 	r->dist_pp	= WIN_W / tanf(deg_to_rad(30.0));
 	r->last_sec = -2;
-}
-
-void	draw_point(t_win *w, int x, int y, int c)
-{
-    if(x >= 0 && x < WIN_W && y >= 0 && y < WIN_H)
-		*((int *)w->surface->pixels + (y * WIN_W + x)) = c;
-}
-
-void	draw_line(t_win *w, t_ray *r)
-{
-	t_line	l;
-	int		tmp;
-	int		y_longer;
-
-	y_longer = 0;
-	l.x_delta = r->x_2 - r->x_1;
-	l.y_delta = r->y_2 - r->y_1;
-	if (abs(l.y_delta) > abs(l.x_delta))
-	{
-		tmp = l.x_delta;
-		l.x_delta = l.y_delta;
-		l.y_delta = tmp;
-		y_longer = 1;
-	}
-	l.end_val = l.x_delta;
-	if (l.x_delta < 0)
-	{
-		l.incr = -1;
-		l.x_delta = -l.x_delta;
-	}
-	else
-		l.incr = 1;
-
-	if (l.x_delta == 0)
-		l.decr = (double)l.y_delta;
-	else
-		l.decr = (double)l.x_delta / (double)l.y_delta;
-
-	l.j = 0.0;
-	l.i = 0;
-	if (y_longer == 1)
-		while (l.i != l.end_val)
-		{
-			draw_point(w, (r->x_1 + (int)l.j), (r->y_1 + l.i), 0xff0000);
-			l.j += l.decr;
-			l.i += l.incr;
-		}
-	else
-		while (l.i != l.end_val)
-		{
-			draw_point(w, (r->x_1 + l.i), (r->y_1 + (int)l.j), 0xff0000);
-			l.j += l.decr;
-			l.i += l.incr;
-		}
 }
 
 int		check_seg_intersection(t_ray *r, t_wall wall, float *h_x, float *h_y)
@@ -255,8 +201,8 @@ void	draw_player_view(t_win *w, t_ray *r)
 	while (r->x < WIN_W)
 	{
 		r->last_sec = -2;
-		r->ray_end.x = r->player.position.x + cosf(r->ray_angle) * 200.0;
-		r->ray_end.y = r->player.position.y + sinf(r->ray_angle) * 200.0;
+		r->ray_end.x = r->player.position.x - cosf(r->ray_angle) * 200.0;
+		r->ray_end.y = r->player.position.y - sinf(r->ray_angle) * 200.0;
 		r->cur_sector = r->player.sector;
 		r->y_min	= 0;
 		r->y_max	= WIN_H - 1;
@@ -266,10 +212,7 @@ void	draw_player_view(t_win *w, t_ray *r)
 		{
 			iter++;
 			if (iter >= SECTOR_ITER_MAX)
-			{
-				// ft_putendl("Sector_iter_max reached");
 				break ;
-			}
 			running = draw_sector(w, r);
 		}
 		r->ray_angle += deg_to_rad(60.0) / WIN_W;
@@ -277,46 +220,20 @@ void	draw_player_view(t_win *w, t_ray *r)
 	}
 }
 
-void	draw_minimap(t_win *w, t_ray *r)
-{
-	int i;
-	int j;
-
-	draw_point(w, (10 + ((int)r->player.position.x << 2)), (10 + ((int)r->player.position.y << 2)), 0x00ff00);
-	i = 0;
-	while (i < r->sector_count)
-	{
-		j = 0;
-		while (j < r->sectors[i].wall_count)
-		{
-			r->x_1 = 10 + ((int)r->sectors[i].walls[j].p1.x << 2);
-			r->y_1 = 10 + ((int)r->sectors[i].walls[j].p1.y << 2);
-			r->x_2 = 10 + ((int)r->sectors[i].walls[j].p2.x << 2);
-			r->y_2 = 10 + ((int)r->sectors[i].walls[j].p2.y << 2);
-			draw_line(w, r);
-			j++;
-		}
-		i++;
-	}
-	j = 0;
-	while (j < r->sectors[r->player.sector].wall_count)
-	{
-		r->x_1 = 10 + ((int)r->sectors[r->player.sector].walls[j].p1.x << 2);
-		r->y_1 = 10 + ((int)r->sectors[r->player.sector].walls[j].p1.y << 2);
-		r->x_2 = 10 + ((int)r->sectors[r->player.sector].walls[j].p2.x << 2);
-		r->y_2 = 10 + ((int)r->sectors[r->player.sector].walls[j].p2.y << 2);
-		draw_line(w, r);
-		j++;
-	}
-}
-
 void	drawing(t_win *w, t_ray *r)
 {
 	SDL_memset(w->surface->pixels, 0, ((WIN_W * WIN_H) << 2));
 	draw_player_view(w, r);
-	// draw_minimap(w, r);
+	// draw_minimap(w, r);	//A finir .... voir abandonner si optionnel
+
+	// --> mettre ici les sprites :
+	
+	//	
+
+	// --> mettre ici l'affichage de l'HUD :
+	
+	//
 	SDL_UpdateWindowSurface(w->win);
-	// printf(" %d\n", w->fps);
 }
 
 void	fps_count(t_win *w)
@@ -359,13 +276,17 @@ int		main(void)
 	t_win	w;
 
 	init_t_ray(&r);
+
 	r.sectors = map();
-	r.sector_count = 12;
+	r.sector_count = 12;		// Brut map ---> need to implemant parsing
 	r.player.sector = 0;
 	r.player.position.z = 0 + PLAYER_H;
+
 	init_sdl(&w);
 	w.old_time	= 0.0;
 	w.time		= 0.0;
+
+
 	sdl_loop(&w, &r);
 	return (0);
 }
