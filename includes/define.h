@@ -6,7 +6,7 @@
 /*   By: jdelpuec <jdelpuec@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/04/02 11:29:30 by ebonafi           #+#    #+#             */
-/*   Updated: 2020/02/03 13:14:51 by jdelpuec         ###   ########.fr       */
+/*   Updated: 2020/02/05 10:55:45 by jdelpuec         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,8 +17,8 @@
 ** WINDOW
 */
 
-# define WIN_W 680
-# define WIN_H 420
+# define WIN_W 1200
+# define WIN_H 860
 # define FPS 60.0
 
 /*

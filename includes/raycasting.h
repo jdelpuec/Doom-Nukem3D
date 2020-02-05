@@ -6,7 +6,7 @@
 /*   By: jdelpuec <jdelpuec@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/04/06 14:02:38 by ebonafi           #+#    #+#             */
-/*   Updated: 2020/02/04 17:22:08 by jdelpuec         ###   ########.fr       */
+/*   Updated: 2020/02/05 15:02:44 by jdelpuec         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -84,6 +84,12 @@ typedef struct		s_ray
 	float			coef;
 }					t_ray;
 
-void	init_raycasting(t_ray *r);
-void	wall_collision(t_ray *r, t_vector_2d p1, t_vector_2d p2, float ms);
+void		init_raycasting(t_ray *r);
+void		wall_collision(t_ray *r, t_vector_2d p1, t_vector_2d p2);
+float		get_dir_angle(t_ray *r);
+float		get_dot_poduct(t_vector_3d v1, t_vector_3d v2);
+float		get_vector_length(t_vector_3d v);
+t_vector_3d	normalize_vec(t_vector_3d v);
+t_vector_3d	get_normal_wall(t_vector_2d v1, t_vector_2d v2);
+t_vector_3d	get_cross_poduct(t_vector_3d v1, t_vector_3d v2);
 #endif
