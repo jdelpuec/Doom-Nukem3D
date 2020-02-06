@@ -6,7 +6,7 @@
 /*   By: jdelpuec <jdelpuec@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/04/01 11:49:14 by ebonafi           #+#    #+#             */
-/*   Updated: 2020/02/04 17:16:02 by jdelpuec         ###   ########.fr       */
+/*   Updated: 2020/02/06 17:59:14 by jdelpuec         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,6 +42,7 @@ void	init_t_ray(t_ray *r)
 {
 	r->dist_pp	= WIN_W / tanf(deg_to_rad(30.0));
 	r->last_sec = -2;
+	r->speed	= 5.0;
 }
 
 int		check_seg_intersection(t_ray *r, t_wall wall, float *h_x, float *h_y)
@@ -137,7 +138,6 @@ int		draw_wall(t_win *w, t_ray *r, t_sector sector, t_wall wall)
 			r->dist *= cos(r->ray_angle - r->player.angle);
 			r->dist_wall = r->dist * 32.0;
 
-			r->line_h = ((sector.ceil_height - sector.floor_height) / r->dist_wall) * r->dist_pp;
 			r->offset_start = (WIN_H >> 1) + ((r->player.position.z - sector.ceil_height) / r->dist_wall) * r->dist_pp;
 			r->offset_end = (WIN_H >> 1) + ((r->player.position.z - sector.floor_height) / r->dist_wall) * r->dist_pp;
 
@@ -201,7 +201,7 @@ void	draw_player_view(t_win *w, t_ray *r)
 	while (r->x < WIN_W)
 	{
 		r->last_sec = -2;
-		r->ray_end.x = r->player.position.x - cosf(r->ray_angle) * 200.0;
+		r->ray_end.x = r->player.position.x + cosf(r->ray_angle) * 200.0;
 		r->ray_end.y = r->player.position.y - sinf(r->ray_angle) * 200.0;
 		r->cur_sector = r->player.sector;
 		r->y_min	= 0;
@@ -261,7 +261,7 @@ void	sdl_loop(t_win *w, t_ray *r)
 			if (w->e.type == SDL_MOUSEMOTION)
 				handle_mouse_event(w, r);
 		}
-		if (is_key_pressed(&k) > 0)
+		if (is_key_pressed(&k) > 0 || r->player.position.z != r->sectors[r->cur_sector].floor_height + 32)
 		{
 			handle_keyboard_mvt(w, r, &k);
 		}

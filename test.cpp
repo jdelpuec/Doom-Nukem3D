@@ -17,6 +17,7 @@
 #define max(a,b) (((a) > (b)) ? (a) : (b))
 #define Overlap(a0,a1,b0,b1) (min(a0,a1) <= max(b0,b1) && min(b0,b1) <= max(a0,a1))
 #define IntersectBox(x0,y0, x1,y1, x2,y2, x3,y3) (Overlap(x0,x1,x2,x3) && Overlap(y0,y1,y2,y3))
+
 #define sign(v) (((v) > 0) - ((v) < 0))
  
 #define FULLSCREEN

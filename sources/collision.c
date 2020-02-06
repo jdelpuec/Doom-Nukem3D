@@ -6,7 +6,7 @@
 /*   By: jdelpuec <jdelpuec@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/28 15:29:08 by jdelpuec          #+#    #+#             */
-/*   Updated: 2020/02/05 16:25:00 by jdelpuec         ###   ########.fr       */
+/*   Updated: 2020/02/06 16:15:42 by jdelpuec         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,29 +33,27 @@ void    wall_collision_2(t_ray *r, t_vector_2d p1, t_vector_2d p2)
 	r->player.velocity.y = tmp.y - get_dot_poduct(normal, tmp) * normal.y;
 }
 
-void    wall_collision(t_ray *r, t_vector_2d p1, t_vector_2d p2)
+void    wall_collision(t_ray *r, t_vector_3d wd)
 {
-	float	del_x;
-	float	del_y;
+	t_vector_3d	tmp;
 
-	del_x	= p2.x - p1.x;
-	del_y	= p2.y - p1.y;
-	if (del_x == 0)
+	tmp 	= r->player.velocity;
+	if (wd.x == 0)
 	{
-        r->player.velocity.x = del_y * (r->player.velocity.x * del_x +
-		r->player.velocity.y * del_y) / (del_x * del_x + del_y + del_y);
-		r->player.velocity.x = del_x * (r->player.velocity.x * del_x +
-		r->player.velocity.y * del_y) / (del_x * del_x + del_y + del_y);
+        r->player.velocity.x = wd.y * (tmp.x * wd.x +
+		tmp.y * wd.y) / (wd.x * wd.x + wd.y + wd.y);
+		r->player.velocity.x = wd.x * (tmp.x * wd.x +
+		tmp.y * wd.y) / (wd.x * wd.x + wd.y + wd.y);
         return ;
 	}
-    else if (del_y == 0)
+    else if (wd.y == 0)
 	{
-		r->player.velocity.y = del_x * (r->player.velocity.x * del_x +
-		r->player.velocity.y * del_y) / (del_x * del_x + del_y + del_y);
-		r->player.velocity.y = del_y * (r->player.velocity.x * del_x +
-		r->player.velocity.y * del_y) / (del_x * del_x + del_y + del_y);
+		r->player.velocity.y = wd.x * (tmp.x * wd.x +
+		tmp.y * wd.y) / (wd.x * wd.x + wd.y + wd.y);
+		r->player.velocity.y = wd.y * (tmp.x * wd.x +
+		tmp.y * wd.y) / (wd.x * wd.x + wd.y + wd.y);
         return ;
 	}
-    wall_collision_2(r, p1, p2);
+    // wall_collision_2(r, p1, p2);
     return ;
 }
