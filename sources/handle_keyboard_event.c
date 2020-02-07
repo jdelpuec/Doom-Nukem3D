@@ -6,7 +6,7 @@
 /*   By: jdelpuec <jdelpuec@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/04/02 11:15:57 by ebonafi           #+#    #+#             */
-/*   Updated: 2020/02/06 19:27:54 by jdelpuec         ###   ########.fr       */
+/*   Updated: 2020/02/07 13:08:03 by jdelpuec         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -200,7 +200,7 @@ void	handle_keyboard_mvt(t_win *w, t_ray *r, t_keyboard *k)
 			wall	= r->sectors[r->player.sector].walls[i];
 			if (test_box(r, new_pos, wall) == 1)
 			{
-				if (((r->tmp = check_line_point(wall.p1, wall.p2, new_pos)) > -1))
+				if (((r->tmp = fabsf(check_line_point(wall.p1, wall.p2, new_pos))) < 5))
 				{
 					if (wall.portal_sector >= 0 && (r->player.position.z + PLAYER_H >
 					 r->sectors[wall.portal_sector].floor_height &&

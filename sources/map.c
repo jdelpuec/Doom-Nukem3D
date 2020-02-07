@@ -6,7 +6,7 @@
 /*   By: jdelpuec <jdelpuec@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/28 16:54:21 by lubernar          #+#    #+#             */
-/*   Updated: 2020/02/06 14:26:49 by jdelpuec         ###   ########.fr       */
+/*   Updated: 2020/02/07 11:44:59 by jdelpuec         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -392,16 +392,10 @@ t_sector*	map()
 	t[11].ceil_height = 100;
 	t[11].brightness = 0.4;
 
-	// t[11].walls[0].p1.x = -2.5;
-	// t[11].walls[0].p1.y = 20;
-	// t[11].walls[0].p2.x = -15;
-	// t[11].walls[0].p2.y = 35;
-	// t[11].walls[0].portal_sector = -1;
-
-	t[11].walls[0].p2.x = -2.5;
-	t[11].walls[0].p2.y = 20;
-	t[11].walls[0].p1.x = -15;
-	t[11].walls[0].p1.y = 35;
+	t[11].walls[0].p1.x = -2.5;
+	t[11].walls[0].p1.y = 20;
+	t[11].walls[0].p2.x = -15;
+	t[11].walls[0].p2.y = 35;
 	t[11].walls[0].portal_sector = -1;
 
 	t[11].walls[1].p1.x = -15;
