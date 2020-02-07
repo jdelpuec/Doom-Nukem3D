@@ -6,7 +6,7 @@
 /*   By: jdelpuec <jdelpuec@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/04/01 11:49:14 by ebonafi           #+#    #+#             */
-/*   Updated: 2020/02/06 17:59:14 by jdelpuec         ###   ########.fr       */
+/*   Updated: 2020/02/07 18:35:05 by jdelpuec         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,6 +43,7 @@ void	init_t_ray(t_ray *r)
 	r->dist_pp	= WIN_W / tanf(deg_to_rad(30.0));
 	r->last_sec = -2;
 	r->speed	= 5.0;
+	r->thresh	= 1;
 }
 
 int		check_seg_intersection(t_ray *r, t_wall wall, float *h_x, float *h_y)
@@ -222,8 +223,11 @@ void	draw_player_view(t_win *w, t_ray *r)
 
 void	drawing(t_win *w, t_ray *r)
 {
-	SDL_memset(w->surface->pixels, 0, ((WIN_W * WIN_H) << 2));
-	draw_player_view(w, r);
+	if (w->fps > 50)
+	{
+		SDL_memset(w->surface->pixels, 0, ((WIN_W * WIN_H) << 2));
+		draw_player_view(w, r);
+	}
 	// draw_minimap(w, r);	//A finir .... voir abandonner si optionnel
 
 	// --> mettre ici les sprites :
