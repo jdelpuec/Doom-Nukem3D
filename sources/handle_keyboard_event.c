@@ -6,7 +6,7 @@
 /*   By: jdelpuec <jdelpuec@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/04/02 11:15:57 by ebonafi           #+#    #+#             */
-/*   Updated: 2020/02/07 18:46:09 by jdelpuec         ###   ########.fr       */
+/*   Updated: 2020/02/08 15:39:29 by jdelpuec         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,12 +56,6 @@ int	handle_keyboard_misc(t_win *w, t_keyboard *k)
 		return (-1);
 	}
 	return (1);
-}
-
-float		check_line_point(t_vector_2d l1, t_vector_2d l2, t_vector_3d p)
-{
-	// printf("%f  \n", (l2.x - l1.x) * (p.y - l1.y) - (l2.y - l1.y) * (p.x - l1.x));
-	return ((l2.x - l1.x) * (p.y - l1.y) - (l2.y - l1.y) * (p.x - l1.x));
 }
 
 int		inter_box(t_ray *r, t_wall wall, t_vector_3d n_pos)
@@ -122,6 +116,12 @@ int		test_box(t_ray *r, t_vector_3d p, t_wall wall)
 	return ((p.x >= min_x && p.x <= max_x) && (p.y >= min_y && p.y <= max_y));
 }
 
+float		check_line_point(t_vector_2d l1, t_vector_2d l2, t_vector_3d p)
+{
+	// printf("%f  \n", (l2.x - l1.x) * (p.y - l1.y) - (l2.y - l1.y) * (p.x - l1.x));
+	return ((l2.x - l1.x) * (p.y - l1.y) - (l2.y - l1.y) * (p.x - l1.x));
+}
+
 void	handle_keyboard_mvt(t_win *w, t_ray *r, t_keyboard *k)
 {
 	int			i;
@@ -137,6 +137,9 @@ void	handle_keyboard_mvt(t_win *w, t_ray *r, t_keyboard *k)
 
 	if (r->player.sector > 8 || r->player.sector == 0)
 		r->speed = k->state[SDL_SCANCODE_LSHIFT] == 1 ? 8.0 : 5.0;
+
+	if (r->player.position.z - PLAYER_H != r->sectors[r->cur_sector].floor_height)
+		r->speed = 5.0;
 
 	if (k->state[SDL_SCANCODE_R] == 1)
 	{
@@ -181,12 +184,8 @@ void	handle_keyboard_mvt(t_win *w, t_ray *r, t_keyboard *k)
 
 	if (k->state[SDL_SCANCODE_SPACE] == 1)
 		r->player.velocity.z = 60.0;
-	
 
-///////////////				CHECK LES COLLISIONS AVEC TETE DANS LE PLAFOND (sector changes ??) ///////////////////
-
-
-	// printf("x = %f; y = %f ; z = %f  \n", r->player.velocity.x, r->player.velocity.y, r->player.position.z);
+	// printf("x = %f; y = %f ; z = %f   ; sec = %d \n", r->player.position.x, r->player.position.y, r->player.position.z, r->player.sector);
 	if (ms > 0.1)
 	{
 		r->player.velocity.x = 0;
@@ -215,7 +214,7 @@ void	handle_keyboard_mvt(t_win *w, t_ray *r, t_keyboard *k)
 					else
 					{
 						new_pos = (t_vector_3d) {wall.p2.x - wall.p1.x, wall.p2.y - wall.p1.y, 0};
-						wall_collision(r, new_pos);
+						wall_collision(r, new_pos, wall);
 					}
 				}
 			}

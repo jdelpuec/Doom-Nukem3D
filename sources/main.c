@@ -6,7 +6,7 @@
 /*   By: jdelpuec <jdelpuec@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/04/01 11:49:14 by ebonafi           #+#    #+#             */
-/*   Updated: 2020/02/07 18:35:05 by jdelpuec         ###   ########.fr       */
+/*   Updated: 2020/02/08 18:08:48 by jdelpuec         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -103,14 +103,25 @@ int		draw_wall(t_win *w, t_ray *r, t_sector sector, t_wall wall)
 				r->offset_start = (WIN_H >> 1) + ((r->player.position.z - portal_sec.floor_height) / r->dist_wall) * r->dist_pp;
 				r->offset_end = (WIN_H >> 1) + ((r->player.position.z - sector.floor_height) / r->dist_wall) * r->dist_pp;
 
-				r->y_max = r->offset_start;
 				i = (int)r->offset_start;
+
+				i++;
 				while (i < (int)r->offset_end)
 				{
-					if (i >= 0 && i < WIN_H && (*((int *)w->surface->pixels + (i * WIN_W + r->x)) == 0))
-						*((int *)w->surface->pixels + (i * WIN_W + r->x)) = 0x0000ff * r->light;
+					if (i >= 0 && i < WIN_H)
+						if (i > r->y_min && i < r->y_max && (*((int *)w->surface->pixels + (i * WIN_W + r->x)) == 0))
+							*((int *)w->surface->pixels + (i * WIN_W + r->x)) = 0x0000ff * r->light;		// Next sector floor diff
 					i++;
 				}
+				i++;
+				while (i < WIN_H)
+				{
+					if (i >= 0 && i < WIN_H)
+						if (i > r->y_min && i < r->y_max && (*((int *)w->surface->pixels + (i * WIN_W + r->x)) == 0))
+							*((int *)w->surface->pixels + (i * WIN_W + r->x)) = 0x303030 * r->light;	// Next sector ground
+					i++;
+				}
+				r->y_max = (int)r->offset_start;
 			}
 
 			if (portal_sec.ceil_height < sector.ceil_height)
@@ -122,14 +133,28 @@ int		draw_wall(t_win *w, t_ray *r, t_sector sector, t_wall wall)
 				r->offset_start = (WIN_H >> 1) + ((r->player.position.z - sector.ceil_height) / r->dist_wall) * r->dist_pp;
 				r->offset_end = (WIN_H >> 1) + ((r->player.position.z - portal_sec.ceil_height) / r->dist_wall) * r->dist_pp;
 				
-				r->y_min = r->offset_end;
-				i = (int)r->offset_start;
-				while(i < (int)r->offset_end)
+				// i = (int)r->offset_start;
+
+				//
+				i = 0;
+
+				while (i < (int)r->offset_start)
 				{
-					if (i >= 0 && i < WIN_H - 1 && (*((int *)w->surface->pixels + (i * WIN_W + r->x)) == 0))
-						*((int *)w->surface->pixels + (i * WIN_W + r->x)) = 0xff0000 * r->light;
+					if (i >= 0 && i < WIN_H)
+						if (i > r->y_min && i < r->y_max && (*((int *)w->surface->pixels + (i * WIN_W + r->x)) == 0))
+							*((int *)w->surface->pixels + (i * WIN_W + r->x)) = 0x808080 * r->light;
 					i++;
 				}
+				i++;
+				//
+				while(i < (int)r->offset_end)
+				{
+					if (i >= 0 && i < WIN_H)
+						if (i > r->y_min && i < r->y_max && (*((int *)w->surface->pixels + (i * WIN_W + r->x)) == 0))
+							*((int *)w->surface->pixels + (i * WIN_W + r->x)) = 0xff0000 * r->light;	// NExt sector ceil diff
+					i++;
+				}
+				r->y_min = (int)r->offset_end;
 			}
 			return (2);
 		}
@@ -142,14 +167,36 @@ int		draw_wall(t_win *w, t_ray *r, t_sector sector, t_wall wall)
 			r->offset_start = (WIN_H >> 1) + ((r->player.position.z - sector.ceil_height) / r->dist_wall) * r->dist_pp;
 			r->offset_end = (WIN_H >> 1) + ((r->player.position.z - sector.floor_height) / r->dist_wall) * r->dist_pp;
 
-			i = (int)r->offset_start;
+			i = 0;
+			while (i < (int)r->offset_start)
+			{
+				if (i >= 0 && i < WIN_H)
+					if (i > r->y_min && i < r->y_max && (*((int *)w->surface->pixels + (i * WIN_W + r->x)) == 0))
+						*((int *)w->surface->pixels + (i * WIN_W + r->x)) = 0x808080 * r->light;
+				i++;
+			}
+			///
+			i++;
 			while(i < (int)r->offset_end)
 			{
 				if (i >= 0 && i < WIN_H)
-					if (i> r->y_min && i < r->y_max && (*((int *)w->surface->pixels + (i * WIN_W + r->x)) == 0))
+					if (i > r->y_min && i < r->y_max && (*((int *)w->surface->pixels + (i * WIN_W + r->x)) == 0))
 						*((int *)w->surface->pixels + (i * WIN_W + r->x)) = (r->cur_sector + 1) * 25000 * r->light;
 				i++;
 			}
+
+			///
+			i++;
+			while (i < WIN_H)
+			{
+				if (i >= 0 && i < WIN_H)
+					if (i > r->y_min && i < r->y_max && (*((int *)w->surface->pixels + (i * WIN_W + r->x)) == 0))
+						*((int *)w->surface->pixels + (i * WIN_W + r->x)) = 0x303030 * r->light;
+				i++;
+			}
+			// /
+			// r->y_min = (int)r->offset_end;
+			// r->y_max = (int)r->offset_start;
 			return (1);
 		}
 	}
