@@ -6,7 +6,7 @@
 /*   By: jdelpuec <jdelpuec@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/04/02 11:29:30 by ebonafi           #+#    #+#             */
-/*   Updated: 2020/02/08 17:28:14 by jdelpuec         ###   ########.fr       */
+/*   Updated: 2020/02/10 18:18:16 by jdelpuec         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,10 +27,12 @@
 
 # define SECTOR_ITER_MAX 16
 
+# define PLAYER_H 32
 
-# define PLAYER_X 3.5
-# define PLAYER_Y 8.5
-# define PLAYER_H 32.0
-# define FOV 60
+# define DARK 0x303030
+# define GREY 0x808080
+# define BLUE 0x0000ff
+# define GREEN 0x00ff00
+# define RED 0xff0000
 
 #endif

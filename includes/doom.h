@@ -6,7 +6,7 @@
 /*   By: jdelpuec <jdelpuec@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/04/01 11:50:31 by ebonafi           #+#    #+#             */
-/*   Updated: 2020/01/13 12:15:30 by jdelpuec         ###   ########.fr       */
+/*   Updated: 2020/02/10 15:11:05 by jdelpuec         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -82,9 +82,4 @@ typedef struct		s_sector
 }					t_sector;
 
 t_sector*			map();
-float				deg_to_rad(float angle);
-int					*int_malloc(char *name, int size);
-char				*sting_malloc(char *name, int size);
-char				**tab_malloc(char *name, int size);
-unsigned char		*unsigned_char_malloc(char *name, int size);
 #endif
