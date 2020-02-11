@@ -6,10 +6,11 @@
 /*   By: jdelpuec <jdelpuec@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/04/01 11:49:14 by ebonafi           #+#    #+#             */
-/*   Updated: 2020/02/10 14:13:30 by jdelpuec         ###   ########.fr       */
+/*   Updated: 2020/02/11 15:47:07 by jdelpuec         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
+#include "textures.h"
 #include "doom.h"
 #include "raycasting.h"
 #include "draw.h"
@@ -41,10 +42,9 @@ void	sdl_loop(t_win *w, t_ray *r)
 			if (w->e.type == SDL_MOUSEMOTION)
 				handle_mouse_event(w, r);
 		}
-		if (is_key_pressed(&k) > 0 || r->player.position.z != r->sectors[r->cur_sector].floor_height + 32)
-		{
+		if (is_key_pressed(&k) > 0 || r->player.position.z
+			!= r->sectors[r->cur_sector].floor_height + 32)
 			handle_keyboard_mvt(w, r, &k);
-		}
 		drawing(w, r);
 		fps_count(w);
 	}
@@ -61,6 +61,9 @@ int		main(void)
 	r.sector_count = 12;		// Brut map ---> need to implemant parsing
 	r.player.sector = 0;
 	r.player.position.z = 0 + PLAYER_H;
+
+	w.text_list = init_text();
+
 
 	init_sdl(&w);
 	sdl_loop(&w, &r);

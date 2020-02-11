@@ -6,7 +6,7 @@
 /*   By: jdelpuec <jdelpuec@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/10 14:05:34 by jdelpuec          #+#    #+#             */
-/*   Updated: 2020/02/10 18:17:16 by jdelpuec         ###   ########.fr       */
+/*   Updated: 2020/02/11 18:29:12 by jdelpuec         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -122,7 +122,6 @@ void	drawing(t_win *w, t_ray *r)
 {
 	SDL_memset(w->surface->pixels, 0, ((WIN_W * WIN_H) << 2));
 	draw_player_view(w, r);
-
 	// --> mettre ici les sprites :
 
 	//

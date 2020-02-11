@@ -646,7 +646,8 @@ int DrawWall(Wall_t wall, Sector_t sector, Vector_2D rayEnd, float rayAngle, int
             float txsq = tx * tx;
             float ty = wall.p1.y - hitY;
             float tysq = ty * ty;
-            float intersectionLen = sqrtf(txsq + tysq) * (wall.texture.width / (65.0f * (1.0f / (wall.texture.width / sector.ceilHeight-sector.floorHeight))));
+            float intersectionLen = sqrtf(txsq + tysq) * (wall.texture.width / (65.0f * (1.0f
+				/ (wall.texture.width / sector.ceilHeight-sector.floorHeight))));
             float texCount = floor(intersectionLen / wall.texture.width);
             float fullLenTex = texCount * wall.texture.width;
             float texX = intersectionLen - fullLenTex;

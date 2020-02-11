@@ -6,7 +6,7 @@
 /*   By: jdelpuec <jdelpuec@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/10 14:12:36 by jdelpuec          #+#    #+#             */
-/*   Updated: 2020/02/10 18:17:56 by jdelpuec         ###   ########.fr       */
+/*   Updated: 2020/02/11 18:19:15 by jdelpuec         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,7 @@ void	draw_portal_ceil(t_win *w, t_ray *r, t_sector sector,
 		- r->player.position.x)) + ((r->hit_y - r->player.position.y)
 		* (r->hit_y - r->player.position.y)));
 	r->dist *= cos(r->ray_angle - r->player.angle);
-	r->dist_wall = r->dist * 32.0;
+	r->dist_wall = r->dist * PLAYER_H;
 	r->offset_start = (WIN_H >> 1) + ((r->player.position.z
 				- sector.ceil_height) / r->dist_wall) * r->dist_pp;
 	r->offset_end = (WIN_H >> 1) + ((r->player.position.z
@@ -49,7 +49,7 @@ void	draw_portal_floor(t_win *w, t_ray *r, t_sector sector,
 		- r->player.position.x)) + ((r->hit_y - r->player.position.y)
 		* (r->hit_y - r->player.position.y)));
 	r->dist *= cos(r->ray_angle - r->player.angle);
-	r->dist_wall = r->dist * 32.0;
+	r->dist_wall = r->dist * PLAYER_H;
 	r->offset_start = (WIN_H >> 1) + ((r->player.position.z
 				- portal_sec.floor_height) / r->dist_wall) * r->dist_pp;
 	r->offset_end = (WIN_H >> 1) + ((r->player.position.z
@@ -78,32 +78,34 @@ int		draw_portal(t_win *w, t_ray *r, t_sector sector, t_wall wall)
 	return (2);
 }
 
-int		draw_wall_2(t_win *w, t_ray *r, t_sector sector)
+int		draw_wall_2(t_win *w, t_ray *r, t_sector sector, t_wall wall)
 {
-	int i;
+	// int i;
 
 	r->dist = sqrtf(((r->hit_x - r->player.position.x) * (r->hit_x
 		- r->player.position.x)) + ((r->hit_y - r->player.position.y)
 		* (r->hit_y - r->player.position.y)));
 	r->dist *= cos(r->ray_angle - r->player.angle);
-	r->dist_wall = r->dist * 32.0;
+	r->dist_wall = r->dist * PLAYER_H;
+	r->line_h = ((sector.ceil_height - sector.floor_height) / r->dist_wall) * r->dist_pp;
 	r->offset_start = (WIN_H >> 1) + ((r->player.position.z
 				- sector.ceil_height) / r->dist_wall) * r->dist_pp;
 	r->offset_end = (WIN_H >> 1) + ((r->player.position.z
 				- sector.floor_height) / r->dist_wall) * r->dist_pp;
-	i = 0;
-	while (i++ < (int)r->offset_start)
-		if ((i >= 0 && i < WIN_H) && (i > r->y_min && i < r->y_max - 1)
-			&& (*((int *)w->surface->pixels + (i * WIN_W + r->x)) == 0))
-			*((int *)w->surface->pixels + (i * WIN_W + r->x)) = GREY * r->light;
-	while (i++ < (int)r->offset_end)
-		if ((i >= 0 && i < WIN_H) && (i > r->y_min && i < r->y_max - 1)
-			&& (*((int *)w->surface->pixels + (i * WIN_W + r->x)) == 0))
-			*((int *)w->surface->pixels + (i * WIN_W + r->x)) = (r->cur_sector + 1) * 25000 * r->light;
-	while (i++ < WIN_H)
-		if ((i >= 0 && i < WIN_H) && (i > r->y_min && i < r->y_max - 1)
-			&& (*((int *)w->surface->pixels + (i * WIN_W + r->x)) == 0))
-			*((int *)w->surface->pixels + (i * WIN_W + r->x)) = DARK * r->light;
+	wall_textures(w, r, sector, wall);
+	// i = 0;
+	// while (i++ < (int)r->offset_start)
+	// 	if ((i >= 0 && i < WIN_H) && (i > r->y_min && i < r->y_max - 1)
+	// 		&& (*((int *)w->surface->pixels + (i * WIN_W + r->x)) == 0))
+	// 		*((int *)w->surface->pixels + (i * WIN_W + r->x)) = GREY * r->light;
+	// while (i++ < (int)r->offset_end)
+	// 	if ((i >= 0 && i < WIN_H) && (i > r->y_min && i < r->y_max - 1)
+	// 		&& (*((int *)w->surface->pixels + (i * WIN_W + r->x)) == 0))
+	// 		*((int *)w->surface->pixels + (i * WIN_W + r->x)) = (r->cur_sector + 1) * 25000 * r->light;
+	// while (i++ < WIN_H)
+	// 	if ((i >= 0 && i < WIN_H) && (i > r->y_min && i < r->y_max - 1)
+	// 		&& (*((int *)w->surface->pixels + (i * WIN_W + r->x)) == 0))
+	// 		*((int *)w->surface->pixels + (i * WIN_W + r->x)) = DARK * r->light;
 	// r->y_min = (int)r->offset_end;
 	// r->y_max = (int)r->offset_start;
 	return (1);
@@ -116,7 +118,7 @@ int		draw_wall(t_win *w, t_ray *r, t_sector sector, t_wall wall)
 		if (wall.portal_sector >= 0)
 			return (draw_portal(w, r, sector, wall));
 		else
-			return (draw_wall_2(w, r, sector));
+			return (draw_wall_2(w, r, sector, wall));
 	}
 	return (0);
 }

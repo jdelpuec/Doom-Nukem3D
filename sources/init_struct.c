@@ -6,15 +6,29 @@
 /*   By: jdelpuec <jdelpuec@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/10 11:27:26 by jdelpuec          #+#    #+#             */
-/*   Updated: 2020/02/10 11:38:42 by jdelpuec         ###   ########.fr       */
+/*   Updated: 2020/02/11 15:43:22 by jdelpuec         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
+#include "textures.h"
 #include "doom.h"
 #include "raycasting.h"
 
+t_text_tab	init_text()
+{
+	t_text_tab	text_list;
+	char		**tab;
 
-void	init_sdl(t_win *w)
+	tab = (char **)malloc(sizeof(char*) * 3);
+	tab[0] = "./ressources/textures/Bamboo.bmp";
+	tab[1] = "./ressources/textures/WildGrass.bmp";
+	tab[2] = NULL;
+	text_list = handle_textures(tab, 0);
+	return (text_list);
+}
+
+
+void		init_sdl(t_win *w)
 {
 	if (SDL_Init(SDL_INIT_VIDEO | SDL_INIT_EVENTS) != 0)
 	{
@@ -35,7 +49,7 @@ void	init_sdl(t_win *w)
 	SDL_ShowCursor(0);
 }
 
-void	init_t_ray(t_ray *r)
+void		init_t_ray(t_ray *r)
 {
 	r->dist_pp	= WIN_W / tanf(deg_to_rad(30.0));
 	r->last_sec = -2;

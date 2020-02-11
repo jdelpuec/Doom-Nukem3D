@@ -6,7 +6,7 @@
 /*   By: jdelpuec <jdelpuec@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/04/06 14:02:38 by ebonafi           #+#    #+#             */
-/*   Updated: 2020/02/10 15:41:52 by jdelpuec         ###   ########.fr       */
+/*   Updated: 2020/02/11 17:56:15 by jdelpuec         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,6 +64,22 @@ typedef struct		s_ray
 	int		x_2;
 	int		y_2;
 }					t_ray;
+
+typedef struct		s_wall_tex
+{
+	float	tx;
+	float	ty;
+	float	intersec;
+	float	tex_count;
+	float	full_len;
+	float	tex_scale;
+	float	tex_xf;
+	float	tex_yf;
+	int		tex_y;
+	int		tex_id;
+}					t_wall_tex;
+
 float				deg_to_rad(float angle);
+void		wall_textures(t_win *w, t_ray *r, t_sector sector, t_wall wall);
 
 #endif
