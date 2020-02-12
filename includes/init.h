@@ -1,22 +1,19 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   handle_mouse_event.c                               :+:      :+:    :+:   */
+/*   init.h                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: jdelpuec <jdelpuec@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/04/24 16:20:47 by jdelpuec          #+#    #+#             */
-/*   Updated: 2020/02/10 15:45:03 by jdelpuec         ###   ########.fr       */
+/*   Created: 2020/02/10 11:37:51 by jdelpuec          #+#    #+#             */
+/*   Updated: 2020/02/11 15:43:20 by jdelpuec         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "doom.h"
-#include "raycasting.h"
+#ifndef INIT_H
+# define INIT_H
 
-void	handle_mouse_event(t_win *w, t_ray *r)
-{
-	(void)w;
-	(void)r;
-	SDL_SetRelativeMouseMode(SDL_TRUE);
-	// handle_mouse_mvt(w, r);
-}
+void		init_sdl(t_win *w);
+void		init_t_ray(t_ray *r);
+t_text_tab	init_text(); //add path in arg;
+#endif

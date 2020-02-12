@@ -6,15 +6,16 @@
 #    By: lubernar <lubernar@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2019/11/19 15:16:10 by jdelpuec          #+#    #+#              #
-#    Updated: 2020/02/12 14:27:41 by lubernar         ###   ########.fr        #
+#    Updated: 2020/02/12 17:39:46 by lubernar         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 NAME =	DOOM-NUKEM
 
 SRC	=	main.c handle_keyboard_event.c handle_mouse_event.c	map.c deg_to_rad.c \
-		collision.c math.c mini_map.c inventory.c handle_textures.c ft_malloc.c \
-		gun.c
+		collision.c math.c inventory.c handle_textures.c ft_malloc.c \
+		gun.c init_struct.c set_draw.c wall_draw.c set_textures.c\
+
 OBJ =	$(SRC:.c=.o)
 
 SRCDIR =	./sources/

@@ -1,40 +1,29 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   doom.h                                             :+:      :+:    :+:   */
+/*   Doom.h                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lubernar <lubernar@student.42.fr>          +#+  +:+       +#+        */
+/*   By: cduverge <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/04/01 11:50:31 by ebonafi           #+#    #+#             */
-/*   Updated: 2020/02/12 17:35:29 by lubernar         ###   ########.fr       */
+/*   Created: 2019/11/26 12:05:29 by cduverge          #+#    #+#             */
+/*   Updated: 2019/12/17 17:42:16 by cduverge         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef DOOM_H
-# define DOOM_H
+#define DOOM_H
 
-# include <stdlib.h>
-# include "libft.h"
-# include "get_next_line.h"
-# include "define.h"
-# include "textures.h"
-# include <SDL2/SDL.h>
-# include "textures.h"
+#include "SDL2/SDL.h"
+#include "../libft/libft.h"
+
+#define USAGE "Usage : ./doom-nukem <map> or ./doom-nukem editor <map>"
 
 typedef struct		s_win
 {
-	int			pressed;
-	float		old_t;
 	SDL_Window		*win;
 	SDL_Event		e;
 	SDL_Surface		*surface;
-
-	t_text_tab		text_list;
 	int				nb_thread;
-
-	int				fps;
-	float			old_time;
-	float			time;
 }					t_win;
 
 typedef struct		s_texture
@@ -43,12 +32,6 @@ typedef struct		s_texture
 	int		height;
 	void	*color;
 }					t_texture;
-
-typedef struct		s_vector_2d
-{
-	float	x;
-	float	y;
-}					t_vector_2d;
 
 typedef struct		s_vector_3d
 {
@@ -69,9 +52,12 @@ typedef struct		s_player
 typedef struct		s_wall
 {
 	int			portal_sector;
+	int			id_wall;
+	float		x1;
+	float		y1;
+	float		x2;
+	float		y2;
 
-	t_vector_2d	p1;
-	t_vector_2d	p2;
 	t_texture	texture;
 }					t_wall;
 
@@ -80,7 +66,9 @@ typedef struct		s_sector
 	int			wall_count;
 	int			floor_height;
 	int			ceil_height;
-	float		brightness;
+	int			brightness;
+	int			id_floor;
+	int			id_ceil;
 
 	t_wall		*walls;
 	t_texture	floor_tex;
@@ -117,13 +105,7 @@ int		number_or_dot(char *str);
 int		check_entire_line(char *str);
 int		check_line(char *str);
 float	ft_atof(char *str);
-t_sector*			map();
-float				deg_to_rad(float angle);
-int					*int_malloc(char *name, int size);
-char				*sting_malloc(char *name, int size);
-char				**tab_malloc(char *name, int size);
-unsigned char		*unsigned_char_malloc(char *name, int size);
-void				display(int x, int y, t_win *sdl, t_text_tab tmp);
-void    			init_gun(t_win *w, t_text_tab *gun_anim);
 
+//main.c
+int		main(int ac, char **av);
 #endif

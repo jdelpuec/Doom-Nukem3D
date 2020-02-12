@@ -1,0 +1,140 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   set_draw.c                                         :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: lubernar <lubernar@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2020/02/10 14:05:34 by jdelpuec          #+#    #+#             */
+/*   Updated: 2020/02/12 17:49:23 by lubernar         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
+#include "doom.h"
+#include "raycasting.h"
+#include "draw.h"
+
+int		check_seg_intersection(t_ray *r, t_wall wall, float *h_x, float *h_y)
+{
+	int denom_is_pos;
+
+	r->s10_x = wall.p2.x - wall.p1.x;
+	r->s10_y = wall.p2.y - wall.p1.y;
+	r->s32_x = r->ray_end.x - r->player.position.x;
+	r->s32_y = r->ray_end.y - r->player.position.y;
+	r->denom = r->s10_x * r->s32_y - r->s32_x * r->s10_y;
+	if (r->denom == 0.0)
+		return (0);
+	denom_is_pos = r->denom > 0;
+	r->s02_x = wall.p1.x - r->player.position.x;
+	r->s02_y = wall.p1.y - r->player.position.y;
+	r->s_denom = r->s10_x * r->s02_y - r->s02_x * r->s10_y;
+	if ((r->s_denom < 0) == denom_is_pos)
+		return (0);
+	r->t_denom = r->s32_x * r->s02_y - r->s32_y * r->s02_x;
+	if ((r->t_denom < 0) == denom_is_pos)
+		return (0);
+	if (((r->s_denom > r->denom) == denom_is_pos)
+		|| ((r->t_denom > r->denom) == denom_is_pos))
+		return (0);
+	r->t = r->t_denom / r->denom;
+	*h_x = wall.p1.x + (r->t * r->s10_x);
+	*h_y = wall.p1.y + (r->t * r->s10_y);
+	return (1);
+}
+
+int		sector_loop(t_win *w, t_ray *r, t_sector sector, t_wall wall)
+{
+	int ret;
+
+	ret = draw_wall(w, r, sector, wall);
+	if (ret == 1)
+		return (1);
+	else if (ret == 2)
+	{
+		r->last_sec = r->old_wall.portal_sector;
+		r->cur_sector = wall.portal_sector;
+		r->old_wall = wall;
+		return (0);
+	}
+	r->i++;
+	return (2);
+}
+
+int		draw_sector(t_win *w, t_ray *r)
+{
+	t_sector	sector;
+	t_wall		wall;
+	int			ret;
+
+	sector = r->sectors[r->cur_sector];
+	r->light = sector.brightness;
+	r->i = 0;
+	while (r->i < sector.wall_count)
+	{
+		wall = sector.walls[r->i];
+		if (wall.portal_sector != -1)
+			if (wall.portal_sector == r->player.sector
+				|| wall.portal_sector == r->last_sec)
+			{
+				if (wall.portal_sector == r->player.sector)
+					r->last_sec = -2;
+				r->i++;
+				continue;
+			}
+		ret = sector_loop(w, r, sector, wall);
+		if (ret == 0 || ret == 1)
+			return (ret);
+	}
+	return (0);
+}
+
+void	draw_player_view(t_win *w, t_ray *r)
+{
+	int			iter;
+	int			running;
+
+	r->x = 0;
+	r->ray_angle = (deg_to_rad(-30.0) + r->player.angle);
+	while (r->x < WIN_W)
+	{
+		r->last_sec = -2;
+		r->ray_end.x = r->player.position.x + cosf(r->ray_angle) * 200.0;
+		r->ray_end.y = r->player.position.y - sinf(r->ray_angle) * 200.0;
+		r->cur_sector = r->player.sector;
+		r->y_min = 0;
+		r->y_max = WIN_H - 1;
+		iter = 0;
+		running = 0;
+		while (running == 0)
+		{
+			iter++;
+			if (iter >= SECTOR_ITER_MAX)
+				break ;
+			running = draw_sector(w, r);
+		}
+		r->ray_angle += deg_to_rad(60.0) / WIN_W;
+		r->x++;
+	}
+}
+
+void	drawing(t_win *w, t_ray *r)
+{
+	r->inv.sprite.x = 0;
+	r->inv.sprite.y = 5;
+	r->inv.sprite.num_sprite = 1;
+	r->inv.sprite.pickable = 1;
+	SDL_memset(w->surface->pixels, 0, ((WIN_W * WIN_H) << 2));
+	draw_player_view(w, r);
+	init_gun(w, &r->gun);
+	inventory(r, w, &r->inv);
+
+// 	inven
+	// --> mettre ici les sprites :
+
+	//
+	// --> mettre ici l'affichage de l'HUD :
+
+	//
+	SDL_UpdateWindowSurface(w->win);
+}

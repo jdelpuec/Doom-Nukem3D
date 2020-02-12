@@ -1,0 +1,6 @@
+{
+	"files.associations": {
+		"raycasting.h": "c"
+	}
+	"editor.rulers": [0,80]
+}

@@ -6,7 +6,7 @@
 /*   By: lubernar <lubernar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/05 10:51:22 by jdelpuec          #+#    #+#             */
-/*   Updated: 2020/02/12 12:58:00 by lubernar         ###   ########.fr       */
+/*   Updated: 2020/02/12 17:34:33 by lubernar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,6 +21,8 @@ t_vector_3d	get_normal_wall(t_vector_2d v1, t_vector_2d v2)
 	norm.x = (v2.y - v1.y);
 	norm.y = -(v2.x - v1.x);
 	len = sqrtf(norm.x * norm.x + norm.y * norm.y);
+	if (len == 0)
+		return ((t_vector_3d){0, 0, 0});
 	norm.x = norm.x / len;
 	norm.y = norm.y / len;
 	return (norm);
