@@ -134,7 +134,7 @@ void	drawing(t_win *w, t_ray *r)
 
 	//
 	// --> mettre ici l'affichage de l'HUD :
-
+	hud(w);
 	//
 	SDL_UpdateWindowSurface(w->win);
 }

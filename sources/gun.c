@@ -6,7 +6,7 @@
 /*   By: lubernar <lubernar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/12 12:53:22 by lubernar          #+#    #+#             */
-/*   Updated: 2020/02/12 17:12:37 by lubernar         ###   ########.fr       */
+/*   Updated: 2020/02/12 18:05:21 by lubernar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,13 +61,13 @@ void    init_gun(t_win *w, t_text_tab *gun_anim)
         gun_anim = gun_anim->next;
         gun_anim->w = 240;
         gun_anim->h = 240;
-        j != 0 ? display((WIN_W / 2) - 120, (WIN_H) - 240, w, *gun_anim) : 0;
+        j != 0 ? display_l((WIN_W / 2), (WIN_H) - 240, w, *gun_anim) : 0;
         anim = 1;
         anim = 0;
     }
     else if (j != 0 && anim != 1)
     {
         w->pressed = 0;
-        display((WIN_W / 2) - 120, (WIN_H) - 240, w, *gun_anim);
+        display_l((WIN_W / 2), (WIN_H) - 240, w, *gun_anim);
     }
 }

@@ -6,7 +6,7 @@
 /*   By: lubernar <lubernar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/07 13:20:48 by lubernar          #+#    #+#             */
-/*   Updated: 2020/02/12 14:59:47 by lubernar         ###   ########.fr       */
+/*   Updated: 2020/02/12 18:02:26 by lubernar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 #include "raycasting.h"
 #include "inventory.h"
 
-void	display(int x, int y, t_win *sdl, t_text_tab tmp)
+void	display_l(int x, int y, t_win *sdl, t_text_tab tmp)
 {
 	int	text_x;
 	int text_y;
@@ -94,6 +94,6 @@ t_invent	*inventory(t_ray *r, t_win *sdl, t_invent *inv)
 	inv->list.w = 30;
 	inv->list.h = 30;
 	if (inv->invent.inventory_display[0] == 1)
-		display((WIN_W - 30), (WIN_H / 2) - 30, sdl, inv->list);
+		display_l((WIN_W - 30), (WIN_H / 2) - 30, sdl, inv->list);
 	return (inv);
 }

@@ -6,7 +6,7 @@
 /*   By: lubernar <lubernar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/04/01 11:50:31 by ebonafi           #+#    #+#             */
-/*   Updated: 2020/02/12 17:35:29 by lubernar         ###   ########.fr       */
+/*   Updated: 2020/02/12 18:02:10 by lubernar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,6 +35,10 @@ typedef struct		s_win
 	int				fps;
 	float			old_time;
 	float			time;
+
+	// added stuff
+	t_text_tab hud;
+	t_text_tab hud2;
 }					t_win;
 
 typedef struct		s_texture
@@ -123,7 +127,12 @@ int					*int_malloc(char *name, int size);
 char				*sting_malloc(char *name, int size);
 char				**tab_malloc(char *name, int size);
 unsigned char		*unsigned_char_malloc(char *name, int size);
-void				display(int x, int y, t_win *sdl, t_text_tab tmp);
+void				display_l(int x, int y, t_win *sdl, t_text_tab tmp);
 void    			init_gun(t_win *w, t_text_tab *gun_anim);
 
+
+//hud.c
+t_text_tab	find(char *str);
+void	hud(t_win *sdl);
+t_text_tab	handle_textures2(char **text_name, int y);
 #endif
