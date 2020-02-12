@@ -6,7 +6,7 @@
 /*   By: jdelpuec <jdelpuec@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/04/01 11:49:14 by ebonafi           #+#    #+#             */
-/*   Updated: 2020/02/11 15:47:07 by jdelpuec         ###   ########.fr       */
+/*   Updated: 2020/02/12 14:22:44 by jdelpuec         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,6 +55,8 @@ int		main(void)
 	t_ray	r;
 	t_win	w;
 
+	w.text_list = init_text();
+	
 	r.sectors = map();
 	init_t_ray(&r);
 
@@ -62,7 +64,6 @@ int		main(void)
 	r.player.sector = 0;
 	r.player.position.z = 0 + PLAYER_H;
 
-	w.text_list = init_text();
 
 
 	init_sdl(&w);

@@ -6,7 +6,7 @@
 /*   By: jdelpuec <jdelpuec@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/05/02 13:44:05 by jdelpuec          #+#    #+#             */
-/*   Updated: 2020/02/11 15:41:58 by jdelpuec         ###   ########.fr       */
+/*   Updated: 2020/02/12 14:49:17 by jdelpuec         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,10 +54,10 @@ void		fill_text_tab(int fd, unsigned char *buff_header,
 	{
 		if (bpp == 4)
 			new->data[y] = buff_color[x * 4] + (buff_color[x * 4 + 1] << 8)
-			+ (buff_color[x * 4 + 2] << 16) + (buff_color[x * 4 + 3] << 24);
+			+ (buff_color[x * 4 + 2] << 16) + (0 << 24);
 		else if (bpp == 3)
 			new->data[y] = buff_color[x * 3] + (buff_color[x * 3 + 1] << 8)
-			+ (buff_color[x * 3 + 2] << 16) + (255 << 24);
+			+ (buff_color[x * 3 + 2] << 16) + (0 << 24);
 		y--;
 		x++;
 	}
@@ -99,12 +99,15 @@ t_text_tab	handle_textures(char **text_name, int y)
 		if (y != 0)
 			add_list(&last);
 		fd = open(text_name[y], O_RDONLY | O_NOFOLLOW);
+		last->id = y;
 		last->path = ft_strdup(text_name[y]);
-		if (!(buff_header = handle_header(fd)))
+		if (fd == -1)
 		{
-			free(buff_header);
+			last->id = -1;
+			free(buff_header); //// need to free the whole list;
 			return (*last);
 		}
+		buff_header = handle_header(fd);
 		fill_text_tab(fd, buff_header, last, 0);
 		close(fd);
 		y++;

@@ -6,7 +6,7 @@
 /*   By: jdelpuec <jdelpuec@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/04/06 14:02:38 by ebonafi           #+#    #+#             */
-/*   Updated: 2020/02/11 17:56:15 by jdelpuec         ###   ########.fr       */
+/*   Updated: 2020/02/12 16:35:10 by jdelpuec         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,6 +51,8 @@ typedef struct		s_ray
 	float		line_h;
 	int			y_min;
 	int			y_max;
+	int			last_y_min;
+	int			last_y_max;
 
 	float		thresh;
 	float		speed;
