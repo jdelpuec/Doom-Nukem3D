@@ -32,6 +32,10 @@ typedef struct		s_win
 	int				fps;
 	float			old_time;
 	float			time;
+
+	// added stuff
+	t_text_tab hud;
+	t_text_tab hud2;
 }					t_win;
 
 typedef struct		s_texture
@@ -115,4 +119,9 @@ int		check_entire_line(char *str);
 int		check_line(char *str);
 float	ft_atof(char *str);
 t_sector*			map();
+
+//hud.c
+t_text_tab	find(char *str);
+void	hud(t_win *sdl);
+t_text_tab	handle_textures2(char **text_name, int y);
 #endif

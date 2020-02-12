@@ -47,6 +47,8 @@ void		init_sdl(t_win *w)
 		ft_putstr("Surface error.\n");
 	}
 	SDL_ShowCursor(0);
+	w->hud = find("ressources/hud/health.bmp");
+	w->hud2 = find("ressources/hud/ammo_copy.bmp");
 }
 
 void		init_t_ray(t_ray *r)

@@ -14,7 +14,7 @@ NAME =	DOOM-NUKEM
 
 SRC	=	main.c handle_keyboard_event.c handle_mouse_event.c	map.c deg_to_rad.c \
 		collision.c math.c init_struct.c set_draw.c wall_draw.c ft_malloc.c\
-		handle_textures.c set_textures.c\
+		handle_textures.c set_textures.c hud.c handle_textures2.c\
 
 OBJ =	$(SRC:.c=.o)
 
