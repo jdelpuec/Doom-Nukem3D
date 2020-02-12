@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   collision.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jdelpuec <jdelpuec@student.42.fr>          +#+  +:+       +#+        */
+/*   By: lubernar <lubernar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/28 15:29:08 by jdelpuec          #+#    #+#             */
-/*   Updated: 2020/02/08 18:09:48 by jdelpuec         ###   ########.fr       */
+/*   Updated: 2020/02/10 10:36:41 by lubernar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,7 @@ void    wall_collision_2(t_ray *r, t_vector_2d p1, t_vector_2d p2)
 	// r->player.velocity = normalize_vec(r->player.velocity);
 	// r->player.velocity.x *= len;
 	// r->player.velocity.y *= len;
-	
+
 
 	r->player.velocity.x = tmp.x - get_dot_poduct(normal, tmp) * normal.x;
 	r->player.velocity.y = tmp.y - get_dot_poduct(normal, tmp) * normal.y;
@@ -36,7 +36,7 @@ void    wall_collision_2(t_ray *r, t_vector_2d p1, t_vector_2d p2)
 void    wall_collision(t_ray *r, t_vector_3d wd, t_wall wall)
 {
 	t_vector_3d	old;
-	
+	(void)wall;
 	old 	= r->player.velocity;
 	if (wd.x == 0)
 	{

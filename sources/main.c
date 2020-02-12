@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jdelpuec <jdelpuec@student.42.fr>          +#+  +:+       +#+        */
+/*   By: lubernar <lubernar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/04/01 11:49:14 by ebonafi           #+#    #+#             */
-/*   Updated: 2020/02/08 18:08:48 by jdelpuec         ###   ########.fr       */
+/*   Updated: 2020/02/12 15:46:58 by lubernar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,6 @@
 #include "define.h"
 #include "raycasting.h"
 #include "event.h"
-
 
 void	init_sdl(t_win *w)
 {
@@ -66,15 +65,15 @@ int		check_seg_intersection(t_ray *r, t_wall wall, float *h_x, float *h_y)
 
 	if ((r->s_denom < 0) == denom_is_pos)
 		return (0);
-	
+
 	r->t_denom = r->s32_x * r->s02_y - r->s32_y * r->s02_x;
 
 	if ((r->t_denom < 0) == denom_is_pos)
 		return (0);
-	
+
 	if (((r->s_denom > r->denom) == denom_is_pos) || ((r->t_denom > r->denom) == denom_is_pos))
 		return (0);
-	
+
 	r->t = r->t_denom / r->denom;
 	*h_x = wall.p1.x + (r->t * r->s10_x);
 	*h_y = wall.p1.y + (r->t * r->s10_y);
@@ -132,7 +131,7 @@ int		draw_wall(t_win *w, t_ray *r, t_sector sector, t_wall wall)
 
 				r->offset_start = (WIN_H >> 1) + ((r->player.position.z - sector.ceil_height) / r->dist_wall) * r->dist_pp;
 				r->offset_end = (WIN_H >> 1) + ((r->player.position.z - portal_sec.ceil_height) / r->dist_wall) * r->dist_pp;
-				
+
 				// i = (int)r->offset_start;
 
 				//
@@ -270,19 +269,25 @@ void	draw_player_view(t_win *w, t_ray *r)
 
 void	drawing(t_win *w, t_ray *r)
 {
+	r->inv.sprite.x = 0;
+	r->inv.sprite.y = 5;
+	r->inv.sprite.num_sprite = 1;
+	r->inv.sprite.pickable = 1;
 	if (w->fps > 50)
 	{
 		SDL_memset(w->surface->pixels, 0, ((WIN_W * WIN_H) << 2));
 		draw_player_view(w, r);
 	}
+	init_gun(w, &r->gun);
+	inventory(r, w, &r->inv);
 	// draw_minimap(w, r);	//A finir .... voir abandonner si optionnel
 
 	// --> mettre ici les sprites :
-	
-	//	
+
+	//
 
 	// --> mettre ici l'affichage de l'HUD :
-	
+
 	//
 	SDL_UpdateWindowSurface(w->win);
 }
@@ -300,7 +305,7 @@ void	fps_count(t_win *w)
 void	sdl_loop(t_win *w, t_ray *r)
 {
 	t_keyboard k;
-
+	
 	init_keyboard(&k);
 	while (1)
 	{
@@ -332,10 +337,11 @@ int		main(void)
 	r.sector_count = 12;		// Brut map ---> need to implemant parsing
 	r.player.sector = 0;
 	r.player.position.z = 0 + PLAYER_H;
-
+	w.pressed = 0;
 	init_sdl(&w);
 	w.old_time	= 0.0;
 	w.time		= 0.0;
+	w.old_t		= 0.0;
 
 
 	sdl_loop(&w, &r);

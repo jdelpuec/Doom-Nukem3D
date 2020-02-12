@@ -3,18 +3,24 @@
 /*                                                        :::      ::::::::   */
 /*   raycasting.h                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jdelpuec <jdelpuec@student.42.fr>          +#+  +:+       +#+        */
+/*   By: lubernar <lubernar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/04/06 14:02:38 by ebonafi           #+#    #+#             */
-/*   Updated: 2020/02/08 15:33:55 by jdelpuec         ###   ########.fr       */
+/*   Updated: 2020/02/12 15:31:39 by lubernar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef RAYCASTING_H
 # define RAYCASTING_H
 
+#include "doom.h"
+#include "inventory.h"
+
 typedef struct		s_ray
 {
+	t_invent	inv;
+	t_text_tab	gun;
+	
 	int			x;
 	int			y;
 	int			sector_count;
@@ -87,7 +93,6 @@ typedef struct		s_ray
 }					t_ray;
 
 float		check_line_point(t_vector_2d l1, t_vector_2d l2, t_vector_3d p);
-
 void		init_raycasting(t_ray *r);
 void		wall_collision(t_ray *r, t_vector_3d wd, t_wall wall);
 float		get_dir_angle(t_ray *r);
@@ -96,4 +101,7 @@ float		get_vector_length(t_vector_3d v);
 t_vector_3d	normalize_vec(t_vector_3d v);
 t_vector_3d	get_normal_wall(t_vector_2d v1, t_vector_2d v2);
 t_vector_3d	get_cross_poduct(t_vector_3d v1, t_vector_3d v2);
+
+t_invent	*inventory(struct s_ray *r, t_win *sdl, t_invent *inv);
+
 #endif

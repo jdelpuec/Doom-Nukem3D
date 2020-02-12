@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   doom.h                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jdelpuec <jdelpuec@student.42.fr>          +#+  +:+       +#+        */
+/*   By: lubernar <lubernar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/04/01 11:50:31 by ebonafi           #+#    #+#             */
-/*   Updated: 2020/01/13 12:15:30 by jdelpuec         ###   ########.fr       */
+/*   Updated: 2020/02/12 15:46:41 by lubernar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,9 +18,12 @@
 # include "get_next_line.h"
 # include "define.h"
 # include <SDL2/SDL.h>
+# include "textures.h"
 
 typedef struct		s_win
 {
+	int			pressed;
+	float		old_t;
 	SDL_Window		*win;
 	SDL_Event		e;
 	SDL_Surface		*surface;
@@ -87,4 +90,7 @@ int					*int_malloc(char *name, int size);
 char				*sting_malloc(char *name, int size);
 char				**tab_malloc(char *name, int size);
 unsigned char		*unsigned_char_malloc(char *name, int size);
+void				display(int x, int y, t_win *sdl, t_text_tab tmp);
+void    			init_gun(t_win *w, t_text_tab *gun_anim);
+
 #endif
