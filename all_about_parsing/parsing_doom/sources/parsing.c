@@ -6,7 +6,7 @@
 /*   By: cduverge <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/27 14:52:46 by cduverge          #+#    #+#             */
-/*   Updated: 2020/02/12 17:07:33 by cduverge         ###   ########.fr       */
+/*   Updated: 2020/02/13 17:19:08 by cduverge         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,7 +52,7 @@ void	give_me_data_wall(char *str, t_env *doom, int index)
 	++i;
 	while (str[i] != ' ')
 		++i;
-	doom->sct[index].brightness = ft_atoi(str + i);
+	doom->sct[index].brightness = ft_atof(str + i);
 }
 
 int		check_data_sector(int fd, t_env *doom, int index)

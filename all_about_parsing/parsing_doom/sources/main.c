@@ -6,11 +6,38 @@
 /*   By: cduverge <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/26 12:12:50 by cduverge          #+#    #+#             */
-/*   Updated: 2020/02/13 12:05:12 by cduverge         ###   ########.fr       */
+/*   Updated: 2020/02/13 17:57:44 by cduverge         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/Doom.h"
+
+int		check_bright(int i, char *str, int spc)
+{
+	float	test;
+
+	test = 0.0;
+	if (spc == 5)
+	{
+		test = ft_atof(str + i);
+		if (test < 0 || test > 1)
+			return (-1);
+		i = i + 3;
+	}
+	else
+	{
+		if (ft_isdigit(str[i]) == 0)
+			return (-1);
+		++i;
+		if (str[i] == ' ')
+			++i;
+		else if (ft_isdigit(str[i]) == 1 && (str[i + 1] == ' '))
+			i = i + 2;
+		else
+			return (-1);
+	}
+	return (i);
+}
 
 int		all_check(t_env *doom, int fd)
 {
@@ -56,7 +83,11 @@ int		check_portal_sector(int fd, t_wall *walls, int j)
 		if (number_or_dot(line) != -1)
 		{
 			walls[j].id_text = ft_atoi(line);
+			if (walls[j].id_text < 0)
+				return (free_and_return(line));
 			walls[j].portal_sector = ft_atoi(line + 2);
+			if (walls[j].portal_sector < -1)
+				return (free_and_return(line));
 			free(line);
 			//remplir t_text
 		}

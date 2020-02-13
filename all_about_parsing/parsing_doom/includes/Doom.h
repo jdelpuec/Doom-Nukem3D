@@ -6,7 +6,7 @@
 /*   By: jdelpuec <jdelpuec@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/04/01 11:50:31 by ebonafi           #+#    #+#             */
-/*   Updated: 2020/02/12 17:07:09 by cduverge         ###   ########.fr       */
+/*   Updated: 2020/02/13 17:54:43 by cduverge         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -115,6 +115,7 @@ int		check_entire_line(char *str);
 int		check_line(char *str);
 float	ft_atof(char *str);
 //main.c
+int		check_bright(int i, char *str, int spc);
 int		all_check(t_env *doom, int fd);
 void	fill_up_player(char *line, t_env *doom);
 int		check_portal_sector(int fd, t_wall *walls, int i);
