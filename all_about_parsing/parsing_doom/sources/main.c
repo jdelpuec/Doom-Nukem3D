@@ -6,7 +6,7 @@
 /*   By: cduverge <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/26 12:12:50 by cduverge          #+#    #+#             */
-/*   Updated: 2020/02/12 17:41:37 by cduverge         ###   ########.fr       */
+/*   Updated: 2020/02/13 12:05:12 by cduverge         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -80,7 +80,6 @@ int		main(int ac, char **av)
 	if (parsing(av[1], &doom) == -1)
 	{
 		ft_putendl_fd(USAGE, 2);
-		free_all_map(&doom);
 		return (-1);
 	}
 	return (0);

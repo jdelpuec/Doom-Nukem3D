@@ -6,7 +6,7 @@
 /*   By: cduverge <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/12/17 13:57:37 by cduverge          #+#    #+#             */
-/*   Updated: 2020/02/12 17:25:40 by cduverge         ###   ########.fr       */
+/*   Updated: 2020/02/13 12:05:28 by cduverge         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,22 +42,6 @@ int		free_and_return(char *str)
 {
 	free(str);
 	return (-1);
-}
-
-void	free_all_map(t_env *doom)
-{
-	int		i;
-
-	i = 0;
-	if (doom->sct)
-	{
-		while (i < doom->room)
-		{
-			free(doom->sct[i].walls);
-			++i;
-		}
-		free(doom->sct);
-	}
 }
 
 int		begin_player(int fd, t_env *doom)
