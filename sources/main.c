@@ -6,7 +6,7 @@
 /*   By: lubernar <lubernar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/04/01 11:49:14 by ebonafi           #+#    #+#             */
-/*   Updated: 2020/02/12 17:48:06 by lubernar         ###   ########.fr       */
+/*   Updated: 2020/02/13 18:27:50 by lubernar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -317,11 +317,18 @@ void	sdl_loop(t_win *w, t_ray *r)
 					return ;
 			if (w->e.type == SDL_MOUSEMOTION)
 				handle_mouse_event(w, r);
+			if (w->e.type == SDL_MOUSEBUTTONDOWN &&  w->fired == 0
+				&& r->inv.nb_bullet > 0)
+			{
+				w->fired = 1;
+				r->inv.nb_bullet--;
+				w->old_t_f = SDL_GetTicks();
+			}
 		}
 		if (is_key_pressed(&k) > 0 || r->player.position.z
 			!= r->sectors[r->cur_sector].floor_height + 32)
 			handle_keyboard_mvt(w, r, &k);
-		drawing(w, r);
+		drawing(w, r, &k);
 		fps_count(w);
 	}
 }
@@ -331,9 +338,13 @@ int		main(void)
 	t_ray	r;
 	t_win	w;
 
+	r.inv.nb_bullet = 50;
+	r.inv.nb_hp = 100;
+	r.inv.anim = 0;
+	r.gun = init_gun();
 	r.sectors = map();
 	init_t_ray(&r);
-
+  	init_ttf(&w);
 	r.sector_count = 12;		// Brut map ---> need to implemant parsing
 	r.player.sector = 0;
 	r.player.position.z = 0 + PLAYER_H;
@@ -341,10 +352,11 @@ int		main(void)
 	init_sdl(&w);
 	w.old_time	= 0.0;
 	w.time		= 0.0;
-	w.old_t		= 0.0;
-
 	w.text_list = init_text();
-
+	w.reload = 0;
+	w.fired = 0;
+	w.old_t = 0.0;
+	w.old_t_f = 0.0;
 
 	init_sdl(&w);
 	sdl_loop(&w, &r);

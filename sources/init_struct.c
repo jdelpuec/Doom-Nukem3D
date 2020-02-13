@@ -6,7 +6,7 @@
 /*   By: lubernar <lubernar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/10 11:27:26 by jdelpuec          #+#    #+#             */
-/*   Updated: 2020/02/12 18:00:27 by lubernar         ###   ########.fr       */
+/*   Updated: 2020/02/12 18:40:17 by lubernar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,6 +49,7 @@ void		init_sdl(t_win *w)
 	SDL_ShowCursor(0);
 	w->hud = find("ressources/hud/health.bmp");
 	w->hud2 = find("ressources/hud/ammo_copy.bmp");
+	w->hud3 = find("ress/inventory.bmp");
 }
 
 void		init_t_ray(t_ray *r)

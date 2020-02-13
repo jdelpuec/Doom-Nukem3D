@@ -6,7 +6,7 @@
 #    By: lubernar <lubernar@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2019/11/19 15:16:10 by jdelpuec          #+#    #+#              #
-#    Updated: 2020/02/12 17:59:53 by lubernar         ###   ########.fr        #
+#    Updated: 2020/02/13 15:41:30 by lubernar         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -28,7 +28,7 @@ SRCS =	$(addprefix $(SRCDIR), $(SRC))
 OBJS =	$(addprefix $(OBJDIR), $(OBJ))
 
 FLAGS =	-Wall -Werror -Wextra
-LIBFLAG =	$(LIBDIR)libft.a -L libft -l SDL2-2.0.0
+LIBFLAG =	$(LIBDIR)libft.a -L libft -l SDL2-2.0.0 -l SDL2_ttf-2.0.0
 
 all :	lib prefix $(NAME)
 

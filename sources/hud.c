@@ -6,7 +6,7 @@
 /*   By: lubernar <lubernar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/06 11:22:11 by siwarin           #+#    #+#             */
-/*   Updated: 2020/02/12 18:01:23 by lubernar         ###   ########.fr       */
+/*   Updated: 2020/02/13 12:13:04 by lubernar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,15 +24,15 @@ void    display(int x, int y, t_text_tab hud, t_win *win)
     tmp_y = y;
     text_x = 0;
     text_y = 0;
-    while (x < tmp_x + 64)
+    while (x < tmp_x + hud.w)
     {
         y = tmp_y;
         text_y = 0;
-        while (y < tmp_y + 64)
+        while (y < tmp_y + hud.h)
         {
-            if (hud.data[(text_y * 64) + text_x] != 0x00ff00)
+            if (hud.data[(text_y * hud.w) + text_x] != 0x00ff00)
               *((int *)win->surface->pixels + (y * WIN_W + x)) =
-              hud.data[(text_y * 64) + text_x];
+              hud.data[(text_y * hud.h) + text_x];
             y++;
             text_y++;
         }
@@ -54,8 +54,57 @@ t_text_tab	find(char *str)
   return hud;
 }
 
-void	hud(t_win *sdl)
+void	apply_surface(int x, int y, SDL_Surface *source, SDL_Surface *dest)
 {
+	SDL_Rect offset;
+
+	offset.x = x;
+	offset.y = y;
+	SDL_BlitSurface(source, NULL, dest, &offset);
+	SDL_FreeSurface(source);
+	SDL_FreeSurface(dest);
+}
+
+void init_ttf(t_win *sdl)
+{
+  if (TTF_Init() == -1)
+	{
+		ft_putstr(SDL_GetError());
+		ft_putstr("TTF Error.\n");
+	}
+	sdl->font = TTF_OpenFont("./font/tf2build.ttf", 31);
+	if (!sdl->font)
+		printf("TTF_OpenFont : %s\n", TTF_GetError());
+	sdl->fc.r = 0xFF;
+	sdl->fc.g = 0xA5;
+	sdl->fc.b = 0x00;
+	sdl->fc.a = 0xFF;
+}
+
+void	hud(t_win *sdl, t_invent *inv)
+{
+  char *tmp_hp;
+  char *tmp_bullet;
+  
+  tmp_hp = ft_itoa(inv->nb_hp);
+  tmp_bullet = ft_itoa(inv->nb_bullet);
+  sdl->mes = TTF_RenderText_Solid(sdl->font, tmp_hp, sdl->fc);
+  free(tmp_hp);
+	if (sdl->mes == NULL)
+		return ;
+	apply_surface((WIN_W / 30), 565, sdl->mes, sdl->surface);
+  sdl->mes = TTF_RenderText_Solid(sdl->font, tmp_bullet, sdl->fc);
+  free(tmp_bullet);
+	if (sdl->mes == NULL)
+		return ;
+	apply_surface((WIN_W - 80), 565, sdl->mes, sdl->surface);
+  sdl->hud.w = 64;
+  sdl->hud.h = 64;
   display(20, WIN_H - 84, sdl->hud, sdl);
+  sdl->hud2.w = 64;
+  sdl->hud2.h = 64;
   display(WIN_W - 84, WIN_H - 84, sdl->hud2, sdl);
+  sdl->hud3.w = 120;
+  sdl->hud3.h = 120;
+  display(WIN_W - 120, WIN_H / 2, sdl->hud3, sdl);
 }

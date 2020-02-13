@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   handle_keyboard_event.c                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jdelpuec <jdelpuec@student.42.fr>          +#+  +:+       +#+        */
+/*   By: lubernar <lubernar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/04/02 11:15:57 by ebonafi           #+#    #+#             */
-/*   Updated: 2020/02/10 12:13:55 by jdelpuec         ###   ########.fr       */
+/*   Updated: 2020/02/13 11:26:49 by lubernar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,6 +52,7 @@ int	handle_keyboard_misc(t_win *w, t_keyboard *k)
 	if (k->state[SDL_SCANCODE_ESCAPE] == 1)
 	{
 		SDL_DestroyWindow(w->win);
+		TTF_CloseFont(w->font);
 		SDL_Quit();
 		return (-1);
 	}

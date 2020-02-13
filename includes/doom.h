@@ -6,7 +6,7 @@
 /*   By: lubernar <lubernar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/04/01 11:50:31 by ebonafi           #+#    #+#             */
-/*   Updated: 2020/02/12 18:02:10 by lubernar         ###   ########.fr       */
+/*   Updated: 2020/02/13 17:56:32 by lubernar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,26 +19,35 @@
 # include "define.h"
 # include "textures.h"
 # include <SDL2/SDL.h>
+# include "SDL2/SDL_ttf.h"
 # include "textures.h"
+# include "inventory.h"
 
 typedef struct		s_win
 {
-	int			pressed;
-	float		old_t;
 	SDL_Window		*win;
 	SDL_Event		e;
 	SDL_Surface		*surface;
+	TTF_Font		*font;
+	SDL_Color		fc;
+	SDL_Surface		*mes;
+
 
 	t_text_tab		text_list;
 	int				nb_thread;
 
 	int				fps;
+	int				pressed;
 	float			old_time;
 	float			time;
-
+	float			old_t;
+	float			old_t_f;
+	int				reload;
+	int				fired;
 	// added stuff
 	t_text_tab hud;
 	t_text_tab hud2;
+	t_text_tab hud3;
 }					t_win;
 
 typedef struct		s_texture
@@ -128,11 +137,11 @@ char				*sting_malloc(char *name, int size);
 char				**tab_malloc(char *name, int size);
 unsigned char		*unsigned_char_malloc(char *name, int size);
 void				display_l(int x, int y, t_win *sdl, t_text_tab tmp);
-void    			init_gun(t_win *w, t_text_tab *gun_anim);
 
 
 //hud.c
 t_text_tab	find(char *str);
-void	hud(t_win *sdl);
+void		hud(t_win *sdl, t_invent *inv);
 t_text_tab	handle_textures2(char **text_name, int y);
+void 		init_ttf(t_win *sdl);
 #endif

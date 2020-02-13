@@ -6,7 +6,7 @@
 /*   By: lubernar <lubernar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/07 13:20:48 by lubernar          #+#    #+#             */
-/*   Updated: 2020/02/12 18:02:26 by lubernar         ###   ########.fr       */
+/*   Updated: 2020/02/13 10:57:16 by lubernar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -94,6 +94,6 @@ t_invent	*inventory(t_ray *r, t_win *sdl, t_invent *inv)
 	inv->list.w = 30;
 	inv->list.h = 30;
 	if (inv->invent.inventory_display[0] == 1)
-		display_l((WIN_W - 30), (WIN_H / 2) - 30, sdl, inv->list);
+		display_l((WIN_W - 40), (WIN_H / 2) + 17, sdl, inv->list);
 	return (inv);
 }

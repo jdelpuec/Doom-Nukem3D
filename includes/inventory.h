@@ -6,7 +6,7 @@
 /*   By: lubernar <lubernar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/07 13:38:16 by lubernar          #+#    #+#             */
-/*   Updated: 2020/02/11 17:58:33 by lubernar         ###   ########.fr       */
+/*   Updated: 2020/02/13 15:08:32 by lubernar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,7 +38,10 @@ typedef struct		s_invent
 	t_parsing_sprite	sprite;
 	t_text_tab			list;
 	t_inventory			invent;
-	int					init;		
+	int					init;
+	int					nb_bullet;
+	int					nb_hp;
+	int					anim;
 }						t_invent;
 
 #endif

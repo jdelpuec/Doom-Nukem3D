@@ -6,13 +6,14 @@
 /*   By: lubernar <lubernar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/10 14:05:34 by jdelpuec          #+#    #+#             */
-/*   Updated: 2020/02/12 17:49:23 by lubernar         ###   ########.fr       */
+/*   Updated: 2020/02/13 18:27:08 by lubernar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "doom.h"
 #include "raycasting.h"
 #include "draw.h"
+#include "event.h"
 
 int		check_seg_intersection(t_ray *r, t_wall wall, float *h_x, float *h_y)
 {
@@ -118,7 +119,7 @@ void	draw_player_view(t_win *w, t_ray *r)
 	}
 }
 
-void	drawing(t_win *w, t_ray *r)
+void	drawing(t_win *w, t_ray *r, t_keyboard *k)
 {
 	r->inv.sprite.x = 0;
 	r->inv.sprite.y = 5;
@@ -126,15 +127,32 @@ void	drawing(t_win *w, t_ray *r)
 	r->inv.sprite.pickable = 1;
 	SDL_memset(w->surface->pixels, 0, ((WIN_W * WIN_H) << 2));
 	draw_player_view(w, r);
-	init_gun(w, &r->gun);
+	hud(w, &r->inv);
 	inventory(r, w, &r->inv);
-
+	w->fired == 0 ? display_l((WIN_W / 2), (WIN_H) - 240, w, r->gun) : 0;
+	// if (w->e.type == SDL_MOUSEBUTTONDOWN &&  w->fired == 0
+    //     && r->inv.nb_bullet > 0)
+	// {
+	// 	w->fired = 1;
+	// 	r->inv.nb_bullet--;
+	// 	w->old_t_f = SDL_GetTicks();
+	// }
+	if (w->fired == 1)
+		fire_gunshot(w, &r->gun);
+	if (k->state[SDL_SCANCODE_T] == 1 && w->reload == 0)
+	{
+		w->fired = 2;
+		w->reload = 1;
+		w->old_t = SDL_GetTicks();
+		r->inv.nb_bullet += 10;
+	}
+	if (w->reload == 1)
+		reload_gun(&r->reload_gun, r, w);
 // 	inven
 	// --> mettre ici les sprites :
 
 	//
 	// --> mettre ici l'affichage de l'HUD :
-	hud(w);
 	//
 	SDL_UpdateWindowSurface(w->win);
 }

@@ -6,7 +6,7 @@
 /*   By: lubernar <lubernar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/04/06 14:02:38 by ebonafi           #+#    #+#             */
-/*   Updated: 2020/02/12 17:35:53 by lubernar         ###   ########.fr       */
+/*   Updated: 2020/02/13 18:05:06 by lubernar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,9 +18,6 @@
 
 typedef struct		s_ray
 {
-	t_invent	inv;
-	t_text_tab	gun;
-	
 	int			x;
 	int			y;
 	int			i;
@@ -34,6 +31,9 @@ typedef struct		s_ray
 	t_wall		old_wall;
 	t_sector	*sectors;
 	t_vector_2d	ray_end;	
+	t_invent	inv;
+	t_text_tab	gun;
+	t_text_tab	reload_gun;
 
 	float		s02_x;
 	float		s02_y;
@@ -82,6 +82,11 @@ t_vector_3d	get_normal_wall(t_vector_2d v1, t_vector_2d v2);
 t_vector_3d	get_cross_poduct(t_vector_3d v1, t_vector_3d v2);
 
 t_invent	*inventory(struct s_ray *r, t_win *sdl, t_invent *inv);
+void 		reload_gun(t_text_tab *reaload_anim, t_ray *r, t_win *w);
+t_text_tab  init_gun();
+void    fire_gunshot(t_win *w, t_text_tab *gun_anim);
+
+
 typedef struct		s_wall_tex
 {
 	float	tx;
@@ -96,7 +101,7 @@ typedef struct		s_wall_tex
 	int		tex_id;
 }					t_wall_tex;
 
-float				deg_to_rad(float angle);
+float		deg_to_rad(float angle);
 void		wall_textures(t_win *w, t_ray *r, t_sector sector, t_wall wall);
 
 #endif
