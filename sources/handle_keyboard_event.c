@@ -51,6 +51,10 @@ int	handle_keyboard_misc(t_win *w, t_keyboard *k)
 {
 	if (k->state[SDL_SCANCODE_ESCAPE] == 1)
 	{
+		FMOD_Sound_Release(w->s.shot);
+		FMOD_Sound_Release(w->s.music);
+		FMOD_System_Close(w->s.fmod);
+		FMOD_System_Release(w->s.fmod);
 		SDL_DestroyWindow(w->win);
 		SDL_Quit();
 		return (-1);
@@ -103,12 +107,12 @@ int		test_box(t_ray *r, t_vector_3d p, t_wall wall)
 	{
 		r->tmp = (min_x == max_x) ? 1 : 2;
 		if (r->tmp == 1)
-			if (p.x > min_x) 
+			if (p.x > min_x)
 				max_x += r->thresh;
 			else
 				min_x -= r->thresh;
 		else
-			if (p.y > min_y) 
+			if (p.y > min_y)
 				max_y += r->thresh;
 			else
 				min_y -= r->thresh;
@@ -151,7 +155,7 @@ void	handle_keyboard_mvt(t_win *w, t_ray *r, t_keyboard *k)
 	}
 	if (k->state[SDL_SCANCODE_A] == 1)
 		r->player.angle -= 2.5 * ms;
-		// r->player.angle -= 0.01;		
+		// r->player.angle -= 0.01;
 	if (k->state[SDL_SCANCODE_D] == 1)
 		r->player.angle += 2.5 * ms;
 		// r->player.angle += 0.01;
@@ -170,7 +174,7 @@ void	handle_keyboard_mvt(t_win *w, t_ray *r, t_keyboard *k)
 		r->player.velocity.x = r->speed * -cosf(r->player.angle) * ms;
 		r->player.velocity.y = r->speed * sinf(r->player.angle) * ms;
 	}
-		
+
 	if (k->state[SDL_SCANCODE_Q] == 1)
 	{
 		r->player.velocity.x += r->speed * sinf(r->player.angle) * ms;

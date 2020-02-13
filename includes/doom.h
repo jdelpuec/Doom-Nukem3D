@@ -19,6 +19,17 @@
 # include "define.h"
 # include "textures.h"
 # include <SDL2/SDL.h>
+# include "fmod/fmod.h"
+
+typedef struct		s_sound
+{
+	FMOD_SYSTEM	*fmod;
+	FMOD_SOUND	*shot;
+	FMOD_SOUND	*music;
+	FMOD_RESULT	result;
+	FMOD_BOOL	state;
+	FMOD_CHANNELGROUP	*canal;
+}									t_sound;
 
 typedef struct		s_win
 {
@@ -34,8 +45,10 @@ typedef struct		s_win
 	float			time;
 
 	// added stuff
-	t_text_tab hud;
-	t_text_tab hud2;
+	t_text_tab	hud;
+	t_text_tab	hud2;
+
+	t_sound			s;
 }					t_win;
 
 typedef struct		s_texture

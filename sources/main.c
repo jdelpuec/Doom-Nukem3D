@@ -66,6 +66,8 @@ int		main(void)
 
 
 	init_sdl(&w);
+	FMOD_System_PlaySound(w.s.fmod, FMOD_CHANNEL_FREE, w.s.music, 0, NULL);
+	FMOD_Sound_SetLoopCount(w.s.music, -1);
 	sdl_loop(&w, &r);
 	return (0);
 }

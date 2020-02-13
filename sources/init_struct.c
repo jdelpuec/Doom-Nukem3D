@@ -49,6 +49,12 @@ void		init_sdl(t_win *w)
 	SDL_ShowCursor(0);
 	w->hud = find("ressources/hud/health.bmp");
 	w->hud2 = find("ressources/hud/ammo_copy.bmp");
+	FMOD_System_Create(&w->s.fmod);
+	FMOD_System_Init(w->s.fmod, 32, FMOD_INIT_NORMAL, NULL);
+	FMOD_System_CreateSound(w->s.fmod, "sound/shotgun.wav", FMOD_CREATESAMPLE, 0,
+		&w->s.shot);
+	FMOD_System_CreateSound(w->s.fmod, "sound/AtDoomGate.wav", FMOD_SOFTWARE
+		| FMOD_2D | FMOD_CREATESTREAM, 0, &w->s.music);
 }
 
 void		init_t_ray(t_ray *r)

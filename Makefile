@@ -27,7 +27,7 @@ SRCS =	$(addprefix $(SRCDIR), $(SRC))
 OBJS =	$(addprefix $(OBJDIR), $(OBJ))
 
 FLAGS =	-Wall -Werror -Wextra
-LIBFLAG =	$(LIBDIR)libft.a -L libft -l SDL2-2.0.0
+LIBFLAG =	$(LIBDIR)libft.a -L libft -l SDL2-2.0.0 -l fmodex
 
 all :	lib prefix $(NAME)
 
