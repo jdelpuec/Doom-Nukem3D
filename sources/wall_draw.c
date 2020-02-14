@@ -6,7 +6,7 @@
 /*   By: jdelpuec <jdelpuec@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/10 14:12:36 by jdelpuec          #+#    #+#             */
-/*   Updated: 2020/02/12 17:14:18 by jdelpuec         ###   ########.fr       */
+/*   Updated: 2020/02/14 16:48:23 by jdelpuec         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -85,11 +85,11 @@ int		draw_wall_2(t_win *w, t_ray *r, t_sector sector, t_wall wall)
 		* (r->hit_y - r->player.position.y)));
 	r->dist *= cos(r->ray_angle - r->player.angle);
 	r->dist_wall = r->dist * PLAYER_H;
-	r->line_h = ((sector.ceil_height - sector.floor_height) / r->dist_wall) * r->dist_pp;
 	r->offset_start = (WIN_H >> 1) + ((r->player.position.z
 				- sector.ceil_height) / r->dist_wall) * r->dist_pp;
 	r->offset_end = (WIN_H >> 1) + ((r->player.position.z
 				- sector.floor_height) / r->dist_wall) * r->dist_pp;
+	r->line_h = r->offset_end - r->offset_start;
 	wall_textures(w, r, sector, wall);
 	// i = 0;
 	// while (i++ < (int)r->offset_start)

@@ -642,7 +642,9 @@ int DrawWall(Wall_t wall, Sector_t sector, Vector_2D rayEnd, float rayAngle, int
             float drawStart = (SCREEN_HEIGHT / 2) + ((player.position.z - sector.ceilHeight) / distToWall) * distToPP;
             float drawEnd =  (SCREEN_HEIGHT / 2) + ((player.position.z - sector.floorHeight) / distToWall) * distToPP;
              
-            /*float tx = wall.p1.x - hitX;
+
+			 ///////////////////////////
+            float tx = wall.p1.x - hitX;
             float txsq = tx * tx;
             float ty = wall.p1.y - hitY;
             float tysq = ty * ty;
@@ -651,7 +653,7 @@ int DrawWall(Wall_t wall, Sector_t sector, Vector_2D rayEnd, float rayAngle, int
             float texCount = floor(intersectionLen / wall.texture.width);
             float fullLenTex = texCount * wall.texture.width;
             float texX = intersectionLen - fullLenTex;
-             
+            
             float texScale = wall.texture.height / lineHeight;
             float texIndexf = 0.0f;
              
@@ -682,8 +684,11 @@ int DrawWall(Wall_t wall, Sector_t sector, Vector_2D rayEnd, float rayAngle, int
                      
                 }
                 texIndexf += texScale;
-            }*/
-             
+            }
+             ////////////////////////////////////
+
+
+
             //Do the actual drawing
             for(int i=(int) drawStart; i<(int) drawEnd; i++)
             {

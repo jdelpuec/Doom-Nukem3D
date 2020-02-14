@@ -6,7 +6,7 @@
 /*   By: jdelpuec <jdelpuec@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/04/01 11:49:14 by ebonafi           #+#    #+#             */
-/*   Updated: 2020/02/12 14:22:44 by jdelpuec         ###   ########.fr       */
+/*   Updated: 2020/02/13 15:49:45 by jdelpuec         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,11 +58,11 @@ int		main(void)
 	w.text_list = init_text();
 	
 	r.sectors = map();
-	init_t_ray(&r);
-
 	r.sector_count = 12;		// Brut map ---> need to implemant parsing
 	r.player.sector = 0;
 	r.player.position.z = 0 + PLAYER_H;
+
+	init_t_ray(&r);
 
 
 

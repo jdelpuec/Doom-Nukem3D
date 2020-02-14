@@ -6,7 +6,7 @@
 /*   By: jdelpuec <jdelpuec@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/04/01 11:50:31 by ebonafi           #+#    #+#             */
-/*   Updated: 2020/02/11 15:43:34 by jdelpuec         ###   ########.fr       */
+/*   Updated: 2020/02/13 14:23:28 by jdelpuec         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -79,6 +79,8 @@ typedef struct		s_sector
 	int			ceil_height;
 	float		brightness;
 
+	t_vector_2d	min;
+	t_vector_2d	max;
 	t_wall		*walls;
 	t_texture	floor_tex;
 	t_texture	ceil_tex;

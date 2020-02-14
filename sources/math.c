@@ -6,7 +6,7 @@
 /*   By: jdelpuec <jdelpuec@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/05 10:51:22 by jdelpuec          #+#    #+#             */
-/*   Updated: 2020/02/12 16:37:20 by jdelpuec         ###   ########.fr       */
+/*   Updated: 2020/02/13 14:26:19 by jdelpuec         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,7 +48,7 @@ t_vector_3d	get_cross_poduct(t_vector_3d v1, t_vector_3d v2)
 
 float		get_dot_poduct(t_vector_3d v1, t_vector_3d v2)
 {
-	return (v1.x * v2.x + v1.y * v2.y + v1.z * v2.z);
+	return (v1.x * v2.x + v1.y * v2.y);
 }
 
 float		get_vector_length(t_vector_3d v)
