@@ -6,7 +6,7 @@
 /*   By: cduverge <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/27 14:52:46 by cduverge          #+#    #+#             */
-/*   Updated: 2020/02/13 17:19:08 by cduverge         ###   ########.fr       */
+/*   Updated: 2020/02/14 12:07:25 by cduverge         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -86,7 +86,12 @@ int		all_room(int fd, t_env *doom, int n_room)
 	++n_room;
 	if (n_room == doom->room)
 	{
-		//donnees a checker pour les sprites et autres
+		if (back_to_line(fd) == -1)
+			return (-1);
+		if (get_nb_sprites(fd, doom) == -1)
+			return (-1);
+		if (check_sprites(fd, doom, 0))
+			return (-1);
 		return (0);
 	}
 	return (all_room(fd, doom, n_room));

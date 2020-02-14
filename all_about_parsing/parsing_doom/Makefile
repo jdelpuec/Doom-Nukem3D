@@ -6,7 +6,7 @@
 #    By: siwarin <marvin@42.fr>                     +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2019/06/22 13:09:27 by siwarin           #+#    #+#              #
-#    Updated: 2020/01/06 11:23:27 by cduverge         ###   ########.fr        #
+#    Updated: 2020/02/14 09:40:29 by cduverge         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -17,6 +17,7 @@ SRC =  main.c \
 	   usefull.c \
 	   parsing_2.c \
 	   check_map.c \
+	   pars_sprites.c \
 
 OBJ = $(SRC:.c=.o)
 
