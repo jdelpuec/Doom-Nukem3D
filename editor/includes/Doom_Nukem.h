@@ -6,7 +6,7 @@
 /*   By: lubernar <lubernar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/12/03 10:10:33 by siwarin           #+#    #+#             */
-/*   Updated: 2020/02/11 17:40:36 by lubernar         ###   ########.fr       */
+/*   Updated: 2020/02/14 10:50:09 by lubernar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -83,6 +83,7 @@ typedef struct		s_editor
 	int			player_onmap;
 	int			walls_h;
 	int			nb_maillon;
+	int			nb_sprites;
 	t_text_tab	list;
 	t_text_tab	list_sprite;
 	t_text_tab	list_player;

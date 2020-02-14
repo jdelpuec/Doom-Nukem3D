@@ -6,7 +6,7 @@
 /*   By: lubernar <lubernar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/06 11:27:06 by lubernar          #+#    #+#             */
-/*   Updated: 2020/02/11 17:40:14 by lubernar         ###   ########.fr       */
+/*   Updated: 2020/02/14 11:09:07 by lubernar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,23 +39,26 @@ void	init_sprite(t_lst_sprite *l)
 void	push_back_sprite(t_lst *l, t_editor *edit)
 {
 	t_sprite	*nouv;
-
-	nouv = malloc(sizeof(t_sprite));
-	if (!nouv)
-		exit(0);
-	nouv->x = edit->sprite_x;
-	nouv->y = edit->sprite_y;
-	nouv->num_sprite = edit->sprite_choosen;
-	nouv->nb_maillon++;
-	nouv->prev = l->lst_s->last;
-	nouv->next = NULL;
-	if (edit->sprite_choosen == 1 || edit->sprite_choosen == 2)
-		nouv->pickable = 1;
-	else
-		nouv->pickable = 0;
-	if (l->lst_s->last)
-		l->lst_s->last->next = nouv;
-	else
-		l->lst_s->first = nouv;
-	l->lst_s->last = nouv;
+	if (edit->nb_sprites < 20)
+	{
+		nouv = malloc(sizeof(t_sprite));
+		if (!nouv)
+			exit(0);
+		nouv->x = edit->sprite_x;
+		nouv->y = edit->sprite_y;
+		nouv->num_sprite = edit->sprite_choosen;
+		nouv->nb_maillon++;
+		nouv->prev = l->lst_s->last;
+		nouv->next = NULL;
+		edit->nb_sprites++;
+		if (edit->sprite_choosen == 1 || edit->sprite_choosen == 2)
+			nouv->pickable = 1;
+		else
+			nouv->pickable = 0;
+		if (l->lst_s->last)
+			l->lst_s->last->next = nouv;
+		else
+			l->lst_s->first = nouv;
+		l->lst_s->last = nouv;
+	}
 }

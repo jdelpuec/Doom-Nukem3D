@@ -6,7 +6,7 @@
 /*   By: lubernar <lubernar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/03 13:43:49 by lubernar          #+#    #+#             */
-/*   Updated: 2020/02/11 15:31:32 by lubernar         ###   ########.fr       */
+/*   Updated: 2020/02/14 10:50:41 by lubernar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,6 +40,7 @@ t_sprite	init_sprites(void)
 
 void	init_edit(t_editor *edit)
 {
+	edit->nb_sprites = 0;
 	edit->noodles = 0;
 	edit->baguettes = 0;
 	edit->lst_init = 0;
