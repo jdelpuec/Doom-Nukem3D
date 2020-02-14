@@ -6,7 +6,7 @@
 /*   By: cduverge <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/14 09:39:40 by cduverge          #+#    #+#             */
-/*   Updated: 2020/02/14 12:07:15 by cduverge         ###   ########.fr       */
+/*   Updated: 2020/02/14 13:33:28 by cduverge         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,12 +64,15 @@ void	fill_up_sprite(char *str, t_env *doom, int i)
 	while (str[k] != ' ')
 		++k;
 	doom->spt[i].pos.y = ft_atof(str + k);
+	++k;
 	while (str[k] != ' ')
 		++k;
 	doom->spt[i].pos.z = ft_atof(str + k);
+	++k;
 	while (str[k] != ' ')
 		++k;
 	doom->spt[i].id = ft_atoi(str + k);
+	++k;
 	while (str[k] != ' ')
 		++k;
 	doom->spt[i].sector = ft_atoi(str + k);
@@ -106,9 +109,9 @@ int		check_line_sprite(char *str)
 		if (test < -99.9 || test > 99.9)
 			return (-1);
 		if (test >= 0)
-			k = k + 3;
+			test > 10 ? k = k + 4 : (k += 3);
 		else
-			k = k + 4;
+			test > -10 ? k = k + 4 : (k += 5);
 		if (str[k] != ' ')
 			return (-1);
 		++k;
