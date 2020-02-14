@@ -6,7 +6,7 @@
 /*   By: lubernar <lubernar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/10 14:05:34 by jdelpuec          #+#    #+#             */
-/*   Updated: 2020/02/13 18:27:08 by lubernar         ###   ########.fr       */
+/*   Updated: 2020/02/14 11:40:28 by lubernar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -139,7 +139,7 @@ void	drawing(t_win *w, t_ray *r, t_keyboard *k)
 	// }
 	if (w->fired == 1)
 		fire_gunshot(w, &r->gun);
-	if (k->state[SDL_SCANCODE_T] == 1 && w->reload == 0)
+	if (k->state[SDL_SCANCODE_R] == 1 && w->reload == 0)
 	{
 		w->fired = 2;
 		w->reload = 1;
