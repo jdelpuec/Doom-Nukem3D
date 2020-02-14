@@ -6,7 +6,7 @@
 /*   By: lubernar <lubernar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/28 15:29:08 by jdelpuec          #+#    #+#             */
-/*   Updated: 2020/02/12 17:36:15 by lubernar         ###   ########.fr       */
+/*   Updated: 2020/02/14 13:39:39 by lubernar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,6 @@ void    wall_collision(t_ray *r, t_vector_3d wd, t_wall wall)
 	t_vector_3d	old;
 	(void)wall;
 	old 	= r->player.velocity;
-	(void)wall;
 	if (wd.x == 0)
 	{
         r->player.velocity.x = wd.y * (old.x * wd.x +

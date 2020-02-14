@@ -6,7 +6,7 @@
 /*   By: jdelpuec <jdelpuec@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/10 14:12:36 by jdelpuec          #+#    #+#             */
-/*   Updated: 2020/02/11 18:19:15 by jdelpuec         ###   ########.fr       */
+/*   Updated: 2020/02/12 17:14:18 by jdelpuec         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,13 +28,13 @@ void	draw_portal_ceil(t_win *w, t_ray *r, t_sector sector,
 				- sector.ceil_height) / r->dist_wall) * r->dist_pp;
 	r->offset_end = (WIN_H >> 1) + ((r->player.position.z
 				- portal_sec.ceil_height) / r->dist_wall) * r->dist_pp;
-	i = 0;
-	while (i++ < (int)r->offset_start)
-		if ((i >= 0 && i < WIN_H) && (i > r->y_min && i < r->y_max - 1)
+	i = -1;
+	while (++i < (int)r->offset_start)
+		if ((i >= 0 && i < WIN_H) && (i >= r->y_min && i < r->y_max - 1)
 			&& (*((int *)w->surface->pixels + (i * WIN_W + r->x)) == 0))
 			*((int *)w->surface->pixels + (i * WIN_W + r->x)) = GREY * r->light;
 	while (i++ < (int)r->offset_end)
-		if ((i >= 0 && i < WIN_H) && (i > r->y_min && i < r->y_max - 1)
+		if ((i >= 0 && i < WIN_H) && (i >= r->y_min && i < r->y_max - 1)
 			&& (*((int *)w->surface->pixels + (i * WIN_W + r->x)) == 0))
 			*((int *)w->surface->pixels + (i * WIN_W + r->x)) = RED * r->light; // NExt sector ceil diff
 	r->y_min = (int)r->offset_end;
@@ -56,11 +56,11 @@ void	draw_portal_floor(t_win *w, t_ray *r, t_sector sector,
 				- sector.floor_height) / r->dist_wall) * r->dist_pp;
 	i = (int)r->offset_start;
 	while (i++ < (int)r->offset_end)
-		if ((i >= 0 && i < WIN_H) && (i > r->y_min && i < r->y_max - 1)
+		if ((i >= 0 && i < WIN_H)
 			&& (*((int *)w->surface->pixels + (i * WIN_W + r->x)) == 0))
 			*((int *)w->surface->pixels + (i * WIN_W + r->x)) = BLUE * r->light;
 	while (i++ < WIN_H - 1)
-		if ((i >= 0 && i < WIN_H) && (i > r->y_min && i < r->y_max - 1)
+		if ((i >= 0 && i < WIN_H)
 			&& (*((int *)w->surface->pixels + (i * WIN_W + r->x)) == 0))
 			*((int *)w->surface->pixels + (i * WIN_W + r->x)) = DARK * r->light;
 	r->y_max = (int)r->offset_start;
@@ -80,8 +80,6 @@ int		draw_portal(t_win *w, t_ray *r, t_sector sector, t_wall wall)
 
 int		draw_wall_2(t_win *w, t_ray *r, t_sector sector, t_wall wall)
 {
-	// int i;
-
 	r->dist = sqrtf(((r->hit_x - r->player.position.x) * (r->hit_x
 		- r->player.position.x)) + ((r->hit_y - r->player.position.y)
 		* (r->hit_y - r->player.position.y)));
@@ -106,8 +104,11 @@ int		draw_wall_2(t_win *w, t_ray *r, t_sector sector, t_wall wall)
 	// 	if ((i >= 0 && i < WIN_H) && (i > r->y_min && i < r->y_max - 1)
 	// 		&& (*((int *)w->surface->pixels + (i * WIN_W + r->x)) == 0))
 	// 		*((int *)w->surface->pixels + (i * WIN_W + r->x)) = DARK * r->light;
-	// r->y_min = (int)r->offset_end;
-	// r->y_max = (int)r->offset_start;
+	if (r->last_sec == -2)
+	{
+		r->last_y_min = (int)r->offset_start;
+		r->last_y_max = (int)r->offset_end;
+	}
 	return (1);
 }
 

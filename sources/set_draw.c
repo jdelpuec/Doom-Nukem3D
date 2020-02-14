@@ -6,7 +6,7 @@
 /*   By: lubernar <lubernar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/10 14:05:34 by jdelpuec          #+#    #+#             */
-/*   Updated: 2020/02/14 11:40:28 by lubernar         ###   ########.fr       */
+/*   Updated: 2020/02/14 18:15:55 by lubernar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -121,22 +121,12 @@ void	draw_player_view(t_win *w, t_ray *r)
 
 void	drawing(t_win *w, t_ray *r, t_keyboard *k)
 {
-	r->inv.sprite.x = 0;
-	r->inv.sprite.y = 5;
-	r->inv.sprite.num_sprite = 1;
-	r->inv.sprite.pickable = 1;
+	printf("y : %f\n", r->inv.sprite[0].pos.y);
 	SDL_memset(w->surface->pixels, 0, ((WIN_W * WIN_H) << 2));
 	draw_player_view(w, r);
-	hud(w, &r->inv);
+	hud(w, &r->inv, r);
 	inventory(r, w, &r->inv);
 	w->fired == 0 ? display_l((WIN_W / 2), (WIN_H) - 240, w, r->gun) : 0;
-	// if (w->e.type == SDL_MOUSEBUTTONDOWN &&  w->fired == 0
-    //     && r->inv.nb_bullet > 0)
-	// {
-	// 	w->fired = 1;
-	// 	r->inv.nb_bullet--;
-	// 	w->old_t_f = SDL_GetTicks();
-	// }
 	if (w->fired == 1)
 		fire_gunshot(w, &r->gun);
 	if (k->state[SDL_SCANCODE_R] == 1 && w->reload == 0)

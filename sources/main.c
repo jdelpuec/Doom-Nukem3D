@@ -6,7 +6,7 @@
 /*   By: lubernar <lubernar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/04/01 11:49:14 by ebonafi           #+#    #+#             */
-/*   Updated: 2020/02/13 18:27:50 by lubernar         ###   ########.fr       */
+/*   Updated: 2020/02/14 18:28:16 by lubernar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -307,6 +307,7 @@ void	sdl_loop(t_win *w, t_ray *r)
 {
 	t_keyboard k;
 	
+	printf("y : %f\n", r->inv.sprite[0].pos.y);
 	init_keyboard(&k);
 	while (1)
 	{
@@ -333,15 +334,25 @@ void	sdl_loop(t_win *w, t_ray *r)
 	}
 }
 
-int		main(void)
+int		main(int ac, char **av)
 {
 	t_ray	r;
 	t_win	w;
-
+	t_env	env;
+	(void)ac;
+	
+	parsing(av[1], &env);
+	r.inv.nb_sprites = env.sprites;
 	r.inv.nb_bullet = 50;
 	r.inv.nb_hp = 100;
 	r.inv.anim = 0;
 	r.gun = init_gun();
+	w.text_list = init_text();
+	r.inv.sprite = env.spt;
+	r.inv.sprite[0].pickable = 1;
+	r.inv.sprite[1].pickable = 1;
+	r.inv.sprite[2].pickable = 1;
+	
 	r.sectors = map();
 	init_t_ray(&r);
   	init_ttf(&w);
@@ -359,6 +370,7 @@ int		main(void)
 	w.old_t_f = 0.0;
 
 	init_sdl(&w);
+	printf("yyyy : %f\n", r.inv.sprite[0].pos.y);
 	sdl_loop(&w, &r);
 	return (0);
 }

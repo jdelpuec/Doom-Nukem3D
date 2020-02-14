@@ -6,7 +6,7 @@
 /*   By: lubernar <lubernar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/04/06 14:02:38 by ebonafi           #+#    #+#             */
-/*   Updated: 2020/02/13 18:05:06 by lubernar         ###   ########.fr       */
+/*   Updated: 2020/02/14 16:37:05 by lubernar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,6 +57,8 @@ typedef struct		s_ray
 	float		line_h;
 	int			y_min;
 	int			y_max;
+	int			last_y_min;
+	int			last_y_max;
 
 	float		thresh;
 	float		speed;
@@ -85,6 +87,8 @@ t_invent	*inventory(struct s_ray *r, t_win *sdl, t_invent *inv);
 void 		reload_gun(t_text_tab *reaload_anim, t_ray *r, t_win *w);
 t_text_tab  init_gun();
 void    fire_gunshot(t_win *w, t_text_tab *gun_anim);
+void		hud(t_win *sdl, t_invent *inv, t_ray *r);
+
 
 
 typedef struct		s_wall_tex
