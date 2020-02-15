@@ -6,15 +6,12 @@
 /*   By: lubernar <lubernar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/04/06 14:02:38 by ebonafi           #+#    #+#             */
-/*   Updated: 2020/02/15 16:17:03 by lubernar         ###   ########.fr       */
+/*   Updated: 2020/02/15 18:35:48 by lubernar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef RAYCASTING_H
 # define RAYCASTING_H
-
-#include "doom.h"
-#include "inventory.h"
 
 typedef struct		s_ray
 {
@@ -83,11 +80,11 @@ t_vector_3d	normalize_vec(t_vector_3d v);
 t_vector_3d	get_normal_wall(t_vector_2d v1, t_vector_2d v2);
 t_vector_3d	get_cross_poduct(t_vector_3d v1, t_vector_3d v2);
 
-t_invent	*inventory(struct s_ray *r, t_win *sdl, t_invent *inv);
+t_invent	*inventory(struct s_ray *r, t_win *sdl);
 void 		reload_gun(t_text_tab *reaload_anim, t_win *w);
 t_text_tab  init_gun();
-void    fire_gunshot(t_win *w, t_text_tab *gun_anim);
-void		hud(t_win *sdl, t_invent *inv, t_ray *r);
+void    	fire_gunshot(t_win *w, t_text_tab *gun_anim);
+void		hud(t_win *sdl, t_ray *r);
 
 
 

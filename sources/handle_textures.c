@@ -6,11 +6,10 @@
 /*   By: lubernar <lubernar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/05/02 13:44:05 by jdelpuec          #+#    #+#             */
-/*   Updated: 2020/02/14 13:39:47 by lubernar         ###   ########.fr       */
+/*   Updated: 2020/02/15 18:39:43 by lubernar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "textures.h"
 #include "doom.h"
 #include "malloc.h"
 

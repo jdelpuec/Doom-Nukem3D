@@ -3,14 +3,13 @@
 /*                                                        :::      ::::::::   */
 /*   handle_textures2.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: siwarin <marvin@42.fr>                     +#+  +:+       +#+        */
+/*   By: lubernar <lubernar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/12 17:04:14 by siwarin           #+#    #+#             */
-/*   Updated: 2020/02/12 17:04:18 by siwarin          ###   ########.fr       */
+/*   Updated: 2020/02/15 18:39:50 by lubernar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "textures.h"
 #include "doom.h"
 #include "malloc.h"
 

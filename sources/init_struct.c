@@ -6,11 +6,10 @@
 /*   By: lubernar <lubernar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/10 11:27:26 by jdelpuec          #+#    #+#             */
-/*   Updated: 2020/02/14 13:39:51 by lubernar         ###   ########.fr       */
+/*   Updated: 2020/02/15 18:40:18 by lubernar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "textures.h"
 #include "doom.h"
 #include "raycasting.h"
 
@@ -54,16 +53,27 @@ void		init_sdl(t_win *w)
 		ft_putstr(SDL_GetError());
 		ft_putstr("Surface error.\n");
 	}
-	SDL_ShowCursor(0);
 	w->hud = find("ressources/hud/health.bmp");
 	w->hud2 = find("ressources/hud/ammo_copy.bmp");
 	w->hud3 = find("ress/inventory.bmp");
+	w->old_time = 0.0;
+	w->time = 0.0;
+	w->text_list = init_text();
+	w->reload = 0;
+	w->fired = 0;
+	w->old_t = 0.0;
 }
 
-void		init_t_ray(t_ray *r)
+void		init_t_ray(t_ray *r, t_env *env)
 {
 	r->dist_pp	= WIN_W / tanf(deg_to_rad(30.0));
 	r->last_sec = -2;
 	r->speed	= 5.0;
 	r->thresh	= 1;
+	r->inv.nb_sprites = env->sprites;
+	r->inv.nb_bullet = 50;
+	r->inv.nb_hp = 100;
+	r->inv.anim = 0;
+	r->gun = init_gun();
+	r->inv.sprite = env->spt;
 }

@@ -6,7 +6,7 @@
 /*   By: lubernar <lubernar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/04/01 11:50:31 by ebonafi           #+#    #+#             */
-/*   Updated: 2020/02/14 17:55:33 by lubernar         ###   ########.fr       */
+/*   Updated: 2020/02/15 18:43:42 by lubernar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,10 +18,9 @@
 # include "get_next_line.h"
 # include "define.h"
 # include "textures.h"
+# include "inventory.h"
 # include <SDL2/SDL.h>
 # include "SDL2/SDL_ttf.h"
-# include "textures.h"
-# include "inventory.h"
 
 typedef struct		s_win
 {
@@ -179,6 +178,7 @@ char				*sting_malloc(char *name, int size);
 char				**tab_malloc(char *name, int size);
 unsigned char		*unsigned_char_malloc(char *name, int size);
 void				display_l(int x, int y, t_win *sdl, t_text_tab tmp);
+void			display(int x, int y, t_text_tab hud, t_win *win);
 
 
 //hud.c
