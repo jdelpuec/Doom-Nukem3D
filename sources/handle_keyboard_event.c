@@ -6,7 +6,7 @@
 /*   By: jdelpuec <jdelpuec@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/04/02 11:15:57 by ebonafi           #+#    #+#             */
-/*   Updated: 2020/02/13 16:16:45 by jdelpuec         ###   ########.fr       */
+/*   Updated: 2020/02/15 18:58:36 by jdelpuec         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,7 +42,7 @@ int	is_key_pressed(t_keyboard *k)
 		pressed++;
 	if (k->state[SDL_SCANCODE_LGUI] == 1)
 		pressed++;
-	if (k->state[SDL_SCANCODE_R] == 1)
+	if (k->state[SDL_SCANCODE_T] == 1)
 		pressed++;
 	return (pressed);
 }
@@ -52,6 +52,7 @@ int	handle_keyboard_misc(t_win *w, t_keyboard *k)
 	if (k->state[SDL_SCANCODE_ESCAPE] == 1)
 	{
 		SDL_DestroyWindow(w->win);
+		TTF_CloseFont(w->font);
 		SDL_Quit();
 		return (-1);
 	}
@@ -143,7 +144,7 @@ void	handle_keyboard_mvt(t_win *w, t_ray *r, t_keyboard *k)
 	if (r->player.position.z - PLAYER_H != r->sectors[r->cur_sector].floor_height)
 		r->speed = 5.0;
 
-	if (k->state[SDL_SCANCODE_R] == 1)
+	if (k->state[SDL_SCANCODE_T] == 1)
 	{
 		r->player.position.x		= 0.0;
 		r->player.position.y		= 0.0;

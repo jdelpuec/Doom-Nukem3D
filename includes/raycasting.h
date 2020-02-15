@@ -6,12 +6,15 @@
 /*   By: jdelpuec <jdelpuec@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/04/06 14:02:38 by ebonafi           #+#    #+#             */
-/*   Updated: 2020/02/14 18:25:34 by jdelpuec         ###   ########.fr       */
+/*   Updated: 2020/02/15 17:50:44 by jdelpuec         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef RAYCASTING_H
 # define RAYCASTING_H
+
+#include "doom.h"
+#include "inventory.h"
 
 typedef struct		s_ray
 {
@@ -28,6 +31,9 @@ typedef struct		s_ray
 	t_wall		old_wall;
 	t_sector	*sectors;
 	t_vector_2d	ray_end;	
+	t_invent	inv;
+	t_text_tab	gun;
+	t_text_tab	reload_gun;
 
 	float		s02_x;
 	float		s02_y;
@@ -66,6 +72,24 @@ typedef struct		s_ray
 	int		x_2;
 	int		y_2;
 }					t_ray;
+
+float		check_line_point(t_vector_2d l1, t_vector_2d l2, t_vector_3d p);
+void		init_raycasting(t_ray *r);
+void		wall_collision(t_ray *r, t_vector_3d wd, t_wall wall);
+float		get_dir_angle(t_ray *r);
+float		get_dot_poduct(t_vector_3d v1, t_vector_3d v2);
+float		get_vector_length(t_vector_3d v);
+t_vector_3d	normalize_vec(t_vector_3d v);
+t_vector_3d	get_normal_wall(t_vector_2d v1, t_vector_2d v2);
+t_vector_3d	get_cross_poduct(t_vector_3d v1, t_vector_3d v2);
+
+t_invent	*inventory(struct s_ray *r, t_win *sdl, t_invent *inv);
+void 		reload_gun(t_text_tab *reaload_anim, t_win *w);
+t_text_tab  init_gun();
+void    fire_gunshot(t_win *w, t_text_tab *gun_anim);
+void		hud(t_win *sdl, t_invent *inv, t_ray *r);
+
+
 
 typedef struct		s_wall_tex
 {

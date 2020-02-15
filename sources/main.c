@@ -6,7 +6,7 @@
 /*   By: jdelpuec <jdelpuec@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/04/01 11:49:14 by ebonafi           #+#    #+#             */
-/*   Updated: 2020/02/13 15:49:45 by jdelpuec         ###   ########.fr       */
+/*   Updated: 2020/02/15 18:45:21 by jdelpuec         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,17 +17,17 @@
 #include "init.h"
 #include "event.h"
 
-void	fps_count(t_win *w)
+void fps_count(t_win *w)
 {
-	float	delta;
+	float delta;
 
-	w->old_time	= w->time;
-	w->time		= SDL_GetTicks();
-	delta		= (w->time - w->old_time) / 1000.0;
-	w->fps		= (int)(1.0 / delta);
+	w->old_time = w->time;
+	w->time = SDL_GetTicks();
+	delta = (w->time - w->old_time) / 1000.0;
+	w->fps = (int)(1.0 / delta);
 }
 
-void	sdl_loop(t_win *w, t_ray *r)
+void sdl_loop(t_win *w, t_ray *r)
 {
 	t_keyboard k;
 
@@ -38,33 +38,67 @@ void	sdl_loop(t_win *w, t_ray *r)
 		{
 			if (w->e.type == SDL_KEYDOWN || w->e.type == SDL_KEYUP)
 				if (handle_keyboard_event(w, &k) < 0)
-					return ;
+					return;
 			if (w->e.type == SDL_MOUSEMOTION)
 				handle_mouse_event(w, r);
+			if (w->e.type == SDL_MOUSEBUTTONDOWN && w->fired == 0 && r->inv.nb_bullet > 0)
+			{
+				w->fired = 1;
+				r->inv.nb_bullet--;
+				w->old_t_f = SDL_GetTicks();
+			}
 		}
-		if (is_key_pressed(&k) > 0 || r->player.position.z
-			!= r->sectors[r->cur_sector].floor_height + 32)
+		if (is_key_pressed(&k) > 0 || r->player.position.z != r->sectors[r->cur_sector].floor_height + 32)
 			handle_keyboard_mvt(w, r, &k);
-		drawing(w, r);
+		drawing(w, r, &k);
 		fps_count(w);
 	}
 }
 
-int		main(void)
+int main(int ac, char **av)
 {
-	t_ray	r;
-	t_win	w;
+	t_ray r;
+	t_win w;
+	t_env env;
+	(void)ac;
 
+	if (ac != 2)
+	{
+		ft_putendl("la map idiot bete \n");
+		exit(0);
+	}
+	if (parsing(av[1], &env) == -1)
+		exit (0);
+	r.inv.nb_sprites = env.sprites;
+	r.inv.nb_bullet = 50;
+	r.inv.nb_hp = 100;
+	r.inv.anim = 0;
+	r.gun = init_gun();
 	w.text_list = init_text();
+	r.inv.sprite = env.spt;
+
+
+	r.sectors = env.sct;
 	
-	r.sectors = map();
-	r.sector_count = 12;		// Brut map ---> need to implemant parsing
-	r.player.sector = 0;
+	// r.sectors = map();
+	// r.sector_count = 12;		// Brut map ---> need to implemant parsing
+	// r.player.sector = 0;
 	r.player.position.z = 0 + PLAYER_H;
 
 	init_t_ray(&r);
 
 
+
+	init_ttf(&w);
+
+	w.pressed = 0;
+	init_sdl(&w);
+	w.old_time = 0.0;
+	w.time = 0.0;
+	w.reload = 0;
+	w.fired = 0;
+	w.old_t = 0.0;
+	w.old_t_f = 0.0;
 
 	init_sdl(&w);
 	sdl_loop(&w, &r);

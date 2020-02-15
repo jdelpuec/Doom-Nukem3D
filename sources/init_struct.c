@@ -6,7 +6,7 @@
 /*   By: jdelpuec <jdelpuec@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/10 11:27:26 by jdelpuec          #+#    #+#             */
-/*   Updated: 2020/02/13 16:16:40 by jdelpuec         ###   ########.fr       */
+/*   Updated: 2020/02/15 17:06:41 by jdelpuec         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,6 +56,9 @@ void		init_sdl(t_win *w)
 		ft_putstr("Surface error.\n");
 	}
 	SDL_ShowCursor(0);
+	w->hud = find("ressources/hud/health.bmp");
+	w->hud2 = find("ressources/hud/ammo_copy.bmp");
+	w->hud3 = find("ress/inventory.bmp");
 }
 
 void		get_sector_vertices(t_ray *r)
