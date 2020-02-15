@@ -6,14 +6,14 @@
 /*   By: lubernar <lubernar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/12 12:53:22 by lubernar          #+#    #+#             */
-/*   Updated: 2020/02/15 16:42:35 by lubernar         ###   ########.fr       */
+/*   Updated: 2020/02/15 16:46:47 by lubernar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "doom.h"
 #include "raycasting.h"
 
-void anim_gun(t_text_tab *reload_anim, t_win *w)
+void 	anim_gun(t_text_tab *reload_anim, t_win *w)
 {
 	if (SDL_GetTicks() - w->old_t > 300 && SDL_GetTicks() - w->old_t < 700)
 	{
@@ -36,7 +36,7 @@ void anim_gun(t_text_tab *reload_anim, t_win *w)
 	}
 }
 
-void reload_gun(t_text_tab *reload_anim, t_win *w)
+void	reload_gun(t_text_tab *reload_anim, t_win *w)
 {
 	char **reload;
 	static int j;
