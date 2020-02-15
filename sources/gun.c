@@ -6,28 +6,28 @@
 /*   By: lubernar <lubernar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/12 12:53:22 by lubernar          #+#    #+#             */
-/*   Updated: 2020/02/15 16:46:47 by lubernar         ###   ########.fr       */
+/*   Updated: 2020/02/15 16:53:51 by lubernar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "doom.h"
 #include "raycasting.h"
 
-void 	anim_gun(t_text_tab *reload_anim, t_win *w)
+void		anim_gun(t_text_tab *reload_anim, t_win *w)
 {
 	if (SDL_GetTicks() - w->old_t > 300 && SDL_GetTicks() - w->old_t < 700)
 	{
 		reload_anim = reload_anim->next;
 		reload_anim->w = 240;
 		reload_anim->h = 240;
-		display_l((WIN_W / 2), (WIN_H)-240, w, *reload_anim);
+		display_l((WIN_W / 2), (WIN_H) - 240, w, *reload_anim);
 	}
 	if (SDL_GetTicks() - w->old_t > 700)
 	{
 		reload_anim = reload_anim->next;
 		reload_anim->w = 240;
 		reload_anim->h = 240;
-		display_l((WIN_W / 2), (WIN_H)-240, w, *reload_anim);
+		display_l((WIN_W / 2), (WIN_H) - 240, w, *reload_anim);
 		if (SDL_GetTicks() - w->old_t > 1000)
 		{
 			w->reload = 0;
@@ -36,10 +36,10 @@ void 	anim_gun(t_text_tab *reload_anim, t_win *w)
 	}
 }
 
-void	reload_gun(t_text_tab *reload_anim, t_win *w)
+void		reload_gun(t_text_tab *reload_anim, t_win *w)
 {
-	char **reload;
-	static int j;
+	char		**reload;
+	static int	j;
 
 	if (j == 0)
 	{
@@ -55,15 +55,15 @@ void	reload_gun(t_text_tab *reload_anim, t_win *w)
 	reload_anim->w = 240;
 	reload_anim->h = 240;
 	if (SDL_GetTicks() - w->old_t > 1 && SDL_GetTicks() - w->old_t < 300)
-		display_l((WIN_W / 2), (WIN_H)-240, w, *reload_anim);
+		display_l((WIN_W / 2), (WIN_H) - 240, w, *reload_anim);
 	anim_gun(reload_anim, w);
 }
 
-t_text_tab init_gun()
+t_text_tab	init_gun(void)
 {
-	char **gun;
-	static int j;
-	t_text_tab gun_anim;
+	char		**gun;
+	static int	j;
+	t_text_tab	gun_anim;
 
 	if (j == 0)
 	{
@@ -80,14 +80,14 @@ t_text_tab init_gun()
 	return (gun_anim);
 }
 
-void fire_gunshot(t_win *w, t_text_tab *gun_anim)
+void		fire_gunshot(t_win *w, t_text_tab *gun_anim)
 {
 	if (SDL_GetTicks() - w->old_t_f < 300)
 	{
 		gun_anim = gun_anim->next;
 		gun_anim->w = 240;
 		gun_anim->h = 240;
-		display_l((WIN_W / 2), (WIN_H)-240, w, *gun_anim);
+		display_l((WIN_W / 2), (WIN_H) - 240, w, *gun_anim);
 	}
 	if (SDL_GetTicks() - w->old_t_f > 300)
 	{
