@@ -6,7 +6,7 @@
 /*   By: jdelpuec <jdelpuec@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/04/01 11:49:14 by ebonafi           #+#    #+#             */
-/*   Updated: 2020/02/15 18:45:21 by jdelpuec         ###   ########.fr       */
+/*   Updated: 2020/02/15 19:15:30 by jdelpuec         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -79,12 +79,11 @@ int main(int ac, char **av)
 
 
 	r.sectors = env.sct;
+	r.player = env.player;
 	
 	// r.sectors = map();
 	// r.sector_count = 12;		// Brut map ---> need to implemant parsing
 	// r.player.sector = 0;
-	r.player.position.z = 0 + PLAYER_H;
-
 	init_t_ray(&r);
 
 
@@ -100,7 +99,6 @@ int main(int ac, char **av)
 	w.old_t = 0.0;
 	w.old_t_f = 0.0;
 
-	init_sdl(&w);
 	sdl_loop(&w, &r);
 	return (0);
 }

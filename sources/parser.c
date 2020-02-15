@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parser.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lubernar <lubernar@student.42.fr>          +#+  +:+       +#+        */
+/*   By: jdelpuec <jdelpuec@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/26 12:12:50 by cduverge          #+#    #+#             */
-/*   Updated: 2020/02/14 17:53:57 by lubernar         ###   ########.fr       */
+/*   Updated: 2020/02/15 19:10:12 by jdelpuec         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,7 +66,7 @@ void	fill_up_player(char *line, t_env *doom)
 	++k;
 	while (line[k] != ' ')
 		++k;
-	doom->player.position.z = ft_atof(line + k);
+	doom->player.position.z = ft_atof(line + k) + PLAYER_H;
 	++k;
 	while (line[k] != ' ')
 		++k;

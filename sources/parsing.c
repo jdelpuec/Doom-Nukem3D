@@ -6,7 +6,7 @@
 /*   By: jdelpuec <jdelpuec@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/27 14:52:46 by cduverge          #+#    #+#             */
-/*   Updated: 2020/02/15 18:51:37 by jdelpuec         ###   ########.fr       */
+/*   Updated: 2020/02/15 19:01:14 by jdelpuec         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -113,13 +113,15 @@ int		parsing(char *str, t_env *doom)
 		ft_putendl_fd("Empty file.", 2);
 		return (-1);
 	}
-	if ((ft_isdigit(line[0]) == 1) && (line[1] == '\0'))
-	{
+	// if ((ft_isdigit(line[0]) == 1) && (line[1] == '\0'))
+	// {
 		doom->room = ft_atoi(line);
 		free(line);
-	}
-	else
-		return (free_and_return(line));
+	// }
+	// else
+		// return (free_and_return(line));
+	if (doom->room > 99)
+		return (-1);
 	if (all_check(doom, fd) == -1)
 		return (-1);
 	return (0);
