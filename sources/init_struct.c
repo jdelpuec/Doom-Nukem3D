@@ -6,7 +6,7 @@
 /*   By: lubernar <lubernar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/10 11:27:26 by jdelpuec          #+#    #+#             */
-/*   Updated: 2020/02/15 18:40:18 by lubernar         ###   ########.fr       */
+/*   Updated: 2020/02/15 18:58:04 by lubernar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,6 +23,7 @@ t_text_tab	init_text()
 	tab[1] = "./ressources/textures/WildGrass.bmp";
 	tab[2] = NULL;
 	text_list = handle_textures(tab, 0);
+	free(tab);
 	if (text_list.id == -1)
 	{
 		ft_putendl("Textures failed to load, please check your paths. \n");

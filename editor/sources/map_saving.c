@@ -6,7 +6,7 @@
 /*   By: lubernar <lubernar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/16 15:01:53 by lubernar          #+#    #+#             */
-/*   Updated: 2020/02/14 11:13:44 by lubernar         ###   ########.fr       */
+/*   Updated: 2020/02/15 19:06:57 by lubernar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,7 +55,7 @@ void	sprites_coord(t_sprite *sprite, t_editor *edit)
 void	write_coord(t_editor *edit, t_elem *tmp, t_sprite *sprite, t_lst *l)
 {
 	ft_putstr_fd(ft_itoa(tmp->num_text), edit->fd);
-	ft_putstr_fd("\n-1\n", edit->fd);
+	ft_putstr_fd("-1\n", edit->fd);
 	ft_putstr_fd(ft_itoa((tmp->x1 - ((W / 1.5) / 2) + 10) / 10), edit->fd);
 	ft_putchar_fd(' ', edit->fd);
 	ft_putstr_fd(ft_itoa(((tmp->y1 - (H / 2) + 10)) / 10), edit->fd);
