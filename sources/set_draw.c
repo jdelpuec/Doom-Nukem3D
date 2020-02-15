@@ -6,7 +6,7 @@
 /*   By: lubernar <lubernar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/10 14:05:34 by jdelpuec          #+#    #+#             */
-/*   Updated: 2020/02/14 18:15:55 by lubernar         ###   ########.fr       */
+/*   Updated: 2020/02/15 16:16:57 by lubernar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -121,7 +121,6 @@ void	draw_player_view(t_win *w, t_ray *r)
 
 void	drawing(t_win *w, t_ray *r, t_keyboard *k)
 {
-	printf("y : %f\n", r->inv.sprite[0].pos.y);
 	SDL_memset(w->surface->pixels, 0, ((WIN_W * WIN_H) << 2));
 	draw_player_view(w, r);
 	hud(w, &r->inv, r);
@@ -137,7 +136,7 @@ void	drawing(t_win *w, t_ray *r, t_keyboard *k)
 		r->inv.nb_bullet += 10;
 	}
 	if (w->reload == 1)
-		reload_gun(&r->reload_gun, r, w);
+		reload_gun(&r->reload_gun, w);
 // 	inven
 	// --> mettre ici les sprites :
 

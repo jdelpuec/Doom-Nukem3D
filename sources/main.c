@@ -6,7 +6,7 @@
 /*   By: lubernar <lubernar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/04/01 11:49:14 by ebonafi           #+#    #+#             */
-/*   Updated: 2020/02/14 18:28:16 by lubernar         ###   ########.fr       */
+/*   Updated: 2020/02/15 16:37:24 by lubernar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -293,21 +293,20 @@
 // 	SDL_UpdateWindowSurface(w->win);
 // }
 
-void	fps_count(t_win *w)
+void fps_count(t_win *w)
 {
-	float	delta;
+	float delta;
 
-	w->old_time	= w->time;
-	w->time		= SDL_GetTicks();
-	delta		= (w->time - w->old_time) / 1000.0;
-	w->fps		= (int)(1.0 / delta);
+	w->old_time = w->time;
+	w->time = SDL_GetTicks();
+	delta = (w->time - w->old_time) / 1000.0;
+	w->fps = (int)(1.0 / delta);
 }
 
-void	sdl_loop(t_win *w, t_ray *r)
+void sdl_loop(t_win *w, t_ray *r)
 {
 	t_keyboard k;
-	
-	printf("y : %f\n", r->inv.sprite[0].pos.y);
+
 	init_keyboard(&k);
 	while (1)
 	{
@@ -315,32 +314,30 @@ void	sdl_loop(t_win *w, t_ray *r)
 		{
 			if (w->e.type == SDL_KEYDOWN || w->e.type == SDL_KEYUP)
 				if (handle_keyboard_event(w, &k) < 0)
-					return ;
+					return;
 			if (w->e.type == SDL_MOUSEMOTION)
 				handle_mouse_event(w, r);
-			if (w->e.type == SDL_MOUSEBUTTONDOWN &&  w->fired == 0
-				&& r->inv.nb_bullet > 0)
+			if (w->e.type == SDL_MOUSEBUTTONDOWN && w->fired == 0 && r->inv.nb_bullet > 0)
 			{
 				w->fired = 1;
 				r->inv.nb_bullet--;
 				w->old_t_f = SDL_GetTicks();
 			}
 		}
-		if (is_key_pressed(&k) > 0 || r->player.position.z
-			!= r->sectors[r->cur_sector].floor_height + 32)
+		if (is_key_pressed(&k) > 0 || r->player.position.z != r->sectors[r->cur_sector].floor_height + 32)
 			handle_keyboard_mvt(w, r, &k);
 		drawing(w, r, &k);
 		fps_count(w);
 	}
 }
 
-int		main(int ac, char **av)
+int main(int ac, char **av)
 {
-	t_ray	r;
-	t_win	w;
-	t_env	env;
+	t_ray r;
+	t_win w;
+	t_env env;
 	(void)ac;
-	
+
 	parsing(av[1], &env);
 	r.inv.nb_sprites = env.sprites;
 	r.inv.nb_bullet = 50;
@@ -349,20 +346,17 @@ int		main(int ac, char **av)
 	r.gun = init_gun();
 	w.text_list = init_text();
 	r.inv.sprite = env.spt;
-	r.inv.sprite[0].pickable = 1;
-	r.inv.sprite[1].pickable = 1;
-	r.inv.sprite[2].pickable = 1;
-	
+
 	r.sectors = map();
 	init_t_ray(&r);
-  	init_ttf(&w);
-	r.sector_count = 12;		// Brut map ---> need to implemant parsing
+	init_ttf(&w);
+	r.sector_count = 12; // Brut map ---> need to implemant parsing
 	r.player.sector = 0;
 	r.player.position.z = 0 + PLAYER_H;
 	w.pressed = 0;
 	init_sdl(&w);
-	w.old_time	= 0.0;
-	w.time		= 0.0;
+	w.old_time = 0.0;
+	w.time = 0.0;
 	w.text_list = init_text();
 	w.reload = 0;
 	w.fired = 0;
@@ -370,7 +364,6 @@ int		main(int ac, char **av)
 	w.old_t_f = 0.0;
 
 	init_sdl(&w);
-	printf("yyyy : %f\n", r.inv.sprite[0].pos.y);
 	sdl_loop(&w, &r);
 	return (0);
 }

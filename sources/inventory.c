@@ -6,7 +6,7 @@
 /*   By: lubernar <lubernar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/07 13:20:48 by lubernar          #+#    #+#             */
-/*   Updated: 2020/02/14 18:22:39 by lubernar         ###   ########.fr       */
+/*   Updated: 2020/02/15 16:19:27 by lubernar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -84,6 +84,13 @@ t_invent	*inventory(t_ray *r, t_win *sdl, t_invent *inv)
 				inv->invent.inventory_display[1] = 1;
 				inv->sprite[i].pickable = 0;
 				inv->nb_baguette++;
+			}
+			if (inv->sprite[i].id == 3 && sdl->reload == 0)
+			{
+				sdl->fired = 2;
+				sdl->reload = 1;
+				sdl->old_t = SDL_GetTicks();
+				r->inv.nb_bullet += 100;
 			}
 		}
 		i++;

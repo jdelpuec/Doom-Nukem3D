@@ -6,7 +6,7 @@
 /*   By: lubernar <lubernar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/14 09:39:40 by cduverge          #+#    #+#             */
-/*   Updated: 2020/02/14 17:57:15 by lubernar         ###   ########.fr       */
+/*   Updated: 2020/02/15 16:06:17 by lubernar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -76,6 +76,11 @@ void	fill_up_sprite(char *str, t_env *doom, int i)
 	while (str[k] != ' ')
 		++k;
 	doom->spt[i].sector = ft_atoi(str + k);
+	if (doom->spt[i].id == 1 || doom->spt[i].id == 2)
+		doom->spt[i].pickable = 1;
+	else
+		doom->spt[i].pickable = 0;
+
 }
 
 int		check_line_sprite_2(char *str, int k)
