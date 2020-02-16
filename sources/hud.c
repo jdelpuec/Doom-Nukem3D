@@ -3,16 +3,15 @@
 /*                                                        :::      ::::::::   */
 /*   hud.c                                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lubernar <lubernar@student.42.fr>          +#+  +:+       +#+        */
+/*   By: jdelpuec <jdelpuec@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/06 11:22:11 by siwarin           #+#    #+#             */
-/*   Updated: 2020/02/15 16:47:01 by lubernar         ###   ########.fr       */
+/*   Updated: 2020/02/16 14:46:31 by jdelpuec         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "textures.h"
 #include "doom.h"
-#include "malloc.h"
+#include "inventory.h"
 #include "raycasting.h"
 
 void    display(int x, int y, t_text_tab hud, t_win *win)
@@ -31,9 +30,9 @@ void    display(int x, int y, t_text_tab hud, t_win *win)
         text_y = 0;
         while (y < tmp_y + hud.h)
         {
-            if (hud.data[(text_y * hud.w) + text_x] != 0x00ff00)
+            if (hud.data[(text_y * hud.tex_w) + text_x] != 0x00ff00)
               *((int *)win->surface->pixels + (y * WIN_W + x)) =
-              hud.data[(text_y * hud.h) + text_x];
+              hud.data[(text_y * hud.w) + text_x];
             y++;
             text_y++;
         }
@@ -50,7 +49,7 @@ t_text_tab	find(char *str)
 	nom = (char **)malloc(sizeof(char*) * 2);
 	nom[0] = str;
 	nom[1] = NULL;
-	hud = handle_textures2(nom, 0);
+	hud = handle_textures(nom, 0);
 	free(nom);
   return hud;
 }

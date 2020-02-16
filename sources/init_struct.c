@@ -6,12 +6,12 @@
 /*   By: jdelpuec <jdelpuec@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/10 11:27:26 by jdelpuec          #+#    #+#             */
-/*   Updated: 2020/02/15 17:06:41 by jdelpuec         ###   ########.fr       */
+/*   Updated: 2020/02/16 18:19:19 by jdelpuec         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "textures.h"
 #include "doom.h"
+#include "inventory.h"
 #include "raycasting.h"
 #include "ft_math.h"
 
@@ -89,12 +89,15 @@ void		get_sector_vertices(t_ray *r)
 	}
 }
 
-void		init_t_ray(t_ray *r)
+void		init_t_ray(t_ray *r, t_env *env)
 {
 	r->dist_pp	= WIN_W / tanf(deg_to_rad(30.0));
 	r->last_sec = -2;
 	r->speed	= 5.0;
 	r->thresh	= 1;
 
+	r->sectors = env->sct;
+	r->player = env->player;
+	r->sector_count = env->room;
 	get_sector_vertices(r);
 }

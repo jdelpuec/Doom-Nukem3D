@@ -6,7 +6,7 @@
 #    By: jdelpuec <jdelpuec@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2019/11/19 15:16:10 by jdelpuec          #+#    #+#              #
-#    Updated: 2020/02/15 17:05:33 by jdelpuec         ###   ########.fr        #
+#    Updated: 2020/02/16 17:06:13 by jdelpuec         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -15,7 +15,7 @@ NAME =	DOOM-NUKEM
 SRC	=	main.c handle_keyboard_event.c handle_mouse_event.c	map.c deg_to_rad.c \
 		collision.c math.c inventory.c handle_textures.c ft_malloc.c \
 		gun.c init_struct.c set_draw.c wall_draw.c set_textures.c\
-		hud.c handle_textures2.c parsing.c check_map.c parser.c parsing_2.c \
+		hud.c parsing.c check_map.c parser.c parsing_2.c \
 		usefull.c pars_sprites.c math_2.c\
 
 OBJ =	$(SRC:.c=.o)

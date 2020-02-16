@@ -6,12 +6,12 @@
 /*   By: jdelpuec <jdelpuec@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/04/01 11:49:14 by ebonafi           #+#    #+#             */
-/*   Updated: 2020/02/15 19:15:30 by jdelpuec         ###   ########.fr       */
+/*   Updated: 2020/02/16 18:03:22 by jdelpuec         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "textures.h"
 #include "doom.h"
+#include "inventory.h"
 #include "raycasting.h"
 #include "draw.h"
 #include "init.h"
@@ -76,15 +76,8 @@ int main(int ac, char **av)
 	r.gun = init_gun();
 	w.text_list = init_text();
 	r.inv.sprite = env.spt;
-
-
-	r.sectors = env.sct;
-	r.player = env.player;
 	
-	// r.sectors = map();
-	// r.sector_count = 12;		// Brut map ---> need to implemant parsing
-	// r.player.sector = 0;
-	init_t_ray(&r);
+	init_t_ray(&r, &env);
 
 
 

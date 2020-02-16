@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   textures.h                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lubernar <lubernar@student.42.fr>          +#+  +:+       +#+        */
+/*   By: jdelpuec <jdelpuec@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/05/02 14:33:08 by jdelpuec          #+#    #+#             */
-/*   Updated: 2020/02/13 11:36:49 by lubernar         ###   ########.fr       */
+/*   Updated: 2020/02/16 14:42:25 by jdelpuec         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,10 +19,10 @@ typedef struct      s_text_tab
 {
 	int					id;
 	int					tex_w;
-    int                    w;
-    int                     h;
-    char                *path;
-    int                 *data;
+    int					w;
+    int					h;
+    char				*path;
+    int					*data;
     struct s_text_tab   *next;
     struct s_text_tab   *prev;
 }                   t_text_tab;

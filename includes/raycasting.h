@@ -6,15 +6,12 @@
 /*   By: jdelpuec <jdelpuec@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/04/06 14:02:38 by ebonafi           #+#    #+#             */
-/*   Updated: 2020/02/15 17:50:44 by jdelpuec         ###   ########.fr       */
+/*   Updated: 2020/02/16 14:30:03 by jdelpuec         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef RAYCASTING_H
 # define RAYCASTING_H
-
-#include "doom.h"
-#include "inventory.h"
 
 typedef struct		s_ray
 {

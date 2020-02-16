@@ -3,16 +3,16 @@
 /*                                                        :::      ::::::::   */
 /*   inventory.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lubernar <lubernar@student.42.fr>          +#+  +:+       +#+        */
+/*   By: jdelpuec <jdelpuec@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/07 13:20:48 by lubernar          #+#    #+#             */
-/*   Updated: 2020/02/15 16:19:27 by lubernar         ###   ########.fr       */
+/*   Updated: 2020/02/16 14:33:13 by jdelpuec         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "doom.h"
-#include "raycasting.h"
 #include "inventory.h"
+#include "raycasting.h"
 
 void	display_l(int x, int y, t_win *sdl, t_text_tab tmp)
 {
