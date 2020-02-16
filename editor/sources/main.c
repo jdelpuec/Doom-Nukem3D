@@ -6,7 +6,7 @@
 /*   By: lubernar <lubernar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/26 12:12:50 by cduverge          #+#    #+#             */
-/*   Updated: 2020/02/11 16:55:03 by lubernar         ###   ########.fr       */
+/*   Updated: 2020/02/16 17:05:13 by lubernar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,12 +27,12 @@ void	mouse_button_down(t_sdl *sdl, t_editor *edit)
 			edit->player_selected = 1;
 		if (sdl->e.motion.x >= (W / 1.45) + 520 && sdl->e.motion.x
 		<= (W / 1.45) + 550 && sdl->e.motion.y >= 65 && sdl->e.motion.y
-		<= 80 && edit->walls_h <= 200 && edit->nb_clic == 0)
-			edit->walls_h += 5;
+		<= 80 && edit->walls_h < 99 && edit->nb_clic == 0)
+			edit->walls_h += 3;
 		if (sdl->e.motion.x >= (W / 1.45) + 520 && sdl->e.motion.x
 		<= (W / 1.45) + 550 && sdl->e.motion.y >= 80 && sdl->e.motion.y
 		<= 95 && edit->walls_h > 32 && edit->nb_clic == 0)
-			edit->walls_h -= 5;
+			edit->walls_h -= 3;
 	}
 }
 
@@ -41,7 +41,7 @@ void	init_textures(t_editor *edit)
 	char		**tab;
 	char		**tab_player;
 	char		**tab_sprite;
-
+	
 	tab_sprite = (char **)malloc(sizeof(char*) * 3);
 	tab_sprite[0] = "./ress/noodles.bmp";
 	tab_sprite[1] = "./ress/baguettes.bmp";

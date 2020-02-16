@@ -3,7 +3,7 @@
 /*                                                        :::      ::::::::   */
 /*   ft_itoa.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ebonafi <ebonafi@studen.42.fr>                     +#+  +:+       +#+        */
+/*   By: ebonafi <ebonafi@studen.42.fr>                     +#+  +:+       +#+ */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/11/24 19:06:29 by ebonafi           #+#    #+#             */
 /*   Updated: 2016/04/07 15:58:00 by ebonafi          ###   ########.fr       */

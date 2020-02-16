@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   handle_keyboard_event.c                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lubernar <lubernar@student.42.fr>          +#+  +:+       +#+        */
+/*   By: jdelpuec <jdelpuec@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/04/02 11:15:57 by ebonafi           #+#    #+#             */
-/*   Updated: 2020/02/14 11:40:44 by lubernar         ###   ########.fr       */
+/*   Updated: 2020/02/15 18:58:36 by jdelpuec         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -134,7 +134,9 @@ void	handle_keyboard_mvt(t_win *w, t_ray *r, t_keyboard *k)
 	ms	= (1.0 / w->fps); 	// Reverse FPS --> make moovement smooth even tho the program et slow.
 	i	= 0;
 
-	// printf("%f \n", ms);
+	// printf("min_x  = %f  ;  max_x  = %f  ; min_y  = %f  ;  miax_y  = %f \n",
+	//  r->sectors[r->player.sector].min.x, r->sectors[r->player.sector].max.x, 
+	//  	r->sectors[r->player.sector].min.y, r->sectors[r->player.sector].max.y);
 
 	if (r->player.sector > 8 || r->player.sector == 0)
 		r->speed = k->state[SDL_SCANCODE_LSHIFT] == 1 ? 8.0 : 5.0;

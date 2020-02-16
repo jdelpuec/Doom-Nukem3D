@@ -1,19 +1,32 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   inventory.h                                        :+:      :+:    :+:   */
+/*   math_2.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lubernar <lubernar@student.42.fr>          +#+  +:+       +#+        */
+/*   By: jdelpuec <jdelpuec@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2020/02/07 13:38:16 by lubernar          #+#    #+#             */
-/*   Updated: 2020/02/08 14:09:53 by lubernar         ###   ########.fr       */
+/*   Created: 2020/02/13 15:21:42 by jdelpuec          #+#    #+#             */
+/*   Updated: 2020/02/13 16:23:45 by jdelpuec         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "doom.h"
 
-typedef struct		s_inventory
+float		minf(float a, float b)
 {
-	char	*inventory;
-	int		inventory_display[4];
-}					t_inventory;
+	return (a < b ? a : b);
+}
+
+float		maxf(float a, float b)
+{
+	return (a > b ? a : b);
+}
+
+t_vector_2d	vec2_sub(t_vector_2d a, t_vector_2d b)
+{
+	t_vector_2d ret;
+
+	ret.x = a.x - b.x;
+	ret.y = a.y - b.y;
+	return (ret);
+}

@@ -6,7 +6,7 @@
 /*   By: lubernar <lubernar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/07 13:20:48 by lubernar          #+#    #+#             */
-/*   Updated: 2020/02/15 18:57:10 by lubernar         ###   ########.fr       */
+/*   Updated: 2020/02/16 14:40:41 by lubernar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,7 +54,6 @@ void		init_inventory(t_invent *inv)
 	inv->invent.inventory[1] = "ress/baguettes.bmp";
 	inv->invent.inventory[2] = "ress/noodlescomplete.bmp";
 	inv->invent.inventory[3] = NULL;
-	while (1);
 	while (i < 4)
 	{
 		inv->invent.inventory_display[i] = (int)malloc(sizeof(int));

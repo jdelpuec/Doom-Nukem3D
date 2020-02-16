@@ -6,7 +6,7 @@
 /*   By: lubernar <lubernar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/12/03 10:10:33 by siwarin           #+#    #+#             */
-/*   Updated: 2020/02/14 10:50:09 by lubernar         ###   ########.fr       */
+/*   Updated: 2020/02/16 15:16:49 by lubernar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,9 @@
 # include "SDL2/SDL_ttf.h"
 # include <math.h>
 # include "list.h"
-# include "doom/textures.h"
+# include "textures.h"
+# include "malloc.h"
+
 # define W 1920
 # define H 1080
 
@@ -76,10 +78,10 @@ typedef struct		s_editor
 	int			count_walls;
 	int			pressed;
 	int			player_selected;
-	int			play_x;
-	int			play_y;
-	int			sprite_x;
-	int			sprite_y;
+	float		play_x;
+	float		play_y;
+	float		sprite_x;
+	float		sprite_y;
 	int			player_onmap;
 	int			walls_h;
 	int			nb_maillon;

@@ -6,7 +6,7 @@
 /*   By: lubernar <lubernar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/04/01 11:50:31 by ebonafi           #+#    #+#             */
-/*   Updated: 2020/02/15 18:43:42 by lubernar         ###   ########.fr       */
+/*   Updated: 2020/02/16 17:06:14 by lubernar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -98,6 +98,8 @@ typedef struct		s_sector
 	int			ceil_height;
 	float		brightness;
 
+	t_vector_2d	min;
+	t_vector_2d	max;
 	t_wall		*walls;
 	t_texture	floor_tex;
 	t_texture	ceil_tex;
@@ -183,7 +185,6 @@ void			display(int x, int y, t_text_tab hud, t_win *win);
 
 //hud.c
 t_text_tab	find(char *str);
-t_text_tab	handle_textures2(char **text_name, int y);
 void 		init_ttf(t_win *sdl);
 void	apply_surface(int x, int y, SDL_Surface *source, SDL_Surface *dest);
 #endif

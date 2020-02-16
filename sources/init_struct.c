@@ -6,12 +6,13 @@
 /*   By: lubernar <lubernar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/10 11:27:26 by jdelpuec          #+#    #+#             */
-/*   Updated: 2020/02/15 18:58:04 by lubernar         ###   ########.fr       */
+/*   Updated: 2020/02/15 19:43:21 by lubernar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "doom.h"
 #include "raycasting.h"
+#include "ft_math.h"
 
 t_text_tab	init_text()
 {
@@ -65,16 +66,44 @@ void		init_sdl(t_win *w)
 	w->old_t = 0.0;
 }
 
-void		init_t_ray(t_ray *r, t_env *env)
+void		get_sector_vertices(t_ray *r)
+{
+	int		i;
+	int		j;
+	t_wall	tmpw;
+
+	i = 0;
+	while (i < r->sector_count)
+	{
+		j = 0;
+		while (j < r->sectors[i].wall_count)
+		{
+			tmpw = r->sectors[i].walls[j];
+			r->tmp = minf(tmpw.p1.x, tmpw.p2.x);
+			r->sectors[i].min.x = j == 0 ? (r->tmp) : (minf(r->sectors[i].min.x, r->tmp));
+			r->tmp = minf(tmpw.p1.y, tmpw.p2.y);
+			r->sectors[i].min.y = j == 0 ? (r->tmp) : (minf(r->sectors[i].min.y, r->tmp));
+			r->tmp = maxf(tmpw.p1.x, tmpw.p2.x);
+			r->sectors[i].max.x = j == 0 ? (r->tmp) : (maxf(r->sectors[i].max.x, r->tmp));
+			r->tmp = maxf(tmpw.p1.y, tmpw.p2.y);
+			r->sectors[i].max.y = j == 0 ? (r->tmp) : (maxf(r->sectors[i].max.y, r->tmp));
+			j++;
+			r->tmp = 0;
+		}
+		i++;
+	}
+}
+
+void		init_t_ray(t_ray *r)
 {
 	r->dist_pp	= WIN_W / tanf(deg_to_rad(30.0));
 	r->last_sec = -2;
 	r->speed	= 5.0;
 	r->thresh	= 1;
-	r->inv.nb_sprites = env->sprites;
 	r->inv.nb_bullet = 50;
 	r->inv.nb_hp = 100;
 	r->inv.anim = 0;
 	r->gun = init_gun();
-	r->inv.sprite = env->spt;
+
+	get_sector_vertices(r);
 }
