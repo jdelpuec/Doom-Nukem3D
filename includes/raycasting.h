@@ -6,7 +6,7 @@
 /*   By: jdelpuec <jdelpuec@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/17 15:22:39 by jdelpuec          #+#    #+#             */
-/*   Updated: 2020/02/17 15:22:41 by jdelpuec         ###   ########.fr       */
+/*   Updated: 2020/02/17 17:56:37 by jdelpuec         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,6 +57,7 @@ typedef struct		s_ray
 	int			last_y_min;
 	int			last_y_max;
 
+	float		space;
 	float		thresh;
 	float		speed;
 	float		tmp;

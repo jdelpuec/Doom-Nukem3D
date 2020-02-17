@@ -6,7 +6,7 @@
 /*   By: jdelpuec <jdelpuec@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/04/02 11:15:57 by ebonafi           #+#    #+#             */
-/*   Updated: 2020/02/17 16:28:26 by jdelpuec         ###   ########.fr       */
+/*   Updated: 2020/02/17 17:56:26 by jdelpuec         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -135,13 +135,10 @@ void	handle_keyboard_mvt(t_win *w, t_ray *r, t_keyboard *k)
 	t_vector_3d	new_pos;
 	t_wall		wall;
 
-	w->fps = w->fps == 0 ? 1 : w->fps;
-	ms	= (1.0 / w->fps); 	// Reverse FPS --> make moovement smooth even tho the program et slow.
+	w->fps = w->fps == 0 ? 1 : w->fps; // protection div/0
+	ms	= (1.0 / w->fps);
 	i	= 0;
 	n 	= 112358;
-	// printf("min_x  = %f  ;  max_x  = %f  ; min_y  = %f  ;  miax_y  = %f \n",
-	//  r->sectors[r->player.sector].min.x, r->sectors[r->player.sector].max.x, 
-	//  	r->sectors[r->player.sector].min.y, r->sectors[r->player.sector].max.y);
 
 	if (r->player.sector > 8 || r->player.sector == 0)
 		r->speed = k->state[SDL_SCANCODE_LSHIFT] == 1 ? 8.0 : 5.0;
@@ -170,10 +167,8 @@ void	handle_keyboard_mvt(t_win *w, t_ray *r, t_keyboard *k)
 	}
 	if (k->state[SDL_SCANCODE_A] == 1)
 		r->player.angle -= 2.5 * ms;
-		// r->player.angle -= 0.01;		
 	if (k->state[SDL_SCANCODE_D] == 1)
 		r->player.angle += 2.5 * ms;
-		// r->player.angle += 0.01;
 	if (fabsf(r->player.angle) >= 6.299992)
 		r->player.angle = 0;
 
@@ -204,7 +199,6 @@ void	handle_keyboard_mvt(t_win *w, t_ray *r, t_keyboard *k)
 	if (k->state[SDL_SCANCODE_SPACE] == 1)
 		r->player.velocity.z = 60.0;
 
-	// printf("x = %f; y = %f ; z = %f   ; sec = %d \n", r->player.position.x, r->player.position.y, r->player.position.z, r->player.sector);
 	if (ms > 0.1)
 	{
 		r->player.velocity.x = 0;
@@ -219,17 +213,8 @@ void	handle_keyboard_mvt(t_win *w, t_ray *r, t_keyboard *k)
 			wall	= r->sectors[r->player.sector].walls[i];
 			if (test_box(r, new_pos, wall) == 1)
 			{
-				if ((r->tmp = check_line_point(wall.p1, wall.p2, new_pos)) && fabsf(r->tmp) < 20)
+				if ((r->tmp = check_line_point(wall.p2, wall.p1, new_pos)) < 10)
 				{
-					// if (n != 112358)
-						// if (signbit(n) != signbit(r->tmp))
-						// if (r->tmp < 2)
-						// {
-						// // printf(" %d  ;  %d  \n", signbit(n), signbit(r->tmp));
-						// 	r->player.velocity.x = 0.0;
-						// 	r->player.velocity.y = 0.0;
-						// 	break;					
-						// }
 					if (wall.portal_sector >= 0 && r->player.position.z >
 					 	r->sectors[wall.portal_sector].floor_height + (PLAYER_H >> 1) &&
 					 r->player.position.z <= r->sectors[wall.portal_sector].ceil_height)
@@ -238,6 +223,12 @@ void	handle_keyboard_mvt(t_win *w, t_ray *r, t_keyboard *k)
 						r->speed				= 5.0;
 						r->player.velocity.x	= 0;
 						break;
+					}
+					else if (r->tmp < r->space)
+					{
+						r->player.velocity.x = 0.0;
+						r->player.velocity.y = 0.0;
+						break;					
 					}
 					else
 					{

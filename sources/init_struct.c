@@ -6,7 +6,7 @@
 /*   By: jdelpuec <jdelpuec@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/10 11:27:26 by jdelpuec          #+#    #+#             */
-/*   Updated: 2020/02/17 16:45:51 by jdelpuec         ###   ########.fr       */
+/*   Updated: 2020/02/17 18:02:25 by jdelpuec         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -119,5 +119,6 @@ void		init_t_ray(t_ray *r, t_env *env)
 	r->player = env->player;
 	r->sector_count = env->room;
 	r->inv.sprite = env->spt;
+	r->space = r->sector_count > 1 ? 1.8 : 4;
 	get_sector_vertices(r);
 }

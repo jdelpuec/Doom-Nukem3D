@@ -6,7 +6,7 @@
 /*   By: jdelpuec <jdelpuec@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/11 12:53:25 by jdelpuec          #+#    #+#             */
-/*   Updated: 2020/02/16 14:37:29 by jdelpuec         ###   ########.fr       */
+/*   Updated: 2020/02/17 18:15:21 by jdelpuec         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,52 +35,20 @@ t_wall_tex	set_wall_tex(t_win *w, t_ray *r, t_sector sector, t_wall wall)
 	return (wt);
 }
 
-// t_floor_tex	set_floor_tex(t_text_tab *tmp, t_ray *r, t_sector sector, t_wall wall, int i)
-// {
-// 	t_floor_tex	wf;
-// 	(void)wall;
-
-// 	wf.hit.x = (r->player.position.x - r->hit_x) / (WIN_W - r->x);
-// 	wf.hit.y = (r->player.position.y - r->hit_y) / (WIN_H - r->offset_end);
-	
-// 	wf.tx = r->hit_x + wf.hit.x * i;
-// 	wf.tx *= wf.tx;
-// 	wf.ty = r->hit_y + wf.hit.y * i;
-// 	wf.ty *= wf.ty;
-// 	wf.intersec = sqrtf(wf.tx + wf.ty) * (tmp->tex_w / (16 * (1
-// 			/ (tmp->tex_w / ((float)sector.ceil_height
-// 			- (float)sector.floor_height)))));
-// 	// wf.intersec = sqrtf(wf.tx + wf.ty) * (tmp->tex_w / (65.0 * (1.0
-// 			// / (tmp->tex_w / r->player.position.z))));
-// 	wf.tex_count = floorf(wf.intersec / tmp->tex_w);
-// 	wf.full_len = wf.tex_count * tmp->tex_w;
-	
-// 	wf.tex_xf = 0;
-// 	wf.tex_yf = wf.intersec - wf.full_len;
-// 	wf.tex_scale = tmp->tex_w / (WIN_W - r->x);
-
-// 	return (wf);
-// }
-
-
 void		wall_textures(t_win *w, t_ray *r, t_sector sector, t_wall wall)
 {
 	int			i;
 	t_wall_tex	wt;
-	// t_floor_tex	wf;
 	t_text_tab	*tmp;
 
 	tmp = &w->text_list;
 	wt = set_wall_tex(w, r, sector, wall);
-	// if (r->x % 35 == 0)
-	// 	printf("x  = %d  ; fulllen  = %f   ; inter = %f \n",
-	// 	r->x, wt.full_len, wt.intersec);
 
 	i = -1;
 	while (++i < (int)r->offset_start)
 		if ((i >= 0 && i < WIN_H) 
 			&& (*((int *)w->surface->pixels + (i * WIN_W + r->x)) == 0))
-			*((int *)w->surface->pixels + (i * WIN_W + r->x)) = GREY * r->light;
+			*((int *)w->surface->pixels + (i * WIN_W + r->x)) = GREY;
 	i = (int)r->offset_start;
 	while (i++ < (int)r->offset_end)
 	{
@@ -94,14 +62,8 @@ void		wall_textures(t_win *w, t_ray *r, t_sector sector, t_wall wall)
 		}
 		wt.tex_yf += wt.tex_scale;
 	}
-	// tmp = tmp->next;
-	// wf = set_floor_tex(tmp, r, sector, wall, i);
-	// while (i++ < (int)r->offset_end)
-	// 	if ((i >= 0 && i < WIN_H) 
-	// 		&& (*((int *)w->surface->pixels + (i * WIN_W + r->x)) == 0))
-	// 		*((int *)w->surface->pixels + (i * WIN_W + r->x)) = (r->cur_sector + 1) * 25000 * r->light;
 	while (i++ < WIN_H)
 		if ((i >= 0 && i < WIN_H) 
 			&& (*((int *)w->surface->pixels + (i * WIN_W + r->x)) == 0))
-			*((int *)w->surface->pixels + (i * WIN_W + r->x)) = DARK * r->light;
+			*((int *)w->surface->pixels + (i * WIN_W + r->x)) = DARK;
 }
