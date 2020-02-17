@@ -6,11 +6,12 @@
 /*   By: lubernar <lubernar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/04/01 11:49:14 by ebonafi           #+#    #+#             */
-/*   Updated: 2020/02/17 10:51:08 by lubernar         ###   ########.fr       */
+/*   Updated: 2020/02/17 11:05:51 by lubernar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "doom.h"
+#include "inventory.h"
 #include "raycasting.h"
 #include "draw.h"
 #include "init.h"
@@ -78,9 +79,9 @@ int main(int ac, char **av)
 	r.sectors = env.sct;
 	r.player = env.player;
 	
-	init_t_ray(&r);
-	r.inv.nb_sprites = env.sprites;
 	r.inv.sprite = env.spt;
+	
+	init_t_ray(&r, &env);
 
 
 

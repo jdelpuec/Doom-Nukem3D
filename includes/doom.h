@@ -6,21 +6,20 @@
 /*   By: lubernar <lubernar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/04/01 11:50:31 by ebonafi           #+#    #+#             */
-/*   Updated: 2020/02/17 10:50:18 by lubernar         ###   ########.fr       */
+/*   Updated: 2020/02/17 11:09:54 by lubernar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef DOOM_H
 # define DOOM_H
 
+# include <SDL2/SDL.h>
+# include <SDL2/SDL_ttf.h>
 # include <stdlib.h>
 # include "libft.h"
 # include "get_next_line.h"
 # include "define.h"
 # include "textures.h"
-# include "inventory.h"
-# include <SDL2/SDL.h>
-# include "SDL2/SDL_ttf.h"
 # include "fmod/fmod.h"
 
 typedef struct		s_sound
@@ -57,10 +56,10 @@ typedef struct		s_win
 	int				reload;
 	int				fired;
 	// added stuff
-	t_text_tab hud;
-	t_text_tab hud2;
-	t_text_tab hud3;
 	t_sound			s;
+	t_text_tab 		hud;
+	t_text_tab 		hud2;
+	t_text_tab 		hud3;
 }					t_win;
 
 typedef struct		s_texture
@@ -135,22 +134,6 @@ typedef struct		s_env
 	t_sprites	*spt;
 }					t_env;
 
-typedef struct		s_invent
-{
-	t_sprites			*sprite;
-	t_text_tab			list;
-	t_text_tab			tmp;
-	t_inventory			invent;
-	int					init;
-	int					nb_bullet;
-	int					nb_hp;
-	int					anim;
-	int					nb_noodles;
-	int					nb_baguette;
-	int					nb_noodles_c;
-	int					nb_sprites;
-}						t_invent;
-
 //parsing.c
 int		parser(int ac, char **av);
 int		parsing(char *str, t_env *doom);
@@ -199,5 +182,5 @@ void			display(int x, int y, t_text_tab hud, t_win *win);
 //hud.c
 t_text_tab	find(char *str);
 void 		init_ttf(t_win *sdl);
-void	apply_surface(int x, int y, SDL_Surface *source, SDL_Surface *dest);
+void		apply_surface(int x, int y, SDL_Surface *source, SDL_Surface *dest);
 #endif

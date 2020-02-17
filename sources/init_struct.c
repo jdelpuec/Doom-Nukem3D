@@ -6,11 +6,12 @@
 /*   By: lubernar <lubernar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/10 11:27:26 by jdelpuec          #+#    #+#             */
-/*   Updated: 2020/02/17 10:51:02 by lubernar         ###   ########.fr       */
+/*   Updated: 2020/02/17 11:10:59 by lubernar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "doom.h"
+#include "inventory.h"
 #include "raycasting.h"
 #include "ft_math.h"
 
@@ -102,7 +103,7 @@ void		get_sector_vertices(t_ray *r)
 	}
 }
 
-void		init_t_ray(t_ray *r)
+void		init_t_ray(t_ray *r, t_env *env)
 {
 	r->dist_pp	= WIN_W / tanf(deg_to_rad(30.0));
 	r->last_sec = -2;
@@ -113,5 +114,8 @@ void		init_t_ray(t_ray *r)
 	r->inv.anim = 0;
 	r->gun = init_gun();
 
+	r->sectors = env->sct;
+	r->player = env->player;
+	r->sector_count = env->room;
 	get_sector_vertices(r);
 }

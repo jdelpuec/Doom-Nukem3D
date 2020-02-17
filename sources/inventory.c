@@ -6,11 +6,12 @@
 /*   By: lubernar <lubernar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/07 13:20:48 by lubernar          #+#    #+#             */
-/*   Updated: 2020/02/17 10:59:37 by lubernar         ###   ########.fr       */
+/*   Updated: 2020/02/17 11:10:31 by lubernar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "doom.h"
+#include "inventory.h"
 #include "raycasting.h"
 
 void		display_l(int x, int y, t_win *sdl, t_text_tab tmp)

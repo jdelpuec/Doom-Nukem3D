@@ -6,11 +6,12 @@
 /*   By: lubernar <lubernar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/05/02 13:44:05 by jdelpuec          #+#    #+#             */
-/*   Updated: 2020/02/16 17:06:30 by lubernar         ###   ########.fr       */
+/*   Updated: 2020/02/17 11:03:16 by lubernar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "doom.h"
+#include "textures.h"
 #include "malloc.h"
 
 unsigned char	*handle_header(int fd)

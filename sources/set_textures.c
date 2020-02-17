@@ -6,11 +6,12 @@
 /*   By: jdelpuec <jdelpuec@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/11 12:53:25 by jdelpuec          #+#    #+#             */
-/*   Updated: 2020/02/15 16:17:59 by jdelpuec         ###   ########.fr       */
+/*   Updated: 2020/02/16 14:37:29 by jdelpuec         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "doom.h"
+#include "inventory.h"
 #include "raycasting.h"
 #include "draw.h"
 #include "ft_math.h"
