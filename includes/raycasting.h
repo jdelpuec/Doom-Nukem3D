@@ -6,7 +6,7 @@
 /*   By: jdelpuec <jdelpuec@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/04/06 14:02:38 by ebonafi           #+#    #+#             */
-/*   Updated: 2020/02/16 14:30:03 by jdelpuec         ###   ########.fr       */
+/*   Updated: 2020/02/17 13:55:00 by jdelpuec         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,6 +62,7 @@ typedef struct		s_ray
 	float		tmp;
 	float		dir_angle;
 	int			direction;
+	int			gravity;
 
 
 	int		x_1;

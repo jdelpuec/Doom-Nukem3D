@@ -6,7 +6,7 @@
 /*   By: jdelpuec <jdelpuec@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/10 11:27:26 by jdelpuec          #+#    #+#             */
-/*   Updated: 2020/02/16 18:19:19 by jdelpuec         ###   ########.fr       */
+/*   Updated: 2020/02/17 13:57:40 by jdelpuec         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -95,6 +95,7 @@ void		init_t_ray(t_ray *r, t_env *env)
 	r->last_sec = -2;
 	r->speed	= 5.0;
 	r->thresh	= 1;
+	r->gravity	= 2;
 
 	r->sectors = env->sct;
 	r->player = env->player;

@@ -6,7 +6,7 @@
 /*   By: jdelpuec <jdelpuec@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/04/02 11:15:57 by ebonafi           #+#    #+#             */
-/*   Updated: 2020/02/17 12:09:12 by jdelpuec         ###   ########.fr       */
+/*   Updated: 2020/02/17 15:18:40 by jdelpuec         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -126,6 +126,7 @@ float		check_line_point(t_vector_2d l1, t_vector_2d l2, t_vector_3d p)
 void	handle_keyboard_mvt(t_win *w, t_ray *r, t_keyboard *k)
 {
 	int			i;
+	float		n;
 	float		ms;
 	t_vector_3d	new_pos;
 	t_wall		wall;
@@ -133,7 +134,7 @@ void	handle_keyboard_mvt(t_win *w, t_ray *r, t_keyboard *k)
 	w->fps = w->fps == 0 ? 1 : w->fps;
 	ms	= (1.0 / w->fps); 	// Reverse FPS --> make moovement smooth even tho the program et slow.
 	i	= 0;
-
+	n 	= 112358;
 	// printf("min_x  = %f  ;  max_x  = %f  ; min_y  = %f  ;  miax_y  = %f \n",
 	//  r->sectors[r->player.sector].min.x, r->sectors[r->player.sector].max.x, 
 	//  	r->sectors[r->player.sector].min.y, r->sectors[r->player.sector].max.y);
@@ -203,8 +204,17 @@ void	handle_keyboard_mvt(t_win *w, t_ray *r, t_keyboard *k)
 			wall	= r->sectors[r->player.sector].walls[i];
 			if (test_box(r, new_pos, wall) == 1)
 			{
-				if ((r->tmp = fabsf(check_line_point(wall.p1, wall.p2, new_pos)) < 10))
+				if ((r->tmp = check_line_point(wall.p1, wall.p2, new_pos)) && fabsf(r->tmp) < 20)
 				{
+					// if (n != 112358)
+						// if (signbit(n) != signbit(r->tmp))
+						if (r->tmp < 2)
+						{
+						// printf(" %d  ;  %d  \n", signbit(n), signbit(r->tmp));
+							r->player.velocity.x = 0.0;
+							r->player.velocity.y = 0.0;
+							break;					
+						}
 					if (wall.portal_sector >= 0 && r->player.position.z >
 					 	r->sectors[wall.portal_sector].floor_height + (PLAYER_H >> 1) &&
 					 r->player.position.z <= r->sectors[wall.portal_sector].ceil_height)
@@ -219,6 +229,7 @@ void	handle_keyboard_mvt(t_win *w, t_ray *r, t_keyboard *k)
 						new_pos = (t_vector_3d) {wall.p2.x - wall.p1.x, wall.p2.y - wall.p1.y, 0};
 						wall_collision(r, new_pos, wall);
 					}
+					n = r->tmp;
 				}
 			}
 			i++;
@@ -241,7 +252,7 @@ void	handle_keyboard_mvt(t_win *w, t_ray *r, t_keyboard *k)
 			r->player.velocity.z = 0.0;
 		}
 		else
-			r->player.velocity.z -= 2.0;
+			r->player.velocity.z -= r->gravity;
 	}
 }
 
