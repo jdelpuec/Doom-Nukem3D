@@ -6,7 +6,7 @@
 /*   By: lubernar <lubernar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/03 15:14:52 by lubernar          #+#    #+#             */
-/*   Updated: 2020/02/03 15:35:00 by lubernar         ###   ########.fr       */
+/*   Updated: 2020/02/16 15:56:19 by lubernar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,8 @@ t_lst	*reverse_list(t_lst *lst, t_elem **e)
 	t_elem	*prev;
 	t_elem	*current;
 	t_elem	*next;
+	int		tmp_x1;
+	int		tmp_y1;
 
 	e = &lst->first;
 	prev = NULL;
@@ -25,6 +27,12 @@ t_lst	*reverse_list(t_lst *lst, t_elem **e)
 	while (current != NULL)
 	{
 		next = current->next;
+		tmp_x1 = current->x1;
+		tmp_y1 = current->y1;
+		current->x1 = current->x2;
+		current->y1 = current->y2;
+		current->x2 = tmp_x1;
+		current->y2 = tmp_y1;
 		current->next = prev;
 		prev = current;
 		current = next;

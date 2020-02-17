@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   doom.h                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jdelpuec <jdelpuec@student.42.fr>          +#+  +:+       +#+        */
+/*   By: lubernar <lubernar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2020/02/16 14:21:42 by jdelpuec          #+#    #+#             */
-/*   Updated: 2020/02/16 17:46:08 by jdelpuec         ###   ########.fr       */
+/*   Created: 2019/04/01 11:50:31 by ebonafi           #+#    #+#             */
+/*   Updated: 2020/02/17 12:18:18 by lubernar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,19 @@
 # include "libft.h"
 # include "get_next_line.h"
 # include "define.h"
-#include "textures.h"
+# include "textures.h"
+# include "fmod/fmod.h"
+
+typedef struct		s_sound
+{
+	FMOD_SYSTEM	*fmod;
+	FMOD_SOUND	*shot;
+	FMOD_SOUND	*music;
+	FMOD_SOUND	*reload;
+	FMOD_RESULT	result;
+	FMOD_BOOL	state;
+	FMOD_CHANNELGROUP	*canal;
+}					t_sound;
 
 typedef struct		s_win
 {
@@ -34,6 +46,7 @@ typedef struct		s_win
 
 	t_text_tab		text_list;
 	int				nb_thread;
+	int				color;
 
 	int				fps;
 	int				pressed;
@@ -43,6 +56,8 @@ typedef struct		s_win
 	float			old_t_f;
 	int				reload;
 	int				fired;
+	// added stuff
+	t_sound			s;
 	t_text_tab 		hud;
 	t_text_tab 		hud2;
 	t_text_tab 		hud3;
@@ -162,11 +177,12 @@ char				*sting_malloc(char *name, int size);
 char				**tab_malloc(char *name, int size);
 unsigned char		*unsigned_char_malloc(char *name, int size);
 void				display_l(int x, int y, t_win *sdl, t_text_tab tmp);
+void			display(int x, int y, t_text_tab hud, t_win *win);
 
 
 //hud.c
 t_text_tab	find(char *str);
-t_text_tab	handle_textures2(char **text_name, int y);
 void 		init_ttf(t_win *sdl);
 void		apply_surface(int x, int y, SDL_Surface *source, SDL_Surface *dest);
+void    print_messages(t_win *sdl);
 #endif

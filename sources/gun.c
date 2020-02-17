@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   gun.c                                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jdelpuec <jdelpuec@student.42.fr>          +#+  +:+       +#+        */
+/*   By: lubernar <lubernar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/12 12:53:22 by lubernar          #+#    #+#             */
-/*   Updated: 2020/02/16 14:33:24 by jdelpuec         ###   ########.fr       */
+/*   Updated: 2020/02/17 11:10:54 by lubernar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -94,4 +94,5 @@ void		fire_gunshot(t_win *w, t_text_tab *gun_anim)
 	{
 		w->fired = 0;
 	}
+	// FMOD_Sound_Release(w->s.shot);
 }

@@ -6,7 +6,7 @@
 /*   By: lubernar <lubernar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/11/10 19:53:12 by cduverge          #+#    #+#             */
-/*   Updated: 2020/02/05 10:33:08 by lubernar         ###   ########.fr       */
+/*   Updated: 2020/02/16 14:24:39 by lubernar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -104,4 +104,6 @@ char			*ft_strnstr(char const *str, char const *to_find, size_t n);
 char			*ft_strstr(char const *str, char const *to_find);
 void			ft_print_tab(int **tab, int tab_sizey, int tab_sizex);
 int				ft_abs(int val);
+float			ft_atof(char *s);
+
 #endif

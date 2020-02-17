@@ -6,7 +6,7 @@
 #    By: lubernar <lubernar@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2019/06/22 13:09:27 by siwarin           #+#    #+#              #
-#    Updated: 2020/02/11 17:02:51 by lubernar         ###   ########.fr        #
+#    Updated: 2020/02/17 14:46:45 by lubernar         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -53,7 +53,7 @@ $(OBJDIR)%.o: $(SRCDIR)%.c
 
 $(NAME): $(OBJS)
 	@echo "$(ROUGE)Doom-Nukem is compiling$(BLANC)"
-	@gcc -g -fsanitize=address $(FLAGS) $(LIBFLAG) -o $(NAME) $(OBJS) && echo "- $(VERT)Objects Creation$(OKJAUNE)"
+	@gcc $(FLAGS) $(LIBFLAG) -o $(NAME) $(OBJS) && echo "- $(VERT)Objects Creation$(OKJAUNE)"
 	@echo "$(VERT)Doom-Nukem is ready !"
 
 lib_rule:

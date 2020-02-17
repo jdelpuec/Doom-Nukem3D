@@ -6,7 +6,7 @@
 /*   By: jdelpuec <jdelpuec@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/04/02 11:15:57 by ebonafi           #+#    #+#             */
-/*   Updated: 2020/02/17 15:18:40 by jdelpuec         ###   ########.fr       */
+/*   Updated: 2020/02/17 16:28:26 by jdelpuec         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,6 +44,10 @@ int	is_key_pressed(t_keyboard *k)
 	if (k->state[SDL_SCANCODE_LGUI] == 1)
 		pressed++;
 	if (k->state[SDL_SCANCODE_T] == 1)
+		pressed++;
+	if (k->state[SDL_SCANCODE_R] == 1)
+		pressed++;
+	if (k->state[SDL_SCANCODE_O] == 1)
 		pressed++;
 	return (pressed);
 }
@@ -145,6 +149,17 @@ void	handle_keyboard_mvt(t_win *w, t_ray *r, t_keyboard *k)
 	if (r->player.position.z - PLAYER_H != r->sectors[r->cur_sector].floor_height)
 		r->speed = 5.0;
 
+		
+	if (k->state[SDL_SCANCODE_R] == 1 && w->reload == 0)
+	{
+		w->fired = 2;
+		w->reload = 1;
+		w->old_t = SDL_GetTicks();
+		r->inv.nb_bullet += 10;
+		FMOD_System_PlaySound(w->s.fmod, FMOD_CHANNEL_FREE, w->s.reload, 0, NULL);
+	}
+
+
 	if (k->state[SDL_SCANCODE_T] == 1)
 	{
 		r->player.position.x		= 0.0;
@@ -208,13 +223,13 @@ void	handle_keyboard_mvt(t_win *w, t_ray *r, t_keyboard *k)
 				{
 					// if (n != 112358)
 						// if (signbit(n) != signbit(r->tmp))
-						if (r->tmp < 2)
-						{
-						// printf(" %d  ;  %d  \n", signbit(n), signbit(r->tmp));
-							r->player.velocity.x = 0.0;
-							r->player.velocity.y = 0.0;
-							break;					
-						}
+						// if (r->tmp < 2)
+						// {
+						// // printf(" %d  ;  %d  \n", signbit(n), signbit(r->tmp));
+						// 	r->player.velocity.x = 0.0;
+						// 	r->player.velocity.y = 0.0;
+						// 	break;					
+						// }
 					if (wall.portal_sector >= 0 && r->player.position.z >
 					 	r->sectors[wall.portal_sector].floor_height + (PLAYER_H >> 1) &&
 					 r->player.position.z <= r->sectors[wall.portal_sector].ceil_height)

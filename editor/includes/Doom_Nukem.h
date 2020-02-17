@@ -6,7 +6,7 @@
 /*   By: lubernar <lubernar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/12/03 10:10:33 by siwarin           #+#    #+#             */
-/*   Updated: 2020/02/14 10:50:09 by lubernar         ###   ########.fr       */
+/*   Updated: 2020/02/17 15:00:17 by lubernar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,9 @@
 # include "SDL2/SDL_ttf.h"
 # include <math.h>
 # include "list.h"
-# include "doom/textures.h"
+# include "textures.h"
+# include "malloc.h"
+
 # define W 1920
 # define H 1080
 
@@ -76,10 +78,10 @@ typedef struct		s_editor
 	int			count_walls;
 	int			pressed;
 	int			player_selected;
-	int			play_x;
-	int			play_y;
-	int			sprite_x;
-	int			sprite_y;
+	float		play_x;
+	float		play_y;
+	float		sprite_x;
+	float		sprite_y;
 	int			player_onmap;
 	int			walls_h;
 	int			nb_maillon;
@@ -87,6 +89,7 @@ typedef struct		s_editor
 	t_text_tab	list;
 	t_text_tab	list_sprite;
 	t_text_tab	list_player;
+	t_text_tab	list_gravity;
 }					t_editor;
 
 typedef struct		s_line
@@ -142,6 +145,7 @@ t_sprite	init_sprites(void);
 void		push_back_sprite(t_lst *l, t_editor *edit);
 void		find_sprites_coord(t_lst **l, t_editor *edit, t_sdl *sdl);
 void		display(int x, int y, t_sdl *sdl, t_text_tab tmp);
+void		display_l(int x, int y, t_sdl *sdl, t_text_tab tmp);
 t_text_tab	display_next(t_sdl *sdl, t_sprite *s, t_text_tab tmp, t_editor *e);
 
 /*
