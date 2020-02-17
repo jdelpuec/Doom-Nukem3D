@@ -6,7 +6,7 @@
 /*   By: jdelpuec <jdelpuec@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/04/02 11:15:57 by ebonafi           #+#    #+#             */
-/*   Updated: 2020/02/17 17:56:26 by jdelpuec         ###   ########.fr       */
+/*   Updated: 2020/02/17 18:19:19 by jdelpuec         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -130,7 +130,6 @@ float		check_line_point(t_vector_2d l1, t_vector_2d l2, t_vector_3d p)
 void	handle_keyboard_mvt(t_win *w, t_ray *r, t_keyboard *k)
 {
 	int			i;
-	float		n;
 	float		ms;
 	t_vector_3d	new_pos;
 	t_wall		wall;
@@ -138,7 +137,6 @@ void	handle_keyboard_mvt(t_win *w, t_ray *r, t_keyboard *k)
 	w->fps = w->fps == 0 ? 1 : w->fps; // protection div/0
 	ms	= (1.0 / w->fps);
 	i	= 0;
-	n 	= 112358;
 
 	if (r->player.sector > 8 || r->player.sector == 0)
 		r->speed = k->state[SDL_SCANCODE_LSHIFT] == 1 ? 8.0 : 5.0;
@@ -235,7 +233,6 @@ void	handle_keyboard_mvt(t_win *w, t_ray *r, t_keyboard *k)
 						new_pos = (t_vector_3d) {wall.p2.x - wall.p1.x, wall.p2.y - wall.p1.y, 0};
 						wall_collision(r, new_pos, wall);
 					}
-					n = r->tmp;
 				}
 			}
 			i++;
