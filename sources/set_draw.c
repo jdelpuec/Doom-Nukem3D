@@ -6,7 +6,7 @@
 /*   By: lubernar <lubernar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/10 14:05:34 by jdelpuec          #+#    #+#             */
-/*   Updated: 2020/02/15 18:06:28 by lubernar         ###   ########.fr       */
+/*   Updated: 2020/02/17 10:36:18 by lubernar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -119,7 +119,7 @@ void	draw_player_view(t_win *w, t_ray *r)
 	}
 }
 
-void	drawing(t_win *w, t_ray *r, t_keyboard *k)
+void	drawing(t_win *w, t_ray *r)
 {
 	SDL_memset(w->surface->pixels, 0, ((WIN_W * WIN_H) << 2));
 	draw_player_view(w, r);
@@ -128,13 +128,6 @@ void	drawing(t_win *w, t_ray *r, t_keyboard *k)
 	w->fired == 0 ? display_l((WIN_W / 2), (WIN_H) - 240, w, r->gun) : 0;
 	if (w->fired == 1)
 		fire_gunshot(w, &r->gun);
-	if (k->state[SDL_SCANCODE_R] == 1 && w->reload == 0)
-	{
-		w->fired = 2;
-		w->reload = 1;
-		w->old_t = SDL_GetTicks();
-		r->inv.nb_bullet += 10;
-	}
 	if (w->reload == 1)
 		reload_gun(&r->reload_gun, w);
 // 	inven

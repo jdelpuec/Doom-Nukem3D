@@ -6,7 +6,7 @@
 /*   By: lubernar <lubernar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/04/01 11:50:31 by ebonafi           #+#    #+#             */
-/*   Updated: 2020/02/16 17:06:14 by lubernar         ###   ########.fr       */
+/*   Updated: 2020/02/17 10:50:18 by lubernar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,6 +21,18 @@
 # include "inventory.h"
 # include <SDL2/SDL.h>
 # include "SDL2/SDL_ttf.h"
+# include "fmod/fmod.h"
+
+typedef struct		s_sound
+{
+	FMOD_SYSTEM	*fmod;
+	FMOD_SOUND	*shot;
+	FMOD_SOUND	*music;
+	FMOD_SOUND	*reload;
+	FMOD_RESULT	result;
+	FMOD_BOOL	state;
+	FMOD_CHANNELGROUP	*canal;
+}					t_sound;
 
 typedef struct		s_win
 {
@@ -48,6 +60,7 @@ typedef struct		s_win
 	t_text_tab hud;
 	t_text_tab hud2;
 	t_text_tab hud3;
+	t_sound			s;
 }					t_win;
 
 typedef struct		s_texture

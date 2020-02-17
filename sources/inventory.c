@@ -6,7 +6,7 @@
 /*   By: lubernar <lubernar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/07 13:20:48 by lubernar          #+#    #+#             */
-/*   Updated: 2020/02/16 14:40:41 by lubernar         ###   ########.fr       */
+/*   Updated: 2020/02/17 10:59:37 by lubernar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,7 +45,7 @@ void		init_inventory(t_invent *inv)
 {
 	int	i;
 
-	i = 0;
+	i = -1;
 	inv->nb_noodles = 0;
 	inv->nb_baguette = 0;
 	inv->nb_noodles_c = 0;
@@ -54,12 +54,8 @@ void		init_inventory(t_invent *inv)
 	inv->invent.inventory[1] = "ress/baguettes.bmp";
 	inv->invent.inventory[2] = "ress/noodlescomplete.bmp";
 	inv->invent.inventory[3] = NULL;
-	while (i < 4)
-	{
-		inv->invent.inventory_display[i] = (int)malloc(sizeof(int));
+	while (++i < 4)
 		inv->invent.inventory_display[i] = 0;
-		i++;
-	}
 }
 
 void		if_player_on_sprites(t_ray *r, t_win *sdl, int i)
@@ -87,6 +83,8 @@ void		if_player_on_sprites(t_ray *r, t_win *sdl, int i)
 			sdl->reload = 1;
 			sdl->old_t = SDL_GetTicks();
 			r->inv.nb_bullet += 100;
+			FMOD_System_PlaySound(sdl->s.fmod, FMOD_CHANNEL_FREE
+			, sdl->s.reload, 0, NULL);
 		}
 	}
 }

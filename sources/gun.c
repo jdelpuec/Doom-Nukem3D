@@ -6,7 +6,7 @@
 /*   By: lubernar <lubernar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/12 12:53:22 by lubernar          #+#    #+#             */
-/*   Updated: 2020/02/15 18:37:23 by lubernar         ###   ########.fr       */
+/*   Updated: 2020/02/17 10:45:31 by lubernar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -93,4 +93,5 @@ void		fire_gunshot(t_win *w, t_text_tab *gun_anim)
 	{
 		w->fired = 0;
 	}
+	// FMOD_Sound_Release(w->s.shot);
 }
