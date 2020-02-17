@@ -6,7 +6,7 @@
 /*   By: lubernar <lubernar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/04/01 11:49:14 by ebonafi           #+#    #+#             */
-/*   Updated: 2020/02/17 13:25:30 by lubernar         ###   ########.fr       */
+/*   Updated: 2020/02/17 13:39:27 by lubernar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,6 +54,8 @@ void sdl_loop(t_win *w, t_ray *r)
 			handle_keyboard_mvt(w, r, &k);
 		drawing(w, r, &k);
 		fps_count(w);
+		if (w->e.type == SDL_QUIT)
+			exit(0);
 	}
 }
 

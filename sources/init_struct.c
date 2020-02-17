@@ -6,7 +6,7 @@
 /*   By: lubernar <lubernar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/10 11:27:26 by jdelpuec          #+#    #+#             */
-/*   Updated: 2020/02/17 11:10:59 by lubernar         ###   ########.fr       */
+/*   Updated: 2020/02/17 13:36:06 by lubernar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,7 +71,7 @@ void		init_sdl(t_win *w)
 		&w->s.shot);
 	FMOD_System_CreateSound(w->s.fmod, "sound/reload.wav", FMOD_CREATESAMPLE, 0,
 		&w->s.reload);
-	FMOD_System_CreateSound(w->s.fmod, "sound/AtDoomGate.wav", FMOD_SOFTWARE
+	FMOD_System_CreateSound(w->s.fmod, "sound/blue_bird.wav", FMOD_SOFTWARE
 		| FMOD_2D | FMOD_CREATESTREAM, 0, &w->s.music);
 }
 

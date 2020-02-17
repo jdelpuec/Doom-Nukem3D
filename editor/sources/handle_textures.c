@@ -6,12 +6,13 @@
 /*   By: lubernar <lubernar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/05/02 13:44:05 by jdelpuec          #+#    #+#             */
-/*   Updated: 2020/02/16 17:04:02 by lubernar         ###   ########.fr       */
+/*   Updated: 2020/02/17 14:42:26 by lubernar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../includes/textures.h"
 #include "../includes/Doom_Nukem.h"
+#include "../includes/textures.h"
+
 
 unsigned char	*handle_header(int fd)
 {
@@ -38,11 +39,11 @@ void		fill_text_tab(int fd, unsigned char *buff_header,
 	int				y;
 	int				length;
 
+	new->tex_w = (buff_header[18] + (buff_header[19] << 8)
+			+ (buff_header[20] << 16) + (buff_header[21] << 24));
 	bpp = (buff_header[28] + (buff_header[29] << 8)) / 8;
 	length = (buff_header[34] + (buff_header[35] << 8) + (buff_header[36] << 16)
 		+ (buff_header[37] << 24)) / bpp;
-	length != 4096 ? ft_putendl("Textures error : size not 64*64") : 0;
-	length != 4096 ? ft_putendl(new->path) : 0;
 	buff_color = unsigned_char_malloc("buff_color", length * bpp);
 	new->data = int_malloc("new->data", length);
 	read(fd, buff_color, length * bpp);
@@ -60,22 +61,6 @@ void		fill_text_tab(int fd, unsigned char *buff_header,
 	}
 	free(buff_color);
 }
-
-// To be used to create char **text_name //
-
-int		check_text_name(t_text_tab *list, char *text_name)
-{
-	while (list->next != NULL)
-	{
-		if (text_name == list->path)
-			return (1);
-		list = list->next;
-	}
-	if (text_name == list->path)
-		return (1);
-	return (0);
-}
-///////////////////////////////////////////
 
 void	add_list(t_text_tab **last)
 {
@@ -112,12 +97,15 @@ t_text_tab	handle_textures(char **text_name, int y)
 		if (y != 0)
 			add_list(&last);
 		fd = open(text_name[y], O_RDONLY | O_NOFOLLOW);
+		last->id = y;
 		last->path = ft_strdup(text_name[y]);
-		if (!(buff_header = handle_header(fd)))
+		if (fd == -1)
 		{
-			free(buff_header);
+			last->id = -1;
+			free(buff_header); //// need to free the whole list;
 			return (*last);
 		}
+		buff_header = handle_header(fd);
 		fill_text_tab(fd, buff_header, last, 0);
 		close(fd);
 		y++;

@@ -6,7 +6,7 @@
 /*   By: lubernar <lubernar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/04/02 11:15:57 by ebonafi           #+#    #+#             */
-/*   Updated: 2020/02/17 13:24:26 by lubernar         ###   ########.fr       */
+/*   Updated: 2020/02/17 13:33:26 by lubernar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -123,7 +123,7 @@ int		test_box(t_ray *r, t_vector_3d p, t_wall wall)
 
 float		check_line_point(t_vector_2d l1, t_vector_2d l2, t_vector_3d p)
 {
-	printf("%f  \n", (l2.x - l1.x) * (p.y - l1.y) - (l2.y - l1.y) * (p.x - l1.x));
+	// printf("%f  \n", (l2.x - l1.x) * (p.y - l1.y) - (l2.y - l1.y) * (p.x - l1.x));
 	return ((l2.x - l1.x) * (p.y - l1.y) - (l2.y - l1.y) * (p.x - l1.x));
 }
 
@@ -218,7 +218,7 @@ void	handle_keyboard_mvt(t_win *w, t_ray *r, t_keyboard *k)
 			wall	= r->sectors[r->player.sector].walls[i];
 			if (test_box(r, new_pos, wall) == 1)
 			{
-				if (((r->tmp = (check_line_point(wall.p1, wall.p2, new_pos))) > -10))
+				if ((r->tmp = fabsf(check_line_point(wall.p1, wall.p2, new_pos)) < 10))
 				{
 					if (wall.portal_sector >= 0 && r->player.position.z >
 					 	r->sectors[wall.portal_sector].floor_height + (PLAYER_H >> 1) &&
@@ -229,15 +229,10 @@ void	handle_keyboard_mvt(t_win *w, t_ray *r, t_keyboard *k)
 						r->player.velocity.x	= 0;
 						break;
 					}
-					else if (r->tmp < 0)
+					else
 					{
 						new_pos = (t_vector_3d) {wall.p2.x - wall.p1.x, wall.p2.y - wall.p1.y, 0};
 						wall_collision(r, new_pos, wall);
-					}
-					else
-					{
-						r->player.velocity.x = 0.0;
-						r->player.velocity.y = 0.0;
 					}
 				}
 			}
