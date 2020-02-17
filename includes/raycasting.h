@@ -6,7 +6,7 @@
 /*   By: jdelpuec <jdelpuec@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/04/06 14:02:38 by ebonafi           #+#    #+#             */
-/*   Updated: 2020/02/12 16:35:10 by jdelpuec         ###   ########.fr       */
+/*   Updated: 2020/02/16 14:30:03 by jdelpuec         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,6 +28,9 @@ typedef struct		s_ray
 	t_wall		old_wall;
 	t_sector	*sectors;
 	t_vector_2d	ray_end;	
+	t_invent	inv;
+	t_text_tab	gun;
+	t_text_tab	reload_gun;
 
 	float		s02_x;
 	float		s02_y;
@@ -67,6 +70,24 @@ typedef struct		s_ray
 	int		y_2;
 }					t_ray;
 
+float		check_line_point(t_vector_2d l1, t_vector_2d l2, t_vector_3d p);
+void		init_raycasting(t_ray *r);
+void		wall_collision(t_ray *r, t_vector_3d wd, t_wall wall);
+float		get_dir_angle(t_ray *r);
+float		get_dot_poduct(t_vector_3d v1, t_vector_3d v2);
+float		get_vector_length(t_vector_3d v);
+t_vector_3d	normalize_vec(t_vector_3d v);
+t_vector_3d	get_normal_wall(t_vector_2d v1, t_vector_2d v2);
+t_vector_3d	get_cross_poduct(t_vector_3d v1, t_vector_3d v2);
+
+t_invent	*inventory(struct s_ray *r, t_win *sdl, t_invent *inv);
+void 		reload_gun(t_text_tab *reaload_anim, t_win *w);
+t_text_tab  init_gun();
+void    fire_gunshot(t_win *w, t_text_tab *gun_anim);
+void		hud(t_win *sdl, t_invent *inv, t_ray *r);
+
+
+
 typedef struct		s_wall_tex
 {
 	float	tx;
@@ -80,6 +101,25 @@ typedef struct		s_wall_tex
 	int		tex_y;
 	int		tex_id;
 }					t_wall_tex;
+
+typedef struct		s_floor_tex
+{
+	float	cor_dist;
+	float	rl_dist;
+	float	tx;
+	float	ty;
+	float	intersec;
+	float	tex_count;
+	float	full_len;
+	float	tex_scale;
+	float	tex_xf;
+	float	tex_yf;
+	int		tex_y;
+	int		tex_x;
+	int		tex_id;
+
+	t_vector_2d	hit;
+}					t_floor_tex;
 
 float				deg_to_rad(float angle);
 void		wall_textures(t_win *w, t_ray *r, t_sector sector, t_wall wall);

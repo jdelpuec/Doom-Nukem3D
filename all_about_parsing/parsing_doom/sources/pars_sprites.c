@@ -6,7 +6,7 @@
 /*   By: cduverge <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/14 09:39:40 by cduverge          #+#    #+#             */
-/*   Updated: 2020/02/14 13:33:28 by cduverge         ###   ########.fr       */
+/*   Updated: 2020/02/17 17:46:47 by cduverge         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -119,4 +119,24 @@ int		check_line_sprite(char *str)
 	if (check_line_sprite_2(str, k) == -1)
 		return (-1);
 	return (0);
+}
+
+int		check_if_sprites(int fd)
+{
+	int		ret;
+	char	*line;
+	int		i;
+
+	i = 0;
+	while (i < 3)
+	{
+		ret = get_next_line(fd, &line);
+		if (ret == 0)
+			return (0);
+		else if (ret == -1)
+			return (-1);
+		free(line);
+		++i;
+	}
+	return (2);
 }

@@ -6,12 +6,12 @@
 /*   By: jdelpuec <jdelpuec@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/05/02 13:44:05 by jdelpuec          #+#    #+#             */
-/*   Updated: 2020/02/12 14:49:17 by jdelpuec         ###   ########.fr       */
+/*   Updated: 2020/02/16 17:05:01 by jdelpuec         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "textures.h"
 #include "doom.h"
+#include "textures.h"
 #include "malloc.h"
 
 unsigned char	*handle_header(int fd)
@@ -111,8 +111,8 @@ t_text_tab	handle_textures(char **text_name, int y)
 		fill_text_tab(fd, buff_header, last, 0);
 		close(fd);
 		y++;
+		free(buff_header);
 	}
-	free(buff_header);
 	while (last->prev != NULL)
 		last = last->prev;
 	return (*last);

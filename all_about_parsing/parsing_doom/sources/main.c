@@ -6,7 +6,7 @@
 /*   By: cduverge <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/26 12:12:50 by cduverge          #+#    #+#             */
-/*   Updated: 2020/02/14 13:33:25 by cduverge         ###   ########.fr       */
+/*   Updated: 2020/02/17 18:01:18 by cduverge         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,6 +71,10 @@ void	fill_up_player(char *line, t_env *doom)
 	while (line[k] != ' ')
 		++k;
 	doom->player.sector = ft_atoi(line + k);
+	++k;
+	while (line[k] != ' ')
+		++k;
+	doom->player.gravity = ft_atoi(line + k);
 }
 
 int		check_portal_sector(int fd, t_wall *walls, int j)

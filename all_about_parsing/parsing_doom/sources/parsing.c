@@ -6,7 +6,7 @@
 /*   By: cduverge <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/27 14:52:46 by cduverge          #+#    #+#             */
-/*   Updated: 2020/02/14 12:07:25 by cduverge         ###   ########.fr       */
+/*   Updated: 2020/02/17 17:30:44 by cduverge         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -79,6 +79,8 @@ int		check_data_sector(int fd, t_env *doom, int index)
 
 int		all_room(int fd, t_env *doom, int n_room)
 {
+	int		ret;
+
 	if (back_to_line(fd) == -1)
 		return (-1);
 	if (check_data_sector(fd, doom, n_room) == -1)
@@ -86,8 +88,10 @@ int		all_room(int fd, t_env *doom, int n_room)
 	++n_room;
 	if (n_room == doom->room)
 	{
-		if (back_to_line(fd) == -1)
+		if ((ret = check_if_sprites(fd)) == -1)
 			return (-1);
+		if (ret == 0)
+			return (0);
 		if (get_nb_sprites(fd, doom) == -1)
 			return (-1);
 		if (check_sprites(fd, doom, 0))

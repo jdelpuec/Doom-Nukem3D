@@ -6,11 +6,12 @@
 /*   By: jdelpuec <jdelpuec@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/05 10:51:22 by jdelpuec          #+#    #+#             */
-/*   Updated: 2020/02/12 16:37:20 by jdelpuec         ###   ########.fr       */
+/*   Updated: 2020/02/16 17:02:31 by jdelpuec         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "doom.h"
+#include "inventory.h"
 #include "raycasting.h"
 
 t_vector_3d	get_normal_wall(t_vector_2d v1, t_vector_2d v2)
@@ -48,12 +49,12 @@ t_vector_3d	get_cross_poduct(t_vector_3d v1, t_vector_3d v2)
 
 float		get_dot_poduct(t_vector_3d v1, t_vector_3d v2)
 {
-	return (v1.x * v2.x + v1.y * v2.y + v1.z * v2.z);
+	return (v1.x * v2.x + v1.y * v2.y);
 }
 
-float		get_vector_length(t_vector_3d v)
+float		get_vector2d_length(t_vector_2d v)
 {
-	return (sqrtf(v.x * v.x + v.y * v.y + v.z * v.z));
+	return (sqrtf(v.x * v.x + v.y * v.y));
 }
 
 t_vector_3d	normalize_vec(t_vector_3d v)

@@ -6,7 +6,7 @@
 /*   By: jdelpuec <jdelpuec@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/05/02 14:33:08 by jdelpuec          #+#    #+#             */
-/*   Updated: 2020/02/11 15:42:02 by jdelpuec         ###   ########.fr       */
+/*   Updated: 2020/02/16 14:42:25 by jdelpuec         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,8 +19,10 @@ typedef struct      s_text_tab
 {
 	int					id;
 	int					tex_w;
-    char                *path;
-    int                 *data;
+    int					w;
+    int					h;
+    char				*path;
+    int					*data;
     struct s_text_tab   *next;
     struct s_text_tab   *prev;
 }                   t_text_tab;
@@ -30,4 +32,5 @@ void		    fill_text_tab(int fd, unsigned char *buff_header, t_text_tab *new, int
 unsigned char	*handle_header(int fd);
 void            start_list(t_text_tab **list);
 void            list_reach(t_text_tab **list, char *path);
+
 #endif

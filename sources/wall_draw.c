@@ -6,11 +6,12 @@
 /*   By: jdelpuec <jdelpuec@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/10 14:12:36 by jdelpuec          #+#    #+#             */
-/*   Updated: 2020/02/12 17:14:18 by jdelpuec         ###   ########.fr       */
+/*   Updated: 2020/02/16 17:39:54 by jdelpuec         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "doom.h"
+#include "inventory.h"
 #include "raycasting.h"
 #include "draw.h"
 
@@ -85,11 +86,11 @@ int		draw_wall_2(t_win *w, t_ray *r, t_sector sector, t_wall wall)
 		* (r->hit_y - r->player.position.y)));
 	r->dist *= cos(r->ray_angle - r->player.angle);
 	r->dist_wall = r->dist * PLAYER_H;
-	r->line_h = ((sector.ceil_height - sector.floor_height) / r->dist_wall) * r->dist_pp;
 	r->offset_start = (WIN_H >> 1) + ((r->player.position.z
 				- sector.ceil_height) / r->dist_wall) * r->dist_pp;
 	r->offset_end = (WIN_H >> 1) + ((r->player.position.z
 				- sector.floor_height) / r->dist_wall) * r->dist_pp;
+	r->line_h = r->offset_end - r->offset_start;
 	wall_textures(w, r, sector, wall);
 	// i = 0;
 	// while (i++ < (int)r->offset_start)
@@ -112,9 +113,37 @@ int		draw_wall_2(t_win *w, t_ray *r, t_sector sector, t_wall wall)
 	return (1);
 }
 
+int		check_behind(t_ray *r, t_sector sector)
+{
+	int			i;
+	t_vector_2d	tmp;
+	t_vector_2d	hit;
+
+	if (r->sector_count > 1)
+		return (1);
+	hit.x = r->hit_x;
+	hit.y = r->hit_y;
+	i = 0;
+	while (i < sector.wall_count)
+	{
+		if (i != r->i && (check_seg_intersection(r, sector.walls[i],
+														&tmp.x, &tmp.y) == 1))
+		{
+			if (fabsf(tmp.x - r->player.position.x)
+				< fabsf(r->hit_x - r->player.position.x)
+				&& fabsf(tmp.y - r->player.position.y)
+					< fabsf(r->hit_y - r->player.position.y))
+				return (-1);
+		}
+		i++;
+	}
+	return (1);
+}
+
 int		draw_wall(t_win *w, t_ray *r, t_sector sector, t_wall wall)
 {
-	if (check_seg_intersection(r, wall, &r->hit_x, &r->hit_y) == 1)
+	if (check_seg_intersection(r, wall, &r->hit_x, &r->hit_y) == 1
+		&& (check_behind(r, sector) == 1))
 	{
 		if (wall.portal_sector >= 0)
 			return (draw_portal(w, r, sector, wall));
