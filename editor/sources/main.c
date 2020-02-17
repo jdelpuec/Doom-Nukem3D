@@ -6,7 +6,7 @@
 /*   By: lubernar <lubernar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/26 12:12:50 by cduverge          #+#    #+#             */
-/*   Updated: 2020/02/17 15:09:13 by lubernar         ###   ########.fr       */
+/*   Updated: 2020/02/17 16:37:04 by lubernar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,14 +41,14 @@ void	init_textures(t_editor *edit)
 	char		**tab;
 	char		**tab_player;
 	char		**tab_sprite;
-	// char		**gravity;
+	char		**gravity;
 	
-	// gravity = (char **)malloc(sizeof(char*) * 3);
-	// gravity[0] = "./ress/moon.bmp";
-	// gravity[1] = "./ress/earth.bmp";
-	// gravity[2] = NULL;
-	// edit->list_gravity = handle_textures(gravity, 0);
-	// free(gravity);
+	gravity = (char **)malloc(sizeof(char*) * 3);
+	gravity[0] = "./ress/mooon.bmp";
+	gravity[1] = "./ress/earth.bmp";
+	gravity[2] = NULL;
+	edit->list_gravity = handle_textures(gravity, 0);
+	free(gravity);
 	tab_sprite = (char **)malloc(sizeof(char*) * 3);
 	tab_sprite[0] = "./ress/noodles.bmp";
 	tab_sprite[1] = "./ress/baguettes.bmp";

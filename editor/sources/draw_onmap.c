@@ -6,7 +6,7 @@
 /*   By: lubernar <lubernar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/03 13:01:09 by lubernar          #+#    #+#             */
-/*   Updated: 2020/02/08 15:32:42 by lubernar         ###   ########.fr       */
+/*   Updated: 2020/02/17 17:12:26 by lubernar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@ void	player_sprites_coord(t_editor *edit, t_sdl *sdl)
 {
 	if (edit->player_selected)
 	{
-		draw_redsquare(sdl, W / 1.45, 450);
+		draw_redsquare(sdl, (W / 1.45), 450, &edit->vec);		
 		edit->texture_choosen = 0;
 		edit->sprite_choosen = 0;
 		if (sdl->e.type == SDL_MOUSEBUTTONDOWN && sdl->xmouse <= (W / 1.5) - 11
@@ -41,15 +41,15 @@ void	player_sprites_coord(t_editor *edit, t_sdl *sdl)
 void	choosen_texture(t_sdl *sdl, t_editor *edit)
 {
 	if (edit->texture_choosen == 1)
-		draw_redsquare(sdl, W / 1.45, 112);
+		draw_redsquare(sdl, (W / 1.45), 112, &edit->vec);		
 	else if (edit->texture_choosen == 2)
-		draw_redsquare(sdl, (W / 1.45) + 86, 112);
+		draw_redsquare(sdl, (W / 1.45) + 86, 112, &edit->vec);
 	else if (edit->texture_choosen == 3)
-		draw_redsquare(sdl, (W / 1.45) + 170, 112);
+		draw_redsquare(sdl, (W / 1.45) + 170, 112, &edit->vec);
 	else if (edit->texture_choosen == 4)
-		draw_redsquare(sdl, (W / 1.45) + 240, 112);
+		draw_redsquare(sdl, (W / 1.45) + 240, 112, &edit->vec);
 	else if (edit->texture_choosen == 5)
-		draw_redsquare(sdl, (W / 1.45) + 320, 112);
+		draw_redsquare(sdl, (W / 1.45) + 320, 112, &edit->vec);
 }
 
 void	find_walls_coord(t_sdl *sdl, t_editor *edit, t_line *line, t_lst **lst)

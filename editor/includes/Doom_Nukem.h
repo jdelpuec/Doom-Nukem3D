@@ -6,7 +6,7 @@
 /*   By: lubernar <lubernar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/12/03 10:10:33 by siwarin           #+#    #+#             */
-/*   Updated: 2020/02/17 15:00:17 by lubernar         ###   ########.fr       */
+/*   Updated: 2020/02/17 17:09:04 by lubernar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,6 +27,12 @@ typedef struct	s_keyboard
 {
 	const Uint8	*state;
 }				t_keyboard;
+
+typedef struct		s_vector_2d
+{
+	int		x;
+	int		y;
+}					t_vector_2d;
 
 typedef struct	s_fps
 {
@@ -86,10 +92,12 @@ typedef struct		s_editor
 	int			walls_h;
 	int			nb_maillon;
 	int			nb_sprites;
+	int			gravity;
 	t_text_tab	list;
 	t_text_tab	list_sprite;
 	t_text_tab	list_player;
 	t_text_tab	list_gravity;
+	t_vector_2d	vec;
 }					t_editor;
 
 typedef struct		s_line
@@ -110,7 +118,7 @@ int			hook_keydown(t_sdl *sdl, t_lst *lst);
 void		editdraw(t_sdl *sdl, t_editor *edit, t_line *line, t_lst **lst);
 void		pixel(t_sdl *sdl, int x, int y);
 void		apply_surface(int x, int y, SDL_Surface *source, SDL_Surface *des);
-void		draw_redsquare(t_sdl *sdl, int x, int y);
+void		draw_redsquare(t_sdl *sdl, int x, int y, t_vector_2d *vec);
 void		drawsquare(t_sdl *sdl, int x, int y);
 void		drawmenu(t_sdl *sdl);
 void		init_lst(t_lst **lst, t_editor *edit);

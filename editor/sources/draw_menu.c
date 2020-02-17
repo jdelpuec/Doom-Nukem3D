@@ -6,7 +6,7 @@
 /*   By: lubernar <lubernar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/03 09:55:59 by lubernar          #+#    #+#             */
-/*   Updated: 2020/02/17 12:09:47 by lubernar         ###   ########.fr       */
+/*   Updated: 2020/02/17 17:00:38 by lubernar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -83,21 +83,21 @@ void	draw_menu(t_sdl *sdl)
 	draw_grid(sdl);
 }
 
-void	draw_redsquare(t_sdl *sdl, int x, int y)
+void	draw_redsquare(t_sdl *sdl, int x, int y, t_vector_2d *vec)
 {
 	int i;
 	int j;
 
 	sdl->color = RED;
 	j = y;
-	while (j != y + 30)
+	while (j != y + vec->y)
 	{
 		i = x;
-		if (i == x || i == x + 29 || j == y || j == y + 29)
+		if (i == x || i == x + vec->x || j == y || j == y + vec->x)
 		{
-			while (i != x + 30)
+			while (i != x + vec->y)
 			{
-				if (j == y || j == y + 29 || i == x || i == x + 29)
+				if (j == y || j == y + vec->x || i == x || i == x + vec->x)
 				{
 					pixel(sdl, i, j);
 				}

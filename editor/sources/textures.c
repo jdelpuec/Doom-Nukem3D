@@ -6,7 +6,7 @@
 /*   By: lubernar <lubernar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/03 11:56:05 by lubernar          #+#    #+#             */
-/*   Updated: 2020/02/17 15:08:18 by lubernar         ###   ########.fr       */
+/*   Updated: 2020/02/17 16:33:17 by lubernar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -73,16 +73,16 @@ void	textures_display(t_sdl *sdl, t_editor *edit)
 {
 	t_text_tab	tmp_text;
 	t_text_tab	tmp_sprites;
-	// t_text_tab	tmp_gravity;
+	t_text_tab	tmp_gravity;
 
-	// tmp_gravity = edit->list_gravity;
-	// tmp_gravity.w = 64;
-	// tmp_gravity.h = 64;
-	// display_l(W / 1.45, 320, sdl, tmp_gravity);
-	// tmp_gravity = *tmp_gravity.next;
-	// tmp_gravity.w = 64;
-	// tmp_gravity.h = 64;
-	// display_l((W / 1.45) + 86, 310, sdl, tmp_gravity);
+	tmp_gravity = edit->list_gravity;
+	tmp_gravity.w = 36;
+	tmp_gravity.h = 36;
+	display_l(W / 1.45, 320, sdl, tmp_gravity);
+	tmp_gravity.next != NULL ? tmp_gravity = *tmp_gravity.next : tmp_gravity;
+	tmp_gravity.w = 80;
+	tmp_gravity.h = 80;
+	display_l((W / 1.45) + 86, 300, sdl, tmp_gravity);
 	tmp_sprites = edit->list_sprite;
 	display(W / 1.45, 210, sdl, tmp_sprites);
 	tmp_sprites = *tmp_sprites.next;
