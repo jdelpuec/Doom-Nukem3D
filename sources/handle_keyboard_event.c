@@ -6,7 +6,7 @@
 /*   By: jdelpuec <jdelpuec@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/04/02 11:15:57 by ebonafi           #+#    #+#             */
-/*   Updated: 2020/02/16 18:20:34 by jdelpuec         ###   ########.fr       */
+/*   Updated: 2020/02/17 12:09:12 by jdelpuec         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -203,7 +203,7 @@ void	handle_keyboard_mvt(t_win *w, t_ray *r, t_keyboard *k)
 			wall	= r->sectors[r->player.sector].walls[i];
 			if (test_box(r, new_pos, wall) == 1)
 			{
-				if (((r->tmp = (check_line_point(wall.p1, wall.p2, new_pos))) > -10))
+				if ((r->tmp = fabsf(check_line_point(wall.p1, wall.p2, new_pos)) < 10))
 				{
 					if (wall.portal_sector >= 0 && r->player.position.z >
 					 	r->sectors[wall.portal_sector].floor_height + (PLAYER_H >> 1) &&
@@ -214,15 +214,10 @@ void	handle_keyboard_mvt(t_win *w, t_ray *r, t_keyboard *k)
 						r->player.velocity.x	= 0;
 						break;
 					}
-					else if (r->tmp < 0)
+					else
 					{
 						new_pos = (t_vector_3d) {wall.p2.x - wall.p1.x, wall.p2.y - wall.p1.y, 0};
 						wall_collision(r, new_pos, wall);
-					}
-					else
-					{
-						r->player.velocity.x = 0.0;
-						r->player.velocity.y = 0.0;
 					}
 				}
 			}
