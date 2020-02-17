@@ -6,7 +6,7 @@
 /*   By: lubernar <lubernar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/04/01 11:50:31 by ebonafi           #+#    #+#             */
-/*   Updated: 2020/02/17 11:09:54 by lubernar         ###   ########.fr       */
+/*   Updated: 2020/02/17 12:18:18 by lubernar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,6 +46,7 @@ typedef struct		s_win
 
 	t_text_tab		text_list;
 	int				nb_thread;
+	int				color;
 
 	int				fps;
 	int				pressed;
@@ -183,4 +184,5 @@ void			display(int x, int y, t_text_tab hud, t_win *win);
 t_text_tab	find(char *str);
 void 		init_ttf(t_win *sdl);
 void		apply_surface(int x, int y, SDL_Surface *source, SDL_Surface *dest);
+void    print_messages(t_win *sdl);
 #endif

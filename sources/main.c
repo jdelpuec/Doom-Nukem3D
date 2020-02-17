@@ -6,7 +6,7 @@
 /*   By: lubernar <lubernar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/04/01 11:49:14 by ebonafi           #+#    #+#             */
-/*   Updated: 2020/02/17 11:05:51 by lubernar         ###   ########.fr       */
+/*   Updated: 2020/02/17 13:25:30 by lubernar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,7 +52,7 @@ void sdl_loop(t_win *w, t_ray *r)
 		if (is_key_pressed(&k) > 0
 		|| r->player.position.z != r->sectors[r->cur_sector].floor_height + 32)
 			handle_keyboard_mvt(w, r, &k);
-		drawing(w, r);
+		drawing(w, r, &k);
 		fps_count(w);
 	}
 }
