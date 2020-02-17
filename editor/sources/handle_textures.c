@@ -6,7 +6,7 @@
 /*   By: lubernar <lubernar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/05/02 13:44:05 by jdelpuec          #+#    #+#             */
-/*   Updated: 2020/02/17 14:42:26 by lubernar         ###   ########.fr       */
+/*   Updated: 2020/02/17 18:04:26 by lubernar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -102,7 +102,7 @@ t_text_tab	handle_textures(char **text_name, int y)
 		if (fd == -1)
 		{
 			last->id = -1;
-			free(buff_header); //// need to free the whole list;
+			// free(buff_header); //// need to free the whole list;
 			return (*last);
 		}
 		buff_header = handle_header(fd);

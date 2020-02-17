@@ -6,7 +6,7 @@
 /*   By: lubernar <lubernar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/04 11:37:23 by lubernar          #+#    #+#             */
-/*   Updated: 2020/02/10 17:16:00 by lubernar         ###   ########.fr       */
+/*   Updated: 2020/02/17 18:23:14 by lubernar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,6 +21,17 @@ void	apply_surface(int x, int y, SDL_Surface *source, SDL_Surface *dest)
 	SDL_BlitSurface(source, NULL, dest, &offset);
 	SDL_FreeSurface(source);
 	SDL_FreeSurface(dest);
+}
+
+int		quit_editor(t_sdl *sdl)
+{
+	SDL_FreeSurface(sdl->ren);
+	SDL_DestroyWindow(sdl->win);
+	TTF_CloseFont(sdl->font);
+	TTF_Quit();
+	SDL_Quit();
+	exit(EXIT_SUCCESS);
+	return (0);
 }
 
 int		hook_keydown(t_sdl *sdl, t_lst *lst)
@@ -70,10 +81,11 @@ void	ft_init(t_sdl *sdl)
 	{
 		ft_putstr(SDL_GetError());
 		ft_putstr("TTF Error.\n");
+		exit (0);
 	}
 	sdl->font = TTF_OpenFont("./font/tf2build.ttf", 31);
 	if (!sdl->font)
-		printf("TTF_OpenFont : %s\n", TTF_GetError());
+		exit(0);
 	sdl->fc.r = 0xFF;
 	sdl->fc.g = 0xA5;
 	sdl->fc.b = 0x00;

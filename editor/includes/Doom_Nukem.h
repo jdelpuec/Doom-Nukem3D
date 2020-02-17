@@ -6,7 +6,7 @@
 /*   By: lubernar <lubernar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/12/03 10:10:33 by siwarin           #+#    #+#             */
-/*   Updated: 2020/02/17 17:09:04 by lubernar         ###   ########.fr       */
+/*   Updated: 2020/02/17 17:52:29 by lubernar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -155,6 +155,7 @@ void		find_sprites_coord(t_lst **l, t_editor *edit, t_sdl *sdl);
 void		display(int x, int y, t_sdl *sdl, t_text_tab tmp);
 void		display_l(int x, int y, t_sdl *sdl, t_text_tab tmp);
 t_text_tab	display_next(t_sdl *sdl, t_sprite *s, t_text_tab tmp, t_editor *e);
+int			quit_editor(t_sdl *sdl);
 
 /*
 ** colors
