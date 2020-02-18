@@ -6,7 +6,7 @@
 /*   By: lubernar <lubernar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/16 15:01:53 by lubernar          #+#    #+#             */
-/*   Updated: 2020/02/17 17:27:21 by lubernar         ###   ########.fr       */
+/*   Updated: 2020/02/18 13:30:09 by lubernar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,8 +16,7 @@
 void	write_first_line(t_editor *edit, t_lst **lst)
 {
 	edit->saved = 1;
-	edit->fd = open("maps/map1", O_RDWR | O_CREAT, S_IRUSR | S_IWUSR | S_IXUSR
-	| O_TRUNC);
+	edit->fd = open("maps/map1", O_RDWR | O_CREAT, S_IRUSR | S_IWUSR | S_IXUSR);
 	ft_putstr_fd(ft_itoa((*lst)->lst_w->sector_num), edit->fd);
 	ft_putstr_fd("\n\n\n\n", edit->fd);
 	ft_putstr_fd(ft_itoa((edit->play_x - ((W / 1.5) / 2) + 10) / 10), edit->fd);
@@ -27,8 +26,8 @@ void	write_first_line(t_editor *edit, t_lst **lst)
 	ft_putstr_fd("0.0", edit->fd);
 	ft_putchar_fd(' ', edit->fd);
 	ft_putstr_fd("0", edit->fd);
-	// ft_putchar_fd(' ', edit->fd);
-	// ft_putstr_fd(ft_itoa(edit->gravity), edit->fd);
+	ft_putchar_fd(' ', edit->fd);
+	ft_putstr_fd(ft_itoa(edit->gravity), edit->fd);
 	ft_putstr_fd("\n\n\n\n", edit->fd);
 	ft_putstr_fd(ft_itoa((*lst)->lst_w->nb_walls), edit->fd);
 	ft_putchar_fd(' ', edit->fd);

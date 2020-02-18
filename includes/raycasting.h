@@ -6,7 +6,7 @@
 /*   By: lubernar <lubernar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/04/06 14:02:38 by ebonafi           #+#    #+#             */
-/*   Updated: 2020/02/17 11:02:56 by lubernar         ###   ########.fr       */
+/*   Updated: 2020/02/18 12:07:52 by lubernar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,11 +57,13 @@ typedef struct		s_ray
 	int			last_y_min;
 	int			last_y_max;
 
+	float		space;
 	float		thresh;
 	float		speed;
 	float		tmp;
 	float		dir_angle;
 	int			direction;
+	int			gravity;
 
 
 	int		x_1;

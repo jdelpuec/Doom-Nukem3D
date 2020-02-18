@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parser.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jdelpuec <jdelpuec@student.42.fr>          +#+  +:+       +#+        */
+/*   By: lubernar <lubernar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/26 12:12:50 by cduverge          #+#    #+#             */
-/*   Updated: 2020/02/15 19:10:12 by jdelpuec         ###   ########.fr       */
+/*   Updated: 2020/02/18 12:12:47 by lubernar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,11 +66,15 @@ void	fill_up_player(char *line, t_env *doom)
 	++k;
 	while (line[k] != ' ')
 		++k;
-	doom->player.position.z = ft_atof(line + k) + PLAYER_H;
+	doom->player.position.z = ft_atof(line + k);
 	++k;
 	while (line[k] != ' ')
 		++k;
 	doom->player.sector = ft_atoi(line + k);
+	++k;
+	while (line[k] != ' ')
+		++k;
+	doom->player.gravity = ft_atoi(line + k);
 }
 
 int		check_portal_sector(int fd, t_wall *walls, int j)

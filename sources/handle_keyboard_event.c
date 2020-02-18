@@ -6,7 +6,7 @@
 /*   By: lubernar <lubernar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/04/02 11:15:57 by ebonafi           #+#    #+#             */
-/*   Updated: 2020/02/17 13:33:26 by lubernar         ###   ########.fr       */
+/*   Updated: 2020/02/18 11:56:25 by lubernar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -123,7 +123,7 @@ int		test_box(t_ray *r, t_vector_3d p, t_wall wall)
 
 float		check_line_point(t_vector_2d l1, t_vector_2d l2, t_vector_3d p)
 {
-	// printf("%f  \n", (l2.x - l1.x) * (p.y - l1.y) - (l2.y - l1.y) * (p.x - l1.x));
+	printf("%f  \n", (l2.x - l1.x) * (p.y - l1.y) - (l2.y - l1.y) * (p.x - l1.x));
 	return ((l2.x - l1.x) * (p.y - l1.y) - (l2.y - l1.y) * (p.x - l1.x));
 }
 
@@ -134,8 +134,8 @@ void	handle_keyboard_mvt(t_win *w, t_ray *r, t_keyboard *k)
 	t_vector_3d	new_pos;
 	t_wall		wall;
 
-	w->fps = w->fps == 0 ? 1 : w->fps;
-	ms	= (1.0 / w->fps); 	// Reverse FPS --> make moovement smooth even tho the program et slow.
+	w->fps = w->fps == 0 ? 1 : w->fps; // protection div/0
+	ms	= (1.0 / w->fps);
 	i	= 0;
 
 	// printf("min_x  = %f  ;  max_x  = %f  ; min_y  = %f  ;  miax_y  = %f \n",
@@ -169,10 +169,8 @@ void	handle_keyboard_mvt(t_win *w, t_ray *r, t_keyboard *k)
 	}
 	if (k->state[SDL_SCANCODE_A] == 1)
 		r->player.angle -= 2.5 * ms;
-		// r->player.angle -= 0.01;		
 	if (k->state[SDL_SCANCODE_D] == 1)
 		r->player.angle += 2.5 * ms;
-		// r->player.angle += 0.01;
 	if (fabsf(r->player.angle) >= 6.299992)
 		r->player.angle = 0;
 
@@ -203,7 +201,6 @@ void	handle_keyboard_mvt(t_win *w, t_ray *r, t_keyboard *k)
 	if (k->state[SDL_SCANCODE_SPACE] == 1)
 		r->player.velocity.z = 60.0;
 
-	// printf("x = %f; y = %f ; z = %f   ; sec = %d \n", r->player.position.x, r->player.position.y, r->player.position.z, r->player.sector);
 	if (ms > 0.1)
 	{
 		r->player.velocity.x = 0;
@@ -228,6 +225,12 @@ void	handle_keyboard_mvt(t_win *w, t_ray *r, t_keyboard *k)
 						r->speed				= 5.0;
 						r->player.velocity.x	= 0;
 						break;
+					}
+					else if (r->tmp < r->space)
+					{
+						r->player.velocity.x = 0.0;
+						r->player.velocity.y = 0.0;
+						break;					
 					}
 					else
 					{
@@ -256,7 +259,7 @@ void	handle_keyboard_mvt(t_win *w, t_ray *r, t_keyboard *k)
 			r->player.velocity.z = 0.0;
 		}
 		else
-			r->player.velocity.z -= 2.0;
+			r->player.velocity.z -= r->gravity;
 	}
 }
 
