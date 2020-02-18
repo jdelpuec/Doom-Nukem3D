@@ -6,13 +6,12 @@
 /*   By: lubernar <lubernar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/05/02 13:44:05 by jdelpuec          #+#    #+#             */
-/*   Updated: 2020/02/18 11:53:19 by lubernar         ###   ########.fr       */
+/*   Updated: 2020/02/18 14:35:13 by lubernar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/Doom_Nukem.h"
 #include "../includes/textures.h"
-
 
 unsigned char	*handle_header(int fd)
 {
@@ -26,12 +25,12 @@ unsigned char	*handle_header(int fd)
 		+ (buff_header[12] << 16) + (buff_header[13] << 24)) - 54;
 	buff_skip = unsigned_char_malloc("buff_skip", color_start);
 	if (read(fd, buff_skip, color_start) == -1)
-		return NULL;
+		return (NULL);
 	free(buff_skip);
 	return (buff_header);
 }
 
-void		fill_text_tab(int fd, unsigned char *buff_header,
+void			fill_text_tab(int fd, unsigned char *buff_header,
 													t_text_tab *new, int x)
 {
 	unsigned char	*buff_color;
@@ -48,7 +47,7 @@ void		fill_text_tab(int fd, unsigned char *buff_header,
 	new->data = int_malloc("new->data", length);
 	read(fd, buff_color, length * bpp);
 	y = length - 1;
-	while (x < length)
+	while (++x < length)
 	{
 		if (bpp == 4)
 			new->data[y] = buff_color[x * 4] + (buff_color[x * 4 + 1] << 8)
@@ -57,12 +56,11 @@ void		fill_text_tab(int fd, unsigned char *buff_header,
 			new->data[y] = buff_color[x * 3] + (buff_color[x * 3 + 1] << 8)
 			+ (buff_color[x * 3 + 2] << 16) + (0 << 24);
 		y--;
-		x++;
 	}
 	free(buff_color);
 }
 
-void	add_list(t_text_tab **last)
+void			add_list(t_text_tab **last)
 {
 	t_text_tab *new;
 
@@ -77,38 +75,35 @@ void	add_list(t_text_tab **last)
 	*last = (*last)->next;
 }
 
-void	create_list(t_text_tab *list_text)
+t_text_tab		*create_list(t_text_tab *list_text)
 {
 	list_text->next = NULL;
 	list_text->prev = NULL;
+	return (list_text);
 }
 
-t_text_tab	handle_textures(char **text_name, int y)
+t_text_tab		handle_textures(char **text_name, int y)
 {
 	unsigned char	*buff_header;
 	t_text_tab		list_text;
 	t_text_tab		*last;
 	int				fd;
 
-	create_list(&list_text);
-	last = &list_text;
-	while (text_name[y] != NULL)
+	last = create_list(&list_text);
+	while (text_name[++y] != NULL)
 	{
-		if (y != 0)
-			add_list(&last);
+		y != 0 ? add_list(&last) : 0;
 		fd = open(text_name[y], O_RDONLY | O_NOFOLLOW);
 		last->id = y;
 		last->path = ft_strdup(text_name[y]);
 		if (fd == -1)
 		{
 			last->id = -1;
-			// free(buff_header); //// need to free the whole list;
 			return (*last);
 		}
 		buff_header = handle_header(fd);
-		fill_text_tab(fd, buff_header, last, 0);
+		fill_text_tab(fd, buff_header, last, -1);
 		close(fd);
-		y++;
 		free(buff_header);
 	}
 	while (last->prev != NULL)

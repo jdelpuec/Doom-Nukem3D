@@ -6,7 +6,7 @@
 /*   By: lubernar <lubernar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/04/01 11:49:14 by ebonafi           #+#    #+#             */
-/*   Updated: 2020/02/18 11:58:17 by lubernar         ###   ########.fr       */
+/*   Updated: 2020/02/18 15:53:06 by lubernar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -81,8 +81,7 @@ int main(int ac, char **av)
 	r.sectors = env.sct;
 	r.player = env.player;
 	
-	r.inv.sprite = env.spt;
-	
+	// env.sprites != 0 ? r.inv.sprite = env.spt : 0;
 	init_t_ray(&r, &env);
 
 

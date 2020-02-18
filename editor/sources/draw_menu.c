@@ -6,7 +6,7 @@
 /*   By: lubernar <lubernar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/03 09:55:59 by lubernar          #+#    #+#             */
-/*   Updated: 2020/02/18 11:52:54 by lubernar         ###   ########.fr       */
+/*   Updated: 2020/02/18 14:24:02 by lubernar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,7 +56,7 @@ void	draw_grid(t_sdl *sdl)
 	}
 }
 
-void	draw_menu(t_sdl *sdl)
+void	draw_menu(t_sdl *sdl, t_editor *edit)
 {
 	draw_contour(sdl);
 	sdl->color = BLACK;
@@ -81,6 +81,7 @@ void	draw_menu(t_sdl *sdl)
 		sdl->cy++;
 	}
 	draw_grid(sdl);
+	write_text(sdl, edit);
 }
 
 void	draw_redsquare(t_sdl *sdl, int x, int y, t_vector_2d *vec)

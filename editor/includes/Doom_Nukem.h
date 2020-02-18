@@ -6,7 +6,7 @@
 /*   By: lubernar <lubernar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/12/03 10:10:33 by siwarin           #+#    #+#             */
-/*   Updated: 2020/02/18 11:52:18 by lubernar         ###   ########.fr       */
+/*   Updated: 2020/02/18 15:42:56 by lubernar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -135,7 +135,7 @@ t_lst		*fill_list_order(t_lst *lst, t_lst *tmp);
 void		push_back(t_lst *l, t_editor *edit);
 void		push_back_withoux1(t_lst *l, t_editor *edit, t_line *line);
 void		init_edit(t_editor *edit);
-void		draw_menu(t_sdl *sdl);
+void		draw_menu(t_sdl *sdl, t_editor *edit);
 void		draw_line_on_click(t_line *line, t_sdl *sdl, t_editor *edit);
 void		write_text(t_sdl *sdl, t_editor *edit);
 void		textures_display(t_sdl *sdl, t_editor *edit);
@@ -146,6 +146,7 @@ void		draw_walls_lst(t_elem *begin, t_lst **lst, t_sdl *sdl);
 void		player_sprites_coord(t_editor *edit, t_sdl *sdl);
 t_elem		init_elem(void);
 void		init_edit(t_editor *edit);
+void		init_textures(t_editor *edit);
 void		ft_init(t_sdl *sdl);
 void		textures_area(t_sdl *sdl, t_editor *edit);
 void		init_sprite(t_lst_sprite *l);

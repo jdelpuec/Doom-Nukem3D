@@ -6,7 +6,7 @@
 /*   By: lubernar <lubernar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/04 11:37:23 by lubernar          #+#    #+#             */
-/*   Updated: 2020/02/18 11:53:57 by lubernar         ###   ########.fr       */
+/*   Updated: 2020/02/18 15:22:59 by lubernar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -81,7 +81,7 @@ void	ft_init(t_sdl *sdl)
 	{
 		ft_putstr(SDL_GetError());
 		ft_putstr("TTF Error.\n");
-		exit (0);
+		exit(0);
 	}
 	sdl->font = TTF_OpenFont("./font/tf2build.ttf", 31);
 	if (!sdl->font)

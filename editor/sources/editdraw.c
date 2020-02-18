@@ -6,7 +6,7 @@
 /*   By: lubernar <lubernar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/12/03 14:23:14 by siwarin           #+#    #+#             */
-/*   Updated: 2020/02/18 11:53:10 by lubernar         ###   ########.fr       */
+/*   Updated: 2020/02/18 14:24:38 by lubernar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,19 +71,8 @@ void	clic(t_sdl *sdl, t_line *line, t_editor *edit, t_lst **lst)
 	}
 }
 
-void	editdraw(t_sdl *sdl, t_editor *edit, t_line *line, t_lst **lst)
+void	put_redsquare(t_sdl *sdl, t_editor *edit)
 {
-	t_elem	begin;
-	
-	edit->vec.y = 37;
-	edit->vec.x = 36;
-	if ((*lst)->first != NULL)
-		begin = *(*lst)->first;
-	draw_menu(sdl);
-	write_text(sdl, edit);
-	textures_display(sdl, edit);
-	player_sprites_coord(edit, sdl);
-	find_sprites_coord(lst, edit, sdl);
 	sdl->color = RED;
 	if (edit->gravity == 1)
 		draw_redsquare(sdl, (W / 1.45) + 107, 322, &edit->vec);
@@ -95,6 +84,21 @@ void	editdraw(t_sdl *sdl, t_editor *edit, t_line *line, t_lst **lst)
 		draw_redsquare(sdl, (W / 1.45), 210, &edit->vec);
 	if (edit->sprite_choosen == 2)
 		draw_redsquare(sdl, (W / 1.45) + 86, 210, &edit->vec);
+}
+
+void	editdraw(t_sdl *sdl, t_editor *edit, t_line *line, t_lst **lst)
+{
+	t_elem	begin;
+
+	edit->vec.y = 37;
+	edit->vec.x = 36;
+	if ((*lst)->first != NULL)
+		begin = *(*lst)->first;
+	draw_menu(sdl, edit);
+	textures_display(sdl, edit);
+	player_sprites_coord(edit, sdl);
+	find_sprites_coord(lst, edit, sdl);
+	put_redsquare(sdl, edit);
 	if (edit->texture_choosen && edit->sector_num < 1)
 		find_walls_coord(sdl, edit, line, lst);
 	draw_walls_lst(&begin, lst, sdl);
