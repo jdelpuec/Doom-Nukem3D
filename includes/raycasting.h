@@ -5,8 +5,8 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: jdelpuec <jdelpuec@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/04/06 14:02:38 by ebonafi           #+#    #+#             */
-/*   Updated: 2020/02/16 14:30:03 by jdelpuec         ###   ########.fr       */
+/*   Created: 2020/02/17 15:22:39 by jdelpuec          #+#    #+#             */
+/*   Updated: 2020/02/17 17:56:37 by jdelpuec         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,11 +57,13 @@ typedef struct		s_ray
 	int			last_y_min;
 	int			last_y_max;
 
+	float		space;
 	float		thresh;
 	float		speed;
 	float		tmp;
 	float		dir_angle;
 	int			direction;
+	int			gravity;
 
 
 	int		x_1;
@@ -80,11 +82,11 @@ t_vector_3d	normalize_vec(t_vector_3d v);
 t_vector_3d	get_normal_wall(t_vector_2d v1, t_vector_2d v2);
 t_vector_3d	get_cross_poduct(t_vector_3d v1, t_vector_3d v2);
 
-t_invent	*inventory(struct s_ray *r, t_win *sdl, t_invent *inv);
+t_invent	*inventory(struct s_ray *r, t_win *sdl);
 void 		reload_gun(t_text_tab *reaload_anim, t_win *w);
 t_text_tab  init_gun();
-void    fire_gunshot(t_win *w, t_text_tab *gun_anim);
-void		hud(t_win *sdl, t_invent *inv, t_ray *r);
+void    	fire_gunshot(t_win *w, t_text_tab *gun_anim);
+void		hud(t_win *sdl, t_ray *r);
 
 
 

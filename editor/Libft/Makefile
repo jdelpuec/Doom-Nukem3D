@@ -6,7 +6,7 @@
 #    By: lubernar <lubernar@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2018/11/10 20:09:46 by cduverge          #+#    #+#              #
-#    Updated: 2020/02/04 17:37:37 by lubernar         ###   ########.fr        #
+#    Updated: 2020/02/16 14:24:17 by lubernar         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -88,7 +88,8 @@ SRCS = ft_atoi.c \
 			ft_display_file.c \
 			ft_is_prime.c \
 			ft_lstadd.c \
-			ft_abs.c
+			ft_abs.c \
+			ft_atof.c
 
 OBJ = $(SRCS:.c=.o)
 

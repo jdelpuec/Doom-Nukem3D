@@ -6,7 +6,7 @@
 /*   By: jdelpuec <jdelpuec@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/10 14:12:36 by jdelpuec          #+#    #+#             */
-/*   Updated: 2020/02/16 17:39:54 by jdelpuec         ###   ########.fr       */
+/*   Updated: 2020/02/17 18:14:03 by jdelpuec         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,7 +33,7 @@ void	draw_portal_ceil(t_win *w, t_ray *r, t_sector sector,
 	while (++i < (int)r->offset_start)
 		if ((i >= 0 && i < WIN_H) && (i >= r->y_min && i < r->y_max - 1)
 			&& (*((int *)w->surface->pixels + (i * WIN_W + r->x)) == 0))
-			*((int *)w->surface->pixels + (i * WIN_W + r->x)) = GREY * r->light;
+			*((int *)w->surface->pixels + (i * WIN_W + r->x)) = GREY;
 	while (i++ < (int)r->offset_end)
 		if ((i >= 0 && i < WIN_H) && (i >= r->y_min && i < r->y_max - 1)
 			&& (*((int *)w->surface->pixels + (i * WIN_W + r->x)) == 0))
@@ -63,7 +63,7 @@ void	draw_portal_floor(t_win *w, t_ray *r, t_sector sector,
 	while (i++ < WIN_H - 1)
 		if ((i >= 0 && i < WIN_H)
 			&& (*((int *)w->surface->pixels + (i * WIN_W + r->x)) == 0))
-			*((int *)w->surface->pixels + (i * WIN_W + r->x)) = DARK * r->light;
+			*((int *)w->surface->pixels + (i * WIN_W + r->x)) = DARK;
 	r->y_max = (int)r->offset_start;
 }
 
@@ -92,24 +92,11 @@ int		draw_wall_2(t_win *w, t_ray *r, t_sector sector, t_wall wall)
 				- sector.floor_height) / r->dist_wall) * r->dist_pp;
 	r->line_h = r->offset_end - r->offset_start;
 	wall_textures(w, r, sector, wall);
-	// i = 0;
-	// while (i++ < (int)r->offset_start)
-	// 	if ((i >= 0 && i < WIN_H) && (i > r->y_min && i < r->y_max - 1)
-	// 		&& (*((int *)w->surface->pixels + (i * WIN_W + r->x)) == 0))
-	// 		*((int *)w->surface->pixels + (i * WIN_W + r->x)) = GREY * r->light;
-	// while (i++ < (int)r->offset_end)
-	// 	if ((i >= 0 && i < WIN_H) && (i > r->y_min && i < r->y_max - 1)
-	// 		&& (*((int *)w->surface->pixels + (i * WIN_W + r->x)) == 0))
-	// 		*((int *)w->surface->pixels + (i * WIN_W + r->x)) = (r->cur_sector + 1) * 25000 * r->light;
-	// while (i++ < WIN_H)
-	// 	if ((i >= 0 && i < WIN_H) && (i > r->y_min && i < r->y_max - 1)
-	// 		&& (*((int *)w->surface->pixels + (i * WIN_W + r->x)) == 0))
-	// 		*((int *)w->surface->pixels + (i * WIN_W + r->x)) = DARK * r->light;
-	if (r->last_sec == -2)
-	{
-		r->last_y_min = (int)r->offset_start;
-		r->last_y_max = (int)r->offset_end;
-	}
+	// if (r->last_sec == -2)
+	// {
+	// 	r->last_y_min = (int)r->offset_start;
+	// 	r->last_y_max = (int)r->offset_end;
+	// }
 	return (1);
 }
 

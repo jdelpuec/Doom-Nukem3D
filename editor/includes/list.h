@@ -6,7 +6,7 @@
 /*   By: lubernar <lubernar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/13 17:21:42 by lubernar          #+#    #+#             */
-/*   Updated: 2020/02/08 15:22:12 by lubernar         ###   ########.fr       */
+/*   Updated: 2020/02/16 14:13:03 by lubernar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,10 +41,10 @@ typedef	struct			s_lst_sprite
 
 typedef struct 			s_elem
 {
-	int					x1;
-	int					y1;
-	int					x2;
-	int					y2;
+	float				x1;
+	float				y1;
+	float				x2;
+	float				y2;
 	int					num_text;
 	int					nb_maillon;
 	struct s_elem 		*prev;

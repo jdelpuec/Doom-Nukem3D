@@ -6,7 +6,7 @@
 /*   By: lubernar <lubernar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/03 11:51:17 by lubernar          #+#    #+#             */
-/*   Updated: 2020/02/06 10:14:50 by lubernar         ###   ########.fr       */
+/*   Updated: 2020/02/17 13:55:19 by lubernar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,7 +46,7 @@ void	write_text(t_sdl *sdl, t_editor *edit)
 	if (sdl->mes == NULL)
 		return ;
 	apply_surface((W / 1.45), 165, sdl->mes, sdl->ren);
-	sdl->mes = TTF_RenderText_Solid(sdl->font, "Ennemies", sdl->fc);
+	sdl->mes = TTF_RenderText_Solid(sdl->font, "Gravity", sdl->fc);
 	if (sdl->mes == NULL)
 		return ;
 	apply_surface((W / 1.45), 265, sdl->mes, sdl->ren);

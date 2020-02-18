@@ -6,7 +6,7 @@
 /*   By: jdelpuec <jdelpuec@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/28 15:29:08 by jdelpuec          #+#    #+#             */
-/*   Updated: 2020/02/16 14:32:45 by jdelpuec         ###   ########.fr       */
+/*   Updated: 2020/02/17 14:10:40 by jdelpuec         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,6 @@ void    wall_collision_2(t_ray *r, t_wall wall)
 void    wall_collision(t_ray *r, t_vector_3d wd, t_wall wall)
 {
 	t_vector_3d	old;
-	(void)wall;
 	old 	= r->player.velocity;
 	if (wd.x == 0)
 	{
@@ -47,6 +46,6 @@ void    wall_collision(t_ray *r, t_vector_3d wd, t_wall wall)
 		old.y * wd.y) / (wd.x * wd.x + wd.y + wd.y);
         return ;
 	}
-    wall_collision_2(r, wall);
+	wall_collision_2(r, wall);
     return ;
 }

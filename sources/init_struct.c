@@ -6,7 +6,7 @@
 /*   By: jdelpuec <jdelpuec@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/10 11:27:26 by jdelpuec          #+#    #+#             */
-/*   Updated: 2020/02/16 18:19:19 by jdelpuec         ###   ########.fr       */
+/*   Updated: 2020/02/17 18:02:25 by jdelpuec         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,6 +25,7 @@ t_text_tab	init_text()
 	tab[1] = "./ressources/textures/WildGrass.bmp";
 	tab[2] = NULL;
 	text_list = handle_textures(tab, 0);
+	free(tab);
 	if (text_list.id == -1)
 	{
 		ft_putendl("Textures failed to load, please check your paths. \n");
@@ -55,10 +56,23 @@ void		init_sdl(t_win *w)
 		ft_putstr(SDL_GetError());
 		ft_putstr("Surface error.\n");
 	}
-	SDL_ShowCursor(0);
 	w->hud = find("ressources/hud/health.bmp");
 	w->hud2 = find("ressources/hud/ammo_copy.bmp");
 	w->hud3 = find("ress/inventory.bmp");
+	w->old_time = 0.0;
+	w->time = 0.0;
+	w->text_list = init_text();
+	w->reload = 0;
+	w->fired = 0;
+	w->old_t = 0.0;
+	FMOD_System_Create(&w->s.fmod);
+	FMOD_System_Init(w->s.fmod, 32, FMOD_INIT_NORMAL, NULL);
+	FMOD_System_CreateSound(w->s.fmod, "sound/shotgun.wav", FMOD_CREATESAMPLE, 0,
+		&w->s.shot);
+	FMOD_System_CreateSound(w->s.fmod, "sound/reload.wav", FMOD_CREATESAMPLE, 0,
+		&w->s.reload);
+	FMOD_System_CreateSound(w->s.fmod, "sound/blue_bird.wav", FMOD_SOFTWARE
+		| FMOD_2D | FMOD_CREATESTREAM, 0, &w->s.music);
 }
 
 void		get_sector_vertices(t_ray *r)
@@ -95,9 +109,16 @@ void		init_t_ray(t_ray *r, t_env *env)
 	r->last_sec = -2;
 	r->speed	= 5.0;
 	r->thresh	= 1;
+	r->gravity	= 2;
+	r->inv.nb_bullet = 50;
+	r->inv.nb_hp = 100;
+	r->inv.anim = 0;
+	r->gun = init_gun();
 
 	r->sectors = env->sct;
 	r->player = env->player;
 	r->sector_count = env->room;
+	r->inv.sprite = env->spt;
+	r->space = r->sector_count > 1 ? 1.8 : 4;
 	get_sector_vertices(r);
 }
