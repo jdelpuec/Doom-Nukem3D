@@ -6,11 +6,11 @@
 /*   By: lubernar <lubernar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/06/05 15:02:00 by jdelpuec          #+#    #+#             */
-/*   Updated: 2020/02/16 15:17:55 by lubernar         ###   ########.fr       */
+/*   Updated: 2020/02/19 16:19:26 by lubernar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../includes/Doom_Nukem.h"
+#include "../includes/editor.h"
 
 int				*int_malloc(char *name, int size)
 {

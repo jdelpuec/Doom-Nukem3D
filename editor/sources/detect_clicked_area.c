@@ -6,11 +6,11 @@
 /*   By: lubernar <lubernar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/05 14:40:36 by lubernar          #+#    #+#             */
-/*   Updated: 2020/02/18 11:52:38 by lubernar         ###   ########.fr       */
+/*   Updated: 2020/02/19 16:19:08 by lubernar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../includes/Doom_Nukem.h"
+#include "../includes/editor.h"
 
 void		display_sprite(t_lst **lst, t_sprite *s, t_sdl *sdl, t_editor *e)
 {

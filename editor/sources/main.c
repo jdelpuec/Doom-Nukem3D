@@ -6,11 +6,11 @@
 /*   By: lubernar <lubernar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/26 12:12:50 by cduverge          #+#    #+#             */
-/*   Updated: 2020/02/18 15:44:04 by lubernar         ###   ########.fr       */
+/*   Updated: 2020/02/19 16:19:45 by lubernar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../includes/Doom_Nukem.h"
+#include "../includes/editor.h"
 
 void	mouse_button_down(t_sdl *sdl, t_editor *edit)
 {

@@ -6,11 +6,11 @@
 /*   By: lubernar <lubernar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/03 13:43:49 by lubernar          #+#    #+#             */
-/*   Updated: 2020/02/18 15:44:39 by lubernar         ###   ########.fr       */
+/*   Updated: 2020/02/19 16:19:33 by lubernar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../includes/Doom_Nukem.h"
+#include "../includes/editor.h"
 
 t_elem		init_elem(void)
 {

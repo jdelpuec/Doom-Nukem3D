@@ -6,11 +6,11 @@
 /*   By: lubernar <lubernar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/03 13:01:09 by lubernar          #+#    #+#             */
-/*   Updated: 2020/02/18 14:13:53 by lubernar         ###   ########.fr       */
+/*   Updated: 2020/02/19 16:19:19 by lubernar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../includes/Doom_Nukem.h"
+#include "../includes/editor.h"
 
 void	player_sprites_coord(t_editor *edit, t_sdl *sdl)
 {

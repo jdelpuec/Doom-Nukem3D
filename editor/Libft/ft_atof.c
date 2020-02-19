@@ -6,7 +6,7 @@
 /*   By: lubernar <lubernar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/16 14:23:07 by lubernar          #+#    #+#             */
-/*   Updated: 2020/02/16 14:24:07 by lubernar         ###   ########.fr       */
+/*   Updated: 2020/02/19 16:31:11 by lubernar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,8 +36,8 @@ float	ft_end_atof(char *s, unsigned long i, float res)
 
 float	ft_atof(char *s)
 {
-	float           res;
-	int             signe;
+	float			res;
+	int				signe;
 	unsigned long	i;
 
 	res = 0.f;

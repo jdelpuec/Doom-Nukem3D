@@ -6,11 +6,11 @@
 /*   By: lubernar <lubernar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/03 11:56:05 by lubernar          #+#    #+#             */
-/*   Updated: 2020/02/18 15:29:26 by lubernar         ###   ########.fr       */
+/*   Updated: 2020/02/19 16:19:59 by lubernar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../includes/Doom_Nukem.h"
+#include "../includes/editor.h"
 
 void		display_l(int x, int y, t_sdl *sdl, t_text_tab tmp)
 {

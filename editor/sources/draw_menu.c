@@ -6,11 +6,11 @@
 /*   By: lubernar <lubernar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/03 09:55:59 by lubernar          #+#    #+#             */
-/*   Updated: 2020/02/18 14:24:02 by lubernar         ###   ########.fr       */
+/*   Updated: 2020/02/19 16:19:15 by lubernar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../includes/Doom_Nukem.h"
+#include "../includes/editor.h"
 #include "../includes/list.h"
 
 void	draw_contour(t_sdl *sdl)

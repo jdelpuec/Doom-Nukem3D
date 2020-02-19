@@ -6,11 +6,11 @@
 /*   By: lubernar <lubernar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/13 17:07:11 by lubernar          #+#    #+#             */
-/*   Updated: 2020/02/03 13:55:24 by lubernar         ###   ########.fr       */
+/*   Updated: 2020/02/19 16:19:39 by lubernar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../includes/Doom_Nukem.h"
+#include "../includes/editor.h"
 #include "../includes/list.h"
 
 void	init_lst_w(t_lst **lst, t_editor *edit)

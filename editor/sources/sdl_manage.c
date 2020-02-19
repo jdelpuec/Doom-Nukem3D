@@ -6,11 +6,11 @@
 /*   By: lubernar <lubernar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/04 11:37:23 by lubernar          #+#    #+#             */
-/*   Updated: 2020/02/18 15:22:59 by lubernar         ###   ########.fr       */
+/*   Updated: 2020/02/19 16:19:55 by lubernar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../includes/Doom_Nukem.h"
+#include "../includes/editor.h"
 
 void	apply_surface(int x, int y, SDL_Surface *source, SDL_Surface *dest)
 {
