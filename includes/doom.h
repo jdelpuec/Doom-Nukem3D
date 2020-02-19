@@ -6,7 +6,7 @@
 /*   By: lubernar <lubernar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/04/01 11:50:31 by ebonafi           #+#    #+#             */
-/*   Updated: 2020/02/17 12:18:18 by lubernar         ###   ########.fr       */
+/*   Updated: 2020/02/19 16:24:47 by cduverge         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -90,6 +90,7 @@ typedef struct		s_player
 	float		angle;
 	float		yaw;
 	int			sector;
+	int			gravity;
 }					t_player;
 
 typedef struct		s_wall
@@ -163,8 +164,9 @@ float	ft_atof(char *str);
 //pars_sprites.c
 int		check_sprites(int fd, t_env *doom, int nb);
 int		get_nb_sprites(int fd, t_env *doom);
-void	fill_up_sprite(char *str, t_env *doom, int i);
-int		check_line_sprite(char *str);
+void	fill_up_sprite_coor(char *str, t_env *doom, int i);
+int		check_if_sprites(int fd);
+int		check_sprite_id(int fd, t_env *doom, int i);
 //main.c
 int		check_bright(int i, char *str, int spc);
 int		all_check(t_env *doom, int fd);

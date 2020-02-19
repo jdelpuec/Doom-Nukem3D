@@ -6,7 +6,7 @@
 /*   By: cduverge <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/27 14:52:46 by cduverge          #+#    #+#             */
-/*   Updated: 2020/02/17 17:30:44 by cduverge         ###   ########.fr       */
+/*   Updated: 2020/02/19 14:16:43 by cduverge         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -117,13 +117,12 @@ int		parsing(char *str, t_env *doom)
 		ft_putendl_fd("Empty file.", 2);
 		return (-1);
 	}
-	if ((ft_isdigit(line[0]) == 1) && (line[1] == '\0'))
-	{
-		doom->room = ft_atoi(line);
-		free(line);
-	}
-	else
-		return (free_and_return(line));
+	if (number_or_dot(line) == -1)
+		return(free_and_return(line));
+	doom->room = ft_atoi(line);
+	if (doom->room <= 0 && doom->room > 99)
+		return(free_and_return(line));
+	free(line);
 	if (all_check(doom, fd) == -1)
 		return (-1);
 	return (0);

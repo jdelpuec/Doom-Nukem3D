@@ -6,7 +6,7 @@
 /*   By: jdelpuec <jdelpuec@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/26 12:12:50 by cduverge          #+#    #+#             */
-/*   Updated: 2020/02/15 19:10:12 by jdelpuec         ###   ########.fr       */
+/*   Updated: 2020/02/19 13:50:52 by cduverge         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,6 +71,9 @@ void	fill_up_player(char *line, t_env *doom)
 	while (line[k] != ' ')
 		++k;
 	doom->player.sector = ft_atoi(line + k);
+	while (line[k] != ' ')
+		++k;
+	doom->player.gravity = ft_atoi(line + k);
 }
 
 int		check_portal_sector(int fd, t_wall *walls, int j)

@@ -6,7 +6,7 @@
 /*   By: lubernar <lubernar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/14 09:39:40 by cduverge          #+#    #+#             */
-/*   Updated: 2020/02/15 16:06:17 by lubernar         ###   ########.fr       */
+/*   Updated: 2020/02/19 16:35:28 by cduverge         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,12 +23,14 @@ int		check_sprites(int fd, t_env *doom, int nb)
 	{
 		if (number_or_dot(line) == -1)
 			return (free_and_return(line));
-		if (check_line_sprite(line) == -1)
+		if (check_line(line) == -1)
 			return (free_and_return(line));
-		fill_up_sprite(line, doom, nb);
+		fill_up_sprite_coor(line, doom, nb);
 		free(line);
 	}
 	if (ret <= 0)
+		return (-1);
+	if (check_sprite_id(fd, doom, nb) == -1)
 		return (-1);
 	++nb;
 	if (nb == doom->sprites)
@@ -55,7 +57,7 @@ int		get_nb_sprites(int fd, t_env *doom)
 	return (0);
 }
 
-void	fill_up_sprite(char *str, t_env *doom, int i)
+void	fill_up_sprite_coor(char *str, t_env *doom, int i)
 {
 	int		k;
 
@@ -68,60 +70,58 @@ void	fill_up_sprite(char *str, t_env *doom, int i)
 	while (str[k] != ' ')
 		++k;
 	doom->spt[i].pos.z = ft_atof(str + k);
-	++k;
-	while (str[k] != ' ')
-		++k;
-	doom->spt[i].id = ft_atoi(str + k);
-	++k;
-	while (str[k] != ' ')
-		++k;
-	doom->spt[i].sector = ft_atoi(str + k);
-	if (doom->spt[i].id == 1 || doom->spt[i].id == 2)
-		doom->spt[i].pickable = 1;
-	else
-		doom->spt[i].pickable = 0;
-
 }
 
-int		check_line_sprite_2(char *str, int k)
+int		check_sprite_id(int fd, t_env *doom, int i)
 {
-	int		test;
-
-	test = 0;
-	while (str[k] != '\0')
-	{
-		test = ft_atoi(str + k);
-		if (test < 0)
-			return (-1);
-		while (ft_isdigit(str[k]) == 1)
-			++k;
-		++k;
-	}
-	return (0);
-}
-
-int		check_line_sprite(char *str)
-{
-	float	test;
+	char	*line;
+	int		ret;
 	int		k;
-	int		count;
 
 	k = 0;
-	count = 0;
-	while (++count <= 3)
+	if ((ret = get_next_line(fd, &line)) > 0)
 	{
-		test = ft_atof(str + k);
-		if (test < -99.9 || test > 99.9)
-			return (-1);
-		if (test >= 0)
-			test > 10 ? k = k + 4 : (k += 3);
-		else
-			test > -10 ? k = k + 4 : (k += 5);
-		if (str[k] != ' ')
-			return (-1);
-		++k;
+		if (number_or_dot(line) == -1)
+			return (free_and_return(line));
+		while (line[k] != '\0')
+		{
+			doom->spt[i].id = ft_atoi(line);
+			if (doom->spt[i].id < 0)
+				return (free_and_return(line));
+			if (doom->spt[i].id == 1 || doom->spt[i].id == 2)
+				doom->spt[i].pickable = 1;
+			else
+				doom->spt[i].pickable = 0;
+			while (line[k] != ' ')
+				++k;
+			++k;
+			doom->spt[i].sector = ft_atoi(line);
+			if (doom->spt[i].sector < 0)
+				return (free_and_return(line));
+		}
+			free(line);
 	}
-	if (check_line_sprite_2(str, k) == -1)
+	if (ret <= 0)
 		return (-1);
 	return (0);
+}
+
+int		check_if_sprites(int fd)
+{
+	int		ret;
+	char	*line;
+	int		i;
+
+	i = 0;
+	while (i < 3)
+	{
+		ret = get_next_line(fd, &line);
+		if (ret == 0)
+			return (0);
+		else if (ret == -1)
+			return (-1);
+		free(line);
+		++i;
+	}
+	return (2);
 }

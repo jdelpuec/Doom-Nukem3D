@@ -6,7 +6,7 @@
 /*   By: jdelpuec <jdelpuec@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/12/17 13:57:37 by cduverge          #+#    #+#             */
-/*   Updated: 2020/02/15 18:48:07 by jdelpuec         ###   ########.fr       */
+/*   Updated: 2020/02/19 14:23:33 by cduverge         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -79,6 +79,13 @@ int		check_player(char *line)
 			++i;
 			++spc;
 		}
+	}
+	if ((ft_isdigit(line[i]) == 1) && (line[i + 1] == ' '))
+	{
+		spc = ft_atoi(line + i);
+		if (spc < 1 && spc > 2)
+			return (-1);
+		i = i + 2;
 	}
 	if ((ft_isdigit(line[i]) == 1) && (line[i + 1] == '\0'))
 		return (0);

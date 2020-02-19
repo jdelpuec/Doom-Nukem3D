@@ -6,7 +6,7 @@
 /*   By: jdelpuec <jdelpuec@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/27 14:52:46 by cduverge          #+#    #+#             */
-/*   Updated: 2020/02/15 19:01:14 by jdelpuec         ###   ########.fr       */
+/*   Updated: 2020/02/19 16:35:45 by cduverge         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -79,6 +79,8 @@ int		check_data_sector(int fd, t_env *doom, int index)
 
 int		all_room(int fd, t_env *doom, int n_room)
 {
+	int		ret;
+
 	if (back_to_line(fd) == -1)
 		return (-1);
 	if (check_data_sector(fd, doom, n_room) == -1)
@@ -86,8 +88,10 @@ int		all_room(int fd, t_env *doom, int n_room)
 	++n_room;
 	if (n_room == doom->room)
 	{
-		if (back_to_line(fd) == -1)
+		if ((ret = check_if_sprites(fd)) == -1)
 			return (-1);
+		if (ret == 0)
+			return (0);
 		if (get_nb_sprites(fd, doom) == -1)
 			return (-1);
 		if (check_sprites(fd, doom, 0))
@@ -113,15 +117,12 @@ int		parsing(char *str, t_env *doom)
 		ft_putendl_fd("Empty file.", 2);
 		return (-1);
 	}
-	// if ((ft_isdigit(line[0]) == 1) && (line[1] == '\0'))
-	// {
-		doom->room = ft_atoi(line);
-		free(line);
-	// }
-	// else
-		// return (free_and_return(line));
-	if (doom->room > 99)
-		return (-1);
+	if (number_or_dot(line) == -1)
+		return(free_and_return(line));
+	doom->room = ft_atoi(line);
+	if (doom->room <= 0 && doom->room > 99)
+		return(free_and_return(line));
+	free(line);
 	if (all_check(doom, fd) == -1)
 		return (-1);
 	return (0);
