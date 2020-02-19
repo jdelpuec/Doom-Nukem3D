@@ -6,7 +6,7 @@
 #    By: lubernar <lubernar@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2019/11/19 15:16:10 by jdelpuec          #+#    #+#              #
-#    Updated: 2020/02/19 14:10:26 by lubernar         ###   ########.fr        #
+#    Updated: 2020/02/19 16:14:07 by lubernar         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -16,7 +16,8 @@ SRC	=	main.c handle_keyboard_event.c handle_mouse_event.c	map.c deg_to_rad.c \
 		collision.c math.c inventory.c handle_textures.c ft_malloc.c \
 		gun.c init_struct.c set_draw.c wall_draw.c set_textures.c\
 		hud.c parsing.c check_map.c parser.c parsing_2.c usefull.c \
-		pars_sprites.c hud_tools.c math_2.c print_messages.c
+		pars_sprites.c hud_tools.c math_2.c print_messages.c handle_k_mvt.c \
+		draw_portal_ceil.c
 
 OBJ =	$(SRC:.c=.o)
 

@@ -6,7 +6,7 @@
 /*   By: lubernar <lubernar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/15 17:28:38 by lubernar          #+#    #+#             */
-/*   Updated: 2020/02/19 14:27:33 by lubernar         ###   ########.fr       */
+/*   Updated: 2020/02/19 15:58:10 by lubernar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,6 +33,34 @@ void		display(int x, int y, t_text_tab hud, t_win *win)
 			if (hud.data[(text_y * hud.w) + text_x] != 0x00ff00)
 				*((int *)win->surface->pixels + (y * WIN_W + x)) =
 				hud.data[(text_y * hud.h) + text_x];
+			y++;
+			text_y++;
+		}
+		x++;
+		text_x++;
+	}
+}
+
+void		display_l(int x, int y, t_win *sdl, t_text_tab tmp)
+{
+	int	text_x;
+	int text_y;
+	int	tmp_x;
+	int	tmp_y;
+
+	tmp_x = x;
+	tmp_y = y;
+	text_x = 0;
+	text_y = 0;
+	while (x < tmp_x + tmp.w)
+	{
+		y = tmp_y;
+		text_y = 0;
+		while (y < tmp_y + tmp.h)
+		{
+			if (tmp.data[(text_y * tmp.w) + text_x] != 0x00ff00)
+				*((int *)sdl->surface->pixels + (y * WIN_W + x)) =
+				tmp.data[(text_y * tmp.h) + text_x];
 			y++;
 			text_y++;
 		}

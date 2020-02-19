@@ -6,7 +6,7 @@
 /*   By: lubernar <lubernar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/10 14:05:34 by jdelpuec          #+#    #+#             */
-/*   Updated: 2020/02/17 13:24:56 by lubernar         ###   ########.fr       */
+/*   Updated: 2020/02/19 16:10:00 by lubernar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -133,11 +133,5 @@ void	drawing(t_win *w, t_ray *r, t_keyboard *k)
 		fire_gunshot(w, &r->gun);
 	if (w->reload == 1)
 		reload_gun(&r->reload_gun, w);
-// 	inven
-	// --> mettre ici les sprites :
-
-	//
-	// --> mettre ici l'affichage de l'HUD :
-	//
 	SDL_UpdateWindowSurface(w->win);
 }

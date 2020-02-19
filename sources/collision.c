@@ -6,7 +6,7 @@
 /*   By: lubernar <lubernar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/28 15:29:08 by jdelpuec          #+#    #+#             */
-/*   Updated: 2020/02/18 11:54:43 by lubernar         ###   ########.fr       */
+/*   Updated: 2020/02/19 15:51:28 by lubernar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 #include "raycasting.h"
 #include "event.h"
 
-void    wall_collision_2(t_ray *r, t_wall wall)
+void		wall_collision_2(t_ray *r, t_wall wall)
 {
 	t_vector_3d	normal;
 	t_vector_3d	tmp;
@@ -26,27 +26,27 @@ void    wall_collision_2(t_ray *r, t_wall wall)
 	r->player.velocity.y = tmp.y - get_dot_poduct(normal, tmp) * normal.y;
 }
 
-void    wall_collision(t_ray *r, t_vector_3d wd, t_wall wall)
+void		wall_collision(t_ray *r, t_vector_3d wd, t_wall wall)
 {
 	t_vector_3d	old;
-	(void)wall;
-	old 	= r->player.velocity;
+
+	old = r->player.velocity;
 	if (wd.x == 0)
 	{
-        r->player.velocity.x = wd.y * (old.x * wd.x +
+		r->player.velocity.x = wd.y * (old.x * wd.x +
 		old.y * wd.y) / (wd.x * wd.x + wd.y + wd.y);
 		r->player.velocity.x = wd.x * (old.x * wd.x +
 		old.y * wd.y) / (wd.x * wd.x + wd.y + wd.y);
-        return ;
+		return ;
 	}
-    else if (wd.y == 0)
+	else if (wd.y == 0)
 	{
 		r->player.velocity.y = wd.x * (old.x * wd.x +
 		old.y * wd.y) / (wd.x * wd.x + wd.y + wd.y);
 		r->player.velocity.y = wd.y * (old.x * wd.x +
 		old.y * wd.y) / (wd.x * wd.x + wd.y + wd.y);
-        return ;
+		return ;
 	}
 	wall_collision_2(r, wall);
-    return ;
+	return ;
 }

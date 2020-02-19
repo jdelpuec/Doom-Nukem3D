@@ -6,7 +6,7 @@
 /*   By: lubernar <lubernar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/06 11:22:11 by siwarin           #+#    #+#             */
-/*   Updated: 2020/02/18 11:56:36 by lubernar         ###   ########.fr       */
+/*   Updated: 2020/02/19 15:31:32 by lubernar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 #include "inventory.h"
 #include "raycasting.h"
 
-void	apply_surface(int x, int y, SDL_Surface *source, SDL_Surface *dest)
+void		apply_surface(int x, int y, SDL_Surface *source, SDL_Surface *dest)
 {
 	SDL_Rect offset;
 

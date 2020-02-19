@@ -6,7 +6,7 @@
 /*   By: lubernar <lubernar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/04/06 14:58:06 by siwarin           #+#    #+#             */
-/*   Updated: 2020/02/18 16:49:16 by lubernar         ###   ########.fr       */
+/*   Updated: 2020/02/19 15:51:43 by lubernar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,5 +14,5 @@
 
 float		deg_to_rad(float angle)
 {
-	return ((float)(angle * M_PI/180.00) + 0.0001);
+	return ((float)(angle * M_PI / 180.00) + 0.0001);
 }

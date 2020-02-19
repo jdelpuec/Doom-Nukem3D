@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   math.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jdelpuec <jdelpuec@student.42.fr>          +#+  +:+       +#+        */
+/*   By: lubernar <lubernar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/05 10:51:22 by jdelpuec          #+#    #+#             */
-/*   Updated: 2020/02/16 17:02:31 by jdelpuec         ###   ########.fr       */
+/*   Updated: 2020/02/19 16:07:51 by lubernar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,15 +47,11 @@ t_vector_3d	get_cross_poduct(t_vector_3d v1, t_vector_3d v2)
 	return (ret);
 }
 
-float		get_dot_poduct(t_vector_3d v1, t_vector_3d v2)
-{
-	return (v1.x * v2.x + v1.y * v2.y);
-}
-
 float		get_vector2d_length(t_vector_2d v)
 {
 	return (sqrtf(v.x * v.x + v.y * v.y));
 }
+
 
 t_vector_3d	normalize_vec(t_vector_3d v)
 {
