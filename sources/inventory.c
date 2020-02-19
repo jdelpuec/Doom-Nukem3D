@@ -6,7 +6,7 @@
 /*   By: lubernar <lubernar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/07 13:20:48 by lubernar          #+#    #+#             */
-/*   Updated: 2020/02/18 15:52:28 by lubernar         ###   ########.fr       */
+/*   Updated: 2020/02/19 14:29:25 by lubernar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,9 +51,9 @@ void		init_inventory(t_invent *inv)
 	inv->nb_baguette = 0;
 	inv->nb_noodles_c = 0;
 	inv->invent.inventory = (char**)malloc(sizeof(char*) * 4);
-	inv->invent.inventory[0] = "ress/noodles.bmp";
-	inv->invent.inventory[1] = "ress/baguettes.bmp";
-	inv->invent.inventory[2] = "ress/noodlescomplete.bmp";
+	inv->invent.inventory[0] = "./ressources/noodles.bmp";
+	inv->invent.inventory[1] = "./ressources/baguettes.bmp";
+	inv->invent.inventory[2] = "./ressources/noodlescomplete.bmp";
 	inv->invent.inventory[3] = NULL;
 	while (++i < 4)
 		inv->invent.inventory_display[i] = 0;
@@ -94,7 +94,7 @@ void		display_inventory(t_win *sdl, t_ray *r, int *j)
 {
 	if (*j == 0)
 	{
-		r->inv.list = handle_textures(r->inv.invent.inventory, 0);
+		r->inv.list = handle_textures(r->inv.invent.inventory, -1);
 		free(r->inv.invent.inventory);
 	}
 	r->inv.list.data == NULL ? exit(0) : 0;

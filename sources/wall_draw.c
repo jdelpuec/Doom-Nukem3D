@@ -6,7 +6,7 @@
 /*   By: lubernar <lubernar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/10 14:12:36 by jdelpuec          #+#    #+#             */
-/*   Updated: 2020/02/18 12:09:49 by lubernar         ###   ########.fr       */
+/*   Updated: 2020/02/19 14:39:28 by lubernar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,7 @@ void	draw_portal_ceil(t_win *w, t_ray *r, t_sector sector,
 		- r->player.position.x)) + ((r->hit_y - r->player.position.y)
 		* (r->hit_y - r->player.position.y)));
 	r->dist *= cos(r->ray_angle - r->player.angle);
-	r->dist_wall = r->dist * PLAYER_H;
+	r->dist_wall = r->dist * PLAY_H;
 	r->offset_start = (WIN_H >> 1) + ((r->player.position.z
 				- sector.ceil_height) / r->dist_wall) * r->dist_pp;
 	r->offset_end = (WIN_H >> 1) + ((r->player.position.z
@@ -50,7 +50,7 @@ void	draw_portal_floor(t_win *w, t_ray *r, t_sector sector,
 		- r->player.position.x)) + ((r->hit_y - r->player.position.y)
 		* (r->hit_y - r->player.position.y)));
 	r->dist *= cos(r->ray_angle - r->player.angle);
-	r->dist_wall = r->dist * PLAYER_H;
+	r->dist_wall = r->dist * PLAY_H;
 	r->offset_start = (WIN_H >> 1) + ((r->player.position.z
 				- portal_sec.floor_height) / r->dist_wall) * r->dist_pp;
 	r->offset_end = (WIN_H >> 1) + ((r->player.position.z
@@ -85,7 +85,7 @@ int		draw_wall_2(t_win *w, t_ray *r, t_sector sector, t_wall wall)
 		- r->player.position.x)) + ((r->hit_y - r->player.position.y)
 		* (r->hit_y - r->player.position.y)));
 	r->dist *= cos(r->ray_angle - r->player.angle);
-	r->dist_wall = r->dist * PLAYER_H;
+	r->dist_wall = r->dist * PLAY_H;
 	r->offset_start = (WIN_H >> 1) + ((r->player.position.z
 				- sector.ceil_height) / r->dist_wall) * r->dist_pp;
 	r->offset_end = (WIN_H >> 1) + ((r->player.position.z

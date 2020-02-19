@@ -6,7 +6,7 @@
 /*   By: lubernar <lubernar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/12 12:53:22 by lubernar          #+#    #+#             */
-/*   Updated: 2020/02/17 11:10:54 by lubernar         ###   ########.fr       */
+/*   Updated: 2020/02/19 14:33:27 by lubernar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,11 +45,11 @@ void		reload_gun(t_text_tab *reload_anim, t_win *w)
 	if (j == 0)
 	{
 		reload = (char **)malloc(sizeof(char *) * 4);
-		reload[0] = "ress/gun4.bmp";
-		reload[1] = "ress/gun5.bmp";
-		reload[2] = "ress/gun2.bmp";
+		reload[0] = "./ressources/gun4.bmp";
+		reload[1] = "./ressources/gun5.bmp";
+		reload[2] = "./ressources/gun2.bmp";
 		reload[3] = NULL;
-		*reload_anim = handle_textures(reload, 0);
+		*reload_anim = handle_textures(reload, -1);
 		free(reload);
 		j = 1;
 	}
@@ -69,10 +69,10 @@ t_text_tab	init_gun(void)
 	if (j == 0)
 	{
 		gun = (char **)malloc(sizeof(char *) * 3);
-		gun[0] = "ress/gun1.bmp";
-		gun[1] = "ress/gun2.bmp";
+		gun[0] = "./ressources/gun1.bmp";
+		gun[1] = "./ressources/gun2.bmp";
 		gun[2] = NULL;
-		gun_anim = handle_textures(gun, 0);
+		gun_anim = handle_textures(gun, -1);
 		free(gun);
 		j = 1;
 	}
@@ -91,8 +91,5 @@ void		fire_gunshot(t_win *w, t_text_tab *gun_anim)
 		display_l((WIN_W / 2), (WIN_H) - 240, w, *gun_anim);
 	}
 	if (SDL_GetTicks() - w->old_t_f > 300)
-	{
 		w->fired = 0;
-	}
-	// FMOD_Sound_Release(w->s.shot);
 }

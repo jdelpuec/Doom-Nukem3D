@@ -6,7 +6,7 @@
 /*   By: lubernar <lubernar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/10 11:27:26 by jdelpuec          #+#    #+#             */
-/*   Updated: 2020/02/18 15:59:33 by lubernar         ###   ########.fr       */
+/*   Updated: 2020/02/19 14:29:42 by lubernar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,7 @@ t_text_tab	init_text()
 	tab[0] = "./ressources/textures/Bamboo.bmp";
 	tab[1] = "./ressources/textures/WildGrass.bmp";
 	tab[2] = NULL;
-	text_list = handle_textures(tab, 0);
+	text_list = handle_textures(tab, -1);
 	free(tab);
 	if (text_list.id == -1)
 	{
@@ -58,7 +58,7 @@ void		init_sdl(t_win *w)
 	}
 	w->hud = find("ressources/hud/health.bmp");
 	w->hud2 = find("ressources/hud/ammo_copy.bmp");
-	w->hud3 = find("ress/inventory.bmp");
+	w->hud3 = find("ressources/hud/inventory.bmp");
 	w->old_time = 0.0;
 	w->time = 0.0;
 	w->text_list = init_text();

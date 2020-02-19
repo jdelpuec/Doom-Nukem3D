@@ -5,8 +5,8 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: lubernar <lubernar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/04/02 11:15:57 by ebonafi           #+#    #+#             */
-/*   Updated: 2020/02/18 11:56:25 by lubernar         ###   ########.fr       */
+/*   Created: 2019/04/02 11:15:57 by siwarin           #+#    #+#             */
+/*   Updated: 2020/02/19 14:39:56 by lubernar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@ void	init_keyboard(t_keyboard *k)
 	k->state = SDL_GetKeyboardState(NULL);
 }
 
-int	is_key_pressed(t_keyboard *k)
+int		is_key_pressed(t_keyboard *k)
 {
 	int	pressed;
 
@@ -108,22 +108,23 @@ int		test_box(t_ray *r, t_vector_3d p, t_wall wall)
 	{
 		r->tmp = (min_x == max_x) ? 1 : 2;
 		if (r->tmp == 1)
-			if (p.x > min_x) 
+			if (p.x > min_x)
 				max_x += r->thresh;
 			else
 				min_x -= r->thresh;
 		else
-			if (p.y > min_y) 
+		{
+			if (p.y > min_y)
 				max_y += r->thresh;
 			else
 				min_y -= r->thresh;
+		}
 	}
 	return ((p.x >= min_x && p.x <= max_x) && (p.y >= min_y && p.y <= max_y));
 }
 
-float		check_line_point(t_vector_2d l1, t_vector_2d l2, t_vector_3d p)
+float	check_line_point(t_vector_2d l1, t_vector_2d l2, t_vector_3d p)
 {
-	printf("%f  \n", (l2.x - l1.x) * (p.y - l1.y) - (l2.y - l1.y) * (p.x - l1.x));
 	return ((l2.x - l1.x) * (p.y - l1.y) - (l2.y - l1.y) * (p.x - l1.x));
 }
 
@@ -138,14 +139,11 @@ void	handle_keyboard_mvt(t_win *w, t_ray *r, t_keyboard *k)
 	ms	= (1.0 / w->fps);
 	i	= 0;
 
-	// printf("min_x  = %f  ;  max_x  = %f  ; min_y  = %f  ;  miax_y  = %f \n",
-	//  r->sectors[r->player.sector].min.x, r->sectors[r->player.sector].max.x, 
-	//  	r->sectors[r->player.sector].min.y, r->sectors[r->player.sector].max.y);
 
 	if (r->player.sector > 8 || r->player.sector == 0)
 		r->speed = k->state[SDL_SCANCODE_LSHIFT] == 1 ? 8.0 : 5.0;
 
-	if (r->player.position.z - PLAYER_H != r->sectors[r->cur_sector].floor_height)
+	if (r->player.position.z - PLAY_H != r->sectors[r->cur_sector].floor_height)
 		r->speed = 5.0;
 
 		
@@ -218,7 +216,7 @@ void	handle_keyboard_mvt(t_win *w, t_ray *r, t_keyboard *k)
 				if ((r->tmp = fabsf(check_line_point(wall.p1, wall.p2, new_pos)) < 10))
 				{
 					if (wall.portal_sector >= 0 && r->player.position.z >
-					 	r->sectors[wall.portal_sector].floor_height + (PLAYER_H >> 1) &&
+					 	r->sectors[wall.portal_sector].floor_height + (PLAY_H >> 1) &&
 					 r->player.position.z <= r->sectors[wall.portal_sector].ceil_height)
 					{
 						r->player.sector		= wall.portal_sector;
@@ -253,9 +251,9 @@ void	handle_keyboard_mvt(t_win *w, t_ray *r, t_keyboard *k)
 		else
 			r->player.position.z = r->sectors[r->player.sector].ceil_height;
 
-		if (r->player.position.z < r->sectors[r->player.sector].floor_height + PLAYER_H)
+		if (r->player.position.z < r->sectors[r->player.sector].floor_height + PLAY_H)
 		{
-			r->player.position.z = r->sectors[r->player.sector].floor_height + PLAYER_H;
+			r->player.position.z = r->sectors[r->player.sector].floor_height + PLAY_H;
 			r->player.velocity.z = 0.0;
 		}
 		else

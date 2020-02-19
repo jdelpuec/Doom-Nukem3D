@@ -5,8 +5,8 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: lubernar <lubernar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/04/01 11:49:14 by ebonafi           #+#    #+#             */
-/*   Updated: 2020/02/18 15:53:06 by lubernar         ###   ########.fr       */
+/*   Created: 2019/04/01 11:49:14 by siwarin           #+#    #+#             */
+/*   Updated: 2020/02/19 14:21:44 by lubernar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -81,7 +81,7 @@ int main(int ac, char **av)
 	r.sectors = env.sct;
 	r.player = env.player;
 	
-	// env.sprites != 0 ? r.inv.sprite = env.spt : 0;
+	env.sprites != 0 ? r.inv.sprite = env.spt : 0;
 	init_t_ray(&r, &env);
 
 
