@@ -6,7 +6,7 @@
 /*   By: lubernar <lubernar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/14 09:39:40 by cduverge          #+#    #+#             */
-/*   Updated: 2020/02/19 16:35:28 by cduverge         ###   ########.fr       */
+/*   Updated: 2020/02/20 16:16:41 by cduverge         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -92,7 +92,7 @@ int		check_sprite_id(int fd, t_env *doom, int i)
 				doom->spt[i].pickable = 1;
 			else
 				doom->spt[i].pickable = 0;
-			while (line[k] != ' ')
+			while (line[k] != ' ' && line[k] != '\0')
 				++k;
 			++k;
 			doom->spt[i].sector = ft_atoi(line);
