@@ -6,7 +6,7 @@
 /*   By: lubernar <lubernar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/10 11:27:26 by jdelpuec          #+#    #+#             */
-/*   Updated: 2020/02/19 15:46:01 by lubernar         ###   ########.fr       */
+/*   Updated: 2020/02/20 17:54:14 by lubernar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -119,10 +119,6 @@ void		init_t_ray(t_ray *r, t_env *env)
 	r->sectors = env->sct;
 	r->player = env->player;
 	r->sector_count = env->room;
-	r->inv.sprite = env->spt;
-	while (++i < r->inv.nb_sprites)
-		if (r->inv.sprite[i].id == 1 || r->inv.sprite[i].id == 2)
-			r->inv.sprite[i].pickable = 1;
 	r->space = r->sector_count > 1 ? 1.8 : 4;
 	i = -1;
 	get_sector_vertices(r, i);

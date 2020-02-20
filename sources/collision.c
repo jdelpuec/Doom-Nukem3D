@@ -6,7 +6,7 @@
 /*   By: lubernar <lubernar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/28 15:29:08 by jdelpuec          #+#    #+#             */
-/*   Updated: 2020/02/19 15:51:28 by lubernar         ###   ########.fr       */
+/*   Updated: 2020/02/20 17:48:53 by lubernar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,41 @@
 #include "inventory.h"
 #include "raycasting.h"
 #include "event.h"
+
+void		new_pos_collision(t_vector_3d new_pos, t_wall wall, t_ray *r)
+{
+	new_pos = (t_vector_3d) {wall.p2.x - wall.p1.x, wall.p2.y - wall.p1.y, 0};
+	wall_collision(r, new_pos, wall);
+}
+
+int			check_walls(t_ray *r, t_vector_3d new_pos, t_wall wall)
+{
+	if (test_box(r, new_pos, wall) == 1)
+	{
+		if ((r->tmp = fabsf(check_line_point(wall.p1, wall.p2, new_pos)) < 10))
+		{
+			if (wall.portal_sector >= 0 && r->player.position.z >
+				r->sectors[wall.portal_sector].floor_height
+				+ (PLAY_H >> 1) && r->player.position.z
+				<= r->sectors[wall.portal_sector].ceil_height)
+			{
+				r->player.sector = wall.portal_sector;
+				r->speed = 5.0;
+				r->player.velocity.x = 0;
+				return (-1);
+			}
+			else if (r->tmp < r->space)
+			{
+				r->player.velocity.x = 0.0;
+				r->player.velocity.y = 0.0;
+				return (-1);
+			}
+			else
+				new_pos_collision(new_pos, wall, r);
+		}
+	}
+	return (1);
+}
 
 void		wall_collision_2(t_ray *r, t_wall wall)
 {

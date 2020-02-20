@@ -6,7 +6,7 @@
 /*   By: lubernar <lubernar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/04/01 11:49:14 by siwarin           #+#    #+#             */
-/*   Updated: 2020/02/19 15:42:02 by lubernar         ###   ########.fr       */
+/*   Updated: 2020/02/20 15:09:54 by lubernar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,8 +71,12 @@ int main(int ac, char **av)
 		exit(0);
 	}
 	if (parsing(av[1], &env) == -1)
+	{
+		ft_putstr("PARSING ISSUE\n");
 		exit (0);
-	r.inv.nb_sprites = env.sprites;
+	}
+	// r.inv.nb_sprites = env.sprites;
+	env.sprites != 0 ? r.inv.sprite = env.spt : 0;
 	r.inv.nb_bullet = 50;
 	r.inv.nb_hp = 100;
 	r.inv.anim = 0;
@@ -81,7 +85,6 @@ int main(int ac, char **av)
 	r.sectors = env.sct;
 	r.player = env.player;
 	
-	env.sprites != 0 ? r.inv.sprite = env.spt : 0;
 	init_t_ray(&r, &env);
 
 

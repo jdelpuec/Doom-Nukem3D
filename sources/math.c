@@ -6,7 +6,7 @@
 /*   By: lubernar <lubernar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/05 10:51:22 by jdelpuec          #+#    #+#             */
-/*   Updated: 2020/02/19 16:07:51 by lubernar         ###   ########.fr       */
+/*   Updated: 2020/02/20 17:55:18 by lubernar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,7 +51,6 @@ float		get_vector2d_length(t_vector_2d v)
 {
 	return (sqrtf(v.x * v.x + v.y * v.y));
 }
-
 
 t_vector_3d	normalize_vec(t_vector_3d v)
 {
