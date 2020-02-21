@@ -6,7 +6,7 @@
 /*   By: lubernar <lubernar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/04/06 14:02:38 by siwarin           #+#    #+#             */
-/*   Updated: 2020/02/20 17:47:24 by lubernar         ###   ########.fr       */
+/*   Updated: 2020/02/21 16:13:51 by lubernar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -121,5 +121,6 @@ void			fire_gunshot(t_win *w, t_text_tab *gun_anim);
 void			hud(t_win *sdl, t_ray *r);
 float			deg_to_rad(float angle);
 void			wall_textures(t_win *w, t_ray *r, t_sector sector, t_wall wall);
+void 			raysprite(t_win *w, t_ray *r);
 
 #endif

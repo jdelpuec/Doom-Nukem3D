@@ -6,7 +6,7 @@
 /*   By: lubernar <lubernar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/04/02 11:15:57 by siwarin           #+#    #+#             */
-/*   Updated: 2020/02/20 18:09:47 by lubernar         ###   ########.fr       */
+/*   Updated: 2020/02/21 14:53:40 by lubernar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -76,12 +76,7 @@ int		test_box(t_ray *r, t_vector_3d p, t_wall wall)
 			else
 				min_x -= r->thresh;
 		else
-		{
-			if (p.y > min_y)
-				max_y += r->thresh;
-			else
-				min_y -= r->thresh;
-		}
+			p.y > min_y ? (max_y += r->thresh) : (min_y -= r->thresh);
 	}
 	return ((p.x >= min_x && p.x <= max_x) && (p.y >= min_y && p.y <= max_y));
 }

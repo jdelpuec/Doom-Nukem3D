@@ -6,7 +6,7 @@
 /*   By: lubernar <lubernar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/10 11:27:26 by jdelpuec          #+#    #+#             */
-/*   Updated: 2020/02/20 17:54:14 by lubernar         ###   ########.fr       */
+/*   Updated: 2020/02/21 16:33:03 by lubernar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -115,6 +115,8 @@ void		init_t_ray(t_ray *r, t_env *env)
 	r->inv.nb_bullet = 50;
 	r->inv.nb_hp = 100;
 	r->inv.anim = 0;
+	r->inv.nb_sprites = env->sprites;
+	r->inv.nb_sprites > 0 ? r->inv.sprite = env->spt : 0;
 	r->gun = init_gun();
 	r->sectors = env->sct;
 	r->player = env->player;

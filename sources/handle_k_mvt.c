@@ -6,7 +6,7 @@
 /*   By: lubernar <lubernar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/19 14:41:55 by lubernar          #+#    #+#             */
-/*   Updated: 2020/02/20 17:49:07 by lubernar         ###   ########.fr       */
+/*   Updated: 2020/02/21 12:44:35 by lubernar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -132,5 +132,7 @@ void	handle_keyboard_mvt(t_win *w, t_ray *r, t_keyboard *k)
 		r->player.velocity.y = 0;
 	}
 	DEBROUILLE_TOI_AVEC_LE_NOM_DE_CELLE_LA_JU(r);
+	r->player.velocity.x = 0.0;
+	r->player.velocity.y = 0.0;
 	l_ctrl(k, r, ms);
 }
