@@ -6,7 +6,7 @@
 /*   By: lubernar <lubernar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/14 09:39:40 by cduverge          #+#    #+#             */
-/*   Updated: 2020/02/21 16:26:21 by cduverge         ###   ########.fr       */
+/*   Updated: 2020/02/21 16:54:19 by cduverge         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -83,23 +83,20 @@ int		check_sprite_id(int fd, t_env *doom, int i)
 	{
 		if (number_or_dot(line) == -1)
 			return (free_and_return(line));
-		while (line[k] != '\0')
-		{
-			doom->spt[i].id = ft_atoi(line);
-			if (doom->spt[i].id < 0)
-				return (free_and_return(line));
-			if (doom->spt[i].id == 1 || doom->spt[i].id == 2)
-				doom->spt[i].pickable = 1;
-			else
-				doom->spt[i].pickable = 0;
-			while (line[k] != ' ' && line[k] != '\0')
-				++k;
+		doom->spt[i].id = ft_atoi(line);
+		if (doom->spt[i].id < 0)
+			return (free_and_return(line));
+		if (doom->spt[i].id == 1 || doom->spt[i].id == 2)
+			doom->spt[i].pickable = 1;
+		else
+			doom->spt[i].pickable = 0;
+		while (line[k] != ' ' && line[k] != '\0')
 			++k;
-			doom->spt[i].sector = ft_atoi(line + k);
-			if (doom->spt[i].sector < 0)
-				return (free_and_return(line));
-		}
-			free(line);
+		++k;
+		doom->spt[i].sector = ft_atoi(line + k);
+		if (doom->spt[i].sector < 0)
+			return (free_and_return(line));
+		free(line);
 	}
 	if (ret <= 0)
 		return (-1);
