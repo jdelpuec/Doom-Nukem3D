@@ -6,16 +6,11 @@
 /*   By: jdelpuec <jdelpuec@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/04/01 11:49:14 by ebonafi           #+#    #+#             */
-/*   Updated: 2020/02/18 11:18:14 by cduverge         ###   ########.fr       */
+/*   Updated: 2020/02/21 13:17:13 by cduverge         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "doom.h"
-#include "inventory.h"
-#include "raycasting.h"
-#include "draw.h"
-#include "init.h"
-#include "event.h"
 
 void fps_count(t_win *w)
 {
@@ -82,8 +77,8 @@ int main(int ac, char **av)
 
 	init_ttf(&w);
 	init_sdl(&w);
-	 FMOD_System_PlaySound(w.s.fmod, FMOD_CHANNEL_FREE, w.s.music, 0, NULL);
-	 FMOD_Sound_SetLoopCount(w.s.music, -1);
+//	FMOD_System_PlaySound(w.s.fmod, FMOD_CHANNEL_FREE, w.s.music, 0, NULL);
+//	FMOD_Sound_SetLoopCount(w.s.music, -1);
 	sdl_loop(&w, &r);
 	return (0);
 }

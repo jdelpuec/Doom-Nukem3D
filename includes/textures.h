@@ -6,12 +6,14 @@
 /*   By: lubernar <lubernar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/05/02 14:33:08 by jdelpuec          #+#    #+#             */
-/*   Updated: 2020/02/17 11:03:06 by lubernar         ###   ########.fr       */
+/*   Updated: 2020/02/21 10:42:58 by cduverge         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef TEXTURES_H
 # define TEXTURES_H
+
+# include "doom.h"
 
 #define HEADER_SIZE 54
 

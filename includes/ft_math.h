@@ -6,12 +6,13 @@
 /*   By: jdelpuec <jdelpuec@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/13 15:33:56 by jdelpuec          #+#    #+#             */
-/*   Updated: 2020/02/13 16:27:36 by jdelpuec         ###   ########.fr       */
+/*   Updated: 2020/02/21 10:40:52 by cduverge         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef FT_MATH_H
 # define FT_MATH_H
+#include "doom.h"
 
 float	minf(float a, float b);
 float	maxf(float a, float b);

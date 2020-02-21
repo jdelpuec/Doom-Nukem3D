@@ -6,14 +6,11 @@
 /*   By: jdelpuec <jdelpuec@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/10 14:12:36 by jdelpuec          #+#    #+#             */
-/*   Updated: 2020/02/17 18:14:03 by jdelpuec         ###   ########.fr       */
+/*   Updated: 2020/02/21 11:28:13 by cduverge         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "doom.h"
-#include "inventory.h"
-#include "raycasting.h"
-#include "draw.h"
 
 void	draw_portal_ceil(t_win *w, t_ray *r, t_sector sector,
 															t_sector portal_sec)

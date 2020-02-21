@@ -6,14 +6,11 @@
 /*   By: jdelpuec <jdelpuec@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/04/02 11:15:57 by ebonafi           #+#    #+#             */
-/*   Updated: 2020/02/17 18:19:19 by jdelpuec         ###   ########.fr       */
+/*   Updated: 2020/02/21 11:25:19 by cduverge         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "doom.h"
-#include "inventory.h"
-#include "raycasting.h"
-#include "event.h"
 
 void	init_keyboard(t_keyboard *k)
 {

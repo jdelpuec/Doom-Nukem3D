@@ -6,12 +6,13 @@
 /*   By: lubernar <lubernar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/07 13:38:16 by lubernar          #+#    #+#             */
-/*   Updated: 2020/02/17 11:02:44 by lubernar         ###   ########.fr       */
+/*   Updated: 2020/02/21 10:42:30 by cduverge         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef INVENTORY_H
 # define INVENTORY_H
+# include "doom.h"
 
 typedef struct		s_inventory
 {

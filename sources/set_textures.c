@@ -6,15 +6,11 @@
 /*   By: jdelpuec <jdelpuec@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/11 12:53:25 by jdelpuec          #+#    #+#             */
-/*   Updated: 2020/02/17 18:15:21 by jdelpuec         ###   ########.fr       */
+/*   Updated: 2020/02/21 11:27:58 by cduverge         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "doom.h"
-#include "inventory.h"
-#include "raycasting.h"
-#include "draw.h"
-#include "ft_math.h"
 
 t_wall_tex	set_wall_tex(t_win *w, t_ray *r, t_sector sector, t_wall wall)
 {

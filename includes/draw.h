@@ -6,13 +6,14 @@
 /*   By: lubernar <lubernar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/10 14:08:08 by jdelpuec          #+#    #+#             */
-/*   Updated: 2020/02/17 13:25:17 by lubernar         ###   ########.fr       */
+/*   Updated: 2020/02/21 10:39:35 by cduverge         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef DRAW_H
 # define DRAW_H
 # include "event.h"
+# include "doom.h"
 
 void	drawing(t_win *w, t_ray *r, t_keyboard *k);
 void	draw_player_view(t_win *w, t_ray *r);

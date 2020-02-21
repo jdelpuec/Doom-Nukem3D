@@ -6,12 +6,13 @@
 /*   By: lubernar <lubernar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/04/02 11:33:08 by ebonafi           #+#    #+#             */
-/*   Updated: 2020/02/12 17:31:42 by lubernar         ###   ########.fr       */
+/*   Updated: 2020/02/21 10:40:26 by cduverge         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef EVENT_H
 # define EVENT_H
+# include "doom.h"
 
 typedef struct		s_keyboard
 {

@@ -6,12 +6,11 @@
 /*   By: lubernar <lubernar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/15 17:28:38 by lubernar          #+#    #+#             */
-/*   Updated: 2020/02/16 17:05:58 by lubernar         ###   ########.fr       */
+/*   Updated: 2020/02/21 11:25:57 by cduverge         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "doom.h"
-#include "malloc.h"
 
 void		display(int x, int y, t_text_tab hud, t_win *win)
 {

@@ -6,14 +6,11 @@
 /*   By: jdelpuec <jdelpuec@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/28 15:29:08 by jdelpuec          #+#    #+#             */
-/*   Updated: 2020/02/17 14:10:40 by jdelpuec         ###   ########.fr       */
+/*   Updated: 2020/02/21 11:24:48 by cduverge         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "doom.h"
-#include "inventory.h"
-#include "raycasting.h"
-#include "event.h"
 
 void    wall_collision_2(t_ray *r, t_wall wall)
 {

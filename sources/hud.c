@@ -6,13 +6,11 @@
 /*   By: lubernar <lubernar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/06 11:22:11 by siwarin           #+#    #+#             */
-/*   Updated: 2020/02/17 11:12:44 by lubernar         ###   ########.fr       */
+/*   Updated: 2020/02/21 11:25:51 by cduverge         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "doom.h"
-#include "inventory.h"
-#include "raycasting.h"
 
 void	apply_surface(int x, int y, SDL_Surface *source, SDL_Surface *dest)
 {

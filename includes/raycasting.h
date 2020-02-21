@@ -6,12 +6,14 @@
 /*   By: jdelpuec <jdelpuec@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/17 15:22:39 by jdelpuec          #+#    #+#             */
-/*   Updated: 2020/02/17 17:56:37 by jdelpuec         ###   ########.fr       */
+/*   Updated: 2020/02/21 10:35:29 by cduverge         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef RAYCASTING_H
 # define RAYCASTING_H
+
+# include "doom.h"
 
 typedef struct		s_ray
 {
@@ -125,5 +127,6 @@ typedef struct		s_floor_tex
 
 float				deg_to_rad(float angle);
 void		wall_textures(t_win *w, t_ray *r, t_sector sector, t_wall wall);
+void		raysprite(t_win *w, t_ray *r);
 
 #endif

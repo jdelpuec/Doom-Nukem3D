@@ -6,13 +6,11 @@
 /*   By: jdelpuec <jdelpuec@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/05 10:51:22 by jdelpuec          #+#    #+#             */
-/*   Updated: 2020/02/16 17:02:31 by jdelpuec         ###   ########.fr       */
+/*   Updated: 2020/02/21 11:26:37 by cduverge         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "doom.h"
-#include "inventory.h"
-#include "raycasting.h"
 
 t_vector_3d	get_normal_wall(t_vector_2d v1, t_vector_2d v2)
 {
