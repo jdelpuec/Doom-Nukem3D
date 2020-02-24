@@ -6,7 +6,7 @@
 /*   By: lubernar <lubernar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/10 14:05:34 by jdelpuec          #+#    #+#             */
-/*   Updated: 2020/02/21 13:25:25 by cduverge         ###   ########.fr       */
+/*   Updated: 2020/02/24 11:22:09 by cduverge         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -121,7 +121,6 @@ void	drawing(t_win *w, t_ray *r, t_keyboard *k)
 	SDL_memset(w->surface->pixels, 0, ((WIN_W * WIN_H) << 2));
 	draw_player_view(w, r);
 	raysprite(w, r);													///
-//	ft_putendl("le raysprite n abort pas");								///
 	hud(w, r);
 	inventory(r, w);
 	if (k->state[SDL_SCANCODE_O] == 1)
