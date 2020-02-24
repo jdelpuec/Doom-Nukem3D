@@ -6,7 +6,7 @@
 /*   By: lubernar <lubernar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/13 16:40:33 by siwarin           #+#    #+#             */
-/*   Updated: 2020/02/24 14:46:20 by cduverge         ###   ########.fr       */
+/*   Updated: 2020/02/24 16:44:18 by cduverge         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,7 +54,7 @@ void	tri_sprite(t_sprites *s, int nb, t_ray *r)
 	return (tri_sprite(r->inv.sprite, --nb, r));
 }
 
-int		check_spr_intersection(t_ray *r, t_sprites sprite, float h_x, float h_y)
+int		check_spr_intersection(t_ray *r, t_sprites sprite, float *h_x, float *h_y)
 {
 	int denom_is_pos;
 
@@ -72,20 +72,35 @@ int		check_spr_intersection(t_ray *r, t_sprites sprite, float h_x, float h_y)
 	if ((r->s_denom < 0) == denom_is_pos)
 		return (0);
 	r->t_denom = r->s32_x * r->s02_y - r->s32_y * r->s02_x;
-//	printf("r->t_denom : %f\n", r->t_denom);									///
 	if ((r->t_denom < 0) == denom_is_pos)
 		return (0);
 	if (((r->s_denom > r->denom) == denom_is_pos)
-		|| ((r->t_denom > r->denom) == denom_is_pos))
+			|| ((r->t_denom > r->denom) == denom_is_pos))
 		return (0);
-//	printf("r->denom : %f\n", r->denom);										///
-//	r->t = r->t_denom / r->denom;
-	printf("r->t : %f\n", r->t);												///
-	h_x = sprite.pos.x + (r->t * r->s10_x);
-	printf("h_x : %f\n", h_x);										///
-	h_y = sprite.pos.y + (r->t * r->s10_y);
-//	printf("h_y : %f\n", h_y);										///
+	r->t = r->t_denom / r->denom;
+	*h_x = sprite.pos.x + (r->t * r->s10_x);
+	*h_y = sprite.pos.y + (r->t * r->s10_y);
 	return (1);
+}
+
+void		sprite_textures(t_win *w, t_ray *r, t_sector sector, t_wall wall)
+{
+	int			i;
+	//t_wall_tex	wt;
+	t_text_tab	*tmp;
+
+	tmp = &w->text_list;
+	//wt = set_wall_tex(w, r, sector, wall);
+	i = -1;
+	while (++i < (int)r->offset_start)
+		if ((i >= 0 && i < WIN_H)
+			&& (*((int *)w->surface->pixels + (i * WIN_W + r->x)) == 0))
+			*((int *)w->surface->pixels + (i * WIN_W + r->x)) = GREY * r->light;
+	//i = display_text(r, w, tmp, &wt);
+	while (i++ < WIN_H)
+		if ((i >= 0 && i < WIN_H)
+			&& (*((int *)w->surface->pixels + (i * WIN_W + r->x)) == 0))
+			*((int *)w->surface->pixels + (i * WIN_W + r->x)) = DARK;
 }
 
 int		draw_sprite(t_win *w, t_ray *r, t_sprites *s)
@@ -96,10 +111,22 @@ int		draw_sprite(t_win *w, t_ray *r, t_sprites *s)
 	while (i < r->inv.nb_sprites)
 	{
 		if (r->inv.sprite[i].sector == r->player.sector
-			&& check_spr_intersection(r, r->inv.sprite[i], r->hit_x, r->hit_y) == 1)
+				&& check_spr_intersection(r, r->inv.sprite[i], &r->hit_x, &r->hit_y) == 1)
 		{
-//			printf("hit_x : %d, hit_y : %d\n", (int)r->hit_x, (int)r->hit_y);	///
-			display((int)r->hit_x, (int)r->hit_y, r->inv.sprite[i].s, w);
+
+			r->dist = sqrtf(((r->hit_x - r->inv.sprite[i].pos.x) * (r->hit_x
+							- r->inv.sprite[i].pos.x)) + ((r->hit_y - r->inv.sprite[i].pos.y)
+							* (r->hit_y - r->inv.sprite[i].pos.y)));
+			//r->dist *= cos(r->ray_angle - r->player.angle);
+			r->dist_wall = r->dist * PLAY_H;
+			r->offset_start = (WIN_H >> 1) + (r->inv.sprite[i].pos.z / r->dist_wall) * r->dist_pp;
+			printf("offset_start : %f\n", r->offset_start);						///
+
+//			display((int)r->inv.sprite[i].pos.x + r->offset_start , (int)r->inv.sprite[i].pos.y + r->offset_start, r->inv.sprite[i].s, w);
+			sprite_textures();													///
+			//			printf("hit_x : %d, hit_y : %d\n", (int)r->hit_x, (int)r->hit_y);	///
+			//			display((int)r->hit_x, (int)r->hit_y, r->inv.sprite[i].s, w);
+			//display((int)r->hit_x + (WIN_W / 2) , (int)r->hit_y + (WIN_H / 2), r->inv.sprite[i].s, w);
 		}
 		i++;
 	}
@@ -144,10 +171,6 @@ void  raysprite(t_win *w, t_ray *r)
 		r->inv.sprite[0].s = find("ress/naruto.bmp");
 		r->inv.sprite[0].s.w = 30;
 		r->inv.sprite[0].s.h = 30;
-		r->inv.sprite[0].pos.x = 30;
-		r->inv.sprite[0].pos.y = 50;
-		r->inv.sprite[0].pos.z = 10;
-		r->inv.sprite[0].sector = 0;
 /*		r->inv.sprite[1].s = find("ress/noodle.bmp");
 		r->inv.sprite[1].s.w = 30;
 		r->inv.sprite[1].s.h = 30;

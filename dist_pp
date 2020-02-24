@@ -1,0 +1,334 @@
+sources/collision.c:		if ((r->tmp = fabsf(check_line_point(wall.p1, wall.p2, new_pos)) < 10))
+sources/collision.c:			if (wall.portal_sector >= 0 && r->player.position.z >
+sources/collision.c:				r->sectors[wall.portal_sector].floor_height
+sources/collision.c:				+ (PLAY_H >> 1) && r->player.position.z
+sources/collision.c:				<= r->sectors[wall.portal_sector].ceil_height)
+sources/collision.c:				r->player.sector = wall.portal_sector;
+sources/collision.c:				r->speed = 5.0;
+sources/collision.c:				r->player.velocity.x = 0;
+sources/collision.c:			else if (r->tmp < r->space)
+sources/collision.c:				r->player.velocity.x = 0.0;
+sources/collision.c:				r->player.velocity.y = 0.0;
+sources/collision.c:	tmp = r->player.velocity;
+sources/collision.c:	r->player.velocity.x = tmp.x - get_dot_poduct(normal, tmp) * normal.x;
+sources/collision.c:	r->player.velocity.y = tmp.y - get_dot_poduct(normal, tmp) * normal.y;
+sources/collision.c:	old = r->player.velocity;
+sources/collision.c:		r->player.velocity.x = wd.y * (old.x * wd.x +
+sources/collision.c:		r->player.velocity.x = wd.x * (old.x * wd.x +
+sources/collision.c:		r->player.velocity.y = wd.x * (old.x * wd.x +
+sources/collision.c:		r->player.velocity.y = wd.y * (old.x * wd.x +
+sources/draw_portal_ceil.c:	r->dist = sqrtf(((r->hit_x - r->player.position.x) * (r->hit_x
+sources/draw_portal_ceil.c:		- r->player.position.x)) + ((r->hit_y - r->player.position.y)
+sources/draw_portal_ceil.c:		* (r->hit_y - r->player.position.y)));
+sources/draw_portal_ceil.c:	r->dist *= cos(r->ray_angle - r->player.angle);
+sources/draw_portal_ceil.c:	r->dist_wall = r->dist * PLAY_H;
+sources/draw_portal_ceil.c:	r->offset_start = (WIN_H >> 1) + ((r->player.position.z
+sources/draw_portal_ceil.c:				- sector.ceil_height) / r->dist_wall) * r->dist_pp;
+sources/draw_portal_ceil.c:	r->offset_end = (WIN_H >> 1) + ((r->player.position.z
+sources/draw_portal_ceil.c:				- portal_sec.ceil_height) / r->dist_wall) * r->dist_pp;
+sources/draw_portal_ceil.c:	while (++i < (int)r->offset_start)
+sources/draw_portal_ceil.c:		if ((i >= 0 && i < WIN_H) && (i >= r->y_min && i < r->y_max - 1)
+sources/draw_portal_ceil.c:			&& (*((int *)w->surface->pixels + (i * WIN_W + r->x)) == 0))
+sources/draw_portal_ceil.c:			*((int *)w->surface->pixels + (i * WIN_W + r->x)) = GREY;
+sources/draw_portal_ceil.c:	while (i++ < (int)r->offset_end)
+sources/draw_portal_ceil.c:		if ((i >= 0 && i < WIN_H) && (i >= r->y_min && i < r->y_max - 1)
+sources/draw_portal_ceil.c:			&& (*((int *)w->surface->pixels + (i * WIN_W + r->x)) == 0))
+sources/draw_portal_ceil.c:			*((int *)w->surface->pixels + (i * WIN_W + r->x)) = RED * r->light;
+sources/draw_portal_ceil.c:	r->y_min = (int)r->offset_end;
+sources/handle_k_mvt.c:	if (r->player.sector > 8 || r->player.sector == 0)
+sources/handle_k_mvt.c:		r->speed = k->state[SDL_SCANCODE_LSHIFT] == 1 ? 8.0 : 5.0;
+sources/handle_k_mvt.c:	if (r->player.position.z - PLAY_H != r->sectors[r->cur_sector].floor_height)
+sources/handle_k_mvt.c:		r->speed = 5.0;
+sources/handle_k_mvt.c:		r->inv.nb_bullet += 10;
+sources/handle_k_mvt.c:		r->player.position.x = 0.0;
+sources/handle_k_mvt.c:		r->player.position.y = 0.0;
+sources/handle_k_mvt.c:		r->player.position.z = 0.0;
+sources/handle_k_mvt.c:		r->player.angle = 0.0;
+sources/handle_k_mvt.c:		r->player.sector = 0;
+sources/handle_k_mvt.c:		r->player.angle -= 2.5 * ms;
+sources/handle_k_mvt.c:		r->player.angle += 2.5 * ms;
+sources/handle_k_mvt.c:		r->player.velocity.x = r->speed * cosf(r->player.angle) * ms;
+sources/handle_k_mvt.c:		r->player.velocity.y = r->speed * -sinf(r->player.angle) * ms;
+sources/handle_k_mvt.c:		r->player.velocity.x = r->speed * -cosf(r->player.angle) * ms;
+sources/handle_k_mvt.c:		r->player.velocity.y = r->speed * sinf(r->player.angle) * ms;
+sources/handle_k_mvt.c:		r->player.velocity.x += r->speed * sinf(r->player.angle) * ms;
+sources/handle_k_mvt.c:		r->player.velocity.y += r->speed * cosf(r->player.angle) * ms;
+sources/handle_k_mvt.c:		r->player.velocity.x -= r->speed * sinf(r->player.angle) * ms;
+sources/handle_k_mvt.c:		r->player.velocity.y -= r->speed * cosf(r->player.angle) * ms;
+sources/handle_k_mvt.c:		r->player.velocity.z = 60.0;
+sources/handle_k_mvt.c:		if (r->player.position.z + r->player.velocity.z * ms
+sources/handle_k_mvt.c:		< r->sectors[r->player.sector].ceil_height)
+sources/handle_k_mvt.c:			r->player.position.z += r->player.velocity.z * ms;
+sources/handle_k_mvt.c:			r->player.position.z = r->sectors[r->player.sector].ceil_height;
+sources/handle_k_mvt.c:		if (r->player.position.z < r->sectors[r->player.sector].floor_height
+sources/handle_k_mvt.c:			r->player.position.z = r->sectors[r->player.sector].floor_height
+sources/handle_k_mvt.c:			r->player.velocity.z = 0.0;
+sources/handle_k_mvt.c:			r->player.velocity.z -= r->gravity;
+sources/handle_k_mvt.c:	if (r->player.velocity.x != 0 || r->player.velocity.y != 0)
+sources/handle_k_mvt.c:		while (i < r->sectors[r->player.sector].wall_count)
+sources/handle_k_mvt.c:			new_pos = (t_vector_3d) {r->player.position.x
+sources/handle_k_mvt.c:						+ r->player.velocity.x, r->player.position.y
+sources/handle_k_mvt.c:						+ r->player.velocity.y, 0};
+sources/handle_k_mvt.c:			wall = r->sectors[r->player.sector].walls[i];
+sources/handle_k_mvt.c:		r->player.position.x += r->player.velocity.x;
+sources/handle_k_mvt.c:		r->player.position.y += r->player.velocity.y;
+sources/handle_k_mvt.c:	if (fabsf(r->player.angle) >= 6.299992)
+sources/handle_k_mvt.c:		r->player.angle = 0;
+sources/handle_k_mvt.c:	r->dir_angle = get_dir_angle(r);
+sources/handle_k_mvt.c:		r->player.velocity.x = 0;
+sources/handle_k_mvt.c:		r->player.velocity.y = 0;
+sources/handle_k_mvt.c:	r->player.velocity.x = 0.0;
+sources/handle_k_mvt.c:	r->player.velocity.y = 0.0;
+sources/handle_keyboard_event.c:	pos = r->player.position;
+sources/handle_keyboard_event.c:		r->tmp = (min_x == max_x) ? 1 : 2;
+sources/handle_keyboard_event.c:		if (r->tmp == 1)
+sources/handle_keyboard_event.c:				max_x += r->thresh;
+sources/handle_keyboard_event.c:				min_x -= r->thresh;
+sources/handle_keyboard_event.c:			p.y > min_y ? (max_y += r->thresh) : (min_y -= r->thresh);
+sources/handle_mouse_event.c:												&& r->inv.nb_bullet > 0)
+sources/handle_mouse_event.c:		r->inv.nb_bullet--;
+sources/hud.c:	if (r->inv.nb_noodles > 0)
+sources/hud.c:		tmp_nb_noodles = ft_itoa(r->inv.nb_noodles);
+sources/hud.c:	if (r->inv.nb_baguette > 0)
+sources/hud.c:		tmp_nb_baguette = ft_itoa(r->inv.nb_baguette);
+sources/hud.c:	tmp_hp = ft_itoa(r->inv.nb_hp);
+sources/hud.c:	tmp_bullet = ft_itoa(r->inv.nb_bullet);
+sources/hud.c:	if (r->inv.nb_noodles_c > 0)
+sources/hud.c:		tmp_nb_noodles_c = ft_itoa(r->inv.nb_noodles_c);
+sources/init_struct.c:	while (++i < r->sector_count)
+sources/init_struct.c:		while (++j < r->sectors[i].wall_count)
+sources/init_struct.c:			tmpw = r->sectors[i].walls[j];
+sources/init_struct.c:			r->tmp = minf(tmpw.p1.x, tmpw.p2.x);
+sources/init_struct.c:			r->sectors[i].min.x = j == 0 ? (r->tmp) :
+sources/init_struct.c:			(minf(r->sectors[i].min.x, r->tmp));
+sources/init_struct.c:			r->tmp = minf(tmpw.p1.y, tmpw.p2.y);
+sources/init_struct.c:			r->sectors[i].min.y = j == 0 ? (r->tmp) :
+sources/init_struct.c:			(minf(r->sectors[i].min.y, r->tmp));
+sources/init_struct.c:			r->tmp = maxf(tmpw.p1.x, tmpw.p2.x);
+sources/init_struct.c:			r->sectors[i].max.x = j == 0 ? (r->tmp) :
+sources/init_struct.c:			(maxf(r->sectors[i].max.x, r->tmp));
+sources/init_struct.c:			r->tmp = maxf(tmpw.p1.y, tmpw.p2.y);
+sources/init_struct.c:			r->sectors[i].max.y = j == 0 ? (r->tmp) :
+sources/init_struct.c:			(maxf(r->sectors[i].max.y, r->tmp));
+sources/init_struct.c:			r->tmp = 0;
+sources/init_struct.c:	r->dist_pp = WIN_W / tanf(deg_to_rad(30.0));
+sources/init_struct.c:	r->last_sec = -2;
+sources/init_struct.c:	r->speed = 5.0;
+sources/init_struct.c:	r->thresh = 1;
+sources/init_struct.c:	r->gravity = 2;
+sources/init_struct.c:	r->inv.nb_bullet = 50;
+sources/init_struct.c:	r->inv.nb_hp = 100;
+sources/init_struct.c:	r->inv.anim = 0;
+sources/init_struct.c:	r->inv.nb_sprites = env->sprites;
+sources/init_struct.c:	r->inv.nb_sprites > 0 ? r->inv.sprite = env->spt : 0;
+sources/init_struct.c:	r->gun = init_gun();
+sources/init_struct.c:	r->sectors = env->sct;
+sources/init_struct.c:	r->player = env->player;
+sources/init_struct.c:	r->sector_count = env->room;
+sources/init_struct.c:	r->space = r->sector_count > 1 ? 1.8 : 4;
+sources/inventory.c:	r->inv.invent.inventory_display[j] = 1;
+sources/inventory.c:	r->inv.sprite[i].pickable = 0;
+sources/inventory.c:	r->inv.sprite[i].id == 1 ? r->inv.nb_noodles++ : 0;
+sources/inventory.c:	r->inv.sprite[i].id == 2 ? r->inv.nb_baguette++ : 0;
+sources/inventory.c:	if (r->player.position.x >= r->inv.sprite[i].pos.x - 1
+sources/inventory.c:	&& r->player.position.x <= r->inv.sprite[i].pos.x + 1
+sources/inventory.c:	&& r->player.position.y >= r->inv.sprite[i].pos.y - 1
+sources/inventory.c:	&& r->player.position.y <= r->inv.sprite[i].pos.y + 1)
+sources/inventory.c:		if (r->inv.sprite[i].id == 1 && r->inv.sprite[i].pickable == 1)
+sources/inventory.c:		if (r->inv.sprite[i].id == 2 && r->inv.sprite[i].pickable == 1)
+sources/inventory.c:		if (r->inv.sprite[i].id == 3 && sdl->reload == 0)
+sources/inventory.c:			r->inv.nb_bullet += 100;
+sources/inventory.c:		r->inv.list = handle_textures(r->inv.invent.inventory, -1);
+sources/inventory.c:		free(r->inv.invent.inventory);
+sources/inventory.c:	r->inv.list.data == NULL ? exit(0) : 0;
+sources/inventory.c:	r->inv.list.w = 30;
+sources/inventory.c:	r->inv.list.h = 30;
+sources/inventory.c:	if (r->inv.invent.inventory_display[0] == 1 || r->inv.nb_noodles > 0)
+sources/inventory.c:		display_l((WIN_W - 43), (WIN_H / 2 + 75), sdl, r->inv.list);
+sources/inventory.c:	if (r->inv.invent.inventory_display[1] == 1 || r->inv.nb_baguette > 0)
+sources/inventory.c:		r->inv.tmp = *r->inv.list.next;
+sources/inventory.c:		r->inv.tmp.w = 30;
+sources/inventory.c:		r->inv.tmp.h = 30;
+sources/inventory.c:		display_l((WIN_W - 40), (WIN_H / 2) + 17, sdl, r->inv.tmp);
+sources/inventory.c:	if (r->inv.invent.inventory_display[2] == 1)
+sources/inventory.c:		r->inv.tmp = *r->inv.list.next->next;
+sources/inventory.c:		r->inv.tmp.w = 30;
+sources/inventory.c:		r->inv.tmp.h = 30;
+sources/inventory.c:		display_l((WIN_W - 100), (WIN_H / 2) + 17, sdl, r->inv.tmp);
+sources/inventory.c:	j == 0 ? init_inventory(&r->inv) : 0;
+sources/inventory.c:	while (i++ < r->inv.nb_sprites)
+sources/inventory.c:	if ((r->inv.invent.inventory_display[0] == 1
+sources/inventory.c:	&& r->inv.invent.inventory_display[1] == 1)
+sources/inventory.c:	|| (r->inv.nb_noodles > 0 && r->inv.nb_baguette > 0))
+sources/inventory.c:		r->inv.invent.inventory_display[0] = 0;
+sources/inventory.c:		r->inv.invent.inventory_display[1] = 0;
+sources/inventory.c:		r->inv.invent.inventory_display[2] = 1;
+sources/inventory.c:		r->inv.nb_noodles_c++;
+sources/inventory.c:		r->inv.nb_noodles--;
+sources/inventory.c:		r->inv.nb_baguette--;
+sources/inventory.c:	return (&r->inv);
+sources/main.c:		|| r->player.position.z != r->sectors[r->cur_sector].floor_height + 32)
+sources/math.c:	return (r->player.angle * ret);
+sources/raysprite.c:	dist = sqrtf(((s.pos.x - r->player.position.x)
+sources/raysprite.c:				* (s.pos.x - r->player.position.x))
+sources/raysprite.c:			+ ((s.pos.y - r->player.position.y)
+sources/raysprite.c:				* (s.pos.y - r->player.position.y)));
+sources/raysprite.c:	dist *= cos(r->ray_angle - r->player.angle);
+sources/raysprite.c:		dist = long_calcul(r->inv.sprite[i], r);
+sources/raysprite.c:		dist2 = long_calcul(r->inv.sprite[i + 1], r);
+sources/raysprite.c:			tmp = r->inv.sprite[i + 1];
+sources/raysprite.c:			r->inv.sprite[i + 1] = r->inv.sprite[i];
+sources/raysprite.c:			r->inv.sprite[i] = tmp;
+sources/raysprite.c:	return (tri_sprite(r->inv.sprite, --nb, r));
+sources/raysprite.c:	r->s10_x = sprite.pos.x + 0.5 - sprite.pos.x;
+sources/raysprite.c:	r->s10_y = sprite.pos.y + 0.5 - sprite.pos.y;
+sources/raysprite.c:	r->s32_x = r->ray_end.x - r->player.position.x;
+sources/raysprite.c:	r->s32_y = r->ray_end.y - r->player.position.y;
+sources/raysprite.c:	r->denom = r->s10_x * r->s32_y - r->s32_x * r->s10_y;
+sources/raysprite.c:	if (r->denom == 0.0)
+sources/raysprite.c:	denom_is_pos = r->denom > 0;
+sources/raysprite.c:	r->s02_x = sprite.pos.x - r->player.position.x;
+sources/raysprite.c:	r->s02_y = sprite.pos.y - r->player.position.y;
+sources/raysprite.c:	r->s_denom = r->s10_x * r->s02_y - r->s02_x * r->s10_y;
+sources/raysprite.c:	if ((r->s_denom < 0) == denom_is_pos)
+sources/raysprite.c:	r->t_denom = r->s32_x * r->s02_y - r->s32_y * r->s02_x;
+sources/raysprite.c://	printf("r->t_denom : %f\n", r->t_denom);									///
+sources/raysprite.c:	if ((r->t_denom < 0) == denom_is_pos)
+sources/raysprite.c:	if (((r->s_denom > r->denom) == denom_is_pos)
+sources/raysprite.c:		|| ((r->t_denom > r->denom) == denom_is_pos))
+sources/raysprite.c://	printf("r->denom : %f\n", r->denom);										///
+sources/raysprite.c:	r->t = r->t_denom / r->denom;
+sources/raysprite.c://	printf("r->t : %f\n", r->t);												///
+sources/raysprite.c:	*h_x = sprite.pos.x + (r->t * r->s10_x);
+sources/raysprite.c:	*h_y = sprite.pos.y + (r->t * r->s10_y);
+sources/raysprite.c:	while (i < r->inv.nb_sprites)
+sources/raysprite.c:		if (r->inv.sprite[i].sector == r->player.sector
+sources/raysprite.c:			&& check_spr_intersection(r, r->inv.sprite[i], &r->hit_x, &r->hit_y) == 1)
+sources/raysprite.c://			printf("hit_x : %d, hit_y : %d\n", (int)r->hit_x, (int)r->hit_y);	///
+sources/raysprite.c://			display((int)r->hit_x, (int)r->hit_y, r->inv.sprite[i].s, w);
+sources/raysprite.c:			display((int)r->hit_x + (WIN_W / 2) , (int)r->hit_y + (WIN_H / 2), r->inv.sprite[i].s, w);
+sources/raysprite.c:	r->x = 0;
+sources/raysprite.c:	r->ray_angle = (deg_to_rad(-30.0) + r->player.angle);
+sources/raysprite.c:	while (r->x < WIN_W)
+sources/raysprite.c:		r->last_sec = -2;
+sources/raysprite.c:		r->ray_end.x = r->player.position.x + cosf(r->ray_angle) * 200.0;
+sources/raysprite.c:		r->ray_end.y = r->player.position.y - sinf(r->ray_angle) * 200.0;
+sources/raysprite.c:		r->cur_sector = r->player.sector;
+sources/raysprite.c:		r->y_min = 0;
+sources/raysprite.c:		r->y_max = WIN_H - 1;
+sources/raysprite.c:			running = draw_sprite(w, r, r->inv.sprite);
+sources/raysprite.c:		r->ray_angle += deg_to_rad(60.0) / WIN_W;
+sources/raysprite.c:		r->x++;
+sources/raysprite.c:		r->inv.sprite[0].s = find("ress/naruto.bmp");
+sources/raysprite.c:		r->inv.sprite[0].s.w = 30;
+sources/raysprite.c:		r->inv.sprite[0].s.h = 30;
+sources/raysprite.c:		r->inv.sprite[0].pos.x = 30;
+sources/raysprite.c:		r->inv.sprite[0].pos.y = 50;
+sources/raysprite.c:		r->inv.sprite[0].pos.z = 10;
+sources/raysprite.c:		r->inv.sprite[0].sector = 0;
+sources/raysprite.c:		r->inv.sprite[1].s = find("ress/noodle.bmp");
+sources/raysprite.c:		r->inv.sprite[1].s.w = 30;
+sources/raysprite.c:		r->inv.sprite[1].s.h = 30;
+sources/raysprite.c:		r->inv.sprite[2].s = find("ress/noodles.bmp");
+sources/raysprite.c:		r->inv.sprite[2].s.w = 30;
+sources/raysprite.c:		r->inv.sprite[2].s.h = 30;
+sources/raysprite.c:		r->inv.sprite[3].s = find("ress/bullet.bmp");
+sources/raysprite.c:		r->inv.sprite[3].s.w = 30;
+sources/raysprite.c:		r->inv.sprite[3].s.h = 30;
+sources/raysprite.c:	tri_sprite(r->inv.sprite, r->inv.nb_sprites -1, r);
+sources/raysprite.c:	draw_sprite_view(w, r, r->inv.sprite);
+sources/set_draw.c:	r->s10_x = wall.p2.x - wall.p1.x;
+sources/set_draw.c:	r->s10_y = wall.p2.y - wall.p1.y;
+sources/set_draw.c:	r->s32_x = r->ray_end.x - r->player.position.x;
+sources/set_draw.c:	r->s32_y = r->ray_end.y - r->player.position.y;
+sources/set_draw.c:	r->denom = r->s10_x * r->s32_y - r->s32_x * r->s10_y;
+sources/set_draw.c:	if (r->denom == 0.0)
+sources/set_draw.c:	denom_is_pos = r->denom > 0;
+sources/set_draw.c:	r->s02_x = wall.p1.x - r->player.position.x;
+sources/set_draw.c:	r->s02_y = wall.p1.y - r->player.position.y;
+sources/set_draw.c:	r->s_denom = r->s10_x * r->s02_y - r->s02_x * r->s10_y;
+sources/set_draw.c:	if ((r->s_denom < 0) == denom_is_pos)
+sources/set_draw.c:	r->t_denom = r->s32_x * r->s02_y - r->s32_y * r->s02_x;
+sources/set_draw.c:	if ((r->t_denom < 0) == denom_is_pos)
+sources/set_draw.c:	if (((r->s_denom > r->denom) == denom_is_pos)
+sources/set_draw.c:		|| ((r->t_denom > r->denom) == denom_is_pos))
+sources/set_draw.c:	r->t = r->t_denom / r->denom;
+sources/set_draw.c:	*h_x = wall.p1.x + (r->t * r->s10_x);
+sources/set_draw.c:	*h_y = wall.p1.y + (r->t * r->s10_y);
+sources/set_draw.c:		r->last_sec = r->old_wall.portal_sector;
+sources/set_draw.c:		r->cur_sector = wall.portal_sector;
+sources/set_draw.c:		r->old_wall = wall;
+sources/set_draw.c:	r->i++;
+sources/set_draw.c:	sector = r->sectors[r->cur_sector];
+sources/set_draw.c:	r->light = sector.brightness;
+sources/set_draw.c:	r->i = 0;
+sources/set_draw.c:	while (r->i < sector.wall_count)
+sources/set_draw.c:		wall = sector.walls[r->i];
+sources/set_draw.c:			if (wall.portal_sector == r->player.sector
+sources/set_draw.c:				|| wall.portal_sector == r->last_sec)
+sources/set_draw.c:				if (wall.portal_sector == r->player.sector)
+sources/set_draw.c:					r->last_sec = -2;
+sources/set_draw.c:				r->i++;
+sources/set_draw.c:	r->x = 0;
+sources/set_draw.c:	r->ray_angle = (deg_to_rad(-30.0) + r->player.angle);
+sources/set_draw.c:	while (r->x < WIN_W)
+sources/set_draw.c:		r->last_sec = -2;
+sources/set_draw.c:		r->ray_end.x = r->player.position.x + cosf(r->ray_angle) * 200.0;
+sources/set_draw.c:		r->ray_end.y = r->player.position.y - sinf(r->ray_angle) * 200.0;
+sources/set_draw.c:		r->cur_sector = r->player.sector;
+sources/set_draw.c:		r->y_min = 0;
+sources/set_draw.c:		r->y_max = WIN_H - 1;
+sources/set_draw.c:		r->ray_angle += deg_to_rad(60.0) / WIN_W;
+sources/set_draw.c:		r->x++;
+sources/set_draw.c:	r->inv.nb_sprites > 0 ? inventory(r, w) : 0;
+sources/set_draw.c:	w->fired == 0 ? display_l((WIN_W / 2), (WIN_H) - 240, w, r->gun) : 0;
+sources/set_draw.c:		fire_gunshot(w, &r->gun);
+sources/set_draw.c:		reload_gun(&r->reload_gun, w);
+sources/set_textures.c:	wt.tx = wall.p2.x - r->hit_x;
+sources/set_textures.c:	wt.ty = wall.p2.y - r->hit_y;
+sources/set_textures.c:	wt.tex_scale = w->text_list.tex_w / r->line_h;
+sources/set_textures.c:	i = (int)r->offset_start;
+sources/set_textures.c:	while (i++ < (int)r->offset_end)
+sources/set_textures.c:			&& (*((int *)w->surface->pixels + (i * WIN_W + r->x)) == 0))
+sources/set_textures.c:				+ (i * WIN_W + r->x)) = tmp->data[wt->tex_id];
+sources/set_textures.c:	while (++i < (int)r->offset_start)
+sources/set_textures.c:			&& (*((int *)w->surface->pixels + (i * WIN_W + r->x)) == 0))
+sources/set_textures.c:			*((int *)w->surface->pixels + (i * WIN_W + r->x)) = GREY * r->light;
+sources/set_textures.c:			&& (*((int *)w->surface->pixels + (i * WIN_W + r->x)) == 0))
+sources/set_textures.c:			*((int *)w->surface->pixels + (i * WIN_W + r->x)) = DARK;
+sources/wall_draw.c:	r->dist = sqrtf(((r->hit_x - r->player.position.x) * (r->hit_x
+sources/wall_draw.c:		- r->player.position.x)) + ((r->hit_y - r->player.position.y)
+sources/wall_draw.c:		* (r->hit_y - r->player.position.y)));
+sources/wall_draw.c:	r->dist *= cos(r->ray_angle - r->player.angle);
+sources/wall_draw.c:	r->dist_wall = r->dist * PLAY_H;
+sources/wall_draw.c:	r->offset_start = (WIN_H >> 1) + ((r->player.position.z
+sources/wall_draw.c:				- portal_sec.floor_height) / r->dist_wall) * r->dist_pp;
+sources/wall_draw.c:	r->offset_end = (WIN_H >> 1) + ((r->player.position.z
+sources/wall_draw.c:				- sector.floor_height) / r->dist_wall) * r->dist_pp;
+sources/wall_draw.c:	i = (int)r->offset_start;
+sources/wall_draw.c:	while (i++ < (int)r->offset_end)
+sources/wall_draw.c:			&& (*((int *)w->surface->pixels + (i * WIN_W + r->x)) == 0))
+sources/wall_draw.c:			*((int *)w->surface->pixels + (i * WIN_W + r->x)) = BLUE * r->light;
+sources/wall_draw.c:			&& (*((int *)w->surface->pixels + (i * WIN_W + r->x)) == 0))
+sources/wall_draw.c:			*((int *)w->surface->pixels + (i * WIN_W + r->x)) = DARK;
+sources/wall_draw.c:	r->y_max = (int)r->offset_start;
+sources/wall_draw.c:	portal_sec = r->sectors[wall.portal_sector];
+sources/wall_draw.c:	r->dist = sqrtf(((r->hit_x - r->player.position.x) * (r->hit_x
+sources/wall_draw.c:		- r->player.position.x)) + ((r->hit_y - r->player.position.y)
+sources/wall_draw.c:		* (r->hit_y - r->player.position.y)));
+sources/wall_draw.c:	r->dist *= cos(r->ray_angle - r->player.angle);
+sources/wall_draw.c:	r->dist_wall = r->dist * PLAY_H;
+sources/wall_draw.c:	r->offset_start = (WIN_H >> 1) + ((r->player.position.z
+sources/wall_draw.c:				- sector.ceil_height) / r->dist_wall) * r->dist_pp;
+sources/wall_draw.c:	r->offset_end = (WIN_H >> 1) + ((r->player.position.z
+sources/wall_draw.c:				- sector.floor_height) / r->dist_wall) * r->dist_pp;
+sources/wall_draw.c:	r->line_h = r->offset_end - r->offset_start;
+sources/wall_draw.c:	if (r->sector_count > 1)
+sources/wall_draw.c:	hit.x = r->hit_x;
+sources/wall_draw.c:	hit.y = r->hit_y;
+sources/wall_draw.c:		if (i != r->i && (check_seg_intersection(r, sector.walls[i],
+sources/wall_draw.c:			if (fabsf(tmp.x - r->player.position.x)
+sources/wall_draw.c:				< fabsf(r->hit_x - r->player.position.x)
+sources/wall_draw.c:				&& fabsf(tmp.y - r->player.position.y)
+sources/wall_draw.c:					< fabsf(r->hit_y - r->player.position.y))
+sources/wall_draw.c:	if (check_seg_intersection(r, wall, &r->hit_x, &r->hit_y) == 1
