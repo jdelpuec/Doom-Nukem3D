@@ -6,13 +6,13 @@
 /*   By: lubernar <lubernar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/03 13:43:49 by lubernar          #+#    #+#             */
-/*   Updated: 2020/02/14 10:50:41 by lubernar         ###   ########.fr       */
+/*   Updated: 2020/02/19 16:19:33 by lubernar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../includes/Doom_Nukem.h"
+#include "../includes/editor.h"
 
-t_elem	init_elem(void)
+t_elem		init_elem(void)
 {
 	t_elem	elem;
 
@@ -38,8 +38,9 @@ t_sprite	init_sprites(void)
 	return (sprite);
 }
 
-void	init_edit(t_editor *edit)
+void		init_edit(t_editor *edit)
 {
+	edit->gravity = 1;
 	edit->nb_sprites = 0;
 	edit->noodles = 0;
 	edit->baguettes = 0;
@@ -55,4 +56,52 @@ void	init_edit(t_editor *edit)
 	edit->player_onmap = 0;
 	edit->walls_h = 60;
 	edit->sprite_choosen = 0;
+}
+
+void		init_textures2(t_editor *edit)
+{
+	char		**tab_sprite;
+	char		**gravity;
+
+	if (!(gravity = (char **)malloc(sizeof(char*) * 3)))
+		exit(0);
+	gravity[0] = "./ress/mooon.bmp";
+	gravity[1] = "./ress/earth.bmp";
+	gravity[2] = NULL;
+	edit->list_gravity = handle_textures(gravity, -1);
+	free(gravity);
+	edit->list_gravity.id == -1 ? exit(0) : 0;
+	if (!(tab_sprite = (char **)malloc(sizeof(char*) * 3)))
+		exit(0);
+	tab_sprite[0] = "./ress/noodles.bmp";
+	tab_sprite[1] = "./ress/baguettes.bmp";
+	tab_sprite[2] = NULL;
+	edit->list_sprite = handle_textures(tab_sprite, -1);
+	free(tab_sprite);
+	edit->list_sprite.id == -1 ? exit(0) : 0;
+}
+
+void		init_textures(t_editor *edit)
+{
+	char		**tab;
+	char		**tab_player;
+
+	init_textures2(edit);
+	if (!(tab_player = (char **)malloc(sizeof(char*) * 2)))
+		exit(0);
+	tab_player[0] = "./ress/naruto.bmp";
+	tab_player[1] = NULL;
+	edit->list_player = handle_textures(tab_player, -1);
+	free(tab_player);
+	edit->list_player.id == -1 ? exit(0) : 0;
+	if (!(tab = (char **)malloc(sizeof(char*) * 5)))
+		exit(0);
+	tab[0] = "./ress/bois.bmp";
+	tab[1] = "./ress/brique.bmp";
+	tab[2] = "./ress/ice.bmp";
+	tab[3] = "./ress/arrows.bmp";
+	tab[4] = NULL;
+	edit->list = handle_textures(tab, -1);
+	free(tab);
+	edit->list.id == -1 ? exit(0) : 0;
 }

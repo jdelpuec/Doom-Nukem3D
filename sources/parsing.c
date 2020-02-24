@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parsing.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jdelpuec <jdelpuec@student.42.fr>          +#+  +:+       +#+        */
+/*   By: lubernar <lubernar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/27 14:52:46 by cduverge          #+#    #+#             */
-/*   Updated: 2020/02/21 10:46:24 by cduverge         ###   ########.fr       */
+/*   Updated: 2020/02/21 16:01:33 by lubernar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -118,10 +118,10 @@ int		parsing(char *str, t_env *doom)
 		return (-1);
 	}
 	if (number_or_dot(line) == -1)
-		return(free_and_return(line));
+		return (free_and_return(line));
 	doom->room = ft_atoi(line);
 	if (doom->room <= 0 && doom->room > 99)
-		return(free_and_return(line));
+		return (free_and_return(line));
 	free(line);
 	if (all_check(doom, fd) == -1)
 		return (-1);

@@ -3,14 +3,16 @@
 /*                                                        :::      ::::::::   */
 /*   math.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jdelpuec <jdelpuec@student.42.fr>          +#+  +:+       +#+        */
+/*   By: lubernar <lubernar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/05 10:51:22 by jdelpuec          #+#    #+#             */
-/*   Updated: 2020/02/21 11:26:37 by cduverge         ###   ########.fr       */
+/*   Updated: 2020/02/20 17:55:18 by lubernar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "doom.h"
+#include "inventory.h"
+#include "raycasting.h"
 
 t_vector_3d	get_normal_wall(t_vector_2d v1, t_vector_2d v2)
 {
@@ -43,11 +45,6 @@ t_vector_3d	get_cross_poduct(t_vector_3d v1, t_vector_3d v2)
 	ret.y = (v1.z * v2.x - v1.x * v2.z);
 	ret.z = (v1.x * v2.y - v1.y * v2.x);
 	return (ret);
-}
-
-float		get_dot_poduct(t_vector_3d v1, t_vector_3d v2)
-{
-	return (v1.x * v2.x + v1.y * v2.y);
 }
 
 float		get_vector2d_length(t_vector_2d v)

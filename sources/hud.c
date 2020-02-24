@@ -6,13 +6,15 @@
 /*   By: lubernar <lubernar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/06 11:22:11 by siwarin           #+#    #+#             */
-/*   Updated: 2020/02/21 11:25:51 by cduverge         ###   ########.fr       */
+/*   Updated: 2020/02/19 15:31:32 by lubernar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "doom.h"
+#include "inventory.h"
+#include "raycasting.h"
 
-void	apply_surface(int x, int y, SDL_Surface *source, SDL_Surface *dest)
+void		apply_surface(int x, int y, SDL_Surface *source, SDL_Surface *dest)
 {
 	SDL_Rect offset;
 
@@ -32,10 +34,10 @@ void		init_ttf(t_win *sdl)
 	}
 	sdl->font = TTF_OpenFont("./font/tf2build.ttf", 31);
 	if (!sdl->font)
-		printf("TTF_OpenFont : %s\n", TTF_GetError());
+		exit(0);
 	sdl->font2 = TTF_OpenFont("./font/tf2build.ttf", 12);
 	if (!sdl->font2)
-		printf("TTF_OpenFont : %s\n", TTF_GetError());
+		exit(0);
 	sdl->fc.r = 0xFF;
 	sdl->fc.g = 0xA5;
 	sdl->fc.b = 0x00;

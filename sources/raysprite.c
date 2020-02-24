@@ -3,15 +3,16 @@
 /*                                                        :::      ::::::::   */
 /*   raysprite.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: siwarin <marvin@42.fr>                     +#+  +:+       +#+        */
+/*   By: lubernar <lubernar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/13 16:40:33 by siwarin           #+#    #+#             */
-/*   Updated: 2020/02/24 11:22:13 by cduverge         ###   ########.fr       */
+/*   Updated: 2020/02/21 18:16:28 by lubernar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
-#include "doom.h"
 
-#include <stdio.h>
+#include "doom.h"
+#include "inventory.h"
+#include "raycasting.h"
 
 int		long_calcul(t_sprites s, t_ray *r)
 {
@@ -23,38 +24,40 @@ int		long_calcul(t_sprites s, t_ray *r)
 			+ ((s.pos.y - r->player.position.y)
 				* (s.pos.y - r->player.position.y)));
 	dist *= cos(r->ray_angle - r->player.angle);
-	dist_sprite = dist * PLAYER_H;
+	dist_sprite = dist * PLAY_H;
 	return (dist_sprite);
 }
+
 void	tri_sprite(t_sprites *s, int nb, t_ray *r)
 {
 	t_sprites	tmp;
 	int			i;
 	float		dist;
 	float		dist2;
+	(void)s;
 
 	i = 0;
 	if (nb == 1)
 		return ;
 	while (i < nb)
 	{
-		dist = long_calcul(s[i], r);
-		dist2 = long_calcul(s[i + 1], r);
+		dist = long_calcul(r->inv.sprite[i], r);
+		dist2 = long_calcul(r->inv.sprite[i + 1], r);
 		if (dist < dist2)
 		{
-			tmp = s[i + 1];
-			s[i + 1] = s[i];
-			s[i] = tmp;
+			tmp = r->inv.sprite[i + 1];
+			r->inv.sprite[i + 1] = r->inv.sprite[i];
+			r->inv.sprite[i] = tmp;
 		}
 		++i;
 	}
-	return (tri_sprite(s, --nb, r));
+	return (tri_sprite(r->inv.sprite, --nb, r));
 }
 
 int		check_spr_intersection(t_ray *r, t_sprites sprite, float *h_x, float *h_y)
 {
 	int denom_is_pos;
-
+	
 	r->s10_x = sprite.pos.x + 0.5 - sprite.pos.x;
 	r->s10_y = sprite.pos.y + 0.5 - sprite.pos.y;
 	r->s32_x = r->ray_end.x - r->player.position.x;
@@ -83,19 +86,17 @@ int		check_spr_intersection(t_ray *r, t_sprites sprite, float *h_x, float *h_y)
 int		draw_sprite(t_win *w, t_ray *r, t_sprites *s)
 {
 	int i;
-	int ret;
-
+	(void)s;
 	i = 0;
-	while (i < 3)
+	while (i < r->inv.nb_sprites)
 	{
-		if (s[i].sector == r->player.sector
-			&& (ret = check_spr_intersection(r, s[i], &r->hit_x, &r->hit_y)) == 1)
+		if (r->inv.sprite[i].sector == r->player.sector
+			&& check_spr_intersection(r, r->inv.sprite[i], &r->hit_x, &r->hit_y) == 1)
 		{
-//			printf("%i\n", ret);												///
-			display((int)r->hit_x, (int)r->hit_y, s[i].s, w);
+			// printf("hit_x : %d, hit_y : %d\n", (int)r->hit_x, (int)r->hit_y);
+			display((int)r->hit_x, (int)r->hit_y, r->inv.sprite[i].s, w);
 			//affichage
 		}
-//		printf("%i\n", ret);												///
 		i++;
 	}
 	return (0);
@@ -105,7 +106,7 @@ void	draw_sprite_view(t_win *w, t_ray *r, t_sprites *s)
 {
 	int			iter;
 	int			running;
-
+	(void)s;
 	r->x = 0;
 	r->ray_angle = (deg_to_rad(-30.0) + r->player.angle);
 	while (r->x < WIN_W)
@@ -123,7 +124,7 @@ void	draw_sprite_view(t_win *w, t_ray *r, t_sprites *s)
 			iter++;
 			if (iter >= SECTOR_ITER_MAX)
 				break ;
-			running = draw_sprite(w, r, s);
+			running = draw_sprite(w, r, r->inv.sprite);
 		}
 		r->ray_angle += deg_to_rad(60.0) / WIN_W;
 		r->x++;
@@ -132,22 +133,24 @@ void	draw_sprite_view(t_win *w, t_ray *r, t_sprites *s)
 
 void  raysprite(t_win *w, t_ray *r)
 {
-  t_sprites s[3];
-	s[0].s = find("ress/baguettes.bmp");
-  s[0].pos.x = 8;
-  s[0].pos.y = 4;
-  s[0].pos.z = 32;
-	s[0].sector = 0;
-	s[1].s = find("ress/noodle.bmp");
-	s[1].pos.x = 4;
-  s[1].pos.y = 2;
-  s[1].pos.z = 32;
-	s[1].sector = 0;
-	s[2].s = find("ress/button.bmp");
-	s[2].pos.x = -7;
-  s[2].pos.y = -2;
-  s[2].pos.z = 35;
-	s[2].sector = 0;
-//  tri_sprite(s, 3, r);
-	draw_sprite_view(w, r, s);
+	static int j;
+
+	if (j == 0)
+	{
+		r->inv.sprite[0].s = find("ress/noodles.bmp");
+		r->inv.sprite[0].s.w = 30;
+		r->inv.sprite[0].s.h = 30;
+		r->inv.sprite[1].s = find("ress/noodles.bmp");
+		r->inv.sprite[1].s.w = 30;
+		r->inv.sprite[1].s.h = 30;
+		r->inv.sprite[2].s = find("ress/noodles.bmp");
+		r->inv.sprite[2].s.w = 30;
+		r->inv.sprite[2].s.h = 30;
+		r->inv.sprite[3].s = find("ress/noodles.bmp");
+		r->inv.sprite[3].s.w = 30;
+		r->inv.sprite[3].s.h = 30;
+	}
+	j = 1;
+	tri_sprite(r->inv.sprite, r->inv.nb_sprites -1, r);
+	draw_sprite_view(w, r, r->inv.sprite);
 }

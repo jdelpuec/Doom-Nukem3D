@@ -6,11 +6,15 @@
 /*   By: lubernar <lubernar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/10 14:05:34 by jdelpuec          #+#    #+#             */
-/*   Updated: 2020/02/24 11:22:09 by cduverge         ###   ########.fr       */
+/*   Updated: 2020/02/21 18:20:34 by lubernar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "doom.h"
+#include "inventory.h"
+#include "raycasting.h"
+#include "draw.h"
+#include "event.h"
 
 int		check_seg_intersection(t_ray *r, t_wall wall, float *h_x, float *h_y)
 {
@@ -120,9 +124,8 @@ void	drawing(t_win *w, t_ray *r, t_keyboard *k)
 {
 	SDL_memset(w->surface->pixels, 0, ((WIN_W * WIN_H) << 2));
 	draw_player_view(w, r);
-	raysprite(w, r);													///
 	hud(w, r);
-	inventory(r, w);
+	r->inv.nb_sprites > 0 ? inventory(r, w) : 0;
 	if (k->state[SDL_SCANCODE_O] == 1)
 		print_messages(w);
 	w->fired == 0 ? display_l((WIN_W / 2), (WIN_H) - 240, w, r->gun) : 0;
@@ -130,11 +133,7 @@ void	drawing(t_win *w, t_ray *r, t_keyboard *k)
 		fire_gunshot(w, &r->gun);
 	if (w->reload == 1)
 		reload_gun(&r->reload_gun, w);
-// 	inven
-	// --> mettre ici les sprites :
+	// raysprite(w, r);
 
-	//
-	// --> mettre ici l'affichage de l'HUD :
-	//
 	SDL_UpdateWindowSurface(w->win);
 }

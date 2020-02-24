@@ -6,39 +6,13 @@
 /*   By: lubernar <lubernar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/07 13:20:48 by lubernar          #+#    #+#             */
-/*   Updated: 2020/02/21 11:26:16 by cduverge         ###   ########.fr       */
+/*   Updated: 2020/02/21 15:12:07 by lubernar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "doom.h"
-
-void		display_l(int x, int y, t_win *sdl, t_text_tab tmp)
-{
-	int	text_x;
-	int text_y;
-	int	tmp_x;
-	int	tmp_y;
-
-	tmp_x = x;
-	tmp_y = y;
-	text_x = 0;
-	text_y = 0;
-	while (x < tmp_x + tmp.w)
-	{
-		y = tmp_y;
-		text_y = 0;
-		while (y < tmp_y + tmp.h)
-		{
-			if (tmp.data[(text_y * tmp.w) + text_x] != 0x00ff00)
-				*((int *)sdl->surface->pixels + (y * WIN_W + x)) =
-				tmp.data[(text_y * tmp.h) + text_x];
-			y++;
-			text_y++;
-		}
-		x++;
-		text_x++;
-	}
-}
+#include "inventory.h"
+#include "raycasting.h"
 
 void		init_inventory(t_invent *inv)
 {
@@ -49,12 +23,20 @@ void		init_inventory(t_invent *inv)
 	inv->nb_baguette = 0;
 	inv->nb_noodles_c = 0;
 	inv->invent.inventory = (char**)malloc(sizeof(char*) * 4);
-	inv->invent.inventory[0] = "ress/noodles.bmp";
-	inv->invent.inventory[1] = "ress/baguettes.bmp";
-	inv->invent.inventory[2] = "ress/noodlescomplete.bmp";
+	inv->invent.inventory[0] = "./ressources/noodles.bmp";
+	inv->invent.inventory[1] = "./ressources/baguettes.bmp";
+	inv->invent.inventory[2] = "./ressources/noodlescomplete.bmp";
 	inv->invent.inventory[3] = NULL;
 	while (++i < 4)
 		inv->invent.inventory_display[i] = 0;
+}
+
+void		display_to_true(t_ray *r, int i, int j)
+{
+	r->inv.invent.inventory_display[j] = 1;
+	r->inv.sprite[i].pickable = 0;
+	r->inv.sprite[i].id == 1 ? r->inv.nb_noodles++ : 0;
+	r->inv.sprite[i].id == 2 ? r->inv.nb_baguette++ : 0;
 }
 
 void		if_player_on_sprites(t_ray *r, t_win *sdl, int i)
@@ -65,17 +47,9 @@ void		if_player_on_sprites(t_ray *r, t_win *sdl, int i)
 	&& r->player.position.y <= r->inv.sprite[i].pos.y + 1)
 	{
 		if (r->inv.sprite[i].id == 1 && r->inv.sprite[i].pickable == 1)
-		{
-			r->inv.invent.inventory_display[0] = 1;
-			r->inv.sprite[i].pickable = 0;
-			r->inv.nb_noodles++;
-		}
+			display_to_true(r, i, 0);
 		if (r->inv.sprite[i].id == 2 && r->inv.sprite[i].pickable == 1)
-		{
-			r->inv.invent.inventory_display[1] = 1;
-			r->inv.sprite[i].pickable = 0;
-			r->inv.nb_baguette++;
-		}
+			display_to_true(r, i, 1);
 		if (r->inv.sprite[i].id == 3 && sdl->reload == 0)
 		{
 			sdl->fired = 2;
@@ -92,7 +66,7 @@ void		display_inventory(t_win *sdl, t_ray *r, int *j)
 {
 	if (*j == 0)
 	{
-		r->inv.list = handle_textures(r->inv.invent.inventory, 0);
+		r->inv.list = handle_textures(r->inv.invent.inventory, -1);
 		free(r->inv.invent.inventory);
 	}
 	r->inv.list.data == NULL ? exit(0) : 0;

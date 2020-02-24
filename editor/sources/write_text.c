@@ -6,11 +6,11 @@
 /*   By: lubernar <lubernar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/03 11:51:17 by lubernar          #+#    #+#             */
-/*   Updated: 2020/02/17 13:55:19 by lubernar         ###   ########.fr       */
+/*   Updated: 2020/02/19 16:20:02 by lubernar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../includes/Doom_Nukem.h"
+#include "../includes/editor.h"
 
 void	write_text2(t_sdl *sdl, t_editor *edit)
 {

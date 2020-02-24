@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parser.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jdelpuec <jdelpuec@student.42.fr>          +#+  +:+       +#+        */
+/*   By: lubernar <lubernar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/26 12:12:50 by cduverge          #+#    #+#             */
-/*   Updated: 2020/02/21 10:46:19 by cduverge         ###   ########.fr       */
+/*   Updated: 2020/02/21 12:51:25 by lubernar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,7 +66,7 @@ void	fill_up_player(char *line, t_env *doom)
 	++k;
 	while (line[k] != ' ')
 		++k;
-	doom->player.position.z = ft_atof(line + k) + PLAYER_H;
+	doom->player.position.z = ft_atof(line + k) + PLAY_H;
 	++k;
 	while (line[k] != ' ')
 		++k;
@@ -92,7 +92,6 @@ int		check_portal_sector(int fd, t_wall *walls, int j)
 			if (walls[j].portal_sector < -1)
 				return (free_and_return(line));
 			free(line);
-			//remplir t_text
 		}
 		else
 			return (free_and_return(line));
@@ -101,20 +100,3 @@ int		check_portal_sector(int fd, t_wall *walls, int j)
 		return (-1);
 	return (0);
 }
-
-// int		main(int ac, char **av)
-// {
-// 	t_env	doom;
-
-// 	if (ac > 2)
-// 	{
-// 		ft_putendl_fd(USAGE, 2);
-// 		return (-1);
-// 	}
-// 	if (parsing(av[1], &doom) == -1)
-// 	{
-// 		ft_putendl_fd(USAGE, 2);
-// 		return (-1);
-// 	}
-// 	return (0);
-// }

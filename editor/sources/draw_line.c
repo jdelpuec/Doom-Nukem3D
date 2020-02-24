@@ -6,11 +6,11 @@
 /*   By: lubernar <lubernar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/20 12:15:36 by lubernar          #+#    #+#             */
-/*   Updated: 2020/02/05 11:06:08 by lubernar         ###   ########.fr       */
+/*   Updated: 2020/02/19 16:19:12 by lubernar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../includes/Doom_Nukem.h"
+#include "../includes/editor.h"
 #include "../includes/list.h"
 
 int		horizontal_line(int error, t_line *line, t_sdl *sdl)

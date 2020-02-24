@@ -6,11 +6,11 @@
 /*   By: lubernar <lubernar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/05 14:40:36 by lubernar          #+#    #+#             */
-/*   Updated: 2020/02/11 17:43:14 by lubernar         ###   ########.fr       */
+/*   Updated: 2020/02/19 16:19:08 by lubernar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../includes/Doom_Nukem.h"
+#include "../includes/editor.h"
 
 void		display_sprite(t_lst **lst, t_sprite *s, t_sdl *sdl, t_editor *e)
 {
@@ -88,6 +88,14 @@ void		textures_area2(t_sdl *sdl, t_editor *edit)
 
 void		textures_area(t_sdl *sdl, t_editor *edit)
 {
+	if (sdl->e.motion.x >= (W / 1.45) && sdl->e.motion.x
+	<= (W / 1.45) + 36 && sdl->e.motion.y >= 320
+	&& sdl->e.motion.y <= 356 && edit->nb_clic == 0)
+		edit->gravity = 2;
+	if (sdl->e.motion.x >= (W / 1.45) + 108 && sdl->e.motion.x
+	<= (W / 1.45) + 145 && sdl->e.motion.y >= 320
+	&& sdl->e.motion.y <= 356 && edit->nb_clic == 0)
+		edit->gravity = 1;
 	if (sdl->e.motion.x >= W / 1.45 && sdl->e.motion.x <= (W / 1.45)
 	+ 30 && sdl->e.motion.y >= 112 && sdl->e.motion.y <= 142
 	&& edit->sector_num < 1)

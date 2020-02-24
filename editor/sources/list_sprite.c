@@ -6,11 +6,11 @@
 /*   By: lubernar <lubernar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/06 11:27:06 by lubernar          #+#    #+#             */
-/*   Updated: 2020/02/14 11:09:07 by lubernar         ###   ########.fr       */
+/*   Updated: 2020/02/19 16:19:36 by lubernar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../includes/Doom_Nukem.h"
+#include "../includes/editor.h"
 #include "../includes/list.h"
 
 t_text_tab	display_next(t_sdl *sdl, t_sprite *s, t_text_tab tmp, t_editor *e)
@@ -30,15 +30,16 @@ t_text_tab	display_next(t_sdl *sdl, t_sprite *s, t_text_tab tmp, t_editor *e)
 	return (tmp);
 }
 
-void	init_sprite(t_lst_sprite *l)
+void		init_sprite(t_lst_sprite *l)
 {
 	l->first = NULL;
 	l->last = NULL;
 }
 
-void	push_back_sprite(t_lst *l, t_editor *edit)
+void		push_back_sprite(t_lst *l, t_editor *edit)
 {
 	t_sprite	*nouv;
+
 	if (edit->nb_sprites < 20)
 	{
 		nouv = malloc(sizeof(t_sprite));

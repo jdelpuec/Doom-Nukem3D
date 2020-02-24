@@ -6,11 +6,11 @@
 /*   By: lubernar <lubernar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/03 09:55:59 by lubernar          #+#    #+#             */
-/*   Updated: 2020/02/17 12:09:47 by lubernar         ###   ########.fr       */
+/*   Updated: 2020/02/19 16:19:15 by lubernar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../includes/Doom_Nukem.h"
+#include "../includes/editor.h"
 #include "../includes/list.h"
 
 void	draw_contour(t_sdl *sdl)
@@ -56,7 +56,7 @@ void	draw_grid(t_sdl *sdl)
 	}
 }
 
-void	draw_menu(t_sdl *sdl)
+void	draw_menu(t_sdl *sdl, t_editor *edit)
 {
 	draw_contour(sdl);
 	sdl->color = BLACK;
@@ -81,23 +81,24 @@ void	draw_menu(t_sdl *sdl)
 		sdl->cy++;
 	}
 	draw_grid(sdl);
+	write_text(sdl, edit);
 }
 
-void	draw_redsquare(t_sdl *sdl, int x, int y)
+void	draw_redsquare(t_sdl *sdl, int x, int y, t_vector_2d *vec)
 {
 	int i;
 	int j;
 
 	sdl->color = RED;
 	j = y;
-	while (j != y + 30)
+	while (j != y + vec->y)
 	{
 		i = x;
-		if (i == x || i == x + 29 || j == y || j == y + 29)
+		if (i == x || i == x + vec->x || j == y || j == y + vec->x)
 		{
-			while (i != x + 30)
+			while (i != x + vec->y)
 			{
-				if (j == y || j == y + 29 || i == x || i == x + 29)
+				if (j == y || j == y + vec->x || i == x || i == x + vec->x)
 				{
 					pixel(sdl, i, j);
 				}

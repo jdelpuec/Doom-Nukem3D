@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   usefull.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jdelpuec <jdelpuec@student.42.fr>          +#+  +:+       +#+        */
+/*   By: lubernar <lubernar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/27 15:25:42 by cduverge          #+#    #+#             */
-/*   Updated: 2020/02/21 10:46:58 by cduverge         ###   ########.fr       */
+/*   Updated: 2020/02/21 12:53:36 by lubernar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 float	ft_atof(char *s)
 {
-	float			 res;
+	float			res;
 	int				signe;
 	unsigned long	i;
 

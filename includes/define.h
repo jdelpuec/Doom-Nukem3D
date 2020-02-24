@@ -5,8 +5,8 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: lubernar <lubernar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/04/02 11:29:30 by ebonafi           #+#    #+#             */
-/*   Updated: 2020/02/12 17:31:32 by lubernar         ###   ########.fr       */
+/*   Created: 2019/04/02 11:29:30 by siwarin           #+#    #+#             */
+/*   Updated: 2020/02/19 14:39:28 by lubernar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,7 @@
 
 # define SECTOR_ITER_MAX 16
 
-# define PLAYER_H 32
+# define PLAY_H 32
 
 # define DARK 0x303030
 # define GREY 0x808080

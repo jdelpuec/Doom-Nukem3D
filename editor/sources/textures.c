@@ -6,11 +6,11 @@
 /*   By: lubernar <lubernar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/03 11:56:05 by lubernar          #+#    #+#             */
-/*   Updated: 2020/02/17 15:08:18 by lubernar         ###   ########.fr       */
+/*   Updated: 2020/02/19 16:19:59 by lubernar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../includes/Doom_Nukem.h"
+#include "../includes/editor.h"
 
 void		display_l(int x, int y, t_sdl *sdl, t_text_tab tmp)
 {
@@ -40,7 +40,7 @@ void		display_l(int x, int y, t_sdl *sdl, t_text_tab tmp)
 	}
 }
 
-void	display(int x, int y, t_sdl *sdl, t_text_tab tmp)
+void		display(int x, int y, t_sdl *sdl, t_text_tab tmp)
 {
 	int	text_x;
 	int text_y;
@@ -69,20 +69,26 @@ void	display(int x, int y, t_sdl *sdl, t_text_tab tmp)
 	}
 }
 
-void	textures_display(t_sdl *sdl, t_editor *edit)
+void		gravity_display(t_editor *edit, t_sdl *sdl)
+{
+	t_text_tab	tmp_gravity;
+
+	tmp_gravity = edit->list_gravity;
+	tmp_gravity.w = 36;
+	tmp_gravity.h = 36;
+	display_l(W / 1.45, 320, sdl, tmp_gravity);
+	tmp_gravity.next != NULL ? tmp_gravity = *tmp_gravity.next : tmp_gravity;
+	tmp_gravity.w = 80;
+	tmp_gravity.h = 80;
+	display_l((W / 1.45) + 86, 300, sdl, tmp_gravity);
+}
+
+void		textures_display(t_sdl *sdl, t_editor *edit)
 {
 	t_text_tab	tmp_text;
 	t_text_tab	tmp_sprites;
-	// t_text_tab	tmp_gravity;
 
-	// tmp_gravity = edit->list_gravity;
-	// tmp_gravity.w = 64;
-	// tmp_gravity.h = 64;
-	// display_l(W / 1.45, 320, sdl, tmp_gravity);
-	// tmp_gravity = *tmp_gravity.next;
-	// tmp_gravity.w = 64;
-	// tmp_gravity.h = 64;
-	// display_l((W / 1.45) + 86, 310, sdl, tmp_gravity);
+	gravity_display(edit, sdl);
 	tmp_sprites = edit->list_sprite;
 	display(W / 1.45, 210, sdl, tmp_sprites);
 	tmp_sprites = *tmp_sprites.next;
@@ -96,10 +102,6 @@ void	textures_display(t_sdl *sdl, t_editor *edit)
 	display((W / 1.45) + 170, 112, sdl, tmp_text);
 	tmp_text = *tmp_text.next;
 	display((W / 1.45) + 520, 65, sdl, tmp_text);
-	// tmp_text = *tmp_text.next;
-	// display((W / 1.45) + 320, 112, sdl, tmp_text);
-	// tmp_text = *tmp_text.next;
-	// display((W / 1.45) + 520, 65, sdl, tmp);
 	if (edit->player_onmap)
 		display(edit->play_x, edit->play_y, sdl, edit->list_player);
 }

@@ -6,11 +6,11 @@
 /*   By: lubernar <lubernar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/03 15:14:52 by lubernar          #+#    #+#             */
-/*   Updated: 2020/02/16 15:56:19 by lubernar         ###   ########.fr       */
+/*   Updated: 2020/02/19 16:19:52 by lubernar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../includes/Doom_Nukem.h"
+#include "../includes/editor.h"
 
 t_lst	*reverse_list(t_lst *lst, t_elem **e)
 {

@@ -6,11 +6,11 @@
 /*   By: lubernar <lubernar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/26 12:12:50 by cduverge          #+#    #+#             */
-/*   Updated: 2020/02/17 15:09:13 by lubernar         ###   ########.fr       */
+/*   Updated: 2020/02/19 16:19:45 by lubernar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../includes/Doom_Nukem.h"
+#include "../includes/editor.h"
 
 void	mouse_button_down(t_sdl *sdl, t_editor *edit)
 {
@@ -36,48 +36,13 @@ void	mouse_button_down(t_sdl *sdl, t_editor *edit)
 	}
 }
 
-void	init_textures(t_editor *edit)
-{
-	char		**tab;
-	char		**tab_player;
-	char		**tab_sprite;
-	// char		**gravity;
-	
-	// gravity = (char **)malloc(sizeof(char*) * 3);
-	// gravity[0] = "./ress/moon.bmp";
-	// gravity[1] = "./ress/earth.bmp";
-	// gravity[2] = NULL;
-	// edit->list_gravity = handle_textures(gravity, 0);
-	// free(gravity);
-	tab_sprite = (char **)malloc(sizeof(char*) * 3);
-	tab_sprite[0] = "./ress/noodles.bmp";
-	tab_sprite[1] = "./ress/baguettes.bmp";
-	tab_sprite[2] = NULL;
-	edit->list_sprite = handle_textures(tab_sprite, 0);
-	free(tab_sprite);
-	edit->list_sprite.data == NULL ? exit(0) : 0;
-	tab_player = (char **)malloc(sizeof(char*) * 2);
-	tab_player[0] = "./ress/naruto.bmp";
-	tab_player[1] = NULL;
-	edit->list_player = handle_textures(tab_player, 0);
-	free(tab_player);
-	edit->list_player.data == NULL ? exit(0) : 0;
-	tab = (char **)malloc(sizeof(char*) * 5);
-	tab[0] = "./ress/bois.bmp";
-	tab[1] = "./ress/brique.bmp";
-	tab[2] = "./ress/ice.bmp";
-	tab[3] = "./ress/arrows.bmp";
-	tab[4] = NULL;
-	edit->list = handle_textures(tab, 0);
-	free(tab);
-	edit->list.data == NULL ? exit(0) : 0;
-}
-
-void	editor(t_sdl *sdl, t_editor *edit, t_lst **lst, t_line *line)
+void	editor(t_sdl *sdl, t_lst **lst, t_line *line)
 {
 	t_keyboard	k;
+	t_editor	edit;
 
-	init_textures(edit);
+	init_edit(&edit);
+	init_textures(&edit);
 	k.state = SDL_GetKeyboardState(NULL);
 	ft_init(sdl);
 	while (sdl->running)
@@ -89,10 +54,10 @@ void	editor(t_sdl *sdl, t_editor *edit, t_lst **lst, t_line *line)
 			SDL_GetGlobalMouseState(&sdl->xmouse, &sdl->ymouse);
 			sdl->xmouse = sdl->e.motion.x;
 			sdl->ymouse = sdl->e.motion.y;
-			mouse_button_down(sdl, edit);
-			edit->texture_choosen != 0 ? clic(sdl, line, edit, lst) : 0;
+			mouse_button_down(sdl, &edit);
+			edit.texture_choosen != 0 ? clic(sdl, line, &edit, lst) : 0;
 		}
-		editdraw(sdl, edit, line, lst);
+		editdraw(sdl, &edit, line, lst);
 		SDL_UpdateWindowSurface(sdl->win);
 		SDL_FreeSurface(sdl->ren);
 		if (sdl->e.type == SDL_QUIT)
@@ -111,10 +76,9 @@ int		main(void)
 {
 	t_sdl		sdl;
 	t_lst		*lst;
-	t_editor	edit;
 	t_line		line;
 	t_elem		e;
-	t_sprite sprite;
+	t_sprite	sprite;
 
 	if (!(lst = malloc(sizeof(t_lst))))
 		return (0);
@@ -123,7 +87,6 @@ int		main(void)
 	init(lst, &e);
 	init_sprite(lst->lst_s);
 	sprite = init_sprites();
-	init_edit(&edit);
-	editor(&sdl, &edit, &lst, &line);
+	editor(&sdl, &lst, &line);
 	return (0);
 }
