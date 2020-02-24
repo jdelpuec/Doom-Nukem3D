@@ -6,7 +6,7 @@
 /*   By: lubernar <lubernar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/13 16:40:33 by siwarin           #+#    #+#             */
-/*   Updated: 2020/02/24 13:49:27 by cduverge         ###   ########.fr       */
+/*   Updated: 2020/02/24 14:46:20 by cduverge         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,7 +54,7 @@ void	tri_sprite(t_sprites *s, int nb, t_ray *r)
 	return (tri_sprite(r->inv.sprite, --nb, r));
 }
 
-int		check_spr_intersection(t_ray *r, t_sprites sprite, float *h_x, float *h_y)
+int		check_spr_intersection(t_ray *r, t_sprites sprite, float h_x, float h_y)
 {
 	int denom_is_pos;
 
@@ -72,14 +72,19 @@ int		check_spr_intersection(t_ray *r, t_sprites sprite, float *h_x, float *h_y)
 	if ((r->s_denom < 0) == denom_is_pos)
 		return (0);
 	r->t_denom = r->s32_x * r->s02_y - r->s32_y * r->s02_x;
+//	printf("r->t_denom : %f\n", r->t_denom);									///
 	if ((r->t_denom < 0) == denom_is_pos)
 		return (0);
 	if (((r->s_denom > r->denom) == denom_is_pos)
 		|| ((r->t_denom > r->denom) == denom_is_pos))
 		return (0);
-	r->t = r->t_denom / r->denom;
-	*h_x = sprite.pos.x + (r->t * r->s10_x);
-	*h_y = sprite.pos.y + (r->t * r->s10_y);
+//	printf("r->denom : %f\n", r->denom);										///
+//	r->t = r->t_denom / r->denom;
+	printf("r->t : %f\n", r->t);												///
+	h_x = sprite.pos.x + (r->t * r->s10_x);
+	printf("h_x : %f\n", h_x);										///
+	h_y = sprite.pos.y + (r->t * r->s10_y);
+//	printf("h_y : %f\n", h_y);										///
 	return (1);
 }
 
@@ -91,9 +96,9 @@ int		draw_sprite(t_win *w, t_ray *r, t_sprites *s)
 	while (i < r->inv.nb_sprites)
 	{
 		if (r->inv.sprite[i].sector == r->player.sector
-			&& check_spr_intersection(r, r->inv.sprite[i], &r->hit_x, &r->hit_y) == 1)
+			&& check_spr_intersection(r, r->inv.sprite[i], r->hit_x, r->hit_y) == 1)
 		{
-			printf("hit_x : %d, hit_y : %d\n", (int)r->hit_x, (int)r->hit_y);	///
+//			printf("hit_x : %d, hit_y : %d\n", (int)r->hit_x, (int)r->hit_y);	///
 			display((int)r->hit_x, (int)r->hit_y, r->inv.sprite[i].s, w);
 		}
 		i++;
