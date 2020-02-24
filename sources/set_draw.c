@@ -6,7 +6,7 @@
 /*   By: lubernar <lubernar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/10 14:05:34 by jdelpuec          #+#    #+#             */
-/*   Updated: 2020/02/21 18:20:34 by lubernar         ###   ########.fr       */
+/*   Updated: 2020/02/24 12:49:36 by cduverge         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -133,7 +133,7 @@ void	drawing(t_win *w, t_ray *r, t_keyboard *k)
 		fire_gunshot(w, &r->gun);
 	if (w->reload == 1)
 		reload_gun(&r->reload_gun, w);
-	// raysprite(w, r);
+	 raysprite(w, r);
 
 	SDL_UpdateWindowSurface(w->win);
 }

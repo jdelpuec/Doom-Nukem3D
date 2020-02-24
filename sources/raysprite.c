@@ -6,7 +6,7 @@
 /*   By: lubernar <lubernar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/13 16:40:33 by siwarin           #+#    #+#             */
-/*   Updated: 2020/02/21 18:16:28 by lubernar         ###   ########.fr       */
+/*   Updated: 2020/02/24 12:49:28 by cduverge         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -137,16 +137,20 @@ void  raysprite(t_win *w, t_ray *r)
 
 	if (j == 0)
 	{
-		r->inv.sprite[0].s = find("ress/noodles.bmp");
+		r->inv.sprite[0].s = find("ress/naruto.bmp");
 		r->inv.sprite[0].s.w = 30;
 		r->inv.sprite[0].s.h = 30;
+		r->inv.sprite[0].pos.x = 30;
+		r->inv.sprite[0].pos.y = 50;
+		r->inv.sprite[0].pos.z = 10;
+		r->inv.sprite[0].sector = 0;
 		r->inv.sprite[1].s = find("ress/noodles.bmp");
 		r->inv.sprite[1].s.w = 30;
 		r->inv.sprite[1].s.h = 30;
-		r->inv.sprite[2].s = find("ress/noodles.bmp");
+		r->inv.sprite[2].s = find("ress/book.bmp");
 		r->inv.sprite[2].s.w = 30;
 		r->inv.sprite[2].s.h = 30;
-		r->inv.sprite[3].s = find("ress/noodles.bmp");
+		r->inv.sprite[3].s = find("ress/bullet.bmp");
 		r->inv.sprite[3].s.w = 30;
 		r->inv.sprite[3].s.h = 30;
 	}
