@@ -6,7 +6,7 @@
 /*   By: lubernar <lubernar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/13 16:40:33 by siwarin           #+#    #+#             */
-/*   Updated: 2020/02/24 12:49:28 by cduverge         ###   ########.fr       */
+/*   Updated: 2020/02/24 13:49:27 by cduverge         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,7 +37,7 @@ void	tri_sprite(t_sprites *s, int nb, t_ray *r)
 	(void)s;
 
 	i = 0;
-	if (nb == 1)
+	if (nb <= 1)
 		return ;
 	while (i < nb)
 	{
@@ -57,7 +57,7 @@ void	tri_sprite(t_sprites *s, int nb, t_ray *r)
 int		check_spr_intersection(t_ray *r, t_sprites sprite, float *h_x, float *h_y)
 {
 	int denom_is_pos;
-	
+
 	r->s10_x = sprite.pos.x + 0.5 - sprite.pos.x;
 	r->s10_y = sprite.pos.y + 0.5 - sprite.pos.y;
 	r->s32_x = r->ray_end.x - r->player.position.x;
@@ -93,9 +93,8 @@ int		draw_sprite(t_win *w, t_ray *r, t_sprites *s)
 		if (r->inv.sprite[i].sector == r->player.sector
 			&& check_spr_intersection(r, r->inv.sprite[i], &r->hit_x, &r->hit_y) == 1)
 		{
-			// printf("hit_x : %d, hit_y : %d\n", (int)r->hit_x, (int)r->hit_y);
+			printf("hit_x : %d, hit_y : %d\n", (int)r->hit_x, (int)r->hit_y);	///
 			display((int)r->hit_x, (int)r->hit_y, r->inv.sprite[i].s, w);
-			//affichage
 		}
 		i++;
 	}
@@ -144,16 +143,16 @@ void  raysprite(t_win *w, t_ray *r)
 		r->inv.sprite[0].pos.y = 50;
 		r->inv.sprite[0].pos.z = 10;
 		r->inv.sprite[0].sector = 0;
-		r->inv.sprite[1].s = find("ress/noodles.bmp");
+/*		r->inv.sprite[1].s = find("ress/noodle.bmp");
 		r->inv.sprite[1].s.w = 30;
 		r->inv.sprite[1].s.h = 30;
-		r->inv.sprite[2].s = find("ress/book.bmp");
+		r->inv.sprite[2].s = find("ress/noodles.bmp");
 		r->inv.sprite[2].s.w = 30;
 		r->inv.sprite[2].s.h = 30;
 		r->inv.sprite[3].s = find("ress/bullet.bmp");
 		r->inv.sprite[3].s.w = 30;
 		r->inv.sprite[3].s.h = 30;
-	}
+*/	}
 	j = 1;
 	tri_sprite(r->inv.sprite, r->inv.nb_sprites -1, r);
 	draw_sprite_view(w, r, r->inv.sprite);
