@@ -6,16 +6,13 @@
 /*   By: lubernar <lubernar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/13 16:40:33 by siwarin           #+#    #+#             */
-/*   Updated: 2020/02/25 17:46:16 by cduverge         ###   ########.fr       */
+/*   Updated: 2020/02/25 16:02:44 by cduverge         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "doom.h"
 #include "inventory.h"
 #include "raycasting.h"
-#include "draw.h"
-#include "ft_math.h"
-#include "event.h"
 
 int		long_calcul(t_sprites s, t_ray *r)
 {
@@ -57,61 +54,7 @@ void	tri_sprite(t_sprites *s, int nb, t_ray *r)
 	return (tri_sprite(r->inv.sprite, --nb, r));
 }
 
-
-
-/*t_wall_tex	set_spt_tex(t_win *w, t_ray *r)
-{
-	t_wall_tex	wt;
-(void)w;
-	wt.tx = r->inv.sprite[r->i].pos.x - r->hit_x;
-	wt.tx *= wt.tx;
-	wt.ty = r->inv.sprite[r->i].pos.y - r->hit_y;
-	wt.ty *= wt.ty;
-	wt.intersec = sqrtf(wt.tx + wt.ty) * (30 / (16 * (1
-			/ (30 / ((float)r->sectors[r->inv.sprite[r->i].sector].ceil_height
-			- (float)r->sectors[r->inv.sprite[r->i].sector].floor_height)))));
-	wt.tex_count = floorf(wt.intersec / 30);
-	wt.full_len = wt.tex_count * 30;
-	wt.tex_xf = wt.intersec - wt.full_len;
-	wt.tex_scale = 30 / r->line_h;
-	wt.tex_yf = 0;
-	return (wt);
-}
-
-int			display_text_spt(t_ray *r, t_win *w, t_text_tab *tmp, t_wall_tex *wt)
-{
-	int i;
-
-	i = (int)r->offset_start;
-	while (i++ < (int)r->offset_end)
-	{
-		if ((i >= 0 && i < WIN_H)
-			&& (*((int *)w->surface->pixels + (i * WIN_W + r->x)) == 0))
-		{
-			wt->tex_y = (int)wt->tex_yf;
-			wt->tex_id = (int)(wt->tex_y * tmp->tex_w + (int)wt->tex_xf);
-			if (wt->tex_id < tmp->tex_w * tmp->tex_w)
-				*((int *)w->surface->pixels
-				+ (i * WIN_W + r->x)) = tmp->data[wt->tex_id];
-		}
-		wt->tex_yf += wt->tex_scale;
-	}
-	return (i);
-}
-
-void		sprite_textures(t_win *w, t_ray *r)
-{
-	t_wall_tex	wt;
-	t_text_tab	*tmp;
-
-	tmp = &w->text_list;
-	wt = set_spt_tex(w, r);
-	display_text_spt(r, w, tmp, &wt);
-}*/
-
-
-
-int		check_spr_inter(t_ray *r, t_sprites sprite, float *h_x, float *h_y)
+int		check_spr_intersection(t_ray *r, t_sprites sprite, float *h_x, float *h_y)
 {
 	int denom_is_pos;
 
@@ -140,7 +83,7 @@ int		check_spr_inter(t_ray *r, t_sprites sprite, float *h_x, float *h_y)
 	return (1);
 }
 
-int draw_sprite_2(t_ray *r, int s, t_win *w)
+int draw_sprite(t_ray *r, int s)
 {
 	r->dist = sqrtf(((r->hit_x - r->player.position.x) * (r->hit_x
 					- r->player.position.x)) + ((r->hit_y - r->player.position.y)
@@ -152,42 +95,30 @@ int draw_sprite_2(t_ray *r, int s, t_win *w)
 	r->offset_end = (WIN_H >> 1) + ((r->player.position.z
 				- r->sectors[s].floor_height) / r->dist_sprite) * r->dist_pp;
 	r->line_h = r->offset_end - r->offset_start;
-//	sprite_textures(w, r);
-	display((int)r->offset_start, (int)r->offset_end, r->inv.sprite[r->i].s, w);			///
+	//			wall_textures(w, r, sector, wall);
 	return (1);
-}
-
-int		draw_sprite(t_win *w, t_ray *r)
-{
-	if (r->inv.sprite[r->i].sector == r->player.sector &&
-		check_spr_inter(r, r->inv.sprite[r->i], &r->hit_x, &r->hit_y) == 1)
-		return (draw_sprite_2(r, r->inv.sprite[r->i].sector, w));
-	return (0);
-}
-
-int		sprite_loop(t_win *w, t_ray *r)
-{
-	int ret;
-
-	ret = draw_sprite(w, r);
-	if (ret == 1)
-		return (1);
-	else if (ret == 2)
-		return (0);
-	r->i++;
-	return (2);
 }
 
 int		detecte_sprite(t_win *w, t_ray *r)
 {
-	int			ret;
-
-	r->i = 0;
-	while (r->i < r->inv.nb_sprites)
+	int i;
+	i = 0;
+	while (i < r->inv.nb_sprites)
 	{
-		ret = sprite_loop(w, r);
-		if (ret == 0 || ret == 1)
-			return (ret);
+		if (r->inv.sprite[i].sector == r->player.sector
+				&& check_spr_intersection(r, r->inv.sprite[i], &r->hit_x, &r->hit_y) == 1)
+		{
+
+
+			draw_sprite(r, r->inv.sprite[i].sector);
+
+
+
+
+			display((int)r->offset_start, (int)r->offset_end, r->inv.sprite[i].s, w);
+			//display((int)r->hit_x + (WIN_W / 2) , (int)r->hit_y + (WIN_H / 2), r->inv.sprite[i].s, w);
+		}
+		i++;
 	}
 	return (0);
 }
