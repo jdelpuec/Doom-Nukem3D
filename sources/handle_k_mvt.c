@@ -6,7 +6,7 @@
 /*   By: lubernar <lubernar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/19 14:41:55 by lubernar          #+#    #+#             */
-/*   Updated: 2020/02/21 12:44:35 by lubernar         ###   ########.fr       */
+/*   Updated: 2020/03/02 15:44:33 by lubernar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -91,25 +91,11 @@ void	l_ctrl(t_keyboard *k, t_ray *r, float ms)
 	}
 }
 
-void	DEBROUILLE_TOI_AVEC_LE_NOM_DE_CELLE_LA_JU(t_ray *r)
+void	wall_slide(t_ray *r)
 {
-	t_wall		wall;
-	t_vector_3d	new_pos;
-	int			i;
-
-	i = 0;
 	if (r->player.velocity.x != 0 || r->player.velocity.y != 0)
 	{
-		while (i < r->sectors[r->player.sector].wall_count)
-		{
-			new_pos = (t_vector_3d) {r->player.position.x
-						+ r->player.velocity.x, r->player.position.y
-						+ r->player.velocity.y, 0};
-			wall = r->sectors[r->player.sector].walls[i];
-			if (check_walls(r, new_pos, wall) == -1)
-				break ;
-			i++;
-		}
+		check_walls(r);
 		r->player.position.x += r->player.velocity.x;
 		r->player.position.y += r->player.velocity.y;
 	}
@@ -131,7 +117,7 @@ void	handle_keyboard_mvt(t_win *w, t_ray *r, t_keyboard *k)
 		r->player.velocity.x = 0;
 		r->player.velocity.y = 0;
 	}
-	DEBROUILLE_TOI_AVEC_LE_NOM_DE_CELLE_LA_JU(r);
+	wall_slide(r);
 	r->player.velocity.x = 0.0;
 	r->player.velocity.y = 0.0;
 	l_ctrl(k, r, ms);

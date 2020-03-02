@@ -6,7 +6,7 @@
 /*   By: lubernar <lubernar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/04/06 14:02:38 by siwarin           #+#    #+#             */
-/*   Updated: 2020/02/21 16:13:51 by lubernar         ###   ########.fr       */
+/*   Updated: 2020/03/02 15:33:00 by lubernar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -106,7 +106,7 @@ typedef struct	s_floor_tex
 float			check_line_point(t_vector_2d l1, t_vector_2d l2, t_vector_3d p);
 void			init_raycasting(t_ray *r);
 void			wall_collision(t_ray *r, t_vector_3d wd, t_wall wall);
-int				check_walls(t_ray *r, t_vector_3d new_pos, t_wall wall);
+void			check_walls(t_ray *r);
 float			get_dir_angle(t_ray *r);
 float			get_dot_poduct(t_vector_3d v1, t_vector_3d v2);
 float			get_vector_length(t_vector_3d v);
