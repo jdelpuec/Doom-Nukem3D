@@ -6,7 +6,7 @@
 /*   By: lubernar <lubernar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/04/06 14:02:38 by siwarin           #+#    #+#             */
-/*   Updated: 2020/02/21 16:13:51 by lubernar         ###   ########.fr       */
+/*   Updated: 2020/03/02 12:46:13 by cduverge         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,6 +48,7 @@ typedef struct	s_ray
 	float		light;
 	float		dist;
 	float		dist_wall;
+	float		dist_sprite;
 	float		offset_start;
 	float		offset_end;
 	float		line_h;
