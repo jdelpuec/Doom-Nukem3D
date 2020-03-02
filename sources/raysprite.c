@@ -6,7 +6,7 @@
 /*   By: lubernar <lubernar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/13 16:40:33 by siwarin           #+#    #+#             */
-/*   Updated: 2020/02/25 17:46:16 by cduverge         ###   ########.fr       */
+/*   Updated: 2020/03/02 16:10:39 by cduverge         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,21 +59,19 @@ void	tri_sprite(t_sprites *s, int nb, t_ray *r)
 
 
 
-/*t_wall_tex	set_spt_tex(t_win *w, t_ray *r)
+t_wall_tex	set_spt_tex(t_win *w, t_ray *r)
 {
 	t_wall_tex	wt;
 (void)w;
-	wt.tx = r->inv.sprite[r->i].pos.x - r->hit_x;
+	wt.tx = r->inv.sprite[r->i].pos.x + 1 - r->hit_x;
 	wt.tx *= wt.tx;
-	wt.ty = r->inv.sprite[r->i].pos.y - r->hit_y;
+	wt.ty = r->inv.sprite[r->i].pos.y - 1 - r->hit_y;
 	wt.ty *= wt.ty;
-	wt.intersec = sqrtf(wt.tx + wt.ty) * (30 / (16 * (1
-			/ (30 / ((float)r->sectors[r->inv.sprite[r->i].sector].ceil_height
-			- (float)r->sectors[r->inv.sprite[r->i].sector].floor_height)))));
-	wt.tex_count = floorf(wt.intersec / 30);
-	wt.full_len = wt.tex_count * 30;
+	wt.intersec = sqrtf(wt.tx + wt.ty) * 21.0;
+	wt.tex_count = floorf(wt.intersec / 30.0);
+	wt.full_len = wt.tex_count * 30.0;
 	wt.tex_xf = wt.intersec - wt.full_len;
-	wt.tex_scale = 30 / r->line_h;
+	wt.tex_scale = 30.0 / r->line_h;
 	wt.tex_yf = 0;
 	return (wt);
 }
@@ -107,7 +105,7 @@ void		sprite_textures(t_win *w, t_ray *r)
 	tmp = &w->text_list;
 	wt = set_spt_tex(w, r);
 	display_text_spt(r, w, tmp, &wt);
-}*/
+}
 
 
 
@@ -115,8 +113,8 @@ int		check_spr_inter(t_ray *r, t_sprites sprite, float *h_x, float *h_y)
 {
 	int denom_is_pos;
 
-	r->s10_x = sprite.pos.x + 0.5 - sprite.pos.x;
-	r->s10_y = sprite.pos.y + 0.5 - sprite.pos.y;
+	r->s10_x = sprite.pos.x + 0.5 - (sprite.pos.x - 0.5);
+	r->s10_y = sprite.pos.y - 0.5 - (sprite.pos.y + 0.5);
 	r->s32_x = r->ray_end.x - r->player.position.x;
 	r->s32_y = r->ray_end.y - r->player.position.y;
 	r->denom = r->s10_x * r->s32_y - r->s32_x * r->s10_y;
@@ -135,10 +133,43 @@ int		check_spr_inter(t_ray *r, t_sprites sprite, float *h_x, float *h_y)
 			|| ((r->t_denom > r->denom) == denom_is_pos))
 		return (0);
 	r->t = r->t_denom / r->denom;
-	*h_x = sprite.pos.x + (r->t * r->s10_x);
-	*h_y = sprite.pos.y + (r->t * r->s10_y);
+	*h_x = (sprite.pos.x - 0.5) + (r->t * r->s10_x);
+	*h_y = (sprite.pos.y + 0.5) + (r->t * r->s10_y);
 	return (1);
 }
+
+
+
+
+
+void		display_spr(t_ray *r, t_win *w, t_text_tab sprt)
+{
+	int i;
+	t_wall_tex st;
+
+	st = set_spt_tex(w, r);
+	i = (int)r->offset_start;
+	while(i++ < (int)r->offset_end)
+	{
+		if (i >= 0 && i < WIN_W)
+		{
+			st.tex_y = (int)st.tex_yf;
+			st.tex_id = (int)(st.tex_y * 30 + (int)st.tex_xf);
+			if (st.tex_id < 900 && sprt.data[st.tex_id] != 0x00ff00)
+				*((int *)w->surface->pixels + (i * WIN_W
+					+ r->x)) = sprt.data[st.tex_id];
+		}
+		st.tex_yf += st.tex_scale;
+	}
+}
+
+
+
+
+
+
+
+
 
 int draw_sprite_2(t_ray *r, int s, t_win *w)
 {
@@ -148,12 +179,12 @@ int draw_sprite_2(t_ray *r, int s, t_win *w)
 	r->dist *= cos(r->ray_angle - r->player.angle);
 	r->dist_sprite = r->dist * PLAY_H;
 	r->offset_start = (WIN_H >> 1) + ((r->player.position.z
-				- r->sectors[s].ceil_height) / r->dist_sprite) * r->dist_pp;
+				- (r->sectors[s].floor_height + 30)) / r->dist_sprite) * r->dist_pp;
 	r->offset_end = (WIN_H >> 1) + ((r->player.position.z
 				- r->sectors[s].floor_height) / r->dist_sprite) * r->dist_pp;
 	r->line_h = r->offset_end - r->offset_start;
 //	sprite_textures(w, r);
-	display((int)r->offset_start, (int)r->offset_end, r->inv.sprite[r->i].s, w);			///
+	display_spr(r, w, r->inv.sprite[r->i].s);			///
 	return (1);
 }
 
@@ -226,10 +257,10 @@ void  raysprite(t_win *w, t_ray *r)
 
 	if (j == 0)
 	{
-		r->inv.sprite[0].s = find("ress/naruto.bmp");
+		r->inv.sprite[0].s = find("ress/noodles.bmp");
 		r->inv.sprite[0].s.w = 30;
 		r->inv.sprite[0].s.h = 30;
-		r->inv.sprite[1].s = find("ress/noodle.bmp");
+		/*r->inv.sprite[1].s = find("ress/noodle.bmp");
 		r->inv.sprite[1].s.w = 30;
 		r->inv.sprite[1].s.h = 30;
 		r->inv.sprite[2].s = find("ress/noodles.bmp");
@@ -237,7 +268,7 @@ void  raysprite(t_win *w, t_ray *r)
 		r->inv.sprite[2].s.h = 30;
 		r->inv.sprite[3].s = find("ress/bullet.bmp");
 		r->inv.sprite[3].s.w = 30;
-		r->inv.sprite[3].s.h = 30;
+		r->inv.sprite[3].s.h = 30;*/
 	}
 	j = 1;
 	tri_sprite(r->inv.sprite, r->inv.nb_sprites -1, r);
