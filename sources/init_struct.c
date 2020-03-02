@@ -6,7 +6,7 @@
 /*   By: lubernar <lubernar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/10 11:27:26 by jdelpuec          #+#    #+#             */
-/*   Updated: 2020/02/21 16:33:03 by lubernar         ###   ########.fr       */
+/*   Updated: 2020/03/02 17:28:02 by lubernar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -111,7 +111,6 @@ void		init_t_ray(t_ray *r, t_env *env)
 	r->last_sec = -2;
 	r->speed = 5.0;
 	r->thresh = 1;
-	r->gravity = 2;
 	r->inv.nb_bullet = 50;
 	r->inv.nb_hp = 100;
 	r->inv.anim = 0;
@@ -123,5 +122,6 @@ void		init_t_ray(t_ray *r, t_env *env)
 	r->sector_count = env->room;
 	r->space = r->sector_count > 1 ? 1.8 : 4;
 	i = -1;
+	r->gravity = r->player.gravity;
 	get_sector_vertices(r, i);
 }

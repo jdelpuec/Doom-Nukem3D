@@ -6,7 +6,7 @@
 /*   By: lubernar <lubernar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/26 12:12:50 by cduverge          #+#    #+#             */
-/*   Updated: 2020/02/21 12:51:25 by lubernar         ###   ########.fr       */
+/*   Updated: 2020/03/02 17:13:43 by lubernar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,6 +71,7 @@ void	fill_up_player(char *line, t_env *doom)
 	while (line[k] != ' ')
 		++k;
 	doom->player.sector = ft_atoi(line + k);
+	++k;
 	while (line[k] != ' ')
 		++k;
 	doom->player.gravity = ft_atoi(line + k);

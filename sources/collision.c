@@ -6,7 +6,7 @@
 /*   By: lubernar <lubernar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/28 15:29:08 by jdelpuec          #+#    #+#             */
-/*   Updated: 2020/03/02 15:42:35 by lubernar         ###   ########.fr       */
+/*   Updated: 2020/03/02 17:51:29 by lubernar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,6 +23,7 @@ void		new_pos_collision(t_vector_3d new_pos, t_wall wall, t_ray *r)
 
 int			how_to_break_properly(t_wall wall, t_ray *r, t_vector_3d new_pos)
 {
+	(void)new_pos;
 	if (wall.portal_sector >= 0 && r->player.position.z >
 	r->sectors[wall.portal_sector].floor_height + (PLAY_H >> 1)
 	&& r->player.position.z
@@ -33,14 +34,14 @@ int			how_to_break_properly(t_wall wall, t_ray *r, t_vector_3d new_pos)
 		r->player.velocity.x = 0;
 		return (-1);
 	}
-	else if (r->tmp < r->space)
+	else
 	{
 		r->player.velocity.x = 0.0;
 		r->player.velocity.y = 0.0;
 		return (-1);
 	}
-	else
-		new_pos_collision(new_pos, wall, r);
+	// else
+	// 	new_pos_collision(new_pos, wall, r);
 	return (1);
 }
 
