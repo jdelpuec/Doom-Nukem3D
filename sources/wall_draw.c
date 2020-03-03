@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   wall_draw.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lubernar <lubernar@student.42.fr>          +#+  +:+       +#+        */
+/*   By: jdelpuec <jdelpuec@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/10 14:12:36 by jdelpuec          #+#    #+#             */
-/*   Updated: 2020/02/19 16:16:14 by lubernar         ###   ########.fr       */
+/*   Updated: 2020/03/03 17:10:45 by jdelpuec         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -73,12 +73,9 @@ int		check_behind(t_ray *r, t_sector sector)
 {
 	int			i;
 	t_vector_2d	tmp;
-	t_vector_2d	hit;
 
 	if (r->sector_count > 1)
 		return (1);
-	hit.x = r->hit_x;
-	hit.y = r->hit_y;
 	i = 0;
 	while (i < sector.wall_count)
 	{

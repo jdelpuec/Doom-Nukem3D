@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   doom.h                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lubernar <lubernar@student.42.fr>          +#+  +:+       +#+        */
+/*   By: jdelpuec <jdelpuec@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/04/01 11:50:31 by siwarin           #+#    #+#             */
-/*   Updated: 2020/02/21 16:13:39 by lubernar         ###   ########.fr       */
+/*   Updated: 2020/03/03 15:06:24 by jdelpuec         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -120,6 +120,7 @@ typedef struct			s_sprites
 	int					sector;
 	int					id;
 	int					pickable;
+	int					display;
 }						t_sprites;
 
 typedef struct			s_env

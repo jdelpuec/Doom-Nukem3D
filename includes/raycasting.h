@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   raycasting.h                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lubernar <lubernar@student.42.fr>          +#+  +:+       +#+        */
+/*   By: jdelpuec <jdelpuec@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/04/06 14:02:38 by siwarin           #+#    #+#             */
-/*   Updated: 2020/03/03 13:37:28 by lubernar         ###   ########.fr       */
+/*   Updated: 2020/03/03 16:10:38 by jdelpuec         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,13 +22,16 @@ typedef struct  s_ray
     int         last_sec;
     float       dist_pp;
     float       ray_angle;
+
     t_player    player;
+	t_vector_3d	start_pos;
     t_wall      old_wall;
     t_sector    *sectors;
     t_vector_2d ray_end;
     t_invent    inv;
     t_text_tab  gun;
     t_text_tab  reload_gun;
+
     float       s02_x;
     float       s02_y;
     float       s10_x;
@@ -42,6 +45,7 @@ typedef struct  s_ray
     float       t;
     float       hit_x;
     float       hit_y;
+
     float       light;
     float       dist;
     float       dist_wall;
@@ -53,6 +57,7 @@ typedef struct  s_ray
     int         y_max;
     int         last_y_min;
     int         last_y_max;
+
     float       space;
     float       thresh;
     float       speed;
@@ -60,12 +65,15 @@ typedef struct  s_ray
     float       dir_angle;
     int         direction;
     int         gravity;
+
     int         x_1;
     int         y_1;
     int         x_2;
     int         y_2;
+
     int         *check_sprt;
 }               t_ray;
+
 typedef struct  s_wall_tex
 {
     float       tx;
@@ -79,6 +87,7 @@ typedef struct  s_wall_tex
     int         tex_y;
     int         tex_id;
 }               t_wall_tex;
+
 typedef struct  s_floor_tex
 {
     float       cor_dist;
@@ -95,8 +104,8 @@ typedef struct  s_floor_tex
     int         tex_x;
     int         tex_id;
     t_vector_2d hit;
-	
 }               t_floor_tex;
+
 float           check_line_point(t_vector_2d l1, t_vector_2d l2, t_vector_3d p);
 void            init_raycasting(t_ray *r);
 void            wall_collision(t_ray *r, t_vector_3d wd, t_wall wall);
