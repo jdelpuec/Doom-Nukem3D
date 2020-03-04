@@ -6,7 +6,7 @@
 /*   By: lubernar <lubernar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/05 14:40:36 by lubernar          #+#    #+#             */
-/*   Updated: 2020/02/19 16:19:08 by lubernar         ###   ########.fr       */
+/*   Updated: 2020/03/02 17:16:04 by lubernar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -91,11 +91,11 @@ void		textures_area(t_sdl *sdl, t_editor *edit)
 	if (sdl->e.motion.x >= (W / 1.45) && sdl->e.motion.x
 	<= (W / 1.45) + 36 && sdl->e.motion.y >= 320
 	&& sdl->e.motion.y <= 356 && edit->nb_clic == 0)
-		edit->gravity = 2;
+		edit->gravity = 1;
 	if (sdl->e.motion.x >= (W / 1.45) + 108 && sdl->e.motion.x
 	<= (W / 1.45) + 145 && sdl->e.motion.y >= 320
 	&& sdl->e.motion.y <= 356 && edit->nb_clic == 0)
-		edit->gravity = 1;
+		edit->gravity = 2;
 	if (sdl->e.motion.x >= W / 1.45 && sdl->e.motion.x <= (W / 1.45)
 	+ 30 && sdl->e.motion.y >= 112 && sdl->e.motion.y <= 142
 	&& edit->sector_num < 1)

@@ -6,7 +6,7 @@
 /*   By: lubernar <lubernar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/12/03 14:23:14 by siwarin           #+#    #+#             */
-/*   Updated: 2020/02/19 16:19:22 by lubernar         ###   ########.fr       */
+/*   Updated: 2020/03/02 17:16:49 by lubernar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -74,7 +74,7 @@ void	clic(t_sdl *sdl, t_line *line, t_editor *edit, t_lst **lst)
 void	put_redsquare(t_sdl *sdl, t_editor *edit)
 {
 	sdl->color = RED;
-	if (edit->gravity == 1)
+	if (edit->gravity == 2)
 		draw_redsquare(sdl, (W / 1.45) + 107, 322, &edit->vec);
 	else
 		draw_redsquare(sdl, (W / 1.45), 320, &edit->vec);

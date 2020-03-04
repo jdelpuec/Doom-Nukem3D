@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   inventory.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lubernar <lubernar@student.42.fr>          +#+  +:+       +#+        */
+/*   By: jdelpuec <jdelpuec@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/07 13:20:48 by lubernar          #+#    #+#             */
-/*   Updated: 2020/02/21 15:12:07 by lubernar         ###   ########.fr       */
+/*   Updated: 2020/03/03 15:45:21 by jdelpuec         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,7 +44,9 @@ void		if_player_on_sprites(t_ray *r, t_win *sdl, int i)
 	if (r->player.position.x >= r->inv.sprite[i].pos.x - 1
 	&& r->player.position.x <= r->inv.sprite[i].pos.x + 1
 	&& r->player.position.y >= r->inv.sprite[i].pos.y - 1
-	&& r->player.position.y <= r->inv.sprite[i].pos.y + 1)
+	&& r->player.position.y <= r->inv.sprite[i].pos.y + 1
+	&& r->player.position.z - PLAY_H <= r->inv.sprite[i].pos.z +
+	r->sectors[r->cur_sector].floor_height)
 	{
 		if (r->inv.sprite[i].id == 1 && r->inv.sprite[i].pickable == 1)
 			display_to_true(r, i, 0);

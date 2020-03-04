@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   doom.h                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lubernar <lubernar@student.42.fr>          +#+  +:+       +#+        */
+/*   By: jdelpuec <jdelpuec@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/04/01 11:50:31 by siwarin           #+#    #+#             */
-/*   Updated: 2020/02/21 16:13:39 by lubernar         ###   ########.fr       */
+/*   Updated: 2020/03/04 14:58:02 by cduverge         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -120,6 +120,7 @@ typedef struct			s_sprites
 	int					sector;
 	int					id;
 	int					pickable;
+	int					display;
 }						t_sprites;
 
 typedef struct			s_env
@@ -160,6 +161,7 @@ void					fill_up_sprite(char *str, t_env *doom, int i);
 int						check_line_sprite(char *str);
 int						check_if_sprites(int fd);
 int						check_sprite_id(int fd, t_env *doom, int i);
+int						check_sprite_id_2(char *line, t_env *doom, int i);
 int						check_bright(int i, char *str, int spc);
 int						all_check(t_env *doom, int fd);
 void					fill_up_player(char *line, t_env *doom);

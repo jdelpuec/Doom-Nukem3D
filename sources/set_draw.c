@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   set_draw.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lubernar <lubernar@student.42.fr>          +#+  +:+       +#+        */
+/*   By: jdelpuec <jdelpuec@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/10 14:05:34 by jdelpuec          #+#    #+#             */
-/*   Updated: 2020/03/02 16:02:01 by cduverge         ###   ########.fr       */
+/*   Updated: 2020/03/04 14:30:36 by cduverge         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -124,11 +124,12 @@ void	drawing(t_win *w, t_ray *r, t_keyboard *k)
 {
 	SDL_memset(w->surface->pixels, 0, ((WIN_W * WIN_H) << 2));
 	draw_player_view(w, r);
+	if (r->inv.nb_sprites > 0)
+		raysprite(w, r);
+	hud(w, r);
 	r->inv.nb_sprites > 0 ? inventory(r, w) : 0;
 	if (k->state[SDL_SCANCODE_O] == 1)
 		print_messages(w);
-	raysprite(w, r);
-	hud(w, r);
 	w->fired == 0 ? display_l((WIN_W / 2), (WIN_H) - 240, w, r->gun) : 0;
 	if (w->fired == 1)
 		fire_gunshot(w, &r->gun);
