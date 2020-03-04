@@ -6,7 +6,7 @@
 /*   By: jdelpuec <jdelpuec@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/10 14:05:34 by jdelpuec          #+#    #+#             */
-/*   Updated: 2020/03/03 14:10:50 by jdelpuec         ###   ########.fr       */
+/*   Updated: 2020/03/04 14:27:04 by jdelpuec         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -124,7 +124,8 @@ void	drawing(t_win *w, t_ray *r, t_keyboard *k)
 {
 	SDL_memset(w->surface->pixels, 0, ((WIN_W * WIN_H) << 2));
 	draw_player_view(w, r);
-	raysprite(w, r);
+	if (r->inv.nb_sprites > 0)
+		raysprite(w, r);
 	hud(w, r);
 	r->inv.nb_sprites > 0 ? inventory(r, w) : 0;
 	if (k->state[SDL_SCANCODE_O] == 1)

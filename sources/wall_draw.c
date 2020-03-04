@@ -6,7 +6,7 @@
 /*   By: jdelpuec <jdelpuec@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/10 14:12:36 by jdelpuec          #+#    #+#             */
-/*   Updated: 2020/03/03 17:10:45 by jdelpuec         ###   ########.fr       */
+/*   Updated: 2020/03/04 17:30:33 by jdelpuec         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,8 +18,13 @@
 void	draw_portal_floor(t_win *w, t_ray *r, t_sector sector,
 															t_sector portal_sec)
 {
-	int i;
+	int			i;
+	t_wall_tex	wt;
+	t_text_tab	tmp;
 
+	tmp = w->text_list;
+	while (sector.id_floor != tmp.id)
+		tmp = *tmp.next;
 	r->dist = sqrtf(((r->hit_x - r->player.position.x) * (r->hit_x
 		- r->player.position.x)) + ((r->hit_y - r->player.position.y)
 		* (r->hit_y - r->player.position.y)));
@@ -29,11 +34,9 @@ void	draw_portal_floor(t_win *w, t_ray *r, t_sector sector,
 				- portal_sec.floor_height) / r->dist_wall) * r->dist_pp;
 	r->offset_end = (WIN_H >> 1) + ((r->player.position.z
 				- sector.floor_height) / r->dist_wall) * r->dist_pp;
-	i = (int)r->offset_start;
-	while (i++ < (int)r->offset_end)
-		if ((i >= 0 && i < WIN_H)
-			&& (*((int *)w->surface->pixels + (i * WIN_W + r->x)) == 0))
-			*((int *)w->surface->pixels + (i * WIN_W + r->x)) = BLUE * r->light;
+	r->line_h = r->offset_end - r->offset_start;	
+	wt = set_wall_tex(w, r, sector, sector.walls[r->i]);
+	i = display_text(r, w, &tmp, &wt);
 	while (i++ < WIN_H - 1)
 		if ((i >= 0 && i < WIN_H)
 			&& (*((int *)w->surface->pixels + (i * WIN_W + r->x)) == 0))
