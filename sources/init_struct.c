@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   init_struct.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jdelpuec <jdelpuec@student.42.fr>          +#+  +:+       +#+        */
+/*   By: lubernar <lubernar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/10 11:27:26 by jdelpuec          #+#    #+#             */
-/*   Updated: 2020/03/04 19:08:53 by jdelpuec         ###   ########.fr       */
+/*   Updated: 2020/03/05 14:31:35 by lubernar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,6 +45,10 @@ void		init_fmod(t_win *w)
 	0, &w->s.shot);
 	FMOD_System_CreateSound(w->s.fmod, "sound/reload.wav", FMOD_CREATESAMPLE,
 	0, &w->s.reload);
+	FMOD_System_CreateSound(w->s.fmod, "sound/slurp.wav", FMOD_CREATESAMPLE,
+	0, &w->s.slurp);
+	FMOD_System_CreateSound(w->s.fmod, "sound/youwin.wav", FMOD_CREATESAMPLE,
+	0, &w->s.win);
 	FMOD_System_CreateSound(w->s.fmod, "sound/blue_bird.wav", FMOD_SOFTWARE
 		| FMOD_2D | FMOD_CREATESTREAM, 0, &w->s.music);
 }
@@ -74,6 +78,7 @@ void		init_sdl(t_win *w)
 	w->reload = 0;
 	w->fired = 0;
 	w->old_t = 0.0;
+	w->youwin = 0;
 	init_fmod(w);
 }
 
@@ -115,7 +120,7 @@ void		init_t_ray(t_ray *r, t_env *env)
 	r->speed = 5.0;
 	r->thresh = 1;
 	r->inv.nb_bullet = 50;
-	r->inv.nb_hp = 100;
+	r->inv.nb_hp = 20;
 	r->inv.anim = 0;
 	r->inv.nb_sprites = env->sprites;
 	r->inv.nb_sprites > 0 ? r->inv.sprite = env->spt : 0;

@@ -3,15 +3,16 @@
 /*                                                        :::      ::::::::   */
 /*   raycasting.h                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jdelpuec <jdelpuec@student.42.fr>          +#+  +:+       +#+        */
+/*   By: lubernar <lubernar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/04/06 14:02:38 by siwarin           #+#    #+#             */
-/*   Updated: 2020/03/03 16:10:38 by jdelpuec         ###   ########.fr       */
+/*   Updated: 2020/03/05 12:47:01 by lubernar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef RAYCASTING_H
 # define RAYCASTING_H
+
 typedef struct  s_ray
 {
     int         x;

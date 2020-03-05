@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   inventory.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jdelpuec <jdelpuec@student.42.fr>          +#+  +:+       +#+        */
+/*   By: lubernar <lubernar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/07 13:20:48 by lubernar          #+#    #+#             */
-/*   Updated: 2020/03/03 15:45:21 by jdelpuec         ###   ########.fr       */
+/*   Updated: 2020/03/05 12:52:33 by lubernar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -84,7 +84,7 @@ void		display_inventory(t_win *sdl, t_ray *r, int *j)
 		r->inv.tmp.h = 30;
 		display_l((WIN_W - 40), (WIN_H / 2) + 17, sdl, r->inv.tmp);
 	}
-	if (r->inv.invent.inventory_display[2] == 1)
+	if (r->inv.invent.inventory_display[2] == 1 && r->inv.nb_noodles_c > 0)
 	{
 		r->inv.tmp = *r->inv.list.next->next;
 		r->inv.tmp.w = 30;

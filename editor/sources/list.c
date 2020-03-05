@@ -6,7 +6,7 @@
 /*   By: lubernar <lubernar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/13 17:07:11 by lubernar          #+#    #+#             */
-/*   Updated: 2020/02/19 16:19:42 by lubernar         ###   ########.fr       */
+/*   Updated: 2020/03/05 13:14:20 by lubernar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,7 +32,7 @@ void	push_back(t_lst *l, t_editor *edit)
 	nouv->y1 = edit->y1_replace;
 	nouv->x2 = edit->x2_replace;
 	nouv->y2 = edit->y2_replace;
-	nouv->num_text = edit->texture_choosen;
+	nouv->num_text = edit->texture_choosen - 1;
 	nouv->nb_maillon = ++edit->nb_maillon;
 	edit->count_walls++;
 	nouv->prev = l->last;
@@ -55,7 +55,7 @@ void	push_back_withoux1(t_lst *l, t_editor *edit, t_line *line)
 	nouv->y1 = line->y1;
 	nouv->x2 = edit->x2_replace;
 	nouv->y2 = edit->y2_replace;
-	nouv->num_text = edit->texture_choosen;
+	nouv->num_text = edit->texture_choosen - 1;
 	nouv->nb_maillon = ++edit->nb_maillon;
 	edit->count_walls++;
 	nouv->prev = l->last;

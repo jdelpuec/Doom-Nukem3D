@@ -6,7 +6,7 @@
 /*   By: lubernar <lubernar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/19 14:41:55 by lubernar          #+#    #+#             */
-/*   Updated: 2020/03/02 15:44:33 by lubernar         ###   ########.fr       */
+/*   Updated: 2020/03/05 14:22:33 by lubernar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -111,6 +111,13 @@ void	handle_keyboard_mvt(t_win *w, t_ray *r, t_keyboard *k)
 	if (fabsf(r->player.angle) >= 6.299992)
 		r->player.angle = 0;
 	r->dir_angle = get_dir_angle(r);
+	if (k->state[SDL_SCANCODE_M] == 1 && r->inv.nb_noodles_c > 0 && w->eat == 0)
+	{
+		r->inv.nb_noodles_c--;
+		r->inv.nb_hp += 20;
+		w->eat = 1;
+		FMOD_System_PlaySound(w->s.fmod, FMOD_CHANNEL_FREE, w->s.slurp, 0, NULL);
+	}
 	basic_mvt(k, r, ms);
 	if (ms > 0.1)
 	{
