@@ -6,7 +6,7 @@
 /*   By: lubernar <lubernar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/10 14:05:34 by jdelpuec          #+#    #+#             */
-/*   Updated: 2020/03/05 14:31:44 by lubernar         ###   ########.fr       */
+/*   Updated: 2020/03/05 14:41:31 by lubernar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@
 #include "draw.h"
 #include "event.h"
 
-int		check_seg_intersection(t_ray *r, t_wall wall, float *h_x, float *h_y)
+int		check_seg_inter(t_ray *r, t_wall wall, float *h_x, float *h_y)
 {
 	int denom_is_pos;
 

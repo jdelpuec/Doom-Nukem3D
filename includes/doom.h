@@ -6,7 +6,7 @@
 /*   By: lubernar <lubernar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/04/01 11:50:31 by siwarin           #+#    #+#             */
-/*   Updated: 2020/03/05 14:31:10 by lubernar         ###   ########.fr       */
+/*   Updated: 2020/03/05 14:38:01 by lubernar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,8 +16,8 @@
 # include <SDL2/SDL.h>
 # include <SDL2/SDL_ttf.h>
 # include <stdlib.h>
-# include "libft.h"
-# include "get_next_line.h"
+# include "../libft/includes/libft.h"
+# include "../libft/includes/get_next_line.h"
 # include "define.h"
 # include "textures.h"
 # include "fmod/fmod.h"
@@ -165,6 +165,7 @@ void					fill_up_sprite(char *str, t_env *doom, int i);
 int						check_line_sprite(char *str);
 int						check_if_sprites(int fd);
 int						check_sprite_id(int fd, t_env *doom, int i);
+int						check_sprite_id_2(char *line, t_env *doom, int i);
 int						check_bright(int i, char *str, int spc);
 int						all_check(t_env *doom, int fd);
 void					fill_up_player(char *line, t_env *doom);

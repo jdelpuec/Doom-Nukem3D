@@ -6,7 +6,11 @@
 /*   By: lubernar <lubernar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/16 15:01:53 by lubernar          #+#    #+#             */
+<<<<<<< HEAD
 /*   Updated: 2020/03/05 13:09:00 by lubernar         ###   ########.fr       */
+=======
+/*   Updated: 2020/02/19 16:39:08 by lubernar         ###   ########.fr       */
+>>>>>>> cduverge
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +20,10 @@
 void	write_first_line(t_editor *edit, t_lst **lst)
 {
 	edit->saved = 1;
+<<<<<<< HEAD
 	system("rm ./maps/map1 > /dev/null 2>&1");
+=======
+>>>>>>> cduverge
 	edit->fd = open("maps/map1", O_RDWR | O_CREAT, S_IRUSR | S_IWUSR | S_IXUSR
 	| O_TRUNC);
 	ft_putstr_fd(ft_itoa((*lst)->lst_w->sector_num), edit->fd);

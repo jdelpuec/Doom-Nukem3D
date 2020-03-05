@@ -6,11 +6,23 @@
 /*   By: lubernar <lubernar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/26 12:12:50 by cduverge          #+#    #+#             */
-/*   Updated: 2020/03/02 17:13:43 by lubernar         ###   ########.fr       */
+/*   Updated: 2020/03/05 14:40:32 by lubernar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "doom.h"
+
+int		check_sprite_id_2(char *line, t_env *doom, int i)
+{
+	doom->spt[i].id = ft_atoi(line);
+	if (doom->spt[i].id < 0)
+		return (free_and_return(line));
+	if (doom->spt[i].id == 1 || doom->spt[i].id == 2)
+		doom->spt[i].pickable = 1;
+	else
+		doom->spt[i].pickable = 0;
+	return (0);
+}
 
 int		check_bright(int i, char *str, int spc)
 {

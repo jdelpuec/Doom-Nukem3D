@@ -3,7 +3,7 @@
 /*                                                        :::      ::::::::   */
 /*   ft_itoa.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lubernar <lubernar@student.42.fr>          +#+  +:+       +#+        */
+/*   By: ebonafi <ebonafi@studen.42.fr>                     +#+  +:+       +#+ */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/11/24 19:06:29 by siwarin           #+#    #+#             */
 /*   Updated: 2020/02/18 16:52:08 by lubernar         ###   ########.fr       */

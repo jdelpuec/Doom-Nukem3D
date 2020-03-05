@@ -6,7 +6,7 @@
 /*   By: lubernar <lubernar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/12/17 13:57:37 by cduverge          #+#    #+#             */
-/*   Updated: 2020/02/21 12:49:21 by lubernar         ###   ########.fr       */
+/*   Updated: 2020/03/05 14:38:41 by lubernar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -89,6 +89,5 @@ int		check_player(char *line)
 	}
 	if ((ft_isdigit(line[i]) == 1) && (line[i + 1] == '\0'))
 		return (0);
-	else
-		return (-1);
+	return (-1);
 }
