@@ -6,7 +6,7 @@
 /*   By: jdelpuec <jdelpuec@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/04/01 11:50:31 by siwarin           #+#    #+#             */
-/*   Updated: 2020/03/05 11:47:46 by cduverge         ###   ########.fr       */
+/*   Updated: 2020/03/05 14:01:28 by cduverge         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,8 +16,8 @@
 # include <SDL2/SDL.h>
 # include <SDL2/SDL_ttf.h>
 # include <stdlib.h>
-# include "libft.h"
-# include "get_next_line.h"
+# include "../libft/includes/libft.h"
+# include "../libft/includes/get_next_line.h"
 # include "define.h"
 # include "textures.h"
 # include "fmod/fmod.h"
