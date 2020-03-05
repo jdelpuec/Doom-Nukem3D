@@ -6,7 +6,7 @@
 /*   By: lubernar <lubernar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/07 13:20:48 by lubernar          #+#    #+#             */
-/*   Updated: 2020/03/05 14:39:19 by lubernar         ###   ########.fr       */
+/*   Updated: 2020/03/05 19:30:13 by lubernar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,8 +70,8 @@ void		display_inventory(t_win *sdl, t_ray *r, int *j)
 	{
 		r->inv.list = handle_textures(r->inv.invent.inventory, -1);
 		free(r->inv.invent.inventory);
+		r->inv.list.id == -1 ? exit(0) : 0;
 	}
-	r->inv.list.data == NULL ? exit(0) : 0;
 	*j = 1;
 	r->inv.list.w = 30;
 	r->inv.list.h = 30;
