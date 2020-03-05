@@ -6,7 +6,7 @@
 /*   By: lubernar <lubernar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/10 11:27:26 by jdelpuec          #+#    #+#             */
-/*   Updated: 2020/03/05 15:42:28 by lubernar         ###   ########.fr       */
+/*   Updated: 2020/03/05 19:29:03 by lubernar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,6 +29,7 @@ t_text_tab	init_text(void)
 	tab[5] = NULL;
 	text_list = handle_textures(tab, -1);
 	free(tab);
+	text_list.id == -1 ? exit(0) : 0;
 	if (text_list.id == -1)
 	{
 		ft_putendl("Textures failed to load, please check your paths. \n");
