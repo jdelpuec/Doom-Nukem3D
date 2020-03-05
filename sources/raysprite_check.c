@@ -6,7 +6,7 @@
 /*   By: jdelpuec <jdelpuec@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/04 18:36:15 by jdelpuec          #+#    #+#             */
-/*   Updated: 2020/03/04 19:01:18 by jdelpuec         ###   ########.fr       */
+/*   Updated: 2020/03/05 13:11:28 by cduverge         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,7 +53,7 @@ int		check_frontground(t_ray *r)
 	i = 0;
 	while (i < r->sectors[r->player.sector].wall_count)
 	{
-		if ((check_seg_intersection(r, r->sectors[r->player.sector].walls[i],
+		if ((check_seg_inter(r, r->sectors[r->player.sector].walls[i],
 									&tmp.x, &tmp.y) == 1))
 		{
 			if (fabsf(tmp.x - r->player.position.x)

@@ -6,7 +6,7 @@
 /*   By: jdelpuec <jdelpuec@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/10 14:12:36 by jdelpuec          #+#    #+#             */
-/*   Updated: 2020/03/04 17:30:33 by jdelpuec         ###   ########.fr       */
+/*   Updated: 2020/03/05 13:13:03 by cduverge         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -82,7 +82,7 @@ int		check_behind(t_ray *r, t_sector sector)
 	i = 0;
 	while (i < sector.wall_count)
 	{
-		if (i != r->i && (check_seg_intersection(r, sector.walls[i],
+		if (i != r->i && (check_seg_inter(r, sector.walls[i],
 														&tmp.x, &tmp.y) == 1))
 		{
 			if (fabsf(tmp.x - r->player.position.x)
@@ -98,7 +98,7 @@ int		check_behind(t_ray *r, t_sector sector)
 
 int		draw_wall(t_win *w, t_ray *r, t_sector sector, t_wall wall)
 {
-	if (check_seg_intersection(r, wall, &r->hit_x, &r->hit_y) == 1
+	if (check_seg_inter(r, wall, &r->hit_x, &r->hit_y) == 1
 		&& (check_behind(r, sector) == 1))
 	{
 		if (wall.portal_sector >= 0)
