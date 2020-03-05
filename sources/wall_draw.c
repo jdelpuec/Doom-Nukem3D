@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   wall_draw.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lubernar <lubernar@student.42.fr>          +#+  +:+       +#+        */
+/*   By: jdelpuec <jdelpuec@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/10 14:12:36 by jdelpuec          #+#    #+#             */
-/*   Updated: 2020/03/05 15:44:51 by lubernar         ###   ########.fr       */
+/*   Updated: 2020/03/05 19:16:31 by jdelpuec         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,12 +36,12 @@ void	draw_portal_floor(t_win *w, t_ray *r, t_sector sector,
 				- sector.floor_height) / r->dist_wall) * r->dist_pp;
 	r->line_h = r->offset_end - r->offset_start;
 	wt = set_wall_tex(w, r, sector, sector.walls[r->i]);
-	i = display_text(r, w, &tmp, &wt);
+	i = display_text(r, w, &tmp, &wt) - 1;
 	while (i++ < WIN_H - 1)
 		if ((i >= 0 && i < WIN_H)
 			&& (*((int *)w->surface->pixels + (i * WIN_W + r->x)) == 0))
-			*((int *)w->surface->pixels + (i * WIN_W + r->x)) = DARK;
-	r->y_max = (int)r->offset_start;
+			*((int *)w->surface->pixels + (i * WIN_W + r->x)) = r->light
+				== 1.0 ? DARK : add_light(r, DARK);
 }
 
 int		draw_portal(t_win *w, t_ray *r, t_sector sector, t_wall wall)
@@ -49,10 +49,8 @@ int		draw_portal(t_win *w, t_ray *r, t_sector sector, t_wall wall)
 	t_sector portal_sec;
 
 	portal_sec = r->sectors[wall.portal_sector];
-	if (portal_sec.floor_height > sector.floor_height)
-		draw_portal_floor(w, r, sector, portal_sec);
-	if (portal_sec.ceil_height < sector.ceil_height)
-		draw_portal_ceil(w, r, sector, portal_sec);
+	draw_portal_ceil(w, r, sector, portal_sec);
+	draw_portal_floor(w, r, sector, portal_sec);
 	return (2);
 }
 
@@ -101,7 +99,7 @@ int		draw_wall(t_win *w, t_ray *r, t_sector sector, t_wall wall)
 	if (check_seg_inter(r, wall, &r->hit_x, &r->hit_y) == 1
 		&& (check_behind(r, sector) == 1))
 	{
-		if (wall.portal_sector >= 0)
+		if (wall.portal_sector != -1)
 			return (draw_portal(w, r, sector, wall));
 		else
 			return (draw_wall_2(w, r, sector, wall));

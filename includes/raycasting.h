@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   raycasting.h                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lubernar <lubernar@student.42.fr>          +#+  +:+       +#+        */
+/*   By: jdelpuec <jdelpuec@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/04/06 14:02:38 by siwarin           #+#    #+#             */
-/*   Updated: 2020/03/05 14:38:26 by lubernar         ###   ########.fr       */
+/*   Updated: 2020/03/05 19:22:07 by jdelpuec         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,10 +54,6 @@ typedef struct	s_ray
 	float		offset_start;
 	float		offset_end;
 	float		line_h;
-	int			y_min;
-	int			y_max;
-	int			last_y_min;
-	int			last_y_max;
 
 	float		space;
 	float		thresh;
