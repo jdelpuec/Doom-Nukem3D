@@ -6,7 +6,7 @@
 #    By: cduverge <marvin@42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2020/03/05 14:02:40 by cduverge          #+#    #+#              #
-#    Updated: 2020/03/05 14:04:13 by cduverge         ###   ########.fr        #
+#    Updated: 2020/03/05 14:19:41 by cduverge         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -54,7 +54,7 @@ all: doom lib_rule prefix $(NAME)
 $(OBJDIR)%.o: $(SRCDIR)%.c
 	@gcc -c $(FLAGS) -I $(INCDIR) -I libft/ $< -o $@ -I./
 
-$(NAME): $(OBJS)
+$(NAME): $(OBJS) $(INCDIR)
 	@echo "$(ROUGE)Doom-Nukem is compiling$(BLANC)"
 	@gcc $(FLAGS) $(LIBFLAG) -o $(NAME) $(OBJS) && echo "- $(VERT)Objects Creation$(OKJAUNE)"
 	@echo "$(VERT)Doom-Nukem is ready !"
