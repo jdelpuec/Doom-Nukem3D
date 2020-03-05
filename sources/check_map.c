@@ -6,7 +6,7 @@
 /*   By: lubernar <lubernar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/12/17 13:57:37 by cduverge          #+#    #+#             */
-/*   Updated: 2020/03/05 14:18:32 by cduverge         ###   ########.fr       */
+/*   Updated: 2020/03/05 19:45:43 by cduverge         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -90,4 +90,16 @@ int		check_player(char *line)
 	if ((ft_isdigit(line[i]) == 1) && (line[i + 1] == '\0'))
 		return (0);
 	return (-1);
+}
+
+t_text_tab	handle_textures_2(t_text_tab *last)
+{
+	free(last->path);
+	while (last->prev != NULL)
+	{
+		last = last->prev;
+		free(last->data);
+	}
+	last->id = -1;
+	return (*last);
 }

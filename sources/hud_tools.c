@@ -6,7 +6,7 @@
 /*   By: lubernar <lubernar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/15 17:28:38 by lubernar          #+#    #+#             */
-/*   Updated: 2020/02/21 17:27:40 by lubernar         ###   ########.fr       */
+/*   Updated: 2020/03/05 17:43:28 by lubernar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -78,6 +78,7 @@ t_text_tab	find(char *str)
 	nom[0] = str;
 	nom[1] = NULL;
 	hud = handle_textures(nom, -1);
+	hud.id == -1 ? exit(0) : 0;
 	free(nom);
 	return (hud);
 }

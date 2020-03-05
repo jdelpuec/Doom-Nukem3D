@@ -6,7 +6,7 @@
 /*   By: lubernar <lubernar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/03 13:43:49 by lubernar          #+#    #+#             */
-/*   Updated: 2020/03/02 17:17:25 by lubernar         ###   ########.fr       */
+/*   Updated: 2020/03/05 16:08:19 by lubernar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -97,8 +97,8 @@ void		init_textures(t_editor *edit)
 	if (!(tab = (char **)malloc(sizeof(char*) * 5)))
 		exit(0);
 	tab[0] = "./ress/Bamboo.bmp";
-	tab[1] = "./ress/brique.bmp";
-	tab[2] = "./ress/ice.bmp";
+	tab[1] = "./ress/wood2.bmp";
+	tab[2] = "./ress/wood.bmp";
 	tab[3] = "./ress/arrows.bmp";
 	tab[4] = NULL;
 	edit->list = handle_textures(tab, -1);

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   set_draw.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jdelpuec <jdelpuec@student.42.fr>          +#+  +:+       +#+        */
+/*   By: lubernar <lubernar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/10 14:05:34 by jdelpuec          #+#    #+#             */
-/*   Updated: 2020/03/05 13:12:15 by cduverge         ###   ########.fr       */
+/*   Updated: 2020/03/05 14:41:31 by lubernar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -123,6 +123,8 @@ void	draw_player_view(t_win *w, t_ray *r)
 void	drawing(t_win *w, t_ray *r, t_keyboard *k)
 {
 	SDL_memset(w->surface->pixels, 0, ((WIN_W * WIN_H) << 2));
+	if (w->e.type == SDL_KEYUP)
+		w->eat = 0;
 	draw_player_view(w, r);
 	if (r->inv.nb_sprites > 0)
 		raysprite(w, r);
@@ -135,5 +137,10 @@ void	drawing(t_win *w, t_ray *r, t_keyboard *k)
 		fire_gunshot(w, &r->gun);
 	if (w->reload == 1)
 		reload_gun(&r->reload_gun, w);
+	if (r->inv.nb_hp == 100 && w->youwin == 0)
+	{
+		w->youwin = 1;
+		FMOD_System_PlaySound(w->s.fmod, FMOD_CHANNEL_FREE, w->s.win, 0, NULL);
+	}
 	SDL_UpdateWindowSurface(w->win);
 }

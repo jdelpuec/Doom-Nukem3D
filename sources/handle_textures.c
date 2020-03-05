@@ -6,7 +6,7 @@
 /*   By: lubernar <lubernar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/05/02 13:44:05 by jdelpuec          #+#    #+#             */
-/*   Updated: 2020/02/19 15:52:20 by lubernar         ###   ########.fr       */
+/*   Updated: 2020/03/05 19:44:23 by cduverge         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -98,13 +98,11 @@ t_text_tab		handle_textures(char **text_name, int y)
 		last->id = y;
 		last->path = ft_strdup(text_name[y]);
 		if (fd == -1)
-		{
-			last->id = -1;
-			return (*last);
-		}
+			return (handle_textures_2(last));
 		buff_header = handle_header(fd);
 		fill_text_tab(fd, buff_header, last, -1);
 		close(fd);
+		free(last->path);
 		free(buff_header);
 	}
 	while (last->prev != NULL)

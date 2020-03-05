@@ -6,7 +6,7 @@
 /*   By: lubernar <lubernar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/03 13:01:09 by lubernar          #+#    #+#             */
-/*   Updated: 2020/02/19 16:19:19 by lubernar         ###   ########.fr       */
+/*   Updated: 2020/03/05 16:02:10 by lubernar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,10 +46,6 @@ void	choosen_texture(t_sdl *sdl, t_editor *edit)
 		draw_redsquare(sdl, (W / 1.45) + 86, 112, &edit->vec);
 	else if (edit->texture_choosen == 3)
 		draw_redsquare(sdl, (W / 1.45) + 170, 112, &edit->vec);
-	else if (edit->texture_choosen == 4)
-		draw_redsquare(sdl, (W / 1.45) + 240, 112, &edit->vec);
-	else if (edit->texture_choosen == 5)
-		draw_redsquare(sdl, (W / 1.45) + 320, 112, &edit->vec);
 }
 
 void	find_walls_coord(t_sdl *sdl, t_editor *edit, t_line *line, t_lst **lst)

@@ -6,7 +6,7 @@
 /*   By: lubernar <lubernar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/04/01 11:49:14 by siwarin           #+#    #+#             */
-/*   Updated: 2020/03/05 13:48:39 by cduverge         ###   ########.fr       */
+/*   Updated: 2020/03/05 17:35:59 by lubernar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,7 +59,7 @@ int		main(int ac, char **av)
 
 	if (ac != 2)
 	{
-		ft_putendl("la map idiot bete \n");
+		ft_putendl("N'oubliez pas la map !");
 		exit(0);
 	}
 	if (parsing(av[1], &env) == -1)
@@ -71,8 +71,8 @@ int		main(int ac, char **av)
 	init_t_ray(&r, &env);
 	init_ttf(&w);
 	init_sdl(&w);
-	// FMOD_System_PlaySound(w.s.fmod, FMOD_CHANNEL_FREE, w.s.music, 0, NULL);
-	// FMOD_Sound_SetLoopCount(w.s.music, -1);
+	FMOD_System_PlaySound(w.s.fmod, FMOD_CHANNEL_FREE, w.s.music, 0, NULL);
+	FMOD_Sound_SetLoopCount(w.s.music, -1);
 	sdl_loop(&w, &r);
 	return (0);
 }

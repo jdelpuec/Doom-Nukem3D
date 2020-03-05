@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   doom.h                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jdelpuec <jdelpuec@student.42.fr>          +#+  +:+       +#+        */
+/*   By: lubernar <lubernar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/04/01 11:50:31 by siwarin           #+#    #+#             */
-/*   Updated: 2020/03/05 14:01:28 by cduverge         ###   ########.fr       */
+/*   Updated: 2020/03/05 19:44:59 by cduverge         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,6 +26,8 @@ typedef struct			s_sound
 {
 	FMOD_SYSTEM			*fmod;
 	FMOD_SOUND			*shot;
+	FMOD_SOUND			*slu;
+	FMOD_SOUND			*win;
 	FMOD_SOUND			*music;
 	FMOD_SOUND			*reload;
 	FMOD_RESULT			result;
@@ -53,6 +55,8 @@ typedef struct			s_win
 	float				old_t_f;
 	int					reload;
 	int					fired;
+	int					youwin;
+	int					eat;
 	t_sound				s;
 	t_text_tab			hud;
 	t_text_tab			hud2;
@@ -132,6 +136,7 @@ typedef struct			s_env
 	t_sprites			*spt;
 }						t_env;
 
+t_text_tab				handle_textures_2(t_text_tab *last);
 int						parser(int ac, char **av);
 int						parsing(char *str, t_env *doom);
 int						all_room(int fd, t_env *doom, int n_room);
