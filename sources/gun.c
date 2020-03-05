@@ -6,7 +6,7 @@
 /*   By: lubernar <lubernar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/12 12:53:22 by lubernar          #+#    #+#             */
-/*   Updated: 2020/03/05 14:38:47 by lubernar         ###   ########.fr       */
+/*   Updated: 2020/03/05 17:47:42 by lubernar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,6 +51,8 @@ void		reload_gun(t_text_tab *reload_anim, t_win *w)
 		reload[3] = NULL;
 		*reload_anim = handle_textures(reload, -1);
 		free(reload);
+		while (1){};
+		reload_anim->id == -1 ? exit(0) : 0;
 		j = 1;
 	}
 	reload_anim->w = 240;
