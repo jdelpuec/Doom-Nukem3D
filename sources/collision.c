@@ -6,7 +6,7 @@
 /*   By: lubernar <lubernar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/28 15:29:08 by jdelpuec          #+#    #+#             */
-/*   Updated: 2020/03/02 17:51:29 by lubernar         ###   ########.fr       */
+/*   Updated: 2020/03/05 15:37:43 by lubernar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,8 +40,6 @@ int			how_to_break_properly(t_wall wall, t_ray *r, t_vector_3d new_pos)
 		r->player.velocity.y = 0.0;
 		return (-1);
 	}
-	// else
-	// 	new_pos_collision(new_pos, wall, r);
 	return (1);
 }
 

@@ -6,7 +6,7 @@
 /*   By: lubernar <lubernar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/04/01 11:50:31 by siwarin           #+#    #+#             */
-/*   Updated: 2020/03/05 14:38:01 by lubernar         ###   ########.fr       */
+/*   Updated: 2020/03/05 15:42:08 by lubernar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,7 @@ typedef struct			s_sound
 {
 	FMOD_SYSTEM			*fmod;
 	FMOD_SOUND			*shot;
-	FMOD_SOUND			*slurp;
+	FMOD_SOUND			*slu;
 	FMOD_SOUND			*win;
 	FMOD_SOUND			*music;
 	FMOD_SOUND			*reload;

@@ -6,7 +6,7 @@
 /*   By: lubernar <lubernar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/14 09:39:40 by cduverge          #+#    #+#             */
-/*   Updated: 2020/03/05 14:40:21 by lubernar         ###   ########.fr       */
+/*   Updated: 2020/03/05 16:50:56 by lubernar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -83,17 +83,14 @@ int		check_sprite_id(int fd, t_env *doom, int i)
 	{
 		if (number_or_dot(line) == -1)
 			return (free_and_return(line));
-		while (line[k] != '\0')
-		{
-			if (check_sprite_id_2(line, doom, i) == -1)
-				return (-1);
-			while (line[k] != ' ' && line[k] != '\0')
-				++k;
+		if (check_sprite_id_2(line, doom, i) == -1)
+			return (-1);
+		while (line[k] != ' ' && line[k] != '\0')
 			++k;
-			doom->spt[i].sector = ft_atoi(line + k);
-			if (doom->spt[i].sector < 0)
-				return (free_and_return(line));
-		}
+		++k;
+		doom->spt[i].sector = ft_atoi(line + k);
+		if (doom->spt[i].sector < 0)
+			return (free_and_return(line));
 		free(line);
 	}
 	if (ret <= 0)

@@ -6,7 +6,7 @@
 /*   By: lubernar <lubernar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/19 14:41:55 by lubernar          #+#    #+#             */
-/*   Updated: 2020/03/05 14:39:04 by lubernar         ###   ########.fr       */
+/*   Updated: 2020/03/05 15:42:08 by lubernar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -116,7 +116,7 @@ void	handle_keyboard_mvt(t_win *w, t_ray *r, t_keyboard *k)
 		r->inv.nb_noodles_c--;
 		r->inv.nb_hp += 20;
 		w->eat = 1;
-		FMOD_System_PlaySound(w->s.fmod, FMOD_CHANNEL_FREE, w->s.slurp, 0, NULL);
+		FMOD_System_PlaySound(w->s.fmod, FMOD_CHANNEL_FREE, w->s.slu, 0, NULL);
 	}
 	basic_mvt(k, r, ms);
 	if (ms > 0.1)

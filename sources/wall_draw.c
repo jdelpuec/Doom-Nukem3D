@@ -6,7 +6,7 @@
 /*   By: lubernar <lubernar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/10 14:12:36 by jdelpuec          #+#    #+#             */
-/*   Updated: 2020/03/05 14:41:36 by lubernar         ###   ########.fr       */
+/*   Updated: 2020/03/05 15:44:51 by lubernar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,7 +34,7 @@ void	draw_portal_floor(t_win *w, t_ray *r, t_sector sector,
 				- portal_sec.floor_height) / r->dist_wall) * r->dist_pp;
 	r->offset_end = (WIN_H >> 1) + ((r->player.position.z
 				- sector.floor_height) / r->dist_wall) * r->dist_pp;
-	r->line_h = r->offset_end - r->offset_start;	
+	r->line_h = r->offset_end - r->offset_start;
 	wt = set_wall_tex(w, r, sector, sector.walls[r->i]);
 	i = display_text(r, w, &tmp, &wt);
 	while (i++ < WIN_H - 1)
