@@ -6,7 +6,7 @@
 /*   By: lubernar <lubernar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/26 12:12:50 by cduverge          #+#    #+#             */
-/*   Updated: 2020/03/05 14:40:32 by lubernar         ###   ########.fr       */
+/*   Updated: 2020/03/05 17:30:02 by lubernar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 int		check_sprite_id_2(char *line, t_env *doom, int i)
 {
 	doom->spt[i].id = ft_atoi(line);
-	if (doom->spt[i].id < 0)
+	if (doom->spt[i].id <= 0 || doom->spt[i].id > 3)
 		return (free_and_return(line));
 	if (doom->spt[i].id == 1 || doom->spt[i].id == 2)
 		doom->spt[i].pickable = 1;
@@ -99,7 +99,7 @@ int		check_portal_sector(int fd, t_wall *walls, int j)
 		if (number_or_dot(line) != -1)
 		{
 			walls[j].id_text = ft_atoi(line);
-			if (walls[j].id_text < 0)
+			if (walls[j].id_text < 0 || walls[j].id_text > 4)
 				return (free_and_return(line));
 			walls[j].portal_sector = ft_atoi(line + 2);
 			if (walls[j].portal_sector < -1)

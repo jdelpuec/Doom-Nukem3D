@@ -6,7 +6,7 @@
 /*   By: jdelpuec <jdelpuec@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/13 16:40:33 by siwarin           #+#    #+#             */
-/*   Updated: 2020/03/05 19:23:15 by jdelpuec         ###   ########.fr       */
+/*   Updated: 2020/03/05 19:25:29 by jdelpuec         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -92,11 +92,11 @@ void	raysprite(t_win *w, t_ray *r)
 		while (i < r->inv.nb_sprites)
 		{
 			if (r->inv.sprite[i].id == 1)
-				r->inv.sprite[i].s = find("ress/noodles.bmp");
+				r->inv.sprite[i].s = find("ressources/noodles.bmp");
 			else if (r->inv.sprite[i].id == 2)
-				r->inv.sprite[i].s = find("ress/baguettes.bmp");
+				r->inv.sprite[i].s = find("ressources/baguettes.bmp");
 			else if (r->inv.sprite[i].id == 3)
-				r->inv.sprite[i].s = find("ress/firebolt.bmp");
+				r->inv.sprite[i].s = find("ressources/firebolt.bmp");
 			r->inv.sprite[i].display = 1;
 			i++;
 		}

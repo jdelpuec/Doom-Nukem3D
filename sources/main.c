@@ -6,7 +6,7 @@
 /*   By: lubernar <lubernar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/04/01 11:49:14 by siwarin           #+#    #+#             */
-/*   Updated: 2020/03/05 16:51:15 by lubernar         ###   ########.fr       */
+/*   Updated: 2020/03/05 17:35:59 by lubernar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,7 +59,7 @@ int		main(int ac, char **av)
 
 	if (ac != 2)
 	{
-		ft_putendl("N'oubliez pas la map !\n");
+		ft_putendl("N'oubliez pas la map !");
 		exit(0);
 	}
 	if (parsing(av[1], &env) == -1)
