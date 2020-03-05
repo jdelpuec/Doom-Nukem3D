@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   init_struct.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lubernar <lubernar@student.42.fr>          +#+  +:+       +#+        */
+/*   By: jdelpuec <jdelpuec@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/10 11:27:26 by jdelpuec          #+#    #+#             */
-/*   Updated: 2020/03/03 13:36:01 by lubernar         ###   ########.fr       */
+/*   Updated: 2020/03/04 19:08:53 by jdelpuec         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,10 +20,13 @@ t_text_tab	init_text(void)
 	t_text_tab	text_list;
 	char		**tab;
 
-	tab = (char **)malloc(sizeof(char*) * 3);
+	tab = (char **)malloc(sizeof(char*) * 6);
 	tab[0] = "./ressources/textures/Bamboo.bmp";
-	tab[1] = "./ressources/textures/WildGrass.bmp";
-	tab[2] = NULL;
+	tab[1] = "./ressources/textures/wood.bmp";
+	tab[2] = "./ressources/textures/wood2.bmp";
+	tab[3] = "./ressources/textures/tree.bmp";
+	tab[4] = "./ressources/textures/wall.bmp";
+	tab[5] = NULL;
 	text_list = handle_textures(tab, -1);
 	free(tab);
 	if (text_list.id == -1)
