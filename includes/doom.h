@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   doom.h                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lubernar <lubernar@student.42.fr>          +#+  +:+       +#+        */
+/*   By: jdelpuec <jdelpuec@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/04/01 11:50:31 by siwarin           #+#    #+#             */
-/*   Updated: 2020/03/05 19:44:59 by cduverge         ###   ########.fr       */
+/*   Updated: 2020/03/06 11:04:40 by jdelpuec         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,7 +56,7 @@ typedef struct			s_win
 	int					reload;
 	int					fired;
 	int					youwin;
-	int					eat;
+    int        			eat;
 	t_sound				s;
 	t_text_tab			hud;
 	t_text_tab			hud2;

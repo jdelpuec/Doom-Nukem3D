@@ -6,7 +6,7 @@
 /*   By: jdelpuec <jdelpuec@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/11 12:53:25 by jdelpuec          #+#    #+#             */
-/*   Updated: 2020/03/04 19:05:47 by jdelpuec         ###   ########.fr       */
+/*   Updated: 2020/03/05 19:22:03 by jdelpuec         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,19 @@
 #include "raycasting.h"
 #include "draw.h"
 #include "ft_math.h"
+
+int			add_light(t_ray *ray, int color)
+{
+	int	r;
+	int	g;
+	int	b;
+
+	r = ((color & 0x00ff0000) >> 16) * ray->light;
+	g = ((color & 0x0000ff00) >> 8) * ray->light;
+	b = (color & 0x000000ff) * ray->light;
+	color = (r << 16) + (g << 8) + b;
+	return (color);
+}
 
 t_wall_tex	set_wall_tex(t_win *w, t_ray *r, t_sector sector, t_wall wall)
 {
@@ -38,7 +51,7 @@ int			display_text(t_ray *r, t_win *w, t_text_tab *tmp, t_wall_tex *wt)
 {
 	int i;
 
-	i = (int)r->offset_start - 1;
+	i = (int)r->offset_start;
 	while (i++ < (int)r->offset_end)
 	{
 		if ((i >= 0 && i < WIN_H)
@@ -49,7 +62,8 @@ int			display_text(t_ray *r, t_win *w, t_text_tab *tmp, t_wall_tex *wt)
 			if (wt->tex_id < tmp->tex_w * tmp->tex_w
 				&& (wt->tex_y < 128 && (int)wt->tex_xf < 128))
 				*((int *)w->surface->pixels
-				+ (i * WIN_W + r->x)) = tmp->data[wt->tex_id];
+				+ (i * WIN_W + r->x)) = r->light == 1.0 ? tmp->data[wt->tex_id]
+										: add_light(r, tmp->data[wt->tex_id]);
 		}
 		wt->tex_yf += wt->tex_scale;
 	}
@@ -62,6 +76,8 @@ void		wall_textures(t_win *w, t_ray *r, t_sector sector, t_wall wall)
 	t_wall_tex	wt;
 	t_text_tab	tmp;
 
+	// if (r->x % 2 == 0)
+		// printf("ui %d\n", r->x);
 	tmp = w->text_list;
 	while (wall.id_text != tmp.id)
 		tmp = *tmp.next;
@@ -70,10 +86,12 @@ void		wall_textures(t_win *w, t_ray *r, t_sector sector, t_wall wall)
 	while (++i < (int)r->offset_start)
 		if ((i >= 0 && i < WIN_H)
 			&& (*((int *)w->surface->pixels + (i * WIN_W + r->x)) == 0))
-			*((int *)w->surface->pixels + (i * WIN_W + r->x)) = GREY * r->light;
+			*((int *)w->surface->pixels + (i * WIN_W + r->x)) = r->light
+				== 1.0 ? GREY : add_light(r, GREY);
 	i = display_text(r, w, &tmp, &wt);
 	while (i++ < WIN_H)
 		if ((i >= 0 && i < WIN_H)
 			&& (*((int *)w->surface->pixels + (i * WIN_W + r->x)) == 0))
-			*((int *)w->surface->pixels + (i * WIN_W + r->x)) = DARK;
+			*((int *)w->surface->pixels + (i * WIN_W + r->x)) = r->light
+				== 1.0 ? DARK : add_light(r, DARK);
 }

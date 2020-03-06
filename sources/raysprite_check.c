@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   raysprite_check.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lubernar <lubernar@student.42.fr>          +#+  +:+       +#+        */
+/*   By: jdelpuec <jdelpuec@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/04 18:36:15 by jdelpuec          #+#    #+#             */
-/*   Updated: 2020/03/05 14:43:13 by lubernar         ###   ########.fr       */
+/*   Updated: 2020/03/06 11:06:20 by jdelpuec         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,9 +51,9 @@ int		check_frontground(t_ray *r)
 	if (r->sector_count > 1)
 		return (1);
 	i = 0;
-	while (i < r->sectors[r->player.sector].wall_count)
+	while (i < r->sectors[r->cur_sector].wall_count)
 	{
-		if ((check_seg_inter(r, r->sectors[r->player.sector].walls[i],
+		if ((check_seg_inter(r, r->sectors[r->cur_sector].walls[i],
 									&tmp.x, &tmp.y) == 1))
 		{
 			if (fabsf(tmp.x - r->player.position.x)
