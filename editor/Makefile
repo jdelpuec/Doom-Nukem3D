@@ -3,14 +3,14 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: lubernar <lubernar@student.42.fr>          +#+  +:+       +#+         #
+#    By: jdelpuec <jdelpuec@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2019/06/22 13:09:27 by siwarin           #+#    #+#              #
-#    Updated: 2020/03/02 16:37:40 by lubernar         ###   ########.fr        #
+#    Updated: 2020/03/06 11:11:50 by jdelpuec         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
-NAME = editor
+NAME = Doom-Editor
 
 SRC = main.c editdraw.c draw_menu.c list.c list_wall.c draw_line.c map_saving.c \
 	draw_onmap.c reverse_list.c init_structs.c sdl_manage.c write_text.c textures.c \
@@ -52,9 +52,9 @@ $(OBJDIR)%.o: $(SRCDIR)%.c
 	@gcc -c $(FLAGS) -I libft/ $< -o $@ -I./
 
 $(NAME): $(OBJS)
-	@echo "$(ROUGE)Doom-Nukem is compiling$(BLANC)"
+	@echo "$(ROUGE)Doom-Editor is compiling$(BLANC)"
 	@gcc $(FLAGS) $(LIBFLAG) -o $(NAME) $(OBJS) && echo "- $(VERT)Objects Creation$(OKJAUNE)"
-	@echo "$(VERT)Doom-Nukem is ready !"
+	@echo "$(VERT)Doom-Editor is ready !"
 
 lib_rule:
 	@$(MAKE) -C $(LIB)
@@ -80,7 +80,7 @@ prefix:
 
 doom:
 	@echo "$(ROUGE)===================================="
-	@echo "|             $(JAUNE)DOOM-NUKEM$(ROUGE)           |"
+	@echo "|             $(JAUNE)DOOM-EDITOR$(ROUGE)           |"
 	@echo "===================================="
 
 .PHONY: clean norme fclean re prefix make all

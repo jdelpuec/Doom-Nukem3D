@@ -6,7 +6,7 @@
 /*   By: jdelpuec <jdelpuec@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/12 12:53:22 by lubernar          #+#    #+#             */
-/*   Updated: 2020/03/06 11:05:26 by jdelpuec         ###   ########.fr       */
+/*   Updated: 2020/03/06 12:16:28 by jdelpuec         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,7 +46,7 @@ void		reload_gun(t_text_tab *reload_anim, t_win *w)
 	{
 		reload = (char **)malloc(sizeof(char *) * 4);
 		reload[0] = "./ressources/gun4.bmp";
-		reload[1] = "./ressources/gn5.bmp";
+		reload[1] = "./ressources/gun5.bmp";
 		reload[2] = "./ressources/gun2.bmp";
 		reload[3] = NULL;
 		*reload_anim = handle_textures(reload, -1);

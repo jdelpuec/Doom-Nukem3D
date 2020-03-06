@@ -6,7 +6,7 @@
 /*   By: jdelpuec <jdelpuec@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/10 11:27:26 by jdelpuec          #+#    #+#             */
-/*   Updated: 2020/03/06 11:06:13 by jdelpuec         ###   ########.fr       */
+/*   Updated: 2020/03/06 11:58:18 by jdelpuec         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -133,5 +133,6 @@ void		init_t_ray(t_ray *r, t_env *env)
 	r->check_sprt = int_malloc("check_sprt", r->inv.nb_sprites);
 	i = -1;
 	r->gravity = r->player.gravity;
+	r->start_pos = r->player;
 	get_sector_vertices(r, i);
 }
