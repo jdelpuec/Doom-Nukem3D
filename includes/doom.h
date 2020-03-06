@@ -6,7 +6,7 @@
 /*   By: jdelpuec <jdelpuec@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/04/01 11:50:31 by siwarin           #+#    #+#             */
-/*   Updated: 2020/03/06 13:01:51 by jdelpuec         ###   ########.fr       */
+/*   Updated: 2020/03/06 13:59:31 by siwarin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,7 +56,7 @@ typedef struct			s_win
 	int					reload;
 	int					fired;
 	int					youwin;
-    int					eat;
+	int					eat;
 	int					jpressed;
 	t_sound				s;
 	t_text_tab			hud;

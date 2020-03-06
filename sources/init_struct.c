@@ -6,7 +6,7 @@
 /*   By: jdelpuec <jdelpuec@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/10 11:27:26 by jdelpuec          #+#    #+#             */
-/*   Updated: 2020/03/06 13:23:28 by jdelpuec         ###   ########.fr       */
+/*   Updated: 2020/03/06 14:09:50 by siwarin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,16 +42,16 @@ void		init_fmod(t_win *w)
 {
 	FMOD_System_Create(&w->s.fmod);
 	FMOD_System_Init(w->s.fmod, 32, FMOD_INIT_NORMAL, NULL);
-	FMOD_System_CreateSound(w->s.fmod, "sound/shotgun.wav", FMOD_CREATESAMPLE,
-	0, &w->s.shot);
-	FMOD_System_CreateSound(w->s.fmod, "sound/reload.wav", FMOD_CREATESAMPLE,
-	0, &w->s.reload);
-	FMOD_System_CreateSound(w->s.fmod, "sound/slurp.wav", FMOD_CREATESAMPLE,
-	0, &w->s.slu);
-	FMOD_System_CreateSound(w->s.fmod, "sound/youwin.wav", FMOD_CREATESAMPLE,
-	0, &w->s.win);
-	FMOD_System_CreateSound(w->s.fmod, "sound/blue_bird.wav", FMOD_SOFTWARE
-		| FMOD_2D | FMOD_CREATESTREAM, 0, &w->s.music);
+	FMOD_System_CreateSound(w->s.fmod, "ressources/sound/shotgun.wav",
+		FMOD_CREATESAMPLE, 0, &w->s.shot);
+	FMOD_System_CreateSound(w->s.fmod, "ressources/sound/reload.wav",
+		FMOD_CREATESAMPLE, 0, &w->s.reload);
+	FMOD_System_CreateSound(w->s.fmod, "ressources/sound/slurp.wav",
+			FMOD_CREATESAMPLE, 0, &w->s.slu);
+	FMOD_System_CreateSound(w->s.fmod, "ressources/sound/youwin.wav",
+			FMOD_CREATESAMPLE, 0, &w->s.win);
+	FMOD_System_CreateSound(w->s.fmod, "ressources/sound/blue_bird.wav",
+			FMOD_SOFTWARE | FMOD_2D | FMOD_CREATESTREAM, 0, &w->s.music);
 }
 
 void		init_sdl(t_win *w)
