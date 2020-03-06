@@ -6,7 +6,7 @@
 /*   By: lubernar <lubernar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/10 14:05:34 by jdelpuec          #+#    #+#             */
-/*   Updated: 2020/03/06 11:45:01 by lubernar         ###   ########.fr       */
+/*   Updated: 2020/03/06 11:57:31 by lubernar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -104,8 +104,6 @@ void	draw_player_view(t_win *w, t_ray *r)
 		r->ray_end.x = r->player.position.x + cosf(r->ray_angle) * 200.0;
 		r->ray_end.y = r->player.position.y - sinf(r->ray_angle) * 200.0;
 		r->cur_sector = r->player.sector;
-		r->y_min = 0;
-		r->y_max = WIN_H - 1;
 		iter = 0;
 		running = 0;
 		while (running == 0)

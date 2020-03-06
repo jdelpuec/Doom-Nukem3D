@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   draw.h                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lubernar <lubernar@student.42.fr>          +#+  +:+       +#+        */
+/*   By: jdelpuec <jdelpuec@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/10 14:08:08 by jdelpuec          #+#    #+#             */
-/*   Updated: 2020/03/05 14:38:10 by lubernar         ###   ########.fr       */
+/*   Updated: 2020/03/05 18:09:13 by jdelpuec         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,6 +21,7 @@ int			sector_loop(t_win *w, t_ray *r, t_sector sector, t_wall wall);
 int			draw_wall(t_win *w, t_ray *r, t_sector sector, t_wall wall);
 void		draw_portal_ceil(t_win *w, t_ray *r, t_sector sector,
 														t_sector portal_sec);
+int			add_light(t_ray *ray, int color);
 t_wall_tex	set_wall_tex(t_win *w, t_ray *r, t_sector sector, t_wall wall);
 int			display_text(t_ray *r, t_win *w, t_text_tab *tmp, t_wall_tex *wt);
 int			check_frontground(t_ray *r);

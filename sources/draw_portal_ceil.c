@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   draw_portal_ceil.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lubernar <lubernar@student.42.fr>          +#+  +:+       +#+        */
+/*   By: jdelpuec <jdelpuec@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/19 16:13:16 by lubernar          #+#    #+#             */
-/*   Updated: 2020/03/05 15:42:53 by lubernar         ###   ########.fr       */
+/*   Updated: 2020/03/05 19:07:54 by jdelpuec         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,11 +36,11 @@ void	draw_portal_ceil(t_win *w, t_ray *r, t_sector sector,
 				- portal_sec.ceil_height) / r->dist_wall) * r->dist_pp;
 	r->line_h = r->offset_end - r->offset_start;
 	i = -1;
-	while (++i < (int)r->offset_start)
+	while (++i <= (int)r->offset_start)
 		if ((i >= 0 && i < WIN_H)
 			&& (*((int *)w->surface->pixels + (i * WIN_W + r->x)) == 0))
-			*((int *)w->surface->pixels + (i * WIN_W + r->x)) = GREY;
+			*((int *)w->surface->pixels + (i * WIN_W + r->x)) = r->light
+				== 1.0 ? GREY : add_light(r, GREY);
 	wt = set_wall_tex(w, r, sector, sector.walls[r->i]);
 	display_text(r, w, &tmp, &wt);
-	r->y_min = (int)r->offset_end;
 }
