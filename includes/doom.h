@@ -6,7 +6,7 @@
 /*   By: lubernar <lubernar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/04/01 11:50:31 by siwarin           #+#    #+#             */
-/*   Updated: 2020/03/05 15:42:08 by lubernar         ###   ########.fr       */
+/*   Updated: 2020/03/06 11:49:22 by lubernar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,7 +56,8 @@ typedef struct			s_win
 	int					reload;
 	int					fired;
 	int					youwin;
-    int        			eat;
+    int					eat;
+	int					jpressed;
 	t_sound				s;
 	t_text_tab			hud;
 	t_text_tab			hud2;

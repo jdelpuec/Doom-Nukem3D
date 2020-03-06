@@ -6,7 +6,7 @@
 /*   By: lubernar <lubernar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/19 14:41:55 by lubernar          #+#    #+#             */
-/*   Updated: 2020/03/05 15:42:08 by lubernar         ###   ########.fr       */
+/*   Updated: 2020/03/06 11:48:26 by lubernar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,8 +70,10 @@ void	basic_mvt(t_keyboard *k, t_ray *r, float ms)
 		r->player.velocity.z = 60.0;
 }
 
-void	l_ctrl(t_keyboard *k, t_ray *r, float ms)
+void	l_ctrl(t_keyboard *k, t_ray *r, t_win *w, float ms)
 {
+	if (k->state[SDL_SCANCODE_J] == 1)
+		w->jpressed = 1;
 	if (k->state[SDL_SCANCODE_LCTRL] != 1)
 	{
 		if (r->player.position.z + r->player.velocity.z * ms
@@ -127,5 +129,5 @@ void	handle_keyboard_mvt(t_win *w, t_ray *r, t_keyboard *k)
 	wall_slide(r);
 	r->player.velocity.x = 0.0;
 	r->player.velocity.y = 0.0;
-	l_ctrl(k, r, ms);
+	l_ctrl(k, r, w, ms);
 }

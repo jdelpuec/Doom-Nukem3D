@@ -6,7 +6,7 @@
 /*   By: lubernar <lubernar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/07 13:20:48 by lubernar          #+#    #+#             */
-/*   Updated: 2020/03/05 19:30:13 by lubernar         ###   ########.fr       */
+/*   Updated: 2020/03/06 11:43:52 by lubernar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,7 +52,7 @@ void		if_player_on_sprites(t_ray *r, t_win *sdl, int i)
 			display_to_true(r, i, 0);
 		if (r->inv.sprite[i].id == 2 && r->inv.sprite[i].pickable == 1)
 			display_to_true(r, i, 1);
-		if (r->inv.sprite[i].id == 3 && sdl->reload == 0)
+		if (r->inv.sprite[i].id == 3 && sdl->reload == 0 && sdl->jpressed == 1)
 		{
 			sdl->fired = 2;
 			sdl->reload = 1;

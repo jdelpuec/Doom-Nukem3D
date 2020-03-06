@@ -6,7 +6,7 @@
 /*   By: lubernar <lubernar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/04/01 11:49:14 by siwarin           #+#    #+#             */
-/*   Updated: 2020/03/05 17:35:59 by lubernar         ###   ########.fr       */
+/*   Updated: 2020/03/06 11:45:50 by lubernar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,6 +34,7 @@ void	sdl_loop(t_win *w, t_ray *r)
 	init_keyboard(&k);
 	while (1)
 	{
+		w->jpressed = 0;
 		while (SDL_PollEvent(&w->e))
 		{
 			if (w->e.type == SDL_KEYDOWN || w->e.type == SDL_KEYUP)

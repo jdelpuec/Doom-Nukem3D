@@ -6,7 +6,7 @@
 /*   By: lubernar <lubernar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/20 17:57:44 by lubernar          #+#    #+#             */
-/*   Updated: 2020/03/05 14:39:32 by lubernar         ###   ########.fr       */
+/*   Updated: 2020/03/06 11:36:04 by lubernar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,6 +33,8 @@ int		is_key_pressed2(t_keyboard *k, int pressed)
 	if (k->state[SDL_SCANCODE_F] == 1)
 		pressed++;
 	if (k->state[SDL_SCANCODE_M] == 1)
+		pressed++;
+	if (k->state[SDL_SCANCODE_J] == 1)
 		pressed++;
 	return (pressed);
 }
