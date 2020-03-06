@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   handle_k_mvt.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lubernar <lubernar@student.42.fr>          +#+  +:+       +#+        */
+/*   By: jdelpuec <jdelpuec@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/19 14:41:55 by lubernar          #+#    #+#             */
-/*   Updated: 2020/03/06 12:03:45 by lubernar         ###   ########.fr       */
+/*   Updated: 2020/03/06 13:02:10 by jdelpuec         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,13 +31,7 @@ void	reload_restart_straf(t_ray *r, t_keyboard *k, t_win *w, float ms)
 		, 0, NULL);
 	}
 	if (k->state[SDL_SCANCODE_T] == 1)
-	{
-		r->player.position.x = 0.0;
-		r->player.position.y = 0.0;
-		r->player.position.z = 0.0;
-		r->player.angle = 0.0;
-		r->player.sector = 0;
-	}
+		r->player = r->start_pos;
 	if (k->state[SDL_SCANCODE_A] == 1)
 		r->player.angle -= 2.5 * ms;
 	if (k->state[SDL_SCANCODE_D] == 1)

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   raycasting.h                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lubernar <lubernar@student.42.fr>          +#+  +:+       +#+        */
+/*   By: jdelpuec <jdelpuec@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/04/06 14:02:38 by siwarin           #+#    #+#             */
-/*   Updated: 2020/03/06 12:03:08 by lubernar         ###   ########.fr       */
+/*   Updated: 2020/03/06 13:01:58 by jdelpuec         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,7 @@ typedef struct	s_ray
 	float		ray_angle;
 
 	t_player	player;
-	t_vector_3d	start_pos;
+	t_player	start_pos;
 	t_wall		old_wall;
 	t_sector	*sectors;
 	t_vector_2d	ray_end;
