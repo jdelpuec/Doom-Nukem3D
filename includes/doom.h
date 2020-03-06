@@ -6,7 +6,7 @@
 /*   By: lubernar <lubernar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/04/01 11:50:31 by siwarin           #+#    #+#             */
-/*   Updated: 2020/03/06 11:49:22 by lubernar         ###   ########.fr       */
+/*   Updated: 2020/03/06 12:03:00 by lubernar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -137,6 +137,7 @@ typedef struct			s_env
 	t_sprites			*spt;
 }						t_env;
 
+t_text_tab				handle_textures_2(t_text_tab *last);
 int						parser(int ac, char **av);
 int						parsing(char *str, t_env *doom);
 int						all_room(int fd, t_env *doom, int n_room);

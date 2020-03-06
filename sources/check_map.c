@@ -6,13 +6,13 @@
 /*   By: lubernar <lubernar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/12/17 13:57:37 by cduverge          #+#    #+#             */
-/*   Updated: 2020/03/05 14:38:41 by lubernar         ###   ########.fr       */
+/*   Updated: 2020/03/06 12:08:20 by lubernar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "doom.h"
 
-int		check_room_by_room(t_env *d, int j)
+int			check_room_by_room(t_env *d, int j)
 {
 	int		i;
 	float	a;
@@ -38,13 +38,13 @@ int		check_room_by_room(t_env *d, int j)
 	return (0);
 }
 
-int		free_and_return(char *str)
+int			free_and_return(char *str)
 {
 	free(str);
 	return (-1);
 }
 
-int		begin_player(int fd, t_env *doom)
+int			begin_player(int fd, t_env *doom)
 {
 	char	*line;
 	int		ret;
@@ -63,7 +63,7 @@ int		begin_player(int fd, t_env *doom)
 	return (0);
 }
 
-int		check_player(char *line)
+int			check_player(char *line)
 {
 	int		i;
 	int		spc;
@@ -90,4 +90,16 @@ int		check_player(char *line)
 	if ((ft_isdigit(line[i]) == 1) && (line[i + 1] == '\0'))
 		return (0);
 	return (-1);
+}
+
+t_text_tab	handle_textures_2(t_text_tab *last)
+{
+	free(last->path);
+	while (last->prev != NULL)
+	{
+		last = last->prev;
+		free(last->data);
+	}
+	last->id = -1;
+	return (*last);
 }

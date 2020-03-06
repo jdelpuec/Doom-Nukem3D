@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   set_textures.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jdelpuec <jdelpuec@student.42.fr>          +#+  +:+       +#+        */
+/*   By: lubernar <lubernar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/11 12:53:25 by jdelpuec          #+#    #+#             */
-/*   Updated: 2020/03/05 19:22:03 by jdelpuec         ###   ########.fr       */
+/*   Updated: 2020/03/06 12:08:41 by lubernar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -76,8 +76,6 @@ void		wall_textures(t_win *w, t_ray *r, t_sector sector, t_wall wall)
 	t_wall_tex	wt;
 	t_text_tab	tmp;
 
-	// if (r->x % 2 == 0)
-		// printf("ui %d\n", r->x);
 	tmp = w->text_list;
 	while (wall.id_text != tmp.id)
 		tmp = *tmp.next;
