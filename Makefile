@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: jdelpuec <jdelpuec@student.42.fr>          +#+  +:+       +#+         #
+#    By: lubernar <lubernar@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2020/03/05 14:02:40 by cduverge          #+#    #+#              #
-#    Updated: 2020/03/06 11:40:40 by jdelpuec         ###   ########.fr        #
+#    Updated: 2020/03/09 17:28:42 by lubernar         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -37,7 +37,7 @@ OBJS = $(addprefix $(OBJDIR), $(OBJ))
 
 FLAGS = -Wall -Werror -Wextra
 
-LIBFLAG =   $(LIBDIR)libft.a -L libft -l SDL2-2.0.0 -l SDL2_ttf-2.0.0 -l fmodex
+LIBFLAG =   $(LIBDIR)libft.a -L libft -l SDL2-2.0.0 -l SDL2_ttf-2.0.0
 
 ROUGE = \033[31m
 VERT = \033[32m

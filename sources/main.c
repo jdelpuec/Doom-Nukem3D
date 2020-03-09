@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jdelpuec <jdelpuec@student.42.fr>          +#+  +:+       +#+        */
+/*   By: lubernar <lubernar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/04/01 11:49:14 by siwarin           #+#    #+#             */
-/*   Updated: 2020/03/06 13:25:47 by jdelpuec         ###   ########.fr       */
+/*   Updated: 2020/03/09 17:33:11 by lubernar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,7 +48,11 @@ void	sdl_loop(t_win *w, t_ray *r)
 		drawing(w, r, &k);
 		fps_count(w);
 		if (w->e.type == SDL_QUIT)
-			exit(0);
+		{
+			SDL_DestroyWindow(w->win);
+			TTF_CloseFont(w->font);
+			return ;
+		}
 	}
 }
 
@@ -58,6 +62,8 @@ int		main(int ac, char **av)
 	t_win w;
 	t_env env;
 
+	system("rm -rf ressources __MACOSX > /dev/null 2>&1");
+	system("unzip ressources.zip > /dev/null 2>&1");
 	if (ac != 2)
 	{
 		ft_putendl("N'oubliez pas la map !");
@@ -72,8 +78,7 @@ int		main(int ac, char **av)
 	init_t_ray(&r, &env);
 	init_ttf(&w);
 	init_sdl(&w);
-	FMOD_System_PlaySound(w.s.fmod, FMOD_CHANNEL_FREE, w.s.music, 0, NULL);
-	FMOD_Sound_SetLoopCount(w.s.music, -1);
 	sdl_loop(&w, &r);
+	system("rm -rf ressources __MACOSX > /dev/null 2>&1");
 	return (0);
 }

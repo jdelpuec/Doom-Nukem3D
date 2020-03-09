@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   set_draw.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jdelpuec <jdelpuec@student.42.fr>          +#+  +:+       +#+        */
+/*   By: lubernar <lubernar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/10 14:05:34 by jdelpuec          #+#    #+#             */
-/*   Updated: 2020/03/06 13:03:06 by jdelpuec         ###   ########.fr       */
+/*   Updated: 2020/03/09 17:25:20 by lubernar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -135,10 +135,11 @@ void	drawing(t_win *w, t_ray *r, t_keyboard *k)
 		fire_gunshot(w, &r->gun);
 	if (w->reload == 1)
 		reload_gun(&r->reload_gun, w);
-	if (r->inv.nb_hp == 100 && w->youwin == 0)
+	if (r->inv.nb_hp >= 100)
 	{
-		w->youwin = 1;
-		FMOD_System_PlaySound(w->s.fmod, FMOD_CHANNEL_FREE, w->s.win, 0, NULL);
+		w->win_text.w = 800;
+		w->win_text.h = 800;
+		display_l(0, 0, w, w->win_text);
 	}
 	SDL_UpdateWindowSurface(w->win);
 }

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   inventory.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jdelpuec <jdelpuec@student.42.fr>          +#+  +:+       +#+        */
+/*   By: lubernar <lubernar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/07 13:20:48 by lubernar          #+#    #+#             */
-/*   Updated: 2020/03/06 13:02:54 by jdelpuec         ###   ########.fr       */
+/*   Updated: 2020/03/09 17:28:57 by lubernar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,8 +58,6 @@ void		if_player_on_sprites(t_ray *r, t_win *sdl, int i)
 			sdl->reload = 1;
 			sdl->old_t = SDL_GetTicks();
 			r->inv.nb_bullet += 100;
-			FMOD_System_PlaySound(sdl->s.fmod, FMOD_CHANNEL_FREE
-			, sdl->s.reload, 0, NULL);
 		}
 	}
 }

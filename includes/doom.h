@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   doom.h                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jdelpuec <jdelpuec@student.42.fr>          +#+  +:+       +#+        */
+/*   By: lubernar <lubernar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/04/01 11:50:31 by siwarin           #+#    #+#             */
-/*   Updated: 2020/03/06 13:59:31 by siwarin          ###   ########.fr       */
+/*   Updated: 2020/03/09 17:24:32 by lubernar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,20 +20,6 @@
 # include "../libft/includes/get_next_line.h"
 # include "define.h"
 # include "textures.h"
-# include "fmod/fmod.h"
-
-typedef struct			s_sound
-{
-	FMOD_SYSTEM			*fmod;
-	FMOD_SOUND			*shot;
-	FMOD_SOUND			*slu;
-	FMOD_SOUND			*win;
-	FMOD_SOUND			*music;
-	FMOD_SOUND			*reload;
-	FMOD_RESULT			result;
-	FMOD_BOOL			state;
-	FMOD_CHANNELGROUP	*canal;
-}						t_sound;
 
 typedef struct			s_win
 {
@@ -45,6 +31,7 @@ typedef struct			s_win
 	SDL_Color			fc;
 	SDL_Surface			*mes;
 	t_text_tab			text_list;
+	int					running;
 	int					nb_thread;
 	int					color;
 	int					fps;
@@ -55,13 +42,12 @@ typedef struct			s_win
 	float				old_t_f;
 	int					reload;
 	int					fired;
-	int					youwin;
 	int					eat;
 	int					jpressed;
-	t_sound				s;
 	t_text_tab			hud;
 	t_text_tab			hud2;
 	t_text_tab			hud3;
+	t_text_tab			win_text;
 }						t_win;
 
 typedef struct			s_texture
