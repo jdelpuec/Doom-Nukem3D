@@ -6,7 +6,7 @@
 /*   By: jdelpuec <jdelpuec@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/19 14:41:55 by lubernar          #+#    #+#             */
-/*   Updated: 2020/03/06 13:02:10 by jdelpuec         ###   ########.fr       */
+/*   Updated: 2020/03/11 17:27:51 by jdelpuec         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,8 +60,11 @@ void	basic_mvt(t_keyboard *k, t_ray *r, float ms)
 		r->player.velocity.x -= r->speed * sinf(r->player.angle) * ms;
 		r->player.velocity.y -= r->speed * cosf(r->player.angle) * ms;
 	}
-	if (k->state[SDL_SCANCODE_SPACE] == 1)
+	if (k->state[SDL_SCANCODE_SPACE] == 1 && k->state[SDL_SCANCODE_C] != 1)
 		r->player.velocity.z = 60.0;
+	if (k->state[SDL_SCANCODE_C] == 1 && r->player.position.z - PLAY_H
+		== r->sectors[r->cur_sector].floor_height)
+		r->player.position.z -= PLAY_H;
 }
 
 void	l_ctrl(t_keyboard *k, t_ray *r, t_win *w, float ms)
@@ -76,14 +79,18 @@ void	l_ctrl(t_keyboard *k, t_ray *r, t_win *w, float ms)
 		else
 			r->player.position.z = r->sectors[r->player.sector].ceil_height;
 		if (r->player.position.z < r->sectors[r->player.sector].floor_height
-																	+ PLAY_H)
+									+ PLAY_H && k->state[SDL_SCANCODE_C] != 1)
 		{
 			r->player.position.z = r->sectors[r->player.sector].floor_height
 																	+ PLAY_H;
 			r->player.velocity.z = 0.0;
 		}
-		else
+		else if (r->player.position.z
+						> r->sectors[r->player.sector].floor_height + PLAY_H)
 			r->player.velocity.z -= r->gravity;
+		else if (r->player.position.z
+								< r->sectors[r->player.sector].floor_height)
+			r->player.position.z = r->sectors[r->player.sector].floor_height;
 	}
 }
 

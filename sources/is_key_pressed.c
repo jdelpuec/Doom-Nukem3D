@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   is_key_pressed.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lubernar <lubernar@student.42.fr>          +#+  +:+       +#+        */
+/*   By: jdelpuec <jdelpuec@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/20 17:57:44 by lubernar          #+#    #+#             */
-/*   Updated: 2020/03/06 12:04:21 by lubernar         ###   ########.fr       */
+/*   Updated: 2020/03/11 16:09:46 by jdelpuec         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,6 +35,8 @@ int		is_key_pressed2(t_keyboard *k, int pressed)
 	if (k->state[SDL_SCANCODE_M] == 1)
 		pressed++;
 	if (k->state[SDL_SCANCODE_J] == 1)
+		pressed++;
+	if (k->state[SDL_SCANCODE_C] == 1)
 		pressed++;
 	return (pressed);
 }
