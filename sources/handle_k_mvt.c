@@ -6,7 +6,7 @@
 /*   By: jdelpuec <jdelpuec@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/19 14:41:55 by lubernar          #+#    #+#             */
-/*   Updated: 2020/03/11 17:27:51 by jdelpuec         ###   ########.fr       */
+/*   Updated: 2020/03/11 17:34:08 by jdelpuec         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,8 +27,6 @@ void	reload_restart_straf(t_ray *r, t_keyboard *k, t_win *w, float ms)
 		w->reload = 1;
 		w->old_t = SDL_GetTicks();
 		r->inv.nb_bullet += 10;
-		FMOD_System_PlaySound(w->s.fmod, FMOD_CHANNEL_FREE, w->s.reload
-		, 0, NULL);
 	}
 	if (k->state[SDL_SCANCODE_T] == 1)
 		r->player = r->start_pos;
@@ -119,7 +117,6 @@ void	handle_keyboard_mvt(t_win *w, t_ray *r, t_keyboard *k)
 		r->inv.nb_noodles_c--;
 		r->inv.nb_hp += 20;
 		w->eat = 1;
-		FMOD_System_PlaySound(w->s.fmod, FMOD_CHANNEL_FREE, w->s.slu, 0, NULL);
 	}
 	basic_mvt(k, r, ms);
 	if (ms > 0.1)

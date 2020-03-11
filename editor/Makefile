@@ -6,11 +6,11 @@
 #    By: jdelpuec <jdelpuec@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2019/06/22 13:09:27 by siwarin           #+#    #+#              #
-#    Updated: 2020/03/06 11:11:50 by jdelpuec         ###   ########.fr        #
+#    Updated: 2020/03/06 14:02:21 by siwarin          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
-NAME = Doom-Editor
+NAME = doom-editor
 
 SRC = main.c editdraw.c draw_menu.c list.c list_wall.c draw_line.c map_saving.c \
 	draw_onmap.c reverse_list.c init_structs.c sdl_manage.c write_text.c textures.c \

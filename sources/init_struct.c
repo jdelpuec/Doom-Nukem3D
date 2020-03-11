@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   init_struct.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jdelpuec <jdelpuec@student.42.fr>          +#+  +:+       +#+        */
+/*   By: lubernar <lubernar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/10 11:27:26 by jdelpuec          #+#    #+#             */
-/*   Updated: 2020/03/06 13:23:28 by jdelpuec         ###   ########.fr       */
+/*   Updated: 2020/03/09 17:29:20 by lubernar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,22 +38,6 @@ t_text_tab	init_text(void)
 	return (text_list);
 }
 
-void		init_fmod(t_win *w)
-{
-	FMOD_System_Create(&w->s.fmod);
-	FMOD_System_Init(w->s.fmod, 32, FMOD_INIT_NORMAL, NULL);
-	FMOD_System_CreateSound(w->s.fmod, "sound/shotgun.wav", FMOD_CREATESAMPLE,
-	0, &w->s.shot);
-	FMOD_System_CreateSound(w->s.fmod, "sound/reload.wav", FMOD_CREATESAMPLE,
-	0, &w->s.reload);
-	FMOD_System_CreateSound(w->s.fmod, "sound/slurp.wav", FMOD_CREATESAMPLE,
-	0, &w->s.slu);
-	FMOD_System_CreateSound(w->s.fmod, "sound/youwin.wav", FMOD_CREATESAMPLE,
-	0, &w->s.win);
-	FMOD_System_CreateSound(w->s.fmod, "sound/blue_bird.wav", FMOD_SOFTWARE
-		| FMOD_2D | FMOD_CREATESTREAM, 0, &w->s.music);
-}
-
 void		init_sdl(t_win *w)
 {
 	if (SDL_Init(SDL_INIT_VIDEO | SDL_INIT_EVENTS) != 0)
@@ -73,14 +57,13 @@ void		init_sdl(t_win *w)
 	w->hud = find("ressources/hud/health.bmp");
 	w->hud2 = find("ressources/hud/ammo_copy.bmp");
 	w->hud3 = find("ressources/hud/inventory.bmp");
+	w->win_text = find("ressources/naruto_win.bmp");
 	w->old_time = 0.0;
 	w->time = 0.0;
 	w->text_list = init_text();
 	w->reload = 0;
 	w->fired = 0;
 	w->old_t = 0.0;
-	w->youwin = 0;
-	init_fmod(w);
 }
 
 void		get_sector_vertices(t_ray *r, int i)
