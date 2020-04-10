@@ -57,7 +57,6 @@ void		init_sdl(t_win *w)
 	w->hud = find("ressources/hud/health.bmp");
 	w->hud2 = find("ressources/hud/ammo_copy.bmp");
 	w->hud3 = find("ressources/hud/inventory.bmp");
-	w->win_text = find("ressources/naruto_win.bmp");
 	w->old_time = 0.0;
 	w->time = 0.0;
 	w->text_list = init_text();

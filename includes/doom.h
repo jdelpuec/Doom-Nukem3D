@@ -47,7 +47,6 @@ typedef struct			s_win
 	t_text_tab			hud;
 	t_text_tab			hud2;
 	t_text_tab			hud3;
-	t_text_tab			win_text;
 }						t_win;
 
 typedef struct			s_texture

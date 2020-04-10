@@ -137,9 +137,10 @@ void	drawing(t_win *w, t_ray *r, t_keyboard *k)
 		reload_gun(&r->reload_gun, w);
 	if (r->inv.nb_hp >= 100)
 	{
-		w->win_text.w = 800;
-		w->win_text.h = 800;
-		display_l(0, 0, w, w->win_text);
+		w->mes = TTF_RenderText_Solid(w->font, "YOU WIN", w->fc);
+		if (w->mes == NULL)
+			return ;
+		apply_surface(((WIN_W / 2) - 50), (WIN_H / 2), w->mes, w->surface);
 	}
 	SDL_UpdateWindowSurface(w->win);
 }
