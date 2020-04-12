@@ -135,7 +135,7 @@ void	drawing(t_win *w, t_ray *r, t_keyboard *k)
 		fire_gunshot(w, &r->gun);
 	if (w->reload == 1)
 		reload_gun(&r->reload_gun, w);
-	if (r->inv.nb_hp >= 20)
+	if (r->inv.nb_hp >= 100)
 	{
 		w->mes = TTF_RenderText_Solid(w->font, "YOU WIN", w->fc);
 		if (w->mes == NULL)
