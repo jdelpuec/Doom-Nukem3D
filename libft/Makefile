@@ -31,7 +31,7 @@ ft_lstadd.c ft_lstdel.c ft_lstdelone.c ft_lstiter.c ft_lstmap.c ft_lstnew.c \
 ft_lstaddend.c ft_lstaddn.c ft_numlen.c ft_strsplitlst.c ft_tablen.c \
 ft_swap.c ft_power.c ft_root.c ft_strjoin2.c get_next_line.c \
 
-HEADER = includes/libft.h \
+HEADER = includes \
 
 all: $(NAME)
 

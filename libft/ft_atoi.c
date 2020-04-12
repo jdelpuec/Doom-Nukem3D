@@ -15,9 +15,6 @@
 
 static int	ft_a(char const *s, int a)
 {
-	int	neg;
-
-	neg = 0;
 	while (s[a] == '\t' || s[a] == '\f' || s[a] == '\n' || s[a] == '\r' ||
 			s[a] == ' ' || s[a] == '+' || s[a] == '-' || s[a] == '\v')
 	{
