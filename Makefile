@@ -10,80 +10,80 @@
 #                                                                              #
 # **************************************************************************** #
 
-NAME =  doom-nukem
-
-SRC =   main.c handle_keyboard_event.c handle_mouse_event.c deg_to_rad.c \
-		collision.c math.c inventory.c handle_textures.c ft_malloc.c \
-		gun.c init_struct.c set_draw.c wall_draw.c set_textures.c\
-		hud.c parsing.c check_map.c parser.c parsing_2.c usefull.c \
-		pars_sprites.c hud_tools.c math_2.c print_messages.c handle_k_mvt.c \
-		draw_portal_ceil.c is_key_pressed.c raysprite.c raysprite_check.c
-
-OBJ = $(SRC:.c=.o)
-
-SRCDIR  = ./sources/
-
-INCDIR  = ./includes/
-
-LIB = libft
-
-LIBDIR = ./libft/
-
-OBJDIR = ./objs/
-
-SRCS = $(addprefix $(SRCDIR), $(SRC))
-
-OBJS = $(addprefix $(OBJDIR), $(OBJ))
-
-FLAGS = -Wall -Werror -Wextra
-
-LIBFLAG =   $(LIBDIR)libft.a -L libft -l SDL2-2.0.0 -l SDL2_ttf-2.0.0
-
-ROUGE = \033[31m
-VERT = \033[32m
-JAUNE = \033[33m
-BLEU = \033[34m
-ROSE = \033[35m
-CYAN = \033[36m
-BLANC = \033[37m
-
-OKJAUNE = $(CYAN) ====> $(JAUNE)[OK]$(BLANC)
-
-all: doom lib_rule prefix $(NAME)
-
+NAME=doom-nukem
+GFLAGS=-Wall -Wextra
+OPTI_FLAGS=-flto -O3 -march=native -ffast-math
+CFLAGS=$(GFLAGS) $(OPTI_FLAGS)
+LIBS=-lm -lft
+CC=clang
+-include src.mk
+OBJS=$(addprefix $(OBJDIR),$(SRC:.c=.o))
+# ft library
+FT		=./libft/
+FT_LIB	=$(addprefix $(FT), libft.a)
+FT_INC	=-I ./libft/includes
+FT_LNK	=-L ./libft
+SRCDIR	=./srcs/
+INCDIR	=./includes/
+OBJDIR	=./objs/
+DEPSDIR = ./deps/
+INCLUDE += $(shell pkg-config --cflags sdl2 SDL2_ttf)
+LIBS += $(shell pkg-config --libs sdl2 SDL2_ttf)
+PRECOMPILE = mkdir -p $(dir $@)
+POSTCOMPILE = sleep 0
+all: make_ft | $(NAME)
+DEBUG ?= 0
+ifeq ($(DEBUG), 1)
+	CFLAGS = $(GFLAGS) -g
+endif
+ifndef NODEPS
+PRECOMPILE += ;mkdir -p $(dir $(DEPSDIR)$*)
+CFLAGS += -MT $@ -MMD -MP -MF $(DEPSDIR)$*.Td
+POSTCOMPILE += ;mv -f $(DEPSDIR)$*.Td $(DEPSDIR)$*.d && touch $@
+endif
+$(OBJS): Makefile
 $(OBJDIR)%.o: $(SRCDIR)%.c
-	@gcc -c $(FLAGS) -I $(INCDIR) -I libft/ $< -o $@ -I./
-
-$(NAME): $(OBJS) $(INCDIR)
-	@echo "$(ROUGE)Doom-Nukem is compiling$(BLANC)"
-	@gcc $(FLAGS) $(LIBFLAG) -o $(NAME) $(OBJS) && echo "- $(VERT)Objects Creation$(OKJAUNE)"
-	@echo "$(VERT)Doom-Nukem is ready !"
-
-lib_rule:
-	@$(MAKE) -C $(LIB)
-	@echo "$(VERT)libft is ready !"
-
-norme:
-	norminette $(SRCDIR)*.c $(INCDIR)*.h
-
+	@$(PRECOMPILE)
+	@$(call run_and_test, $(CC) $(CFLAGS) $(INCLUDE) $(FT_INC) -I $(INCDIR)  -o $@ -c $<)
+	@$(POSTCOMPILE)
+make_ft:
+	make -C $(FT)
+$(FT_LIB): make_ft
+$(NAME): $(OBJS) $(FT_LIB)
+	$(CC) $(CFLAGS) -o $(NAME) $(FT_LNK) $(INCLUDE) $(LIBS) $(OBJS) $(FT_LIB)
 clean:
-	@rm -rf $(OBJDIR)
-	@make -C $(LIBDIR) clean > /dev/null
-	@echo "- $(VERT)Deleted objects$(OKJAUNE)"
-
+	make -C $(FT) clean
+	rm -f $(OBJS)
 fclean: clean
-	@rm -f $(NAME)
-	@make -C $(LIBDIR) fclean
-	@echo "- $(VERT)Deleted exe$(OKJAUNE)"
-
-re: fclean all
-
-prefix:
-	@mkdir -p $(OBJDIR)
-
-doom:
-	@echo "$(ROUGE)===================================="
-	@echo "|             $(JAUNE)DOOM-NUKEM$(ROUGE)           |"
-	@echo "===================================="
-
-.PHONY: clean norme fclean re prefix make all
+	rm -rf $(NAME)
+	make -C $(FT) fclean
+re: fclean $(NAME)
+get_files:
+	@find sources -type f -name '*.c' | sed 's/sources\///g' | sed 's/^/SRC+=/' > src.mk
+include $(shell find $(DEPSDIR) -iname "*.d")
+.PHONY: clean fclean re all get_files
+COM_COLOR   = \033[36m
+OBJ_COLOR   = \033[m
+OK_COLOR    = \033[0;36m
+ERROR_COLOR = \033[0;31m
+WARN_COLOR  = \033[0;33m
+NO_COLOR    = \033[m
+OK_STRING    = "OK"
+ERROR_STRING = "ERROR"
+WARN_STRING  = "WARNING"
+COM_STRING   = "Compiling"
+define run_and_test
+	printf "%b" "$(COM_COLOR)$(COM_STRING) $(OBJ_COLOR)$(@F)$(NO_COLOR)\r"; \
+	$(1) 2> $@.log; \
+	RESULT=$$?; \
+	if [ $$RESULT -ne 0 ]; then \
+		printf "%-78b%b" "$(COM_COLOR)$(COM_STRING)$(OBJ_COLOR) $<" "[ $(ERROR_COLOR)$(ERROR_STRING)$(NO_COLOR) ]\n"; \
+	elif [ -s $@.log ]; then \
+		printf "%-78b%b" "$(COM_COLOR)$(COM_STRING)$(OBJ_COLOR) $<" "[ $(WARN_COLOR)$(WARN_STRING)$(NO_COLOR) ]\n"; \
+	else  \
+		printf "%-78b%b" "$(COM_COLOR)$(COM_STRING)$(OBJ_COLOR) $(<)" "[ $(OK_COLOR)$(OK_STRING)$(NO_COLOR) ]\n"; \
+	fi; \
+	cat $@.log; \
+	rm -f $@.log; \
+	exit $$RESULT
+endef
