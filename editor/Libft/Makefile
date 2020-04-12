@@ -85,7 +85,6 @@ SRCS = ft_atoi.c \
 			ft_strstr.c \
 			ft_print_tab.c \
 			ft_strendcmp.c \
-			ft_display_file.c \
 			ft_is_prime.c \
 			ft_lstadd.c \
 			ft_abs.c \

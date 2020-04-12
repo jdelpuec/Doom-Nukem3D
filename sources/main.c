@@ -42,8 +42,7 @@ void	sdl_loop(t_win *w, t_ray *r)
 					return ;
 			mouse_button_down(w, r);
 		}
-		if (is_key_pressed(&k) > 0
-		|| r->player.position.z != r->sectors[r->cur_sector].floor_height + 32)
+		if (is_key_pressed(&k) > 0)
 			handle_keyboard_mvt(w, r, &k);
 		drawing(w, r, &k);
 		fps_count(w);

@@ -1,0 +1,17 @@
+SRC+=reverse_list.c
+SRC+=list.c
+SRC+=init_structs.c
+SRC+=map_saving.c
+SRC+=draw_menu.c
+SRC+=draw_line.c
+SRC+=textures.c
+SRC+=write_text.c
+SRC+=handle_textures.c
+SRC+=main.c
+SRC+=draw_onmap.c
+SRC+=list_sprite.c
+SRC+=sdl_manage.c
+SRC+=editdraw.c
+SRC+=ft_malloc.c
+SRC+=detect_clicked_area.c
+SRC+=list_wall.c
