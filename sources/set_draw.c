@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   set_draw.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lubernar <lubernar@student.42.fr>          +#+  +:+       +#+        */
+/*   By: user42 <user42@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/10 14:05:34 by jdelpuec          #+#    #+#             */
-/*   Updated: 2020/03/09 17:25:20 by lubernar         ###   ########.fr       */
+/*   Updated: 2020/04/12 17:21:59 by user42           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -131,16 +131,18 @@ void	drawing(t_win *w, t_ray *r, t_keyboard *k)
 	if (k->state[SDL_SCANCODE_O] == 1)
 		print_messages(w);
 	w->fired == 0 ? display_l((WIN_W / 2), (WIN_H) - 240, w, r->gun) : 0;
-	if (w->fired == 1)
-		fire_gunshot(w, &r->gun);
-	if (w->reload == 1)
-		reload_gun(&r->reload_gun, w);
+	w->fired == 1 ? fire_gunshot(w, &r->gun) : 0;
+	w->reload == 1 ? reload_gun(&r->reload_gun, w) : 0;
 	if (r->inv.nb_hp >= 100)
 	{
+		SDL_memset(w->surface->pixels, 0, ((WIN_W * WIN_H) << 2));
 		w->mes = TTF_RenderText_Solid(w->font, "YOU WIN", w->fc);
 		if (w->mes == NULL)
 			return ;
 		apply_surface(((WIN_W / 2) - 50), (WIN_H / 2), w->mes, w->surface);
+		SDL_UpdateWindowSurface(w->win);
+		sleep(5);
+		exit(0);
 	}
 	SDL_UpdateWindowSurface(w->win);
 }

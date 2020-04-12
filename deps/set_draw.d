@@ -17,15 +17,14 @@ objs/set_draw.o: sources/set_draw.c includes/doom.h includes/SDL2/SDL.h \
   includes/SDL2/SDL_touch.h includes/SDL2/SDL_filesystem.h \
   includes/SDL2/SDL_haptic.h includes/SDL2/SDL_hints.h \
   includes/SDL2/SDL_loadso.h includes/SDL2/SDL_log.h \
-  includes/SDL2/SDL_messagebox.h includes/SDL2/SDL_power.h \
-  includes/SDL2/SDL_render.h includes/SDL2/SDL_sensor.h \
-  includes/SDL2/SDL_shape.h includes/SDL2/SDL_system.h \
-  includes/SDL2/SDL_timer.h includes/SDL2/SDL_version.h \
-  includes/SDL2/SDL_ttf.h includes/../libft/includes/libft.h \
+  includes/SDL2/SDL_messagebox.h includes/SDL2/SDL_metal.h \
+  includes/SDL2/SDL_power.h includes/SDL2/SDL_render.h \
+  includes/SDL2/SDL_sensor.h includes/SDL2/SDL_shape.h \
+  includes/SDL2/SDL_system.h includes/SDL2/SDL_timer.h \
+  includes/SDL2/SDL_version.h includes/../libft/includes/libft.h \
   libft/includes/get_next_line.h libft/includes/libft.h \
-  includes/../libft/includes/get_next_line.h includes/define.h \
-  includes/textures.h includes/inventory.h includes/raycasting.h \
-  includes/draw.h includes/event.h
+  includes/define.h includes/textures.h includes/inventory.h \
+  includes/raycasting.h includes/draw.h includes/event.h
 
 includes/doom.h:
 
@@ -105,6 +104,8 @@ includes/SDL2/SDL_log.h:
 
 includes/SDL2/SDL_messagebox.h:
 
+includes/SDL2/SDL_metal.h:
+
 includes/SDL2/SDL_power.h:
 
 includes/SDL2/SDL_render.h:
@@ -119,15 +120,11 @@ includes/SDL2/SDL_timer.h:
 
 includes/SDL2/SDL_version.h:
 
-includes/SDL2/SDL_ttf.h:
-
 includes/../libft/includes/libft.h:
 
 libft/includes/get_next_line.h:
 
 libft/includes/libft.h:
-
-includes/../libft/includes/get_next_line.h:
 
 includes/define.h:
 
