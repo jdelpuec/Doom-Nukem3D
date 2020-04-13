@@ -23,8 +23,7 @@ objs/hud_tools.o: sources/hud_tools.c includes/doom.h includes/SDL2/SDL.h \
   includes/SDL2/SDL_timer.h includes/SDL2/SDL_version.h \
   includes/SDL2/SDL_ttf.h includes/../libft/includes/libft.h \
   libft/includes/get_next_line.h libft/includes/libft.h \
-  includes/../libft/includes/get_next_line.h includes/define.h \
-  includes/textures.h includes/malloc.h
+  includes/define.h includes/textures.h includes/malloc.h
 
 includes/doom.h:
 
@@ -125,8 +124,6 @@ includes/../libft/includes/libft.h:
 libft/includes/get_next_line.h:
 
 libft/includes/libft.h:
-
-includes/../libft/includes/get_next_line.h:
 
 includes/define.h:
 

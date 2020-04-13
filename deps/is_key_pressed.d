@@ -23,9 +23,8 @@ objs/is_key_pressed.o: sources/is_key_pressed.c includes/doom.h \
   includes/SDL2/SDL_system.h includes/SDL2/SDL_timer.h \
   includes/SDL2/SDL_version.h includes/SDL2/SDL_ttf.h \
   includes/../libft/includes/libft.h libft/includes/get_next_line.h \
-  libft/includes/libft.h includes/../libft/includes/get_next_line.h \
-  includes/define.h includes/textures.h includes/inventory.h \
-  includes/raycasting.h includes/event.h
+  libft/includes/libft.h includes/define.h includes/textures.h \
+  includes/inventory.h includes/raycasting.h includes/event.h
 
 includes/doom.h:
 
@@ -126,8 +125,6 @@ includes/../libft/includes/libft.h:
 libft/includes/get_next_line.h:
 
 libft/includes/libft.h:
-
-includes/../libft/includes/get_next_line.h:
 
 includes/define.h:
 

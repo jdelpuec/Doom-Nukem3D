@@ -13,7 +13,7 @@
 #ifndef EDITOR_H
 # define EDITOR_H
 
-# include "../Libft/libft.h"
+# include "../libft/includes/libft.h"
 # include "SDL2/SDL.h"
 # include "SDL2/SDL_ttf.h"
 # include <math.h>

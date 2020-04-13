@@ -1,5 +1,6 @@
 objs/handle_textures.o: sources/handle_textures.c \
-  sources/../includes/editor.h includes/../Libft/libft.h \
+  sources/../includes/editor.h includes/../libft/includes/libft.h \
+  libft/includes/get_next_line.h libft/includes/libft.h \
   includes/SDL2/SDL.h includes/SDL2/SDL_main.h \
   includes/SDL2/SDL_stdinc.h includes/SDL2/SDL_config.h \
   includes/SDL2/SDL_platform.h includes/SDL2/begin_code.h \
@@ -23,11 +24,15 @@ objs/handle_textures.o: sources/handle_textures.c \
   includes/SDL2/SDL_sensor.h includes/SDL2/SDL_shape.h \
   includes/SDL2/SDL_system.h includes/SDL2/SDL_timer.h \
   includes/SDL2/SDL_version.h includes/SDL2/SDL_ttf.h includes/list.h \
-  includes/textures.h includes/malloc.h sources/../includes/textures.h
+  includes/textures.h includes/malloc.h
 
 sources/../includes/editor.h:
 
-includes/../Libft/libft.h:
+includes/../libft/includes/libft.h:
+
+libft/includes/get_next_line.h:
+
+libft/includes/libft.h:
 
 includes/SDL2/SDL.h:
 
@@ -126,5 +131,3 @@ includes/list.h:
 includes/textures.h:
 
 includes/malloc.h:
-
-sources/../includes/textures.h:

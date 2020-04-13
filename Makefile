@@ -50,7 +50,7 @@ make_ft:
 	make -C $(FT)
 $(FT_LIB): make_ft
 $(NAME): $(OBJS) $(FT_LIB)
-	$(CC) $(CFLAGS) -o $(NAME) $(FT_LNK) $(INCLUDE) $(LIBS) $(OBJS) $(FT_LIB)
+	$(CC) -g -fsanitize=address  $(CFLAGS) -o $(NAME) $(FT_LNK) $(INCLUDE) $(LIBS) $(OBJS) $(FT_LIB)
 clean:
 	make -C $(FT) clean
 	rm -f $(OBJS)
