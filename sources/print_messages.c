@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   print_messages.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lubernar <lubernar@student.42.fr>          +#+  +:+       +#+        */
+/*   By: user42 <user42@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/17 12:11:22 by lubernar          #+#    #+#             */
-/*   Updated: 2020/02/17 13:22:06 by lubernar         ###   ########.fr       */
+/*   Updated: 2020/04/12 17:03:01 by user42           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,9 +26,9 @@ void	print_messages(t_win *sdl)
 	char	**s;
 
 	s = malloc(sizeof(char**));
-	s[0] = "Bonjour ninja, apres votre combat vous etes epuise et avez besoin"
+	s[0] = "Bonjour ninja, apres votre combat vous etes epuise et avez besoin "
 	"de vous remettre en forme, trouvez des";
-	s[1] = "bolles de nouilles et des baguettes afin de pouvoir les manger.";
+	s[1] = "bols de nouilles et des baguettes afin de pouvoir les manger.";
 	cy = 10;
 	sdl->color = 0x000000;
 	while (cy != WIN_H / 10)
