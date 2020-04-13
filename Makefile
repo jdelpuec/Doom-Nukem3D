@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: lubernar <lubernar@student.42.fr>          +#+  +:+       +#+         #
+#    By: user42 <user42@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2020/03/05 14:02:40 by cduverge          #+#    #+#              #
-#    Updated: 2020/03/09 17:28:42 by lubernar         ###   ########.fr        #
+#    Updated: 2020/04/13 16:35:26 by user42           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -50,7 +50,7 @@ make_ft:
 	make -C $(FT)
 $(FT_LIB): make_ft
 $(NAME): $(OBJS) $(FT_LIB)
-	$(CC) $(CFLAGS) -o $(NAME) $(FT_LNK) $(INCLUDE) $(LIBS) $(OBJS) $(FT_LIB)
+	$(CC) -g -fsanitize=leak $(CFLAGS) -o $(NAME) $(FT_LNK) $(INCLUDE) $(LIBS) $(OBJS) $(FT_LIB)
 clean:
 	make -C $(FT) clean
 	rm -f $(OBJS)

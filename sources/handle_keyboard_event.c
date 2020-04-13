@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   handle_keyboard_event.c                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jdelpuec <jdelpuec@student.42.fr>          +#+  +:+       +#+        */
+/*   By: user42 <user42@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/04/02 11:15:57 by siwarin           #+#    #+#             */
-/*   Updated: 2020/03/06 13:23:24 by jdelpuec         ###   ########.fr       */
+/*   Updated: 2020/04/13 17:13:18 by user42           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,10 +15,11 @@
 #include "raycasting.h"
 #include "event.h"
 
-int		handle_keyboard_misc(t_win *w, t_keyboard *k)
+int		handle_keyboard_misc(t_win *w, t_keyboard *k, t_ray *r)
 {
 	if (k->state[SDL_SCANCODE_ESCAPE] == 1)
 	{
+		free_quit(w, r);
 		SDL_DestroyWindow(w->win);
 		TTF_CloseFont(w->font);
 		SDL_Quit();
@@ -86,10 +87,10 @@ float	check_line_point(t_vector_2d l1, t_vector_2d l2, t_vector_3d p)
 	return ((l2.x - l1.x) * (p.y - l1.y) - (l2.y - l1.y) * (p.x - l1.x));
 }
 
-int		handle_keyboard_event(t_win *w, t_keyboard *k)
+int		handle_keyboard_event(t_win *w, t_keyboard *k, t_ray *r)
 {
 	int	ret;
 
-	ret = handle_keyboard_misc(w, k);
+	ret = handle_keyboard_misc(w, k, r);
 	return (ret);
 }

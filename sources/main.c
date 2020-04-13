@@ -6,7 +6,7 @@
 /*   By: user42 <user42@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/04/01 11:49:14 by siwarin           #+#    #+#             */
-/*   Updated: 2020/04/12 17:08:39 by user42           ###   ########.fr       */
+/*   Updated: 2020/04/13 17:13:06 by user42           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,7 +38,7 @@ void	sdl_loop(t_win *w, t_ray *r)
 		while (SDL_PollEvent(&w->e))
 		{
 			if (w->e.type == SDL_KEYDOWN || w->e.type == SDL_KEYUP)
-				if (handle_keyboard_event(w, &k) < 0)
+				if (handle_keyboard_event(w, &k, r) < 0)
 					return ;
 			mouse_button_down(w, r);
 		}
@@ -48,6 +48,7 @@ void	sdl_loop(t_win *w, t_ray *r)
 		fps_count(w);
 		if (w->e.type == SDL_QUIT)
 		{
+			free_quit(w, r);
 			SDL_DestroyWindow(w->win);
 			TTF_CloseFont(w->font);
 			return ;

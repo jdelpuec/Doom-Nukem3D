@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   handle_textures.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jdelpuec <jdelpuec@student.42.fr>          +#+  +:+       +#+        */
+/*   By: user42 <user42@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/05/02 13:44:05 by jdelpuec          #+#    #+#             */
-/*   Updated: 2020/03/06 13:02:42 by jdelpuec         ###   ########.fr       */
+/*   Updated: 2020/04/13 16:40:41 by user42           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -94,7 +94,8 @@ t_text_tab		handle_textures(char **text_name, int y)
 	while (text_name[++y] != NULL)
 	{
 		y != 0 ? add_list(&last) : 0;
-		fd = open(text_name[y], O_RDONLY | O_NOFOLLOW);
+		//fd = open(text_name[y], O_RDONLY | O_NOFOLLOW);
+		fd = open(text_name[y], O_RDONLY);
 		last->id = y;
 		last->path = ft_strdup(text_name[y]);
 		if (fd == -1)
