@@ -1,5 +1,6 @@
 objs/detect_clicked_area.o: sources/detect_clicked_area.c \
-  sources/../includes/editor.h includes/../Libft/libft.h \
+  sources/../includes/editor.h includes/../libft/includes/libft.h \
+  libft/includes/get_next_line.h libft/includes/libft.h \
   includes/SDL2/SDL.h includes/SDL2/SDL_main.h \
   includes/SDL2/SDL_stdinc.h includes/SDL2/SDL_config.h \
   includes/SDL2/SDL_platform.h includes/SDL2/begin_code.h \
@@ -27,7 +28,11 @@ objs/detect_clicked_area.o: sources/detect_clicked_area.c \
 
 sources/../includes/editor.h:
 
-includes/../Libft/libft.h:
+includes/../libft/includes/libft.h:
+
+libft/includes/get_next_line.h:
+
+libft/includes/libft.h:
 
 includes/SDL2/SDL.h:
 

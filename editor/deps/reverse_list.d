@@ -1,5 +1,6 @@
 objs/reverse_list.o: sources/reverse_list.c sources/../includes/editor.h \
-  includes/../Libft/libft.h includes/SDL2/SDL.h includes/SDL2/SDL_main.h \
+  includes/../libft/includes/libft.h libft/includes/get_next_line.h \
+  libft/includes/libft.h includes/SDL2/SDL.h includes/SDL2/SDL_main.h \
   includes/SDL2/SDL_stdinc.h includes/SDL2/SDL_config.h \
   includes/SDL2/SDL_platform.h includes/SDL2/begin_code.h \
   includes/SDL2/close_code.h includes/SDL2/SDL_assert.h \
@@ -26,7 +27,11 @@ objs/reverse_list.o: sources/reverse_list.c sources/../includes/editor.h \
 
 sources/../includes/editor.h:
 
-includes/../Libft/libft.h:
+includes/../libft/includes/libft.h:
+
+libft/includes/get_next_line.h:
+
+libft/includes/libft.h:
 
 includes/SDL2/SDL.h:
 

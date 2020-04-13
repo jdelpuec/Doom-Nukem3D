@@ -58,8 +58,8 @@ void	draw_line(t_line *line, t_sdl *sdl)
 	line->dy = line->y2 - line->y1;
 	line->xinc = (line->dx > 0) ? 1 : -1;
 	line->yinc = (line->dy > 0) ? 1 : -1;
-	line->dx = ft_abs(line->dx);
-	line->dy = ft_abs(line->dy);
+	line->dx = fabs((float)line->dx);
+	line->dy = fabs((float)line->dy);
 	if (line->dx > line->dy)
 		error = horizontal_line(error, line, sdl);
 	else
