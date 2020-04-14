@@ -6,7 +6,7 @@
 /*   By: user42 <user42@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/10 11:27:26 by jdelpuec          #+#    #+#             */
-/*   Updated: 2020/04/14 18:22:56 by user42           ###   ########.fr       */
+/*   Updated: 2020/04/14 21:35:22 by user42           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -86,5 +86,4 @@ void		init_t_ray(t_ray *r, t_env *env)
 	r->space = r->sector_count > 1 ? 1.8 : 4;
 	r->gravity = r->player.gravity;
 	r->start_pos = r->player;
-	free_env(env);
 }
