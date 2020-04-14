@@ -6,7 +6,7 @@
 /*   By: user42 <user42@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/04/01 11:50:31 by siwarin           #+#    #+#             */
-/*   Updated: 2020/04/13 17:01:40 by user42           ###   ########.fr       */
+/*   Updated: 2020/04/14 18:18:53 by user42           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -170,4 +170,5 @@ void					init_ttf(t_win *sdl);
 void					apply_surface(int x, int y, SDL_Surface *source,
 															SDL_Surface *dest);
 void					print_messages(t_win *sdl);
+void					free_env(t_env *env);
 #endif

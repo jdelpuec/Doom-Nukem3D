@@ -28,3 +28,4 @@ SRC+=math_2.c
 SRC+=init_struct.c
 SRC+=parsing_2.c
 SRC+=free_quit.c
+SRC+=free_env.c

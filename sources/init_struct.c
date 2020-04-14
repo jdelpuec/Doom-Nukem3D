@@ -6,7 +6,7 @@
 /*   By: user42 <user42@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/10 11:27:26 by jdelpuec          #+#    #+#             */
-/*   Updated: 2020/04/13 17:56:28 by user42           ###   ########.fr       */
+/*   Updated: 2020/04/14 18:22:56 by user42           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,34 +65,6 @@ void		init_sdl(t_win *w)
 	w->old_t = 0.0;
 }
 
-void		get_sector_vertices(t_ray *r, int i)
-{
-	int		j;
-	t_wall	tmpw;
-
-	while (++i < r->sector_count)
-	{
-		j = -1;
-		while (++j < r->sectors[i].wall_count)
-		{
-			tmpw = r->sectors[i].walls[j];
-			r->tmp = minf(tmpw.p1.x, tmpw.p2.x);
-			r->sectors[i].min.x = j == 0 ? (r->tmp) :
-			(minf(r->sectors[i].min.x, r->tmp));
-			r->tmp = minf(tmpw.p1.y, tmpw.p2.y);
-			r->sectors[i].min.y = j == 0 ? (r->tmp) :
-			(minf(r->sectors[i].min.y, r->tmp));
-			r->tmp = maxf(tmpw.p1.x, tmpw.p2.x);
-			r->sectors[i].max.x = j == 0 ? (r->tmp) :
-			(maxf(r->sectors[i].max.x, r->tmp));
-			r->tmp = maxf(tmpw.p1.y, tmpw.p2.y);
-			r->sectors[i].max.y = j == 0 ? (r->tmp) :
-			(maxf(r->sectors[i].max.y, r->tmp));
-			r->tmp = 0;
-		}
-	}
-}
-
 void		init_t_ray(t_ray *r, t_env *env)
 {
 	int	i;
@@ -112,9 +84,7 @@ void		init_t_ray(t_ray *r, t_env *env)
 	r->player = env->player;
 	r->sector_count = env->room;
 	r->space = r->sector_count > 1 ? 1.8 : 4;
-	r->check_sprt = int_malloc("check_sprt", r->inv.nb_sprites);
-	i = -1;
 	r->gravity = r->player.gravity;
 	r->start_pos = r->player;
-	get_sector_vertices(r, i);
+	free_env(env);
 }
